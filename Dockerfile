@@ -16,6 +16,16 @@ RUN npm install --production
 # ── Build ─────────────────────────────────────────
 FROM base AS builder
 WORKDIR /app
+
+# Railway only exposes service variables to Docker build steps when the
+# variable is explicitly declared as an ARG in the stage that uses it.
+# Next.js inlines NEXT_PUBLIC_* values during `npm run build`.
+ARG NEXT_PUBLIC_SUPABASE_URL
+ARG NEXT_PUBLIC_SUPABASE_ANON_KEY
+ARG NEXT_PUBLIC_DEPLOYMENT_MODE
+ARG NEXT_PUBLIC_APP_URL
+ARG NEXT_PUBLIC_SITE_URL
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN npm run build
