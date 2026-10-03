@@ -22,3 +22,10 @@ shutil.rmtree("/tmp/businesstica")
 PY
 
 USER odoo
+
+EXPOSE 8069
+
+# Avoid the official image's HOST/PORT DB env convention because Railway
+# reserves PORT for the HTTP service port.
+ENTRYPOINT []
+CMD ["bash", "-lc", "exec odoo --db_host=\"$DB_HOST\" --db_port=\"${DB_PORT:-5432}\" --db_user=\"$DB_USER\" --db_password=\"$DB_PASSWORD\" --http-port=8069"]
