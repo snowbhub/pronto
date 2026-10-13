@@ -94,5 +94,263 @@
     "was loaded without an assigned staff member.",
     "wurde ohne zugewiesenen Mitarbeiter geladen.",
     "завантажено без призначеного майстра."
+  ],
+  [
+    "Staff commissions",
+    "Staff commissions",
+    "Mitarbeiterprovisionen",
+    "Комісії співробітників"
+  ],
+  [
+    "Team & commission",
+    "Team & commission",
+    "Team und Provisionen",
+    "Команда та комісії"
+  ],
+  [
+    "Edit a staff member to set their commission percentage. Weekly payroll is shown under Finance.",
+    "Edit a staff member to set their commission percentage. Weekly payroll is shown under Finance.",
+    "Bearbeite ein Teammitglied, um den Provisionssatz festzulegen. Die wöchentliche Abrechnung findest du unter Finanzen.",
+    "Відкрийте редагування співробітника, щоб встановити відсоток комісії. Тижневі виплати показано у Фінансах."
+  ],
+  [
+    "Services",
+    "Services",
+    "Leistungen",
+    "Послуги"
+  ],
+  [
+    "Revenue",
+    "Revenue",
+    "Umsatz",
+    "Виручка"
+  ],
+  [
+    "Commission",
+    "Commission",
+    "Provision",
+    "Комісія"
+  ],
+  [
+    "Tips",
+    "Tips",
+    "Trinkgeld",
+    "Чайові"
+  ],
+  [
+    "Advances",
+    "Advances",
+    "Vorschüsse",
+    "Аванси"
+  ],
+  [
+    "Already paid",
+    "Already paid",
+    "Bereits ausgezahlt",
+    "Вже виплачено"
+  ],
+  [
+    "Choose a specialist",
+    "Choose a specialist",
+    "Fachkraft auswählen",
+    "Виберіть спеціаліста"
+  ],
+  [
+    "Change language",
+    "Change language",
+    "Sprache ändern",
+    "Змінити мову"
+  ],
+  [
+    "Time zone",
+    "Time zone",
+    "Zeitzone",
+    "Часовий пояс"
+  ],
+  [
+    "Weekly payroll",
+    "Weekly payroll",
+    "Wöchentliche Gehaltsabrechnung",
+    "Тижневі виплати"
+  ],
+  [
+    "Staff member",
+    "Staff member",
+    "Mitarbeiter",
+    "Співробітник"
+  ],
+  [
+    "Today",
+    "Today",
+    "Heute",
+    "Сьогодні"
+  ],
+  [
+    "Tomorrow",
+    "Tomorrow",
+    "Morgen",
+    "Завтра"
+  ],
+  [
+    "Yesterday",
+    "Yesterday",
+    "Gestern",
+    "Вчора"
+  ],
+  [
+    "Monday",
+    "Monday",
+    "Montag",
+    "Понеділок"
+  ],
+  [
+    "Tuesday",
+    "Tuesday",
+    "Dienstag",
+    "Вівторок"
+  ],
+  [
+    "Wednesday",
+    "Wednesday",
+    "Mittwoch",
+    "Середа"
+  ],
+  [
+    "Thursday",
+    "Thursday",
+    "Donnerstag",
+    "Четвер"
+  ],
+  [
+    "Friday",
+    "Friday",
+    "Freitag",
+    "П’ятниця"
+  ],
+  [
+    "Saturday",
+    "Saturday",
+    "Samstag",
+    "Субота"
+  ],
+  [
+    "Sunday",
+    "Sunday",
+    "Sonntag",
+    "Неділя"
+  ],
+  [
+    "January",
+    "January",
+    "Januar",
+    "Січень"
+  ],
+  [
+    "February",
+    "February",
+    "Februar",
+    "Лютий"
+  ],
+  [
+    "March",
+    "March",
+    "März",
+    "Березень"
+  ],
+  [
+    "April",
+    "April",
+    "April",
+    "Квітень"
+  ],
+  [
+    "May",
+    "May",
+    "Mai",
+    "Травень"
+  ],
+  [
+    "June",
+    "June",
+    "Juni",
+    "Червень"
+  ],
+  [
+    "July",
+    "July",
+    "Juli",
+    "Липень"
+  ],
+  [
+    "August",
+    "August",
+    "August",
+    "Серпень"
+  ],
+  [
+    "September",
+    "September",
+    "September",
+    "Вересень"
+  ],
+  [
+    "October",
+    "October",
+    "Oktober",
+    "Жовтень"
+  ],
+  [
+    "November",
+    "November",
+    "November",
+    "Листопад"
+  ],
+  [
+    "December",
+    "December",
+    "Dezember",
+    "Грудень"
+  ],
+  [
+    "Sun",
+    "Sun",
+    "So",
+    "Нд"
+  ],
+  [
+    "Mon",
+    "Mon",
+    "Mo",
+    "Пн"
+  ],
+  [
+    "Tue",
+    "Tue",
+    "Di",
+    "Вт"
+  ],
+  [
+    "Wed",
+    "Wed",
+    "Mi",
+    "Ср"
+  ],
+  [
+    "Thu",
+    "Thu",
+    "Do",
+    "Чт"
+  ],
+  [
+    "Fri",
+    "Fri",
+    "Fr",
+    "Пт"
+  ],
+  [
+    "Sat",
+    "Sat",
+    "Sa",
+    "Сб"
   ]
 ]
