@@ -111,7 +111,7 @@ s=s.replace('return "ahora"','return "now"').replace('return ' + chr(96) + 'hace
 pt.write_text(s,encoding='utf-8')
 
 idir=ROOT/'src/i18n'; idir.mkdir(parents=True,exist_ok=True)
-rows=[{'es':es,'en':en,'de':de,'uk':uk} for es,en,de,uk in ROWS]
+rows=[{'es':es,'en':en,'de':de,'uk':uk} for es,en,de,uk in ROWS if 'virex' not in es.lower()]
 (idir/'messages.ts').write_text('export type Locale = "en" | "de" | "uk"\nexport const SUPPORTED_LOCALES:Locale[]=["en","de","uk"]\nexport const ROWS='+json.dumps(rows,ensure_ascii=False,indent=2)+' as const\n'+r'''
 export function normalizeLocale(value:string|null|undefined):Locale{const v=(value||"").toLowerCase();if(v.startsWith("de"))return"de";if(v.startsWith("uk")||v.startsWith("ua"))return"uk";return"en"}
 export function translateText(value:string,locale:Locale):string{let out=value;for(const row of ROWS)if(out.includes(row.es))out=out.split(row.es).join(row.en);if(locale==="en")return out;const sorted=[...ROWS].sort((a,b)=>b.en.length-a.en.length);for(const row of sorted){const target=locale==="de"?row.de:row.uk;if(out.includes(row.en))out=out.split(row.en).join(target)}return out}
