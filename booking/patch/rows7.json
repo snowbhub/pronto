@@ -1,0 +1,314 @@
+[
+  [
+    "Conexión",
+    "Connection",
+    "Verbindung",
+    "Підключення"
+  ],
+  [
+    "¡Listo!",
+    "Done!",
+    "Fertig!",
+    "Готово!"
+  ],
+  [
+    "Tu seña",
+    "Your deposit",
+    "Deine Anzahlung",
+    "Ваша передоплата"
+  ],
+  [
+    "¡Turno confirmado!",
+    "Booking confirmed!",
+    "Termin bestätigt!",
+    "Запис підтверджено!"
+  ],
+  [
+    "Recibimos tu seña. Ya podés cerrar esta ventana — te esperamos.",
+    "We received your deposit. You can close this window — your booking is confirmed.",
+    "Wir haben deine Anzahlung erhalten. Du kannst dieses Fenster schließen — dein Termin ist bestätigt.",
+    "Ми отримали передоплату. Можете закрити це вікно — запис підтверджено."
+  ],
+  [
+    "Puede tardar unos minutos. Si no te llega la confirmación, escribinos.",
+    "It may take a few minutes. If confirmation does not arrive, contact us.",
+    "Es kann einige Minuten dauern. Wenn keine Bestätigung kommt, kontaktiere uns.",
+    "Це може зайняти кілька хвилин. Якщо підтвердження не надійде, напишіть нам."
+  ],
+  [
+    "No se acreditó el pago",
+    "Payment not received",
+    "Zahlung nicht eingegangen",
+    "Оплату не отримано"
+  ],
+  [
+    "El horario se libera solo si no llega la seña a tiempo. Podés intentar de nuevo.",
+    "The slot is released automatically if the deposit is not received in time. You can try again.",
+    "Der Termin wird automatisch freigegeben, wenn die Anzahlung nicht rechtzeitig eingeht. Du kannst es erneut versuchen.",
+    "Час автоматично звільниться, якщо передоплата не надійде вчасно. Можна спробувати ще раз."
+  ],
+  [
+    "No hay clientes con ese filtro.",
+    "No clients match this filter.",
+    "Keine Kunden entsprechen diesem Filter.",
+    "Немає клієнтів за цим фільтром."
+  ],
+  [
+    "Últimas visitas",
+    "Recent visits",
+    "Letzte Besuche",
+    "Останні візити"
+  ],
+  [
+    "Todavía no vino.",
+    "No visits yet.",
+    "Noch keine Besuche.",
+    "Ще не приходив."
+  ],
+  [
+    "¡el próximo corte va al 50%!",
+    "the next qualifying service is 50% off!",
+    "die nächste passende Leistung ist 50 % günstiger!",
+    "наступна відповідна послуга зі знижкою 50%!"
+  ],
+  [
+    "para el premio",
+    "until the reward",
+    "bis zur Prämie",
+    "до нагороди"
+  ],
+  [
+    "Cobro rápido",
+    "Quick checkout",
+    "Schnellkasse",
+    "Швидка оплата"
+  ],
+  [
+    "Para el que cae sin turno. Queda registrado igual que si hubiera reservado.",
+    "For walk-ins. It is recorded exactly like a regular booking.",
+    "Für Laufkundschaft. Wird wie ein normaler Termin erfasst.",
+    "Для клієнтів без запису. Фіксується так само, як звичайний запис."
+  ],
+  [
+    "Cliente nuevo",
+    "New client",
+    "Neuer Kunde",
+    "Новий клієнт"
+  ],
+  [
+    "este cliente",
+    "this client",
+    "dieser Kunde",
+    "цей клієнт"
+  ],
+  [
+    "Cuándo fue",
+    "When it happened",
+    "Wann war es",
+    "Коли було"
+  ],
+  [
+    "Duró",
+    "Duration",
+    "Dauer",
+    "Тривалість"
+  ],
+  [
+    "Se anota terminando ahora, en el hueco libre del barbero.",
+    "It is recorded as ending now in the staff member's free slot.",
+    "Wird als jetzt beendet im freien Zeitraum des Mitarbeiters erfasst.",
+    "Фіксується як завершений зараз у вільному проміжку майстра."
+  ],
+  [
+    "Aplicado.",
+    "Applied.",
+    "Angewendet.",
+    "Застосовано."
+  ],
+  [
+    "Tocá para aplicarlo.",
+    "Tap to apply.",
+    "Tippen zum Anwenden.",
+    "Натисніть, щоб застосувати."
+  ],
+  [
+    "Entró",
+    "Received",
+    "Eingang",
+    "Надійшло"
+  ],
+  [
+    "ese día",
+    "that day",
+    "an diesem Tag",
+    "того дня"
+  ],
+  [
+    "cobros · servicios",
+    "payments · services",
+    "Zahlungen · Leistungen",
+    "оплат · послуг"
+  ],
+  [
+    "fondo",
+    "float",
+    "Startbestand",
+    "залишок"
+  ],
+  [
+    "cobros − gastos",
+    "payments − expenses",
+    "Einnahmen − Ausgaben",
+    "оплати − витрати"
+  ],
+  [
+    "Todavía no hay cobros.",
+    "No payments yet.",
+    "Noch keine Zahlungen.",
+    "Оплат ще немає."
+  ],
+  [
+    "propina",
+    "tip",
+    "Trinkgeld",
+    "чайові"
+  ],
+  [
+    "Cobro rápido (sin turno)",
+    "Quick checkout (walk-in)",
+    "Schnellkasse (ohne Termin)",
+    "Швидка оплата (без запису)"
+  ],
+  [
+    "con seña",
+    "with deposit",
+    "mit Anzahlung",
+    "з передоплатою"
+  ],
+  [
+    "le toca",
+    "payout",
+    "Auszahlung",
+    "належить"
+  ],
+  [
+    "Gastos del día",
+    "Daily expenses",
+    "Tagesausgaben",
+    "Витрати за день"
+  ],
+  [
+    "Caja cerrada a las",
+    "Cash closed at",
+    "Kasse geschlossen um",
+    "Касу закрито о"
+  ],
+  [
+    "Hubo movimientos después del cierre: hoy se esperan",
+    "There were transactions after closing: expected today",
+    "Nach dem Abschluss gab es Buchungen: heute erwartet",
+    "Після закриття були операції: сьогодні очікується"
+  ],
+  [
+    "Cerrar la caja del día",
+    "Close today's cash",
+    "Tageskasse schließen",
+    "Закрити касу за день"
+  ],
+  [
+    "Cierre corregido",
+    "Cash closing corrected",
+    "Kassenabschluss korrigiert",
+    "Закриття каси виправлено"
+  ],
+  [
+    "Hoy entraron",
+    "Received today",
+    "Heute eingegangen",
+    "Сьогодні надійшло"
+  ],
+  [
+    "Buen día de trabajo.",
+    "Good work today.",
+    "Guter Arbeitstag.",
+    "Хороший робочий день."
+  ],
+  [
+    "Contá el efectivo del cajón y cargalo. Queda guardado.",
+    "Count the cash in the drawer and enter it. It will be saved.",
+    "Bargeld in der Kasse zählen und eintragen. Es wird gespeichert.",
+    "Порахуйте готівку в касі та внесіть суму. Вона буде збережена."
+  ],
+  [
+    "Entró en total",
+    "Total received",
+    "Gesamteinnahmen",
+    "Надійшло всього"
+  ],
+  [
+    "Efectivo esperado",
+    "Expected cash",
+    "Erwartetes Bargeld",
+    "Очікувана готівка"
+  ],
+  [
+    "Guardar corrección",
+    "Save correction",
+    "Korrektur speichern",
+    "Зберегти виправлення"
+  ],
+  [
+    "Cerrar caja",
+    "Close cash",
+    "Kasse schließen",
+    "Закрити касу"
+  ],
+  [
+    "Se aplicó el 50% de la tarjeta de fidelidad. Arranca una tarjeta nueva.",
+    "The 50% loyalty reward was applied. A new loyalty cycle starts.",
+    "Die 50-%-Treueprämie wurde angewendet. Ein neuer Treuezyklus beginnt.",
+    "Знижку 50% за лояльність застосовано. Починається новий цикл."
+  ],
+  [
+    "cortes sellados.",
+    "stamps.",
+    "Stempel.",
+    "відміток."
+  ],
+  [
+    "Seña ya pagada",
+    "Deposit already paid",
+    "Anzahlung bereits bezahlt",
+    "Передоплату вже сплачено"
+  ],
+  [
+    "Fidelidad −50%",
+    "Loyalty −50%",
+    "Treue −50 %",
+    "Лояльність −50%"
+  ],
+  [
+    "Propina para",
+    "Tip for",
+    "Trinkgeld für",
+    "Чайові для"
+  ],
+  [
+    "Cargar vale",
+    "Add advance",
+    "Vorschuss erfassen",
+    "Додати аванс"
+  ],
+  [
+    "Cargar gasto",
+    "Add expense",
+    "Ausgabe erfassen",
+    "Додати витрату"
+  ],
+  [
+    "Lo que sale de la caja: insumos, un arreglo, la luz, un vale.",
+    "Money leaving the cash: supplies, repairs, utilities or an advance.",
+    "Ausgaben aus der Kasse: Material, Reparatur, Nebenkosten oder Vorschuss.",
+    "Витрати з каси: матеріали, ремонт, комунальні або аванс."
+  ]
+]
