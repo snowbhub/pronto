@@ -1,0 +1,1238 @@
+[
+  {
+    "es": "Virex Barber Shop",
+    "en": "Booking",
+    "de": "Termin",
+    "uk": "Запис"
+  },
+  {
+    "es": "Virex",
+    "en": "Booking",
+    "de": "Termin",
+    "uk": "Запис"
+  },
+  {
+    "es": "VIREX",
+    "en": "BOOKING",
+    "de": "TERMIN",
+    "uk": "ЗАПИС"
+  },
+  {
+    "es": "Barbershop · Panel",
+    "en": "Appointments · Panel",
+    "de": "Termine · Verwaltung",
+    "uk": "Записи · Панель"
+  },
+  {
+    "es": "Barbershop",
+    "en": "Appointments",
+    "de": "Termine",
+    "uk": "Записи"
+  },
+  {
+    "es": "Día a día",
+    "en": "Daily",
+    "de": "Täglich",
+    "uk": "Щодня"
+  },
+  {
+    "es": "Hoy",
+    "en": "Today",
+    "de": "Heute",
+    "uk": "Сьогодні"
+  },
+  {
+    "es": "Agenda",
+    "en": "Schedule",
+    "de": "Kalender",
+    "uk": "Календар"
+  },
+  {
+    "es": "Bandeja",
+    "en": "Inbox",
+    "de": "Posteingang",
+    "uk": "Вхідні"
+  },
+  {
+    "es": "Clientes",
+    "en": "Clients",
+    "de": "Kunden",
+    "uk": "Клієнти"
+  },
+  {
+    "es": "Cliente",
+    "en": "Client",
+    "de": "Kunde",
+    "uk": "Клієнт"
+  },
+  {
+    "es": "Plata",
+    "en": "Finance",
+    "de": "Finanzen",
+    "uk": "Фінанси"
+  },
+  {
+    "es": "Caja",
+    "en": "Cash",
+    "de": "Kasse",
+    "uk": "Каса"
+  },
+  {
+    "es": "Finanzas",
+    "en": "Finance",
+    "de": "Finanzen",
+    "uk": "Фінанси"
+  },
+  {
+    "es": "Automático",
+    "en": "Automation",
+    "de": "Automatisierung",
+    "uk": "Автоматизація"
+  },
+  {
+    "es": "Agente IA",
+    "en": "AI Agent",
+    "de": "KI-Assistent",
+    "uk": "AI-асистент"
+  },
+  {
+    "es": "Ajustes",
+    "en": "Settings",
+    "de": "Einstellungen",
+    "uk": "Налаштування"
+  },
+  {
+    "es": "Más secciones",
+    "en": "More sections",
+    "de": "Weitere Bereiche",
+    "uk": "Інші розділи"
+  },
+  {
+    "es": "Más",
+    "en": "More",
+    "de": "Mehr",
+    "uk": "Ще"
+  },
+  {
+    "es": "Secciones",
+    "en": "Sections",
+    "de": "Bereiche",
+    "uk": "Розділи"
+  },
+  {
+    "es": "Configuración",
+    "en": "Configuration",
+    "de": "Konfiguration",
+    "uk": "Конфігурація"
+  },
+  {
+    "es": "Servicios",
+    "en": "Services",
+    "de": "Leistungen",
+    "uk": "Послуги"
+  },
+  {
+    "es": "Servicio",
+    "en": "Service",
+    "de": "Leistung",
+    "uk": "Послуга"
+  },
+  {
+    "es": "Equipo",
+    "en": "Team",
+    "de": "Team",
+    "uk": "Команда"
+  },
+  {
+    "es": "Turnos fijos",
+    "en": "Fixed bookings",
+    "de": "Fixtermine",
+    "uk": "Постійні записи"
+  },
+  {
+    "es": "Local y fidelidad",
+    "en": "Business & loyalty",
+    "de": "Betrieb & Treue",
+    "uk": "Заклад і лояльність"
+  },
+  {
+    "es": "Conexiones",
+    "en": "Connections",
+    "de": "Verbindungen",
+    "uk": "Підключення"
+  },
+  {
+    "es": "Nuevo turno",
+    "en": "New booking",
+    "de": "Neuer Termin",
+    "uk": "Новий запис"
+  },
+  {
+    "es": "Turno rápido",
+    "en": "Quick booking",
+    "de": "Schnelltermin",
+    "uk": "Швидкий запис"
+  },
+  {
+    "es": "Turno agendado",
+    "en": "Booking created",
+    "de": "Termin erstellt",
+    "uk": "Запис створено"
+  },
+  {
+    "es": "Turno confirmado",
+    "en": "Booking confirmed",
+    "de": "Termin bestätigt",
+    "uk": "Запис підтверджено"
+  },
+  {
+    "es": "Turno cancelado",
+    "en": "Booking cancelled",
+    "de": "Termin storniert",
+    "uk": "Запис скасовано"
+  },
+  {
+    "es": "Turno fijo",
+    "en": "Fixed booking",
+    "de": "Fixtermin",
+    "uk": "Постійний запис"
+  },
+  {
+    "es": "Editar turno fijo",
+    "en": "Edit fixed booking",
+    "de": "Fixtermin bearbeiten",
+    "uk": "Редагувати постійний запис"
+  },
+  {
+    "es": "Nuevo turno fijo",
+    "en": "New fixed booking",
+    "de": "Neuer Fixtermin",
+    "uk": "Новий постійний запис"
+  },
+  {
+    "es": "Guardar turno fijo",
+    "en": "Save fixed booking",
+    "de": "Fixtermin speichern",
+    "uk": "Зберегти постійний запис"
+  },
+  {
+    "es": "Guardar horario",
+    "en": "Save schedule",
+    "de": "Arbeitszeit speichern",
+    "uk": "Зберегти графік"
+  },
+  {
+    "es": "Guardar cambios",
+    "en": "Save changes",
+    "de": "Änderungen speichern",
+    "uk": "Зберегти зміни"
+  },
+  {
+    "es": "Guardar gasto",
+    "en": "Save expense",
+    "de": "Ausgabe speichern",
+    "uk": "Зберегти витрату"
+  },
+  {
+    "es": "Guardar vale",
+    "en": "Save advance",
+    "de": "Vorschuss speichern",
+    "uk": "Зберегти аванс"
+  },
+  {
+    "es": "Guardar",
+    "en": "Save",
+    "de": "Speichern",
+    "uk": "Зберегти"
+  },
+  {
+    "es": "Guardando…",
+    "en": "Saving…",
+    "de": "Speichern…",
+    "uk": "Збереження…"
+  },
+  {
+    "es": "Editar",
+    "en": "Edit",
+    "de": "Bearbeiten",
+    "uk": "Редагувати"
+  },
+  {
+    "es": "Eliminar",
+    "en": "Delete",
+    "de": "Löschen",
+    "uk": "Видалити"
+  },
+  {
+    "es": "Volver",
+    "en": "Back",
+    "de": "Zurück",
+    "uk": "Назад"
+  },
+  {
+    "es": "Siguiente",
+    "en": "Next",
+    "de": "Weiter",
+    "uk": "Далі"
+  },
+  {
+    "es": "Continuar",
+    "en": "Continue",
+    "de": "Weiter",
+    "uk": "Продовжити"
+  },
+  {
+    "es": "Confirmar",
+    "en": "Confirm",
+    "de": "Bestätigen",
+    "uk": "Підтвердити"
+  },
+  {
+    "es": "Cancelar",
+    "en": "Cancel",
+    "de": "Abbrechen",
+    "uk": "Скасувати"
+  },
+  {
+    "es": "Cerrar",
+    "en": "Close",
+    "de": "Schließen",
+    "uk": "Закрити"
+  },
+  {
+    "es": "Salir del panel",
+    "en": "Log out",
+    "de": "Abmelden",
+    "uk": "Вийти"
+  },
+  {
+    "es": "Salir",
+    "en": "Log out",
+    "de": "Abmelden",
+    "uk": "Вийти"
+  },
+  {
+    "es": "Buscar",
+    "en": "Search",
+    "de": "Suchen",
+    "uk": "Пошук"
+  },
+  {
+    "es": "Todos",
+    "en": "All",
+    "de": "Alle",
+    "uk": "Усі"
+  },
+  {
+    "es": "Todas",
+    "en": "All",
+    "de": "Alle",
+    "uk": "Усі"
+  },
+  {
+    "es": "Nada por acá.",
+    "en": "Nothing here.",
+    "de": "Hier ist nichts.",
+    "uk": "Тут нічого немає."
+  },
+  {
+    "es": "Elegí una conversación.",
+    "en": "Select a conversation.",
+    "de": "Wähle eine Unterhaltung.",
+    "uk": "Оберіть розмову."
+  },
+  {
+    "es": "Hay cambios sin guardar",
+    "en": "There are unsaved changes",
+    "de": "Es gibt ungespeicherte Änderungen",
+    "uk": "Є незбережені зміни"
+  },
+  {
+    "es": "Nombre",
+    "en": "Name",
+    "de": "Name",
+    "uk": "Ім’я"
+  },
+  {
+    "es": "Teléfono",
+    "en": "Phone",
+    "de": "Telefon",
+    "uk": "Телефон"
+  },
+  {
+    "es": "Teléfono (opcional)",
+    "en": "Phone (optional)",
+    "de": "Telefon (optional)",
+    "uk": "Телефон (необов’язково)"
+  },
+  {
+    "es": "Precio",
+    "en": "Price",
+    "de": "Preis",
+    "uk": "Ціна"
+  },
+  {
+    "es": "Duración",
+    "en": "Duration",
+    "de": "Dauer",
+    "uk": "Тривалість"
+  },
+  {
+    "es": "Duración del turno",
+    "en": "Booking duration",
+    "de": "Termindauer",
+    "uk": "Тривалість запису"
+  },
+  {
+    "es": "Barbero",
+    "en": "Staff member",
+    "de": "Mitarbeiter",
+    "uk": "Майстер"
+  },
+  {
+    "es": "Barberos",
+    "en": "Staff",
+    "de": "Mitarbeiter",
+    "uk": "Майстри"
+  },
+  {
+    "es": "Horario",
+    "en": "Time",
+    "de": "Uhrzeit",
+    "uk": "Час"
+  },
+  {
+    "es": "Día",
+    "en": "Day",
+    "de": "Tag",
+    "uk": "День"
+  },
+  {
+    "es": "Fecha",
+    "en": "Date",
+    "de": "Datum",
+    "uk": "Дата"
+  },
+  {
+    "es": "Notas",
+    "en": "Notes",
+    "de": "Notizen",
+    "uk": "Нотатки"
+  },
+  {
+    "es": "Descripción",
+    "en": "Description",
+    "de": "Beschreibung",
+    "uk": "Опис"
+  },
+  {
+    "es": "Contraseña del panel",
+    "en": "Panel password",
+    "de": "Panel-Passwort",
+    "uk": "Пароль панелі"
+  },
+  {
+    "es": "Mañana",
+    "en": "Tomorrow",
+    "de": "Morgen",
+    "uk": "Завтра"
+  },
+  {
+    "es": "Día anterior",
+    "en": "Previous day",
+    "de": "Vorheriger Tag",
+    "uk": "Попередній день"
+  },
+  {
+    "es": "Día siguiente",
+    "en": "Next day",
+    "de": "Nächster Tag",
+    "uk": "Наступний день"
+  },
+  {
+    "es": "Día pasado",
+    "en": "Past day",
+    "de": "Vergangener Tag",
+    "uk": "Минулий день"
+  },
+  {
+    "es": "Próximamente",
+    "en": "Upcoming",
+    "de": "Bevorstehend",
+    "uk": "Незабаром"
+  },
+  {
+    "es": "Semana",
+    "en": "Week",
+    "de": "Woche",
+    "uk": "Тиждень"
+  },
+  {
+    "es": "Mes",
+    "en": "Month",
+    "de": "Monat",
+    "uk": "Місяць"
+  },
+  {
+    "es": "Esta semana",
+    "en": "This week",
+    "de": "Diese Woche",
+    "uk": "Цей тиждень"
+  },
+  {
+    "es": "Este mes",
+    "en": "This month",
+    "de": "Dieser Monat",
+    "uk": "Цей місяць"
+  },
+  {
+    "es": "lunes",
+    "en": "Monday",
+    "de": "Montag",
+    "uk": "понеділок"
+  },
+  {
+    "es": "martes",
+    "en": "Tuesday",
+    "de": "Dienstag",
+    "uk": "вівторок"
+  },
+  {
+    "es": "miércoles",
+    "en": "Wednesday",
+    "de": "Mittwoch",
+    "uk": "середа"
+  },
+  {
+    "es": "jueves",
+    "en": "Thursday",
+    "de": "Donnerstag",
+    "uk": "четвер"
+  },
+  {
+    "es": "viernes",
+    "en": "Friday",
+    "de": "Freitag",
+    "uk": "п’ятниця"
+  },
+  {
+    "es": "sábado",
+    "en": "Saturday",
+    "de": "Samstag",
+    "uk": "субота"
+  },
+  {
+    "es": "domingo",
+    "en": "Sunday",
+    "de": "Sonntag",
+    "uk": "неділя"
+  },
+  {
+    "es": "Lun",
+    "en": "Mon",
+    "de": "Mo",
+    "uk": "Пн"
+  },
+  {
+    "es": "Mar",
+    "en": "Tue",
+    "de": "Di",
+    "uk": "Вт"
+  },
+  {
+    "es": "Mié",
+    "en": "Wed",
+    "de": "Mi",
+    "uk": "Ср"
+  },
+  {
+    "es": "Jue",
+    "en": "Thu",
+    "de": "Do",
+    "uk": "Чт"
+  },
+  {
+    "es": "Vie",
+    "en": "Fri",
+    "de": "Fr",
+    "uk": "Пт"
+  },
+  {
+    "es": "Sáb",
+    "en": "Sat",
+    "de": "Sa",
+    "uk": "Сб"
+  },
+  {
+    "es": "Dom",
+    "en": "Sun",
+    "de": "So",
+    "uk": "Нд"
+  },
+  {
+    "es": "No trabaja hoy",
+    "en": "Not working today",
+    "de": "Heute nicht im Dienst",
+    "uk": "Сьогодні не працює"
+  },
+  {
+    "es": "Lo agendó el agente",
+    "en": "Booked by the agent",
+    "de": "Vom Assistenten gebucht",
+    "uk": "Записано асистентом"
+  },
+  {
+    "es": "Pasar turno a otro barbero",
+    "en": "Move booking to another staff member",
+    "de": "Termin zu einem anderen Mitarbeiter verschieben",
+    "uk": "Перенести запис до іншого майстра"
+  },
+  {
+    "es": "Arrancó el turno",
+    "en": "Booking started",
+    "de": "Termin gestartet",
+    "uk": "Запис розпочато"
+  },
+  {
+    "es": "Ver agenda",
+    "en": "View schedule",
+    "de": "Kalender ansehen",
+    "uk": "Переглянути календар"
+  },
+  {
+    "es": "Ver el día siguiente",
+    "en": "View next day",
+    "de": "Nächsten Tag ansehen",
+    "uk": "Переглянути наступний день"
+  },
+  {
+    "es": "Próximos",
+    "en": "Upcoming",
+    "de": "Bevorstehend",
+    "uk": "Наступні"
+  },
+  {
+    "es": "No quedan turnos hoy.",
+    "en": "No bookings left today.",
+    "de": "Heute keine weiteren Termine.",
+    "uk": "На сьогодні записів більше немає."
+  },
+  {
+    "es": "turnos",
+    "en": "bookings",
+    "de": "Termine",
+    "uk": "записів"
+  },
+  {
+    "es": "turno",
+    "en": "booking",
+    "de": "Termin",
+    "uk": "запис"
+  },
+  {
+    "es": "Visitas",
+    "en": "Visits",
+    "de": "Besuche",
+    "uk": "Візити"
+  },
+  {
+    "es": "Última",
+    "en": "Last",
+    "de": "Letzter",
+    "uk": "Останній"
+  },
+  {
+    "es": "Próximo turno",
+    "en": "Next booking",
+    "de": "Nächster Termin",
+    "uk": "Наступний запис"
+  },
+  {
+    "es": "No tiene turnos agendados.",
+    "en": "No upcoming bookings.",
+    "de": "Keine bevorstehenden Termine.",
+    "uk": "Немає майбутніх записів."
+  },
+  {
+    "es": "Agendar turno",
+    "en": "Create booking",
+    "de": "Termin anlegen",
+    "uk": "Створити запис"
+  },
+  {
+    "es": "Agendar primer turno",
+    "en": "Create first booking",
+    "de": "Ersten Termin anlegen",
+    "uk": "Створити перший запис"
+  },
+  {
+    "es": "Tarjeta de fidelidad",
+    "en": "Loyalty card",
+    "de": "Treuekarte",
+    "uk": "Картка лояльності"
+  },
+  {
+    "es": "Cómo se corta",
+    "en": "Service notes",
+    "de": "Service-Notizen",
+    "uk": "Нотатки про послугу"
+  },
+  {
+    "es": "Fidelidad",
+    "en": "Loyalty",
+    "de": "Treue",
+    "uk": "Лояльність"
+  },
+  {
+    "es": "Nuevo",
+    "en": "New",
+    "de": "Neu",
+    "uk": "Новий"
+  },
+  {
+    "es": "Volver a llamar",
+    "en": "Re-engage",
+    "de": "Zurückgewinnen",
+    "uk": "Повернути клієнтів"
+  },
+  {
+    "es": "Caja de hoy",
+    "en": "Today's cash",
+    "de": "Heutige Kasse",
+    "uk": "Каса за сьогодні"
+  },
+  {
+    "es": "Efectivo en caja",
+    "en": "Cash on hand",
+    "de": "Bargeldbestand",
+    "uk": "Готівка в касі"
+  },
+  {
+    "es": "Efectivo contado",
+    "en": "Counted cash",
+    "de": "Gezähltes Bargeld",
+    "uk": "Порахована готівка"
+  },
+  {
+    "es": "Cierre de caja",
+    "en": "Cash closing",
+    "de": "Kassenabschluss",
+    "uk": "Закриття каси"
+  },
+  {
+    "es": "Caja cerrada",
+    "en": "Cash closed",
+    "de": "Kasse geschlossen",
+    "uk": "Касу закрито"
+  },
+  {
+    "es": "Por cobrar",
+    "en": "To collect",
+    "de": "Offen",
+    "uk": "До оплати"
+  },
+  {
+    "es": "Por barbero",
+    "en": "By staff member",
+    "de": "Nach Mitarbeiter",
+    "uk": "За майстрами"
+  },
+  {
+    "es": "Sin gastos cargados.",
+    "en": "No expenses recorded.",
+    "de": "Keine Ausgaben erfasst.",
+    "uk": "Витрат немає."
+  },
+  {
+    "es": "Gastos",
+    "en": "Expenses",
+    "de": "Ausgaben",
+    "uk": "Витрати"
+  },
+  {
+    "es": "Gasto cargado",
+    "en": "Expense added",
+    "de": "Ausgabe hinzugefügt",
+    "uk": "Витрату додано"
+  },
+  {
+    "es": "Ingresos del mes",
+    "en": "Monthly revenue",
+    "de": "Monatsumsatz",
+    "uk": "Дохід за місяць"
+  },
+  {
+    "es": "Ingresos",
+    "en": "Revenue",
+    "de": "Umsatz",
+    "uk": "Дохід"
+  },
+  {
+    "es": "Resultado",
+    "en": "Net result",
+    "de": "Ergebnis",
+    "uk": "Результат"
+  },
+  {
+    "es": "Ticket promedio",
+    "en": "Average ticket",
+    "de": "Durchschnittsbon",
+    "uk": "Середній чек"
+  },
+  {
+    "es": "Ticket prom.",
+    "en": "Avg. ticket",
+    "de": "Ø Bon",
+    "uk": "Сер. чек"
+  },
+  {
+    "es": "Propinas",
+    "en": "Tips",
+    "de": "Trinkgeld",
+    "uk": "Чайові"
+  },
+  {
+    "es": "Propina",
+    "en": "Tip",
+    "de": "Trinkgeld",
+    "uk": "Чайові"
+  },
+  {
+    "es": "Atendidos",
+    "en": "Completed",
+    "de": "Erledigt",
+    "uk": "Обслуговано"
+  },
+  {
+    "es": "Ocupación",
+    "en": "Occupancy",
+    "de": "Auslastung",
+    "uk": "Завантаженість"
+  },
+  {
+    "es": "No vinieron",
+    "en": "No-shows",
+    "de": "Nicht erschienen",
+    "uk": "Не прийшли"
+  },
+  {
+    "es": "Premios de fidelidad",
+    "en": "Loyalty rewards",
+    "de": "Treueprämien",
+    "uk": "Нагороди лояльності"
+  },
+  {
+    "es": "De dónde vienen los turnos",
+    "en": "Booking sources",
+    "de": "Terminherkunft",
+    "uk": "Джерела записів"
+  },
+  {
+    "es": "Por día de la semana",
+    "en": "By weekday",
+    "de": "Nach Wochentag",
+    "uk": "За днем тижня"
+  },
+  {
+    "es": "Por servicio",
+    "en": "By service",
+    "de": "Nach Leistung",
+    "uk": "За послугою"
+  },
+  {
+    "es": "Medios de pago",
+    "en": "Payment methods",
+    "de": "Zahlungsarten",
+    "uk": "Способи оплати"
+  },
+  {
+    "es": "Efectivo",
+    "en": "Cash",
+    "de": "Bar",
+    "uk": "Готівка"
+  },
+  {
+    "es": "Transferencia",
+    "en": "Transfer",
+    "de": "Überweisung",
+    "uk": "Переказ"
+  },
+  {
+    "es": "Débito",
+    "en": "Debit card",
+    "de": "Debitkarte",
+    "uk": "Дебетова картка"
+  },
+  {
+    "es": "Crédito",
+    "en": "Credit card",
+    "de": "Kreditkarte",
+    "uk": "Кредитна картка"
+  },
+  {
+    "es": "Sueldos",
+    "en": "Staff payouts",
+    "de": "Mitarbeiterauszahlungen",
+    "uk": "Виплати майстрам"
+  },
+  {
+    "es": "Alquiler",
+    "en": "Rent",
+    "de": "Miete",
+    "uk": "Оренда"
+  },
+  {
+    "es": "Publicidad",
+    "en": "Marketing",
+    "de": "Marketing",
+    "uk": "Маркетинг"
+  },
+  {
+    "es": "Otros",
+    "en": "Other",
+    "de": "Sonstiges",
+    "uk": "Інше"
+  },
+  {
+    "es": "Vales",
+    "en": "Advances",
+    "de": "Vorschüsse",
+    "uk": "Аванси"
+  },
+  {
+    "es": "Insumos y productos",
+    "en": "Supplies & products",
+    "de": "Material & Produkte",
+    "uk": "Матеріали й товари"
+  },
+  {
+    "es": "Luz, gas e internet",
+    "en": "Utilities & internet",
+    "de": "Nebenkosten & Internet",
+    "uk": "Комунальні та інтернет"
+  },
+  {
+    "es": "Para mí",
+    "en": "For me",
+    "de": "Für mich",
+    "uk": "Для мене"
+  },
+  {
+    "es": "Dirección",
+    "en": "Address",
+    "de": "Adresse",
+    "uk": "Адреса"
+  },
+  {
+    "es": "Link de reserva",
+    "en": "Booking link",
+    "de": "Buchungslink",
+    "uk": "Посилання на запис"
+  },
+  {
+    "es": "Responde la IA",
+    "en": "AI responds",
+    "de": "KI antwortet",
+    "uk": "Відповідає AI"
+  },
+  {
+    "es": "Respondo yo",
+    "en": "I respond",
+    "de": "Ich antworte",
+    "uk": "Відповідаю я"
+  },
+  {
+    "es": "Quién responde",
+    "en": "Who responds",
+    "de": "Wer antwortet",
+    "uk": "Хто відповідає"
+  },
+  {
+    "es": "Turno agendado por la IA",
+    "en": "Booking created by AI",
+    "de": "Termin von KI erstellt",
+    "uk": "Запис створено AI"
+  },
+  {
+    "es": "Turno reprogramado por la IA",
+    "en": "Booking rescheduled by AI",
+    "de": "Termin von KI verschoben",
+    "uk": "Запис перенесено AI"
+  },
+  {
+    "es": "Turno cancelado por la IA",
+    "en": "Booking cancelled by AI",
+    "de": "Termin von KI storniert",
+    "uk": "Запис скасовано AI"
+  },
+  {
+    "es": "Consultó la tarjeta de fidelidad",
+    "en": "Checked the loyalty card",
+    "de": "Treuekarte geprüft",
+    "uk": "Перевірено картку лояльності"
+  },
+  {
+    "es": "Qué puede hacer solo",
+    "en": "What it can do on its own",
+    "de": "Was er selbstständig tun darf",
+    "uk": "Що він може робити самостійно"
+  },
+  {
+    "es": "Reglas del dueño",
+    "en": "Owner rules",
+    "de": "Regeln des Inhabers",
+    "uk": "Правила власника"
+  },
+  {
+    "es": "Informar precios y servicios",
+    "en": "Answer about prices and services",
+    "de": "Preise und Leistungen nennen",
+    "uk": "Повідомляти ціни та послуги"
+  },
+  {
+    "es": "Agendar turnos",
+    "en": "Create bookings",
+    "de": "Termine anlegen",
+    "uk": "Створювати записи"
+  },
+  {
+    "es": "Reprogramar turnos",
+    "en": "Reschedule bookings",
+    "de": "Termine verschieben",
+    "uk": "Переносити записи"
+  },
+  {
+    "es": "Cancelar turnos",
+    "en": "Cancel bookings",
+    "de": "Termine stornieren",
+    "uk": "Скасовувати записи"
+  },
+  {
+    "es": "Contar los sellos de fidelidad",
+    "en": "Share loyalty status",
+    "de": "Treuestatus mitteilen",
+    "uk": "Повідомляти статус лояльності"
+  },
+  {
+    "es": "Cercano",
+    "en": "Friendly",
+    "de": "Freundlich",
+    "uk": "Дружній"
+  },
+  {
+    "es": "Profesional",
+    "en": "Professional",
+    "de": "Professionell",
+    "uk": "Професійний"
+  },
+  {
+    "es": "Canchero",
+    "en": "Casual",
+    "de": "Locker",
+    "uk": "Неформальний"
+  },
+  {
+    "es": "El local",
+    "en": "Business",
+    "de": "Betrieb",
+    "uk": "Заклад"
+  },
+  {
+    "es": "Zona horaria",
+    "en": "Time zone",
+    "de": "Zeitzone",
+    "uk": "Часовий пояс"
+  },
+  {
+    "es": "Horarios que se ofrecen",
+    "en": "Booking intervals",
+    "de": "Buchungsintervalle",
+    "uk": "Інтервали запису"
+  },
+  {
+    "es": "Un horario nuevo cada",
+    "en": "Offer a slot every",
+    "de": "Neuer Slot alle",
+    "uk": "Пропонувати час кожні"
+  },
+  {
+    "es": "Fondo de caja al abrir",
+    "en": "Opening cash float",
+    "de": "Kassenbestand bei Öffnung",
+    "uk": "Стартова готівка в касі"
+  },
+  {
+    "es": "Seña con Mercado Pago",
+    "en": "Booking deposit",
+    "de": "Anzahlung",
+    "uk": "Передоплата"
+  },
+  {
+    "es": "Monto de la seña",
+    "en": "Deposit amount",
+    "de": "Anzahlungsbetrag",
+    "uk": "Сума передоплати"
+  },
+  {
+    "es": "Todas las semanas",
+    "en": "Every week",
+    "de": "Jede Woche",
+    "uk": "Щотижня"
+  },
+  {
+    "es": "Un solo día",
+    "en": "One day only",
+    "de": "Nur einmal",
+    "uk": "Один день"
+  },
+  {
+    "es": "Médico",
+    "en": "Medical",
+    "de": "Arzt",
+    "uk": "Лікар"
+  },
+  {
+    "es": "Trámite",
+    "en": "Personal errand",
+    "de": "Privater Termin",
+    "uk": "Особисті справи"
+  },
+  {
+    "es": "Dueño",
+    "en": "Owner",
+    "de": "Inhaber",
+    "uk": "Власник"
+  },
+  {
+    "es": "Reservá tu turno",
+    "en": "Book your appointment",
+    "de": "Termin buchen",
+    "uk": "Записатися"
+  },
+  {
+    "es": "Reservá acá",
+    "en": "Book here",
+    "de": "Hier buchen",
+    "uk": "Записатися тут"
+  },
+  {
+    "es": "¿Buscás turno?",
+    "en": "Looking for an appointment?",
+    "de": "Suchst du einen Termin?",
+    "uk": "Хочете записатися?"
+  },
+  {
+    "es": "¡Te esperamos!",
+    "en": "You're booked!",
+    "de": "Termin bestätigt!",
+    "uk": "Запис підтверджено!"
+  },
+  {
+    "es": "Cliente, servicio, barbero y horario. Nada más.",
+    "en": "Client, service, staff member and time. That's it.",
+    "de": "Kunde, Leistung, Mitarbeiter und Uhrzeit. Mehr nicht.",
+    "uk": "Клієнт, послуга, майстер і час. Нічого зайвого."
+  },
+  {
+    "es": "Fecha u hora inválidas.",
+    "en": "Invalid date or time.",
+    "de": "Ungültiges Datum oder Uhrzeit.",
+    "uk": "Некоректна дата або час."
+  },
+  {
+    "es": "Elegí servicio y barbero.",
+    "en": "Choose a service and staff member.",
+    "de": "Leistung und Mitarbeiter wählen.",
+    "uk": "Оберіть послугу та майстра."
+  },
+  {
+    "es": "Falta el nombre del cliente.",
+    "en": "Client name is required.",
+    "de": "Kundenname fehlt.",
+    "uk": "Потрібне ім’я клієнта."
+  },
+  {
+    "es": "No encontré ese turno.",
+    "en": "Booking not found.",
+    "de": "Termin nicht gefunden.",
+    "uk": "Запис не знайдено."
+  },
+  {
+    "es": "Ese turno ya está cobrado.",
+    "en": "This booking has already been paid.",
+    "de": "Dieser Termin wurde bereits bezahlt.",
+    "uk": "Цей запис уже оплачено."
+  },
+  {
+    "es": "Revisá la duración: entre 5 y 240 minutos.",
+    "en": "Check the duration: 5 to 240 minutes.",
+    "de": "Dauer prüfen: 5 bis 240 Minuten.",
+    "uk": "Перевірте тривалість: від 5 до 240 хвилин."
+  },
+  {
+    "es": "Poné el nombre del cliente.",
+    "en": "Enter the client name.",
+    "de": "Kundennamen eingeben.",
+    "uk": "Введіть ім’я клієнта."
+  },
+  {
+    "es": "Revisá la hora.",
+    "en": "Check the time.",
+    "de": "Uhrzeit prüfen.",
+    "uk": "Перевірте час."
+  },
+  {
+    "es": "Completá descripción y monto.",
+    "en": "Enter a description and amount.",
+    "de": "Beschreibung und Betrag eingeben.",
+    "uk": "Вкажіть опис і суму."
+  },
+  {
+    "es": "Día inválido.",
+    "en": "Invalid day.",
+    "de": "Ungültiger Tag.",
+    "uk": "Некоректний день."
+  },
+  {
+    "es": "Revisá el precio.",
+    "en": "Check the price.",
+    "de": "Preis prüfen.",
+    "uk": "Перевірте ціну."
+  },
+  {
+    "es": "Elegí una duración.",
+    "en": "Choose a duration.",
+    "de": "Dauer wählen.",
+    "uk": "Оберіть тривалість."
+  },
+  {
+    "es": "Poné el nombre.",
+    "en": "Enter a name.",
+    "de": "Namen eingeben.",
+    "uk": "Введіть ім’я."
+  },
+  {
+    "es": "La comisión va de 0 a 100 %.",
+    "en": "Commission must be between 0 and 100%.",
+    "de": "Provision muss zwischen 0 und 100 % liegen.",
+    "uk": "Комісія має бути від 0 до 100%."
+  },
+  {
+    "es": "No encontré a esa persona.",
+    "en": "Person not found.",
+    "de": "Person nicht gefunden.",
+    "uk": "Людину не знайдено."
+  },
+  {
+    "es": "Elegí la fecha.",
+    "en": "Choose a date.",
+    "de": "Datum auswählen.",
+    "uk": "Оберіть дату."
+  },
+  {
+    "es": "Ese día el local está cerrado.",
+    "en": "The business is closed that day.",
+    "de": "Der Betrieb ist an diesem Tag geschlossen.",
+    "uk": "Заклад цього дня зачинений."
+  }
+]
