@@ -28,6 +28,20 @@ for p in source_files:
     s = s.replace("VirexMark", "BookingMark")
     p.write_text(s, encoding="utf-8")
 
+# Remove the creator badge from every remaining screen before deleting the legacy component.
+for rel in [
+    "src/app/conectado/page.tsx",
+    "src/app/pago/page.tsx",
+    "src/components/shell/mobile-nav.tsx",
+]:
+    p = ROOT / rel
+    if not p.exists():
+        continue
+    body = p.read_text(encoding="utf-8")
+    body = re.sub(r'import \{ OperonBadge \} from "@/components/brand/operon-badge"\n', "", body)
+    body = re.sub(r'\s*<OperonBadge(?:\s+className="[^"]*")?\s*/>', "", body)
+    p.write_text(body, encoding="utf-8")
+
 # Remove legacy brand modules only when nothing imports them.
 legacy = [
     ("src/components/brand/virex-wordmark.tsx", ["virex-wordmark", "VirexWordmark"]),
