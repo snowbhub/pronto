@@ -1,0 +1,266 @@
+[
+  [
+    " turnos",
+    " bookings",
+    " Termine",
+    " записи"
+  ],
+  [
+    " turno",
+    " booking",
+    " Termin",
+    " запис"
+  ],
+  [
+    "Turnos ",
+    "Bookings ",
+    "Termine ",
+    "Записи "
+  ],
+  [
+    "Turno ",
+    "Booking ",
+    "Termin ",
+    "Запис "
+  ],
+  [
+    " barberos",
+    " staff members",
+    " Mitarbeiter",
+    " майстри"
+  ],
+  [
+    " barbero",
+    " staff member",
+    " Mitarbeiter",
+    " майстер"
+  ],
+  [
+    "Barberos ",
+    "Staff ",
+    "Mitarbeiter ",
+    "Майстри "
+  ],
+  [
+    "Barbero ",
+    "Staff member ",
+    "Mitarbeiter ",
+    "Майстер "
+  ],
+  [
+    " clientes",
+    " clients",
+    " Kunden",
+    " клієнти"
+  ],
+  [
+    " cliente",
+    " client",
+    " Kunde",
+    " клієнт"
+  ],
+  [
+    "Clientes ",
+    "Clients ",
+    "Kunden ",
+    "Клієнти "
+  ],
+  [
+    "Cliente ",
+    "Client ",
+    "Kunde ",
+    "Клієнт "
+  ],
+  [
+    " servicios",
+    " services",
+    " Leistungen",
+    " послуги"
+  ],
+  [
+    " servicio",
+    " service",
+    " Leistung",
+    " послугу"
+  ],
+  [
+    "Servicios ",
+    "Services ",
+    "Leistungen ",
+    "Послуги "
+  ],
+  [
+    "Servicio ",
+    "Service ",
+    "Leistung ",
+    "Послуга "
+  ],
+  [
+    " propinas",
+    " tips",
+    " Trinkgeld",
+    " чайові"
+  ],
+  [
+    " propina",
+    " tip",
+    " Trinkgeld",
+    " чайові"
+  ],
+  [
+    "Propinas ",
+    "Tips ",
+    "Trinkgeld ",
+    "Чайові "
+  ],
+  [
+    "Propina ",
+    "Tip ",
+    "Trinkgeld ",
+    "Чайові "
+  ],
+  [
+    " dueño",
+    " owner",
+    " Inhaber",
+    " власник"
+  ],
+  [
+    "Dueño ",
+    "Owner ",
+    "Inhaber ",
+    "Власник "
+  ],
+  [
+    " hoy",
+    " today",
+    " heute",
+    " сьогодні"
+  ],
+  [
+    "Hoy ",
+    "Today ",
+    "Heute ",
+    "Сьогодні "
+  ],
+  [
+    " mañana",
+    " tomorrow",
+    " morgen",
+    " завтра"
+  ],
+  [
+    "Mañana ",
+    "Tomorrow ",
+    "Morgen ",
+    "Завтра "
+  ],
+  [
+    "Guardado. Ojo:",
+    "Saved. Note:",
+    "Gespeichert. Hinweis:",
+    "Збережено. Увага:"
+  ],
+  [
+    "Booking — Hoy",
+    "Booking — Today",
+    "Termin — Heute",
+    "Запис — Сьогодні"
+  ],
+  [
+    "en ese horario",
+    "in that time range",
+    "in diesem Zeitraum",
+    "у цьому проміжку"
+  ],
+  [
+    "en ese lapso",
+    "in that period",
+    "in diesem Zeitraum",
+    "у цьому періоді"
+  ],
+  [
+    "Pendiente: definir con Virex si cobran seña al reservar.",
+    "Pending: configure whether a deposit is required for booking.",
+    "Ausstehend: festlegen, ob bei der Buchung eine Anzahlung erforderlich ist.",
+    "Очікує налаштування: чи потрібна передоплата під час запису."
+  ],
+  [
+    "Internet y teléfono",
+    "Internet and phone",
+    "Internet und Telefon",
+    "Інтернет і телефон"
+  ],
+  [
+    "Reposición de insumos",
+    "Restocking supplies",
+    "Material nachfüllen",
+    "Поповнення матеріалів"
+  ],
+  [
+    "Limpieza del local",
+    "Business cleaning",
+    "Reinigung des Betriebs",
+    "Прибирання закладу"
+  ],
+  [
+    "mañana",
+    "tomorrow",
+    "morgen",
+    "завтра"
+  ],
+  [
+    "el ",
+    "on ",
+    "am ",
+    "у "
+  ],
+  [
+    "Agendó ",
+    "Created booking: ",
+    "Termin erstellt: ",
+    "Створено запис: "
+  ],
+  [
+    "Vencida sin seña",
+    "Expired without deposit",
+    "Ohne Anzahlung abgelaufen",
+    "Прострочено без передоплати"
+  ],
+  [
+    "Falta el cliente del turno.",
+    "Booking client is missing.",
+    "Kunde für den Termin fehlt.",
+    "Відсутній клієнт запису."
+  ],
+  [
+    "¡Hola ",
+    "Hi ",
+    "Hallo ",
+    "Привіт "
+  ],
+  [
+    "¡Sí!",
+    "Yes!",
+    "Ja!",
+    "Так!"
+  ],
+  [
+    "¡De nada!",
+    "You're welcome!",
+    "Gern!",
+    "Будь ласка!"
+  ],
+  [
+    "Listo ✂️",
+    "Done ✂️",
+    "Fertig ✂️",
+    "Готово ✂️"
+  ],
+  [
+    "Listo,",
+    "Done,",
+    "Fertig,",
+    "Готово,"
+  ]
+]
