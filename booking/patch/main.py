@@ -114,7 +114,25 @@ idir=ROOT/'src/i18n'; idir.mkdir(parents=True,exist_ok=True)
 rows=[{'es':es,'en':en,'de':de,'uk':uk} for es,en,de,uk in ROWS if 'virex' not in es.lower()]
 (idir/'messages.ts').write_text('export type Locale = "en" | "de" | "uk"\nexport const SUPPORTED_LOCALES:Locale[]=["en","de","uk"]\nexport const ROWS='+json.dumps(rows,ensure_ascii=False,indent=2)+' as const\n'+r'''
 export function normalizeLocale(value:string|null|undefined):Locale{const v=(value||"").toLowerCase();if(v.startsWith("de"))return"de";if(v.startsWith("uk")||v.startsWith("ua"))return"uk";return"en"}
-export function translateText(value:string,locale:Locale):string{let out=value;for(const row of ROWS)if(out.includes(row.es))out=out.split(row.es).join(row.en);if(locale==="en")return out;const sorted=[...ROWS].sort((a,b)=>b.en.length-a.en.length);for(const row of sorted){const target=locale==="de"?row.de:row.uk;if(out.includes(row.en))out=out.split(row.en).join(target)}return out}
+export function translateText(value:string,locale:Locale):string{
+  let out=value
+  for(const row of ROWS)if(out.includes(row.es))out=out.split(row.es).join(row.en)
+  if(locale==="en")return out
+  const sorted=[...ROWS].sort((a,b)=>b.en.length-a.en.length)
+  for(const row of sorted){
+    const target=locale==="de"?row.de:row.uk
+    if(out.includes(row.en))out=out.split(row.en).join(target)
+  }
+  if(locale==="de"){
+    out=out.replace(/^You have (\\d+) of (\\d+) stamps\\. You need (\\d+) more and your next service is 50% off ✨$/,"Du hast $1 von $2 Stempeln. Es fehlen noch $3 und die nächste Leistung ist 50 % günstiger ✨")
+    out=out.replace(/^Created (.+) for (.+) · (.+)$/,"Erstellt: $1 für $2 · $3")
+  }else{
+    out=out.replace(/^You have (\\d+) of (\\d+) stamps\\. You need (\\d+) more and your next service is 50% off ✨$/,"У вас $1 із $2 штампів. Залишилося $3, і наступна послуга зі знижкою 50% ✨")
+    out=out.replace(/^Created (.+) for (.+) · (.+)$/,"Створено: $1 для $2 · $3")
+  }
+  return out
+}
+export const t=(value:string,locale:Locale)=>translateText(value,locale)
 ''',encoding='utf-8')
 
 (idir/'bridge.tsx').write_text(r'''"use client"
