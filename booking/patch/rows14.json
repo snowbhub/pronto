@@ -1,0 +1,206 @@
+[
+  [
+    "Respondió una consulta de ${who}",
+    "Answered a question from ${who}",
+    "Anfrage von ${who} beantwortet",
+    "Відповів на запит ${who}"
+  ],
+  [
+    "Hoy me quedan ${slotsToday.map(({ t, s }) => `${t} con ${s.name}`).join(\", \")}. ¿Te reservo alguno?",
+    "Today I have ${slotsToday.map(({ t, s }) => `${t} with ${s.name}`).join(\", \")} available. Should I book one?",
+    "Heute sind ${slotsToday.map(({ t, s }) => `${t} bei ${s.name}`).join(\", \")} frei. Soll ich einen Termin buchen?",
+    "Сьогодні вільно: ${slotsToday.map(({ t, s }) => `${t} у ${s.name}`).join(\", \")}. Записати?"
+  ],
+  [
+    "Buenas! hasta qué hora están hoy?",
+    "Hi! What time are you open until today?",
+    "Hallo! Bis wann habt ihr heute geöffnet?",
+    "Привіт! До котрої сьогодні працюєте?"
+  ],
+  [
+    "tienen turno hoy?",
+    "Do you have an appointment today?",
+    "Habt ihr heute einen freien Termin?",
+    "Є вільний запис на сьогодні?"
+  ],
+  [
+    "Reclamo por un corte",
+    "Complaint about a service",
+    "Beschwerde über eine Leistung",
+    "Скарга на послугу"
+  ],
+  [
+    "Hola, el corte de ayer me quedó desparejo del lado izquierdo, se nota bastante",
+    "Hi, yesterday's service turned out uneven on the left side and it is quite noticeable",
+    "Hallo, die Leistung gestern ist links ungleichmäßig geworden und das sieht man deutlich",
+    "Привіт, учорашня стрижка вийшла нерівною зліва, це добре видно"
+  ],
+  [
+    "Uh Ezequiel, lamento mucho eso. Ya le aviso a Santiago para que lo vea personalmente y te escriba en un rato para solucionarlo. 🙏",
+    "I'm sorry about that. I'll pass this to the team so someone can review it and contact you shortly. 🙏",
+    "Das tut mir leid. Ich gebe es ans Team weiter, damit es geprüft wird und sich gleich jemand bei dir meldet. 🙏",
+    "Шкода, що так сталося. Я передам це команді, щоб ситуацію перевірили й незабаром з вами зв’язалися. 🙏"
+  ],
+  [
+    "ok espero",
+    "okay, I'll wait",
+    "okay, ich warte",
+    "добре, чекатиму"
+  ],
+  [
+    "Buenas! tenés turno para ${relDay(tomorrowOpen)} a la tarde? corte y barba",
+    "Hi! Do you have an appointment ${relDay(tomorrowOpen)} afternoon for hair and beard?",
+    "Hallo! Gibt es ${relDay(tomorrowOpen)} Nachmittag einen Termin für Haare und Bart?",
+    "Привіт! Є вільний запис ${relDay(tomorrowOpen)} після обіду на стрижку й бороду?"
+  ],
+  [
+    "18 con nehe",
+    "18:00 works",
+    "18:00 passt",
+    "18:00 підходить"
+  ],
+  [
+    "genial gracias",
+    "great, thanks",
+    "super, danke",
+    "чудово, дякую"
+  ],
+  [
+    "Pregunta por platinado: no está en la lista de servicios",
+    "Asked about a service that is not in the service list",
+    "Frage zu einer Leistung, die nicht in der Liste steht",
+    "Питання про послугу, якої немає у списку"
+  ],
+  [
+    "Hola! hacen platinado? tengo el pelo bastante oscuro",
+    "Hi! Do you offer platinum coloring? My hair is quite dark",
+    "Hallo! Bietet ihr Platinfärbung an? Meine Haare sind ziemlich dunkel",
+    "Привіт! Робите платинове фарбування? У мене доволі темне волосся"
+  ],
+  [
+    "¡Hola Tomi! Por ahora en el local hacemos corte y corte + barba. Igual le paso tu consulta a Santiago para que te responda él 🙌",
+    "Hi! At the moment we offer haircut and haircut + beard. I'll pass your question to the team so they can reply. 🙌",
+    "Hallo! Aktuell bieten wir Haarschnitt und Haarschnitt + Bart an. Ich gebe deine Frage ans Team weiter. 🙌",
+    "Привіт! Зараз ми пропонуємо стрижку та стрижку + бороду. Я передам питання команді, щоб вам відповіли. 🙌"
+  ],
+  [
+    "dale, le mando una foto?",
+    "okay, should I send a photo?",
+    "okay, soll ich ein Foto schicken?",
+    "добре, надіслати фото?"
+  ],
+  [
+    "che hoy no llego a las 17, se puede más tarde?",
+    "Hi, I can't make 17:00 today. Is later possible?",
+    "Hallo, ich schaffe es heute nicht um 17:00. Geht es später?",
+    "Привіт, сьогодні не встигаю на 17:00. Можна пізніше?"
+  ],
+  [
+    "Sin drama, Franco. Te lo pasé a las 19:00 con Sebastián, mismo servicio (Corte). ¿Te sirve?",
+    "No problem. I moved it to 19:00 with the same service. Does that work?",
+    "Kein Problem. Ich habe den Termin auf 19:00 mit derselben Leistung verschoben. Passt das?",
+    "Без проблем. Я переніс запис на 19:00 з тією самою послугою. Підходить?"
+  ],
+  [
+    "joya gracias",
+    "perfect, thanks",
+    "perfekt, danke",
+    "супер, дякую"
+  ],
+  [
+    "aceptan mercado pago?",
+    "Do you accept Mercado Pago?",
+    "Akzeptiert ihr Mercado Pago?",
+    "Приймаєте Mercado Pago?"
+  ],
+  [
+    "¡Sí! Aceptamos efectivo, transferencia, Mercado Pago y débito o crédito. 🙌",
+    "Yes! We accept cash, transfer, Mercado Pago, debit and credit cards. 🙌",
+    "Ja! Wir akzeptieren Bargeld, Überweisung, Mercado Pago, Debit- und Kreditkarten. 🙌",
+    "Так! Приймаємо готівку, переказ, Mercado Pago, дебетові та кредитні картки. 🙌"
+  ],
+  [
+    "Hola! quería sacar turno para mi hijo de 8 años, el sábado a la mañana",
+    "Hi! I'd like to book my 8-year-old son for Saturday morning",
+    "Hallo! Ich möchte für meinen 8-jährigen Sohn am Samstagmorgen einen Termin buchen",
+    "Привіт! Хочу записати 8-річного сина на суботу вранці"
+  ],
+  [
+    "si porfa",
+    "yes please",
+    "ja bitte",
+    "так, будь ласка"
+  ],
+  [
+    "cuántos cortes me faltan para el 50%?",
+    "How many visits are left until the 50% reward?",
+    "Wie viele Besuche fehlen noch bis zur 50-%-Prämie?",
+    "Скільки візитів залишилося до знижки 50%?"
+  ],
+  [
+    "🔥🔥🔥 quedó terrible el corte",
+    "🔥🔥🔥 the haircut turned out great",
+    "🔥🔥🔥 der Haarschnitt ist richtig gut geworden",
+    "🔥🔥🔥 стрижка вийшла дуже круто"
+  ],
+  [
+    "¡Gracias crack! 🙌 Cuando quieras repetir, escribinos y te buscamos turno.",
+    "Thanks! 🙌 Whenever you want to come again, message us and we'll find a time.",
+    "Danke! 🙌 Wenn du wiederkommen möchtest, schreib uns und wir finden einen Termin.",
+    "Дякуємо! 🙌 Коли захочете знову — напишіть, і ми знайдемо час."
+  ],
+  [
+    "Santi, el sábado podés a las 12? es para mi casamiento, quiero algo prolijo",
+    "Can I book Saturday at 12:00? It's for my wedding and I'd like something neat",
+    "Kann ich Samstag um 12:00 buchen? Es ist für meine Hochzeit und soll ordentlich sein",
+    "Можна записатися в суботу на 12:00? Це перед весіллям, хочу акуратну стрижку"
+  ],
+  [
+    "Joaco, te guardé el sábado 12:00 👌 Vení con el pelo lavado y hacemos corte + barba a navaja.",
+    "Saturday 12:00 is reserved 👌 Come with clean hair and we'll do hair + beard.",
+    "Samstag 12:00 ist reserviert 👌 Komm mit gewaschenen Haaren, dann machen wir Haare + Bart.",
+    "Суботу 12:00 зарезервовано 👌 Приходьте з чистим волоссям, зробимо стрижку + бороду."
+  ],
+  [
+    "crack, gracias!",
+    "great, thanks!",
+    "super, danke!",
+    "супер, дякую!"
+  ],
+  [
+    "Asistente Virex",
+    "Booking Assistant",
+    "Termin-Assistent",
+    "Асистент Запису"
+  ],
+  [
+    "Nunca inventes descuentos ni promociones que no existen.",
+    "Never invent discounts or promotions that do not exist.",
+    "Erfinde niemals Rabatte oder Aktionen, die es nicht gibt.",
+    "Ніколи не вигадуй знижки чи акції, яких не існує."
+  ],
+  [
+    "Por ahora el local hace sólo corte y corte + barba. Si piden otra cosa (color, diseño, barba sola), decilo y derivá a Santiago.",
+    "For now, only the configured core services are offered. If someone asks for something else, say so and hand it off to a person.",
+    "Aktuell werden nur die konfigurierten Kernleistungen angeboten. Bei anderen Anfragen darauf hinweisen und an eine Person übergeben.",
+    "Наразі доступні лише налаштовані основні послуги. Якщо просять інше — повідомте про це й передайте людині."
+  ],
+  [
+    "Si alguien se queja de un corte, pedí disculpas y derivá a una persona de inmediato.",
+    "If someone complains about a service, apologize and hand the conversation to a person immediately.",
+    "Bei Beschwerden über eine Leistung entschuldigen und sofort an eine Person übergeben.",
+    "Якщо клієнт скаржиться на послугу, вибачтесь і одразу передайте розмову людині."
+  ],
+  [
+    "Por Instagram, pedí nombre y teléfono antes de confirmar un turno.",
+    "On Instagram, ask for name and phone before confirming a booking.",
+    "Auf Instagram vor der Terminbestätigung nach Name und Telefon fragen.",
+    "В Instagram перед підтвердженням запису запитайте ім’я та телефон."
+  ],
+  [
+    "Fuera de horario igual podés agendar, pero aclarás que el local atiende de martes a sábado de 11 a 20.",
+    "Bookings can still be created outside opening hours, but clearly state the configured business hours.",
+    "Auch außerhalb der Öffnungszeiten können Termine erstellt werden; die Öffnungszeiten klar nennen.",
+    "Записи можна створювати й поза робочим часом, але потрібно чітко повідомляти години роботи."
+  ]
+]
