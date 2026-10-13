@@ -169,3 +169,21 @@ for rel in visible_files:
         if marker.search(line): res.append(f"{rel}:{i}: {st[:220]}")
 print("FINAL_VISIBLE_RESIDUALS", len(res))
 for x in res[:160]: print("FINAL_VISIBLE", x)
+
+
+# Final visible copy cleanup after full i18n audit.
+patch("src/app/(panel)/page.tsx", [
+    ('d.agent.booked === 1 ? "turno" : "turnos"', 'd.agent.booked === 1 ? "booking" : "bookings"'),
+])
+patch("src/app/(panel)/agenda/page.tsx", [
+    ("\n          Hoy\n", "\n          Today\n"),
+    ("\n            Hoy\n", "\n            Today\n"),
+])
+patch("src/app/(panel)/caja/page.tsx", [
+    ("\n            Hoy\n", "\n            Today\n"),
+    ("\n          Hoy\n", "\n          Today\n"),
+])
+patch("src/components/shell/mobile-nav.tsx", [
+    ("\n            Más\n", "\n            More\n"),
+    ("\n          Más\n", "\n          More\n"),
+])
