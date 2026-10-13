@@ -22,3 +22,10 @@ s=s.replace('''const d = at(day, "12:00")
 s=s.replace('return at(day, "12:00").getUTCDay()', 'return new Date(day + "T12:00:00Z").getUTCDay()')
 p.write_text(s,encoding="utf-8")
 print("BOOKING_IANA_TIMEZONE_PATCHED",TZ if False else "Europe/Berlin")
+
+
+p=Path("/app/src/config/brand.ts")
+s=p.read_text(encoding="utf-8")
+s=s.replace('timezone: "America/Argentina/Buenos_Aires"','timezone: "Europe/Berlin"')
+p.write_text(s,encoding="utf-8")
+print("BOOKING_BRAND_TIMEZONE_ALIGNED")
