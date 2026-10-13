@@ -328,3 +328,19 @@ for item in candidates[:200]:
     print("FINAL_RUNTIME_UI_SPANISH", item)
 if candidates:
     raise RuntimeError("Visible Spanish candidates remain in runtime UI: " + str(len(candidates)))
+
+
+# Last-mile, exact visible strings only. Never alter technical keys or payment values.
+patch("src/app/pago/page.tsx", [
+    ("Estamos confirmando tu pago", "We are confirming your payment"),
+])
+patch("src/components/caja/quick-charge-dialog.tsx", [
+    (">Medio de pago<", ">Payment method<"),
+])
+patch("src/components/caja/charge-dialog.tsx", [
+    (">Medio de pago<", ">Payment method<"),
+])
+patch("src/app/api/mercadopago/webhook/route.ts", [
+    ('"sin id de pago"', '"missing payment ID"'),
+    ('"[mercadopago] no se pudo consultar el pago"', '"[mercadopago] could not retrieve the payment"'),
+])
