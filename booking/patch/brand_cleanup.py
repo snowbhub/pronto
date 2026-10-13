@@ -77,6 +77,8 @@ replacements = [
     ("El evento no identifica la conversación.", "The event does not identify the conversation."),
 ]
 for p in source_files:
+    if not p.exists():
+        continue
     s = p.read_text(encoding="utf-8")
     for a, b in replacements:
         s = s.replace(a, b)
