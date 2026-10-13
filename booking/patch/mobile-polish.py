@@ -40,3 +40,12 @@ cards='''<div className="space-y-3 px-4 pb-4 md:hidden">
 s=s.replace(target,cards,1)
 p.write_text(s,encoding="utf-8")
 print("BOOKING_MOBILE_POLISH_APPLIED")
+
+
+p=root/"src/components/booking/booking-flow.tsx"
+s=p.read_text(encoding="utf-8")
+s=s.replace('normalizeLocale, type Locale','normalizeLocale, translateText, type Locale')
+s=s.replace('{s.name}', '{translateText(s.name,locale)}')
+s=s.replace('{service.name}', '{translateText(service.name,locale)}')
+p.write_text(s,encoding="utf-8")
+print("BOOKING_PUBLIC_SERVICE_NAMES_LOCALIZED")
