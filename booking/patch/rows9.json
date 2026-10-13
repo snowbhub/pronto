@@ -1,0 +1,242 @@
+[
+  [
+    "Sin turno",
+    "Walk-in",
+    "Ohne Termin",
+    "Без запису"
+  ],
+  [
+    "no hace este servicio",
+    "does not provide this service",
+    "bietet diese Leistung nicht an",
+    "не надає цю послугу"
+  ],
+  [
+    "Elegí un horario",
+    "Choose a time",
+    "Uhrzeit wählen",
+    "Оберіть час"
+  ],
+  [
+    "Pasar a otro barbero",
+    "Move to another staff member",
+    "Zu anderem Mitarbeiter verschieben",
+    "Перенести до іншого майстра"
+  ],
+  [
+    "Misma hora y servicio. Si el cliente pidió a alguien en particular, avisale antes de cambiarlo.",
+    "Same time and service. If the client requested someone specific, let them know before changing.",
+    "Gleiche Zeit und Leistung. Wenn der Kunde eine bestimmte Person gewählt hat, vorher informieren.",
+    "Той самий час і послуга. Якщо клієнт обрав конкретного майстра, попередьте його перед зміною."
+  ],
+  [
+    "No hay otro barbero libre y trabajando en esta franja.",
+    "No other staff member is available in this time range.",
+    "In diesem Zeitraum ist kein anderer Mitarbeiter verfügbar.",
+    "У цей проміжок немає іншого вільного майстра."
+  ],
+  [
+    "Terminó: el horario que sobraba quedó libre y el cobro queda pendiente en Caja",
+    "Finished: unused time is free and payment remains pending in Cash",
+    "Beendet: Restzeit ist wieder frei, Zahlung bleibt in der Kasse offen",
+    "Завершено: невикористаний час звільнено, оплата очікує в Касі"
+  ],
+  [
+    "Hola! tenés turno mañana a la tarde?",
+    "Hi! Do you have an appointment tomorrow afternoon?",
+    "Hallo! Gibt es morgen Nachmittag einen Termin?",
+    "Привіт! Є запис на завтра після обіду?"
+  ],
+  [
+    "cuánto sale corte y barba?",
+    "how much is a haircut and beard service?",
+    "Wie viel kostet Haarschnitt und Bart?",
+    "Скільки коштує стрижка та борода?"
+  ],
+  [
+    "me quiero cortar el sábado con Sebastián",
+    "I want an appointment on Saturday",
+    "Ich möchte am Samstag einen Termin",
+    "Хочу записатися на суботу"
+  ],
+  [
+    "Escribile como un cliente. Mira la agenda real, pero es un ensayo: no guarda nada.",
+    "Write as a client. It checks the real schedule, but this is a test and saves nothing.",
+    "Schreibe wie ein Kunde. Der echte Kalender wird geprüft, aber im Test wird nichts gespeichert.",
+    "Пишіть як клієнт. Перевіряється реальний календар, але це тест і нічого не зберігається."
+  ],
+  [
+    "Escribile como si fueras un cliente. Agenda en la demo.",
+    "Write as if you were a client. It uses the demo schedule.",
+    "Schreibe wie ein Kunde. Es wird der Demo-Kalender verwendet.",
+    "Пишіть як клієнт. Використовується демо-календар."
+  ],
+  [
+    "Se habría agendado (ensayo: no se guardó)",
+    "Would have been booked (test: not saved)",
+    "Wäre gebucht worden (Test: nicht gespeichert)",
+    "Було б записано (тест: не збережено)"
+  ],
+  [
+    "Turno creado en la agenda",
+    "Booking created in the schedule",
+    "Termin im Kalender erstellt",
+    "Запис створено в календарі"
+  ],
+  [
+    "Escribí como un cliente…",
+    "Write as a client…",
+    "Wie ein Kunde schreiben…",
+    "Напишіть як клієнт…"
+  ],
+  [
+    "¡Hola Mati! Mañana tengo 18:00 con Nehemías, ¿te lo reservo? 💈",
+    "Hi! I have 18:00 available tomorrow. Shall I book it for you?",
+    "Hallo! Morgen ist 18:00 frei. Soll ich den Termin buchen?",
+    "Привіт! Завтра вільно о 18:00. Записати вас?"
+  ],
+  [
+    "Hola Matías. Mañana hay lugar a las 18:00 con Nehemías. ¿Lo reservo?",
+    "Hello. There is availability tomorrow at 18:00. Shall I book it?",
+    "Hallo. Morgen ist um 18:00 ein Termin frei. Soll ich ihn buchen?",
+    "Добрий день. Завтра є вільний час о 18:00. Записати вас?"
+  ],
+  [
+    "Buenas crack! Mañana 18hs con Nehemías te queda joya, ¿lo agarro?",
+    "Hey! Tomorrow at 18:00 is available. Want me to book it?",
+    "Hey! Morgen um 18:00 ist frei. Soll ich buchen?",
+    "Привіт! Завтра о 18:00 вільно. Записати?"
+  ],
+  [
+    "Con la lista de Ajustes, nunca inventa.",
+    "Uses the configured service list and never invents prices.",
+    "Verwendet die konfigurierte Leistungsliste und erfindet keine Preise.",
+    "Використовує налаштований список послуг і не вигадує ціни."
+  ],
+  [
+    "Sólo en horarios que la agenda confirma libres.",
+    "Only times confirmed free by the schedule.",
+    "Nur Zeiten, die im Kalender als frei bestätigt sind.",
+    "Лише час, який календар підтверджує як вільний."
+  ],
+  [
+    "Mismo servicio y barbero, otro horario.",
+    "Same service and staff member, different time.",
+    "Gleiche Leistung und gleicher Mitarbeiter, andere Uhrzeit.",
+    "Та сама послуга й майстер, інший час."
+  ],
+  [
+    "Sólo los del cliente que escribe.",
+    "Only bookings belonging to the client who is writing.",
+    "Nur Termine des schreibenden Kunden.",
+    "Лише записи клієнта, який пише."
+  ],
+  [
+    "Cuántos tiene y si le toca el 50%.",
+    "Current loyalty count and whether the 50% reward is ready.",
+    "Aktueller Treuestand und ob die 50-%-Prämie verfügbar ist.",
+    "Поточний статус лояльності й чи доступна знижка 50%."
+  ],
+  [
+    "Agente actualizado. Los próximos mensajes ya usan esta configuración.",
+    "AI Agent updated. New messages use this configuration.",
+    "KI-Assistent aktualisiert. Neue Nachrichten verwenden diese Einstellungen.",
+    "AI-асистента оновлено. Нові повідомлення використовують ці налаштування."
+  ],
+  [
+    "En palabras normales. El agente las sigue al pie de la letra.",
+    "Write normal instructions. The AI Agent follows them exactly.",
+    "Normale Anweisungen schreiben. Der KI-Assistent befolgt sie genau.",
+    "Пишіть звичайними словами. AI-асистент чітко їх виконує."
+  ],
+  [
+    "Ej: los sábados no agendar color",
+    "Example: do not book color services on Saturdays",
+    "Beispiel: samstags keine Farbservices buchen",
+    "Наприклад: у суботу не записувати на фарбування"
+  ],
+  [
+    "En línea",
+    "Online",
+    "Online",
+    "Онлайн"
+  ],
+  [
+    "Pausado",
+    "Paused",
+    "Pausiert",
+    "Призупинено"
+  ],
+  [
+    "chats atendidos hoy",
+    "chats handled today",
+    "heute bearbeitete Chats",
+    "чатів оброблено сьогодні"
+  ],
+  [
+    "turnos que agendó solo",
+    "bookings created automatically",
+    "automatisch erstellte Termine",
+    "записів створено автоматично"
+  ],
+  [
+    "Todavía no hubo actividad hoy.",
+    "No activity yet today.",
+    "Heute noch keine Aktivität.",
+    "Сьогодні активності ще не було."
+  ],
+  [
+    "Para el que cae sin avisar. Por defecto arranca ya y se cobra después desde Caja.",
+    "For walk-ins. By default it starts now and is paid later from Cash.",
+    "Für Laufkundschaft. Standardmäßig beginnt der Termin jetzt und wird später über die Kasse bezahlt.",
+    "Для клієнтів без попереднього запису. За замовчуванням починається зараз, оплата пізніше в Касі."
+  ],
+  [
+    "¿Cómo se llama?",
+    "What's the name?",
+    "Wie heißt der Kunde?",
+    "Як звати клієнта?"
+  ],
+  [
+    "ya es cliente",
+    "existing client",
+    "bestehender Kunde",
+    "вже клієнт"
+  ],
+  [
+    "Cuánto dura",
+    "Duration",
+    "Dauer",
+    "Тривалість"
+  ],
+  [
+    "Cuándo",
+    "When",
+    "Wann",
+    "Коли"
+  ],
+  [
+    "Hora de hoy",
+    "Time today",
+    "Uhrzeit heute",
+    "Час сьогодні"
+  ],
+  [
+    "Si el barbero está con alguien, queda a continuación.",
+    "If the staff member is busy, this booking starts next.",
+    "Wenn der Mitarbeiter beschäftigt ist, beginnt dieser Termin danach.",
+    "Якщо майстер зайнятий, цей запис буде наступним."
+  ],
+  [
+    "Anotando…",
+    "Creating…",
+    "Wird erstellt…",
+    "Створення…"
+  ],
+  [
+    "Anotar turno",
+    "Create booking",
+    "Termin anlegen",
+    "Створити запис"
+  ]
+]
