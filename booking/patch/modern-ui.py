@@ -102,3 +102,32 @@ p=ROOT/"src/components/booking/booking-flow.tsx"
 s=p.read_text(encoding="utf-8").replace('className="booking-modern mx-auto','data-i18n-native className="booking-modern mx-auto')
 p.write_text(s,encoding="utf-8")
 print("MODERN_BOOKING_UI_APPLIED")
+
+
+# Landing screen uses existing flow state and actions; no additional backend workflow.
+p=ROOT/"src/components/booking/booking-flow.tsx"
+s=p.read_text(encoding="utf-8")
+s=s.replace('type Step = "servicio" | "horario" | "datos" | "listo"', 'type Step = "inicio" | "servicio" | "horario" | "datos" | "listo"')
+s=s.replace('useState<Step>("servicio")','useState<Step>("inicio")')
+s=s.replace('setStep(step==="datos"?"horario":"servicio")','setStep(step==="datos"?"horario":step==="horario"?"servicio":"inicio")')
+s=s.replace('<nav aria-label="Progress"','{step!=="inicio"&&<nav aria-label="Progress"')
+s=s.replace('</nav>\n  {step!=="servicio"', '</nav>}\n  {step!=="inicio"&&step!=="servicio"')
+overview='''  {step==="inicio"&&<section className="mt-10 rounded-[28px] bg-surface-2 px-5 pb-8 pt-8 sm:px-8">
+    <div className="mb-5 grid size-16 place-items-center rounded-full bg-surface-3"><CalendarDays size={28}/></div>
+    <h1 className="text-3xl font-bold tracking-tight">{BRAND.fullName}</h1>
+    <p className="mt-2 text-sm text-ivory-3">{BRAND.address}</p>
+    <div className="mt-8 space-y-2">
+      {[
+        {icon:UserRound,label:locale==="uk"?"Виберіть спеціаліста":locale==="de"?"Fachkraft wählen":"Choose a specialist",target:"horario"},
+        {icon:CalendarDays,label:w.time,target:"horario"},
+        {icon:Scissors,label:w.service,target:"servicio"}
+      ].map((item,i)=><button key={i} type="button" onClick={()=>{if(item.target==="horario"&&!serviceId){const first=services.find(s=>s.active);if(first)setServiceId(first.id)}setStep(item.target as Step)}} className="flex min-h-20 w-full items-center gap-4 rounded-xl px-1 text-left transition-colors hover:bg-surface-3">
+        <span className="grid size-12 shrink-0 place-items-center rounded-full bg-surface-3"><item.icon size={22}/></span>
+        <span className="flex-1 text-base font-medium">{item.label}</span><ChevronRight size={18} className="text-ivory-3"/>
+      </button>)}
+    </div>
+  </section>}
+'''
+s=s.replace('  {step==="servicio"&&<section',overview+'  {step==="servicio"&&<section')
+p.write_text(s,encoding="utf-8")
+print("BOOKING_LANDING_APPLIED")
