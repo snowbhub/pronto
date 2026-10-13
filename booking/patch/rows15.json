@@ -1,0 +1,248 @@
+[
+  [
+    "cerrado",
+    "closed",
+    "geschlossen",
+    "зачинено"
+  ],
+  [
+    "Cerrado",
+    "Closed",
+    "Geschlossen",
+    "Зачинено"
+  ],
+  [
+    " · ahora",
+    " · now",
+    " · jetzt",
+    " · зараз"
+  ],
+  [
+    "Habituales que hace más de 5 semanas no vienen y no tienen turno.",
+    "Regular clients who have not visited for more than 5 weeks and have no booking.",
+    "Stammkunden, die seit mehr als 5 Wochen nicht da waren und keinen Termin haben.",
+    "Постійні клієнти, які не були понад 5 тижнів і не мають запису."
+  ],
+  [
+    " visitas · última ",
+    " visits · last ",
+    " Besuche · zuletzt ",
+    " візитів · останній "
+  ],
+  [
+    "Booking atiende de martes a sábado de 11 a 20. El agente igual responde y agenda para los días hábiles.",
+    "Open Tuesday to Saturday, 11:00–20:00. The AI Agent can still answer and create bookings for open days.",
+    "Geöffnet Dienstag bis Samstag, 11:00–20:00. Der KI-Assistent antwortet weiterhin und erstellt Termine für Öffnungstage.",
+    "Працюємо з вівторка по суботу, 11:00–20:00. AI-асистент продовжує відповідати й створювати записи на робочі дні."
+  ],
+  [
+    " frecuentes · ",
+    " regular · ",
+    " Stammkunden · ",
+    " постійних · "
+  ],
+  [
+    " dejaron de venir. Cada ficha guarda cómo se corta, sus visitas y su tarjeta de fidelidad.",
+    " at risk. Each profile keeps service notes, visit history and loyalty status.",
+    " gefährdet. Jedes Profil enthält Service-Notizen, Besuchsverlauf und Treuestatus.",
+    " під ризиком. У кожному профілі є нотатки про послугу, історія візитів і статус лояльності."
+  ],
+  [
+    "Esta semana",
+    "This week",
+    "Diese Woche",
+    "Цей тиждень"
+  ],
+  [
+    "El {canal} de Booking quedó conectado. Ya podés cerrar esta ventana: seguís usando la app como siempre.",
+    "The {canal} connection is complete. You can close this window and continue using the app.",
+    "Die {canal}-Verbindung ist hergestellt. Du kannst dieses Fenster schließen und die App weiter nutzen.",
+    "Підключення {canal} завершено. Можна закрити це вікно й продовжити користуватися застосунком."
+  ],
+  [
+    "Reservá online en un minuto.",
+    "Book online in a minute.",
+    "Online in einer Minute buchen.",
+    "Запишіться онлайн за хвилину."
+  ],
+  [
+    "Mar a Sáb",
+    "Tue to Sat",
+    "Di bis Sa",
+    "Вт–Сб"
+  ],
+  [
+    "Terminó, cobro después",
+    "Completed, pay later",
+    "Erledigt, später bezahlen",
+    "Завершено, оплата пізніше"
+  ],
+  [
+    " no tiene huecos de ",
+    " has no free slots of ",
+    " hat keine freien Zeitfenster von ",
+    " не має вільних проміжків по "
+  ],
+  [
+    " min that day. Elegí otra hora abajo, o probá con otro staff member o día.",
+    " min that day. Choose another time below, another staff member or another day.",
+    " Min. an diesem Tag. Andere Uhrzeit, anderen Mitarbeiter oder anderen Tag wählen.",
+    " хв цього дня. Оберіть інший час, іншого майстра або інший день."
+  ],
+  [
+    "Recién terminó",
+    "Just finished",
+    "Gerade beendet",
+    "Щойно завершено"
+  ],
+  [
+    "Empezó a las…",
+    "Started at…",
+    "Begann um…",
+    "Почалося о…"
+  ],
+  [
+    "Mostrar más (",
+    "Show more (",
+    "Mehr anzeigen (",
+    "Показати ще ("
+  ],
+  [
+    " restantes)",
+    " remaining)",
+    " übrig)",
+    " залишилось)"
+  ],
+  [
+    "TARJETA DE FIDELIDAD",
+    "LOYALTY CARD",
+    "TREUEKARTE",
+    "КАРТКА ЛОЯЛЬНОСТІ"
+  ],
+  [
+    "Corte 6",
+    "Visit 6",
+    "Besuch 6",
+    "Візит 6"
+  ],
+  [
+    "Corte ",
+    "Visit ",
+    "Besuch ",
+    "Візит "
+  ],
+  [
+    "Para los clientes que vienen siempre el mismo día y hora. Ese horario deja de ofrecerse a los demás, por WhatsApp, Instagram y en la reserva web.",
+    "For clients who always come on the same day and time. That slot is no longer offered to others via WhatsApp, Instagram or online booking.",
+    "Für Kunden, die immer am selben Tag und zur selben Zeit kommen. Dieser Zeitraum wird anderen über WhatsApp, Instagram oder Online-Buchung nicht mehr angeboten.",
+    "Для клієнтів, які завжди приходять у той самий день і час. Цей час більше не пропонується іншим у WhatsApp, Instagram чи онлайн-записі."
+  ],
+  [
+    "Desde",
+    "From",
+    "Von",
+    "З"
+  ],
+  [
+    "Hasta",
+    "To",
+    "Bis",
+    "До"
+  ],
+  [
+    "Ej. Juan, corte y barba",
+    "Example: client, hair and beard",
+    "Beispiel: Kunde, Haare und Bart",
+    "Наприклад: клієнт, стрижка та борода"
+  ],
+  [
+    "Corte",
+    "Haircut",
+    "Haarschnitt",
+    "Стрижка"
+  ],
+  [
+    "Ej. Corte + barba",
+    "Example: Hair + beard",
+    "Beispiel: Haare + Bart",
+    "Наприклад: стрижка + борода"
+  ],
+  [
+    "Horario de ",
+    "Schedule for ",
+    "Arbeitszeit von ",
+    "Графік "
+  ],
+  [
+    " guardado",
+    " saved",
+    " gespeichert",
+    " збережено"
+  ],
+  [
+    "Corte de ",
+    "Break from ",
+    "Pause von ",
+    "Перерва з "
+  ],
+  [
+    ": no atiende",
+    ": not working",
+    ": nicht im Dienst",
+    ": не працює"
+  ],
+  [
+    "Días completos",
+    "Full days",
+    "Ganze Tage",
+    "Повні дні"
+  ],
+  [
+    "Hasta (inclusive)",
+    "Until (inclusive)",
+    "Bis einschließlich",
+    "До (включно)"
+  ],
+  [
+    "De ",
+    "From ",
+    "Von ",
+    "З "
+  ],
+  [
+    " a ",
+    " to ",
+    " bis ",
+    " до "
+  ],
+  [
+    "Podés sacar booking directo desde acá: /reservar ✂️",
+    "You can book directly here: /reservar ✂️",
+    "Du kannst direkt hier buchen: /reservar ✂️",
+    "Можете записатися тут: /reservar ✂️"
+  ],
+  [
+    "resuelto, devolvéselo a la IA.",
+    "resolved, return it to the AI Agent.",
+    "gelöst, wieder an den KI-Assistenten übergeben.",
+    "вирішено, поверніть розмову AI-асистенту."
+  ],
+  [
+    "No quedan horarios that day. Probá con otro día o con otro staff member.",
+    "No slots are available that day. Try another day or another staff member.",
+    "An diesem Tag sind keine Zeiten frei. Anderen Tag oder Mitarbeiter wählen.",
+    "На цей день немає вільного часу. Спробуйте інший день або іншого майстра."
+  ],
+  [
+    "Más",
+    "More",
+    "Mehr",
+    "Ще"
+  ],
+  [
+    "A pagar = comisión + tips − vales − pagos ya hechos. Los owners no cobran comisión: lo que facturan queda en la casa",
+    "To pay = commission + tips − advances − payments already made. Owners do not receive commission; their revenue stays with the business.",
+    "Auszahlung = Provision + Trinkgeld − Vorschüsse − bereits geleistete Zahlungen. Inhaber erhalten keine Provision; ihr Umsatz bleibt im Betrieb.",
+    "До виплати = комісія + чайові − аванси − вже зроблені виплати. Власники не отримують комісію; їхній дохід залишається закладу."
+  ]
+]
