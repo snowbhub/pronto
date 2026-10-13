@@ -13,6 +13,7 @@ RUN python3 /tmp/booking-patch/source_finalize.py
 RUN python3 /tmp/booking-patch/final_audit.py
 RUN python3 /tmp/booking-patch/ui_final.py
 RUN python3 /tmp/booking-patch/modern-ui.py
+RUN python3 /tmp/booking-patch/payroll-discovery.py
 RUN python3 /tmp/booking-patch/verify_i18n.py
 RUN npm ci
 RUN npm run build
