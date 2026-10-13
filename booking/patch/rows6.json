@@ -1,0 +1,278 @@
+[
+  [
+    "Buen día",
+    "Good morning",
+    "Guten Morgen",
+    "Доброго ранку"
+  ],
+  [
+    "Buenas tardes",
+    "Good afternoon",
+    "Guten Tag",
+    "Добрий день"
+  ],
+  [
+    "Buenas noches",
+    "Good evening",
+    "Guten Abend",
+    "Добрий вечір"
+  ],
+  [
+    "No quedan turnos por atender hoy.",
+    "No bookings left to serve today.",
+    "Heute sind keine Termine mehr offen.",
+    "На сьогодні більше немає записів."
+  ],
+  [
+    "Hoy el local está cerrado. El agente sigue respondiendo y agendando para la semana.",
+    "The business is closed today. The AI Agent keeps answering and creating bookings for the week.",
+    "Der Betrieb ist heute geschlossen. Der KI-Assistent beantwortet weiter Nachrichten und legt Termine für die Woche an.",
+    "Сьогодні заклад зачинений. AI-асистент продовжує відповідати й створювати записи на тиждень."
+  ],
+  [
+    "de propina",
+    "in tips",
+    "Trinkgeld",
+    "чайових"
+  ],
+  [
+    "turnos del día",
+    "bookings today",
+    "Termine heute",
+    "записів сьогодні"
+  ],
+  [
+    "por servicio",
+    "per service",
+    "pro Leistung",
+    "за послугу"
+  ],
+  [
+    "Hoy les toca el 50%",
+    "50% reward today",
+    "Heute 50 % Vorteil",
+    "Сьогодні знижка 50%"
+  ],
+  [
+    "Lo que entró, por dónde entró y a quién le corresponde. El mes completo está en Finanzas.",
+    "What came in, how it was paid and who it belongs to. Full monthly reporting is under Finance.",
+    "Einnahmen, Zahlungsart und Zuordnung. Die vollständige Monatsübersicht findest du unter Finanzen.",
+    "Що надійшло, яким способом і кому належить. Повний місячний звіт — у Фінансах."
+  ],
+  [
+    "Mes en curso. Las comparaciones son contra los mismos días del mes anterior.",
+    "Current month. Comparisons use the same days of the previous month.",
+    "Laufender Monat. Verglichen wird mit denselben Tagen des Vormonats.",
+    "Поточний місяць. Порівняння — з тими самими днями попереднього місяця."
+  ],
+  [
+    "Mes cerrado.",
+    "Closed month.",
+    "Abgeschlossener Monat.",
+    "Закритий місяць."
+  ],
+  [
+    " Incluye el historial del Excel de antes del panel: ingresos, gastos y cortes por barbero. Turnos atendidos y ocupación cuentan desde que se usa la agenda.",
+    " Includes imported historical data: revenue, expenses and services by staff member. Completed bookings and occupancy are counted from the point the schedule started being used.",
+    " Enthält importierte historische Daten: Umsatz, Ausgaben und Leistungen pro Mitarbeiter. Erledigte Termine und Auslastung zählen ab Nutzung des Kalenders.",
+    " Містить імпортовану історію: доходи, витрати та послуги за майстрами. Обслуговані записи й завантаженість рахуються від початку використання календаря."
+  ],
+  [
+    "Mes anterior",
+    "Previous month",
+    "Vorheriger Monat",
+    "Попередній місяць"
+  ],
+  [
+    "Mes siguiente",
+    "Next month",
+    "Nächster Monat",
+    "Наступний місяць"
+  ],
+  [
+    "Ingresos del mes",
+    "Monthly revenue",
+    "Monatsumsatz",
+    "Дохід за місяць"
+  ],
+  [
+    "los mismos días del mes pasado",
+    "the same days last month",
+    "dieselben Tage im letzten Monat",
+    "ті самі дні минулого місяця"
+  ],
+  [
+    "el mes anterior",
+    "the previous month",
+    "der Vormonat",
+    "попередній місяць"
+  ],
+  [
+    "Acumulado del mes",
+    "Monthly cumulative",
+    "Monat kumuliert",
+    "Накопичено за місяць"
+  ],
+  [
+    "Turnos atendidos",
+    "Completed bookings",
+    "Erledigte Termine",
+    "Обслуговані записи"
+  ],
+  [
+    "en lo que va del mes",
+    "month to date",
+    "im laufenden Monat",
+    "від початку місяця"
+  ],
+  [
+    "de los turnos cerrados",
+    "of closed bookings",
+    "der abgeschlossenen Termine",
+    "від закритих записів"
+  ],
+  [
+    "Premios de fidelidad",
+    "Loyalty rewards",
+    "Treueprämien",
+    "Нагороди лояльності"
+  ],
+  [
+    "cortes al 50% entregados",
+    "50% rewards redeemed",
+    "50-%-Prämien eingelöst",
+    "використано знижок 50%"
+  ],
+  [
+    "De dónde vienen los turnos",
+    "Booking sources",
+    "Terminherkunft",
+    "Джерела записів"
+  ],
+  [
+    "Los turnos que tomó el",
+    "Bookings created by the",
+    "Vom",
+    "Записи, створені"
+  ],
+  [
+    "agente IA",
+    "AI Agent",
+    "KI-Assistent",
+    "AI-асистент"
+  ],
+  [
+    "facturaron",
+    "generated",
+    "erstellte Termine erzielten",
+    "принесли"
+  ],
+  [
+    "este mes",
+    "this month",
+    "diesen Monat",
+    "цього місяця"
+  ],
+  [
+    "de lo atendido con turno, sin que nadie del equipo agarre el celular.",
+    "of booked revenue without the team having to handle the phone.",
+    "des Terminumsatzes, ohne dass das Team das Telefon bedienen musste.",
+    "доходу від записів без участі команди в телефоні."
+  ],
+  [
+    "Por día de la semana",
+    "By weekday",
+    "Nach Wochentag",
+    "За днем тижня"
+  ],
+  [
+    "Promedio facturado por día abierto en el mes.",
+    "Average revenue per open day this month.",
+    "Durchschnittlicher Umsatz pro Öffnungstag im Monat.",
+    "Середній дохід за робочий день місяця."
+  ],
+  [
+    "le corresponden",
+    "payout",
+    "Auszahlung",
+    "належить"
+  ],
+  [
+    "dueño",
+    "owner",
+    "Inhaber",
+    "власник"
+  ],
+  [
+    "Por servicio",
+    "By service",
+    "Nach Leistung",
+    "За послугою"
+  ],
+  [
+    "Semana del",
+    "Week of",
+    "Woche vom",
+    "Тиждень від"
+  ],
+  [
+    "Semana en curso, de lunes a domingo. Cada uno ve cuánto le toca, qué vales tiene y cuánto le queda a la casa.",
+    "Current week, Monday to Sunday. Shows each staff payout, advances and what remains for the business.",
+    "Laufende Woche von Montag bis Sonntag. Zeigt Auszahlungen, Vorschüsse und den Anteil des Betriebs.",
+    "Поточний тиждень з понеділка по неділю. Показує виплати кожному, аванси та залишок закладу."
+  ],
+  [
+    "Semana cerrada.",
+    "Closed week.",
+    "Abgeschlossene Woche.",
+    "Закритий тиждень."
+  ],
+  [
+    "Semana anterior",
+    "Previous week",
+    "Vorherige Woche",
+    "Попередній тиждень"
+  ],
+  [
+    "Semana siguiente",
+    "Next week",
+    "Nächste Woche",
+    "Наступний тиждень"
+  ],
+  [
+    "Turnos que agendó",
+    "Bookings created",
+    "Erstellte Termine",
+    "Створено записів"
+  ],
+  [
+    "Conversaciones",
+    "Conversations",
+    "Unterhaltungen",
+    "Розмови"
+  ],
+  [
+    "en la bandeja",
+    "in the inbox",
+    "im Posteingang",
+    "у вхідних"
+  ],
+  [
+    "Derivó a una persona",
+    "Handed off to a person",
+    "An Person übergeben",
+    "Передано людині"
+  ],
+  [
+    "quejas, color, dudas",
+    "complaints, special requests, questions",
+    "Beschwerden, Sonderwünsche, Fragen",
+    "скарги, особливі запити, питання"
+  ],
+  [
+    "Lo último que hizo",
+    "Latest activity",
+    "Letzte Aktivität",
+    "Остання активність"
+  ]
+]
