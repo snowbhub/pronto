@@ -16,6 +16,7 @@ RUN python3 /tmp/booking-patch/modern-ui.py
 RUN python3 /tmp/booking-patch/payroll-discovery.py
 RUN python3 /tmp/booking-patch/timezone-i18n.py
 RUN python3 /tmp/booking-patch/verify_i18n.py
+RUN cp /tmp/booking-patch/migrate-booking.mjs /app/scripts/migrate-booking.mjs
 RUN npm ci
 RUN npm run build
 
@@ -24,4 +25,4 @@ WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=build /app /app
 EXPOSE 3000
-CMD ["npm","start"]
+CMD ["sh","-c","node scripts/migrate-booking.mjs && npm start"]
