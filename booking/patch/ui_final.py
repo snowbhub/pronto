@@ -197,6 +197,7 @@ patch("src/lib/domain/schedule.ts", [
      BT + 'Two time ranges on the same day overlap (${prev.start} to ${prev.end} and ${cur.start} to ${cur.end}).' + BT),
 ])
 patch("src/lib/import/historial.ts", [
+    (BT + 'Historial · ${l.label.toLowerCase()}' + BT, BT + 'History · ${l.label.toLowerCase()}' + BT),
     (BT + '${day}: el encabezado decía "${b.headerName.toLowerCase()} ${b.headerDay}/${b.headerMonth}" pero that day es ${real.toLowerCase()} ${dia}/${mes} (usé la fecha por orden).' + BT,
      BT + '${day}: the header said "${b.headerName.toLowerCase()} ${b.headerDay}/${b.headerMonth}" but that date is ${real.toLowerCase()} ${dia}/${mes} (date order was used).' + BT),
     (BT + '${day}: ${barbero ? barbero.toLowerCase() : concept} tiene ${n} en cantidad pero ninguna plata anotada (esos cortes no se importaron).' + BT,
@@ -256,6 +257,10 @@ for p in runtime_files:
             or re.search(r'\b(?:tab|source|author|kind)\s*===?\s*["\'](?:servicios|agente|cliente|servicio)["\']', stripped)
             or ("select " in stripped.lower() and " kind = " in stripped.lower())
             or stripped.startswith("const push = (barbero:")
+            or "/bandeja?" in stripped
+            or re.search(r'\[\s*\d+\s*,\s*["\']cliente["\']\s*,', stripped)
+            or ("barbero ? barbero.toLowerCase()" in stripped and "has quantity" in stripped)
+            or ('push(null, "servicio"' in stripped and "History ·" in stripped)
         )
         if technical:
             continue
