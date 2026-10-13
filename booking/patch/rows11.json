@@ -1,0 +1,314 @@
+[
+  [
+    "¿Qué te hacés?",
+    "What would you like to book?",
+    "Welche Leistung möchtest du buchen?",
+    "На яку послугу хочете записатися?"
+  ],
+  [
+    "Con quién",
+    "With whom",
+    "Bei wem",
+    "До кого"
+  ],
+  [
+    "WhatsApp (para recordarte el turno)",
+    "WhatsApp (for booking reminders)",
+    "WhatsApp (für Terminerinnerungen)",
+    "WhatsApp (для нагадування про запис)"
+  ],
+  [
+    "Tenés",
+    "You have",
+    "Du hast",
+    "У вас є"
+  ],
+  [
+    "Un momento…",
+    "One moment…",
+    "Einen Moment…",
+    "Хвилинку…"
+  ],
+  [
+    "Confirmar turno",
+    "Confirm booking",
+    "Termin bestätigen",
+    "Підтвердити запис"
+  ],
+  [
+    "¿Dudas? Escribinos",
+    "Questions? Message us",
+    "Fragen? Schreib uns",
+    "Є питання? Напишіть нам"
+  ],
+  [
+    "Atendemos de martes a sábado de 11 a 20 hs.",
+    "We are open Tuesday to Saturday, 11:00–20:00.",
+    "Wir haben Dienstag bis Samstag von 11:00 bis 20:00 Uhr geöffnet.",
+    "Ми працюємо з вівторка по суботу з 11:00 до 20:00."
+  ],
+  [
+    "Aceptamos efectivo, transferencia, Mercado Pago y débito o crédito.",
+    "We accept cash, bank transfer, Mercado Pago, debit and credit cards.",
+    "Wir akzeptieren Bargeld, Überweisung, Mercado Pago, Debit- und Kreditkarten.",
+    "Приймаємо готівку, переказ, Mercado Pago, дебетові та кредитні картки."
+  ],
+  [
+    "Podés sacar turno directo desde acá: /reservar ✂️",
+    "You can book directly here: /reservar ✂️",
+    "Du kannst direkt hier buchen: /reservar ✂️",
+    "Можете записатися напряму тут: /reservar ✂️"
+  ],
+  [
+    "vía Zernio",
+    "via Zernio",
+    "über Zernio",
+    "через Zernio"
+  ],
+  [
+    "vuelve a responder este chat",
+    "is responding to this chat again",
+    "antwortet wieder in diesem Chat",
+    "знову відповідає в цьому чаті"
+  ],
+  [
+    "Tomaste la conversación. El agente no va a responder acá.",
+    "You took over the conversation. The AI Agent will not reply here.",
+    "Du hast die Unterhaltung übernommen. Der KI-Assistent antwortet hier nicht.",
+    "Ви взяли розмову на себе. AI-асистент тут не відповідатиме."
+  ],
+  [
+    "El agente pidió ayuda:",
+    "The AI Agent requested help:",
+    "Der KI-Assistent hat Hilfe angefordert:",
+    "AI-асистент попросив допомоги:"
+  ],
+  [
+    "Respondé vos; cuando esté",
+    "Reply yourself; when it is",
+    "Antworte selbst; wenn es",
+    "Відповідайте самі; коли"
+  ],
+  [
+    "Pasaron más de 24 h: WhatsApp sólo permite mandar una plantilla aprobada.",
+    "More than 24 hours have passed: WhatsApp only allows an approved template message.",
+    "Mehr als 24 Stunden sind vergangen: WhatsApp erlaubt nur eine genehmigte Vorlagen-Nachricht.",
+    "Минуло понад 24 години: WhatsApp дозволяє лише затверджене шаблонне повідомлення."
+  ],
+  [
+    "Escribir acá pausa al agente en este chat…",
+    "Typing here pauses the AI Agent in this chat…",
+    "Eine Nachricht hier pausiert den KI-Assistenten in diesem Chat…",
+    "Повідомлення тут призупинить AI-асистента в цьому чаті…"
+  ],
+  [
+    "Escribí tu respuesta…",
+    "Write your reply…",
+    "Antwort schreiben…",
+    "Напишіть відповідь…"
+  ],
+  [
+    "en 45 días",
+    "in 45 days",
+    "in 45 Tagen",
+    "за 45 днів"
+  ],
+  [
+    "El panel todavía no tiene contraseña: falta configurar PANEL_PASSWORD en el servidor.",
+    "The panel has no password yet: configure PANEL_PASSWORD on the server.",
+    "Das Panel hat noch kein Passwort: PANEL_PASSWORD auf dem Server konfigurieren.",
+    "Панель ще не має пароля: налаштуйте PANEL_PASSWORD на сервері."
+  ],
+  [
+    "Contraseña incorrecta.",
+    "Incorrect password.",
+    "Falsches Passwort.",
+    "Неправильний пароль."
+  ],
+  [
+    "firma inválida",
+    "invalid signature",
+    "ungültige Signatur",
+    "некоректний підпис"
+  ],
+  [
+    "pago aprobado de un turno que ya no existe",
+    "approved payment for a booking that no longer exists",
+    "bestätigte Zahlung für einen nicht mehr vorhandenen Termin",
+    "підтверджена оплата для запису, якого вже не існує"
+  ],
+  [
+    "Seña ·",
+    "Deposit ·",
+    "Anzahlung ·",
+    "Передоплата ·"
+  ],
+  [
+    "error procesando la notificación",
+    "error processing notification",
+    "Fehler bei der Verarbeitung der Benachrichtigung",
+    "помилка обробки сповіщення"
+  ],
+  [
+    "no respondió",
+    "did not respond",
+    "hat nicht geantwortet",
+    "не відповів"
+  ],
+  [
+    "tiene",
+    "has",
+    "hat",
+    "має"
+  ],
+  [
+    "por delante. Movelos antes de darlo de baja.",
+    "upcoming. Move them before deactivating this staff member.",
+    "bevorstehend. Verschiebe sie vor der Deaktivierung.",
+    "майбутніх. Перенесіть їх перед деактивацією майстра."
+  ],
+  [
+    "Como máximo 60 días seguidos.",
+    "Maximum 60 consecutive days.",
+    "Maximal 60 Tage am Stück.",
+    "Максимум 60 днів поспіль."
+  ],
+  [
+    "La hora de fin tiene que ser después de la de inicio.",
+    "End time must be after start time.",
+    "Die Endzeit muss nach der Startzeit liegen.",
+    "Час завершення має бути після початку."
+  ],
+  [
+    "Elegí un día en que el local abre.",
+    "Choose a day when the business is open.",
+    "Wähle einen Tag, an dem der Betrieb geöffnet ist.",
+    "Оберіть день, коли заклад працює."
+  ],
+  [
+    "Revisá el monto.",
+    "Check the amount.",
+    "Betrag prüfen.",
+    "Перевірте суму."
+  ],
+  [
+    "Poné un monto de seña mayor a $0.",
+    "Enter a deposit amount greater than $0.",
+    "Einen Anzahlungsbetrag größer als $0 eingeben.",
+    "Вкажіть суму передоплати більше $0."
+  ],
+  [
+    "Falta cargar la clave de Mercado Pago en el servidor antes de activar la seña.",
+    "Configure the Mercado Pago key on the server before enabling deposits.",
+    "Vor Aktivierung der Anzahlung muss der Mercado-Pago-Schlüssel auf dem Server konfiguriert werden.",
+    "Перед увімкненням передоплати налаштуйте ключ Mercado Pago на сервері."
+  ],
+  [
+    "Poné tu nombre.",
+    "Enter your name.",
+    "Namen eingeben.",
+    "Введіть своє ім’я."
+  ],
+  [
+    "No se pudo generar el link de pago. Probá de nuevo en un minuto.",
+    "Could not create the payment link. Try again in a minute.",
+    "Zahlungslink konnte nicht erstellt werden. Versuche es in einer Minute erneut.",
+    "Не вдалося створити посилання на оплату. Спробуйте ще раз за хвилину."
+  ],
+  [
+    "Ese horario ya lo ocupa otro turno: no se puede reactivar.",
+    "That time is already occupied by another booking and cannot be reactivated.",
+    "Diese Zeit ist bereits durch einen anderen Termin belegt und kann nicht reaktiviert werden.",
+    "Цей час уже зайнятий іншим записом, його не можна відновити."
+  ],
+  [
+    "No encontré el turno o el barbero.",
+    "Booking or staff member not found.",
+    "Termin oder Mitarbeiter nicht gefunden.",
+    "Запис або майстра не знайдено."
+  ],
+  [
+    "Este turno ya fue cobrado; no se puede cambiar el barbero.",
+    "This booking has already been paid; the staff member cannot be changed.",
+    "Dieser Termin wurde bereits bezahlt; der Mitarbeiter kann nicht geändert werden.",
+    "Цей запис уже оплачено; майстра змінити не можна."
+  ],
+  [
+    "El turno cambió mientras lo editabas. Actualizá la agenda y probá de nuevo.",
+    "The booking changed while you were editing it. Refresh the schedule and try again.",
+    "Der Termin wurde während der Bearbeitung geändert. Kalender aktualisieren und erneut versuchen.",
+    "Запис змінився під час редагування. Оновіть календар і спробуйте ще раз."
+  ],
+  [
+    "El servicio de ese turno ya no existe.",
+    "The service for this booking no longer exists.",
+    "Die Leistung für diesen Termin existiert nicht mehr.",
+    "Послуги для цього запису більше не існує."
+  ],
+  [
+    "ya pagada",
+    "already paid",
+    "bereits bezahlt",
+    "вже сплачено"
+  ],
+  [
+    "Elegí el corte y quién lo hace.",
+    "Choose a service and staff member.",
+    "Leistung und Mitarbeiter wählen.",
+    "Оберіть послугу та майстра."
+  ],
+  [
+    "Esa hora todavía no llegó.",
+    "That time has not arrived yet.",
+    "Diese Uhrzeit ist noch nicht erreicht.",
+    "Цей час ще не настав."
+  ],
+  [
+    "No encuentro un hueco libre de",
+    "No free slot found for",
+    "Kein freier Zeitraum gefunden für",
+    "Не знайдено вільного проміжку для"
+  ],
+  [
+    "antes de ahora para registrar este corte. Indicá a qué hora fue, en",
+    "before now to record this service. Enter when it happened under",
+    "vor jetzt, um diese Leistung zu erfassen. Gib die Uhrzeit an unter",
+    "до поточного часу для фіксації цієї послуги. Вкажіть час у полі"
+  ],
+  [
+    "ya tiene un turno en ese horario. Indicá otra hora en",
+    "already has a booking at that time. Enter another time under",
+    "hat zu dieser Zeit bereits einen Termin. Gib eine andere Zeit an unter",
+    "вже має запис у цей час. Вкажіть інший час у полі"
+  ],
+  [
+    "Elegí a quién le diste el vale.",
+    "Choose who received the advance.",
+    "Wähle, wer den Vorschuss erhalten hat.",
+    "Оберіть, хто отримав аванс."
+  ],
+  [
+    "Ese barbero no existe.",
+    "That staff member does not exist.",
+    "Dieser Mitarbeiter existiert nicht.",
+    "Такого майстра не існує."
+  ],
+  [
+    "No se puede cerrar un día que todavía no llegó.",
+    "A future day cannot be closed.",
+    "Ein zukünftiger Tag kann nicht abgeschlossen werden.",
+    "Не можна закрити день, який ще не настав."
+  ],
+  [
+    "El mensaje está vacío.",
+    "The message is empty.",
+    "Die Nachricht ist leer.",
+    "Повідомлення порожнє."
+  ],
+  [
+    "No encontré la conversación.",
+    "Conversation not found.",
+    "Unterhaltung nicht gefunden.",
+    "Розмову не знайдено."
+  ]
+]
