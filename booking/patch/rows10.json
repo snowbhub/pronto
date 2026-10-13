@@ -1,0 +1,320 @@
+[
+  [
+    "Quedan",
+    "There are",
+    "Es bleiben",
+    "Залишилось"
+  ],
+  [
+    "por atender.",
+    "to serve.",
+    "zu bedienen.",
+    "до обслуговування."
+  ],
+  [
+    "El agente agendó",
+    "The AI Agent created",
+    "Der KI-Assistent hat",
+    "AI-асистент створив"
+  ],
+  [
+    "por su cuenta hoy.",
+    "automatically today.",
+    "heute automatisch erstellt.",
+    "автоматично сьогодні."
+  ],
+  [
+    "¡Hola",
+    "Hi",
+    "Hallo",
+    "Привіт"
+  ],
+  [
+    "Hace un tiempo que no te vemos por Booking 💈 ¿Te busco un turno esta semana?",
+    "We haven't seen you in a while. Would you like an appointment this week?",
+    "Wir haben dich länger nicht gesehen. Soll ich dir diese Woche einen Termin suchen?",
+    "Давно вас не бачили. Знайти вам запис на цей тиждень?"
+  ],
+  [
+    "Secciones de ajustes",
+    "Settings sections",
+    "Einstellungsbereiche",
+    "Розділи налаштувань"
+  ],
+  [
+    "Generá el link y mandáselo al dueño: lo abre en una compu y escanea el QR con el celular del local (sigue usando WhatsApp Business como siempre).",
+    "Generate the link and send it to the owner. Open it on a computer and scan the QR code with the business phone; WhatsApp Business can still be used normally.",
+    "Link erzeugen und an den Inhaber senden. Auf einem Computer öffnen und den QR-Code mit dem Geschäftshandy scannen; WhatsApp Business kann weiter normal genutzt werden.",
+    "Створіть посилання й надішліть власнику. Відкрийте його на комп’ютері та відскануйте QR-код телефоном закладу; WhatsApp Business можна й далі використовувати як звичайно."
+  ],
+  [
+    "Tiene que ser una cuenta profesional vinculada a una página de Facebook.",
+    "It must be a professional account linked to a Facebook page.",
+    "Es muss ein professionelles Konto sein, das mit einer Facebook-Seite verknüpft ist.",
+    "Це має бути професійний акаунт, пов’язаний зі сторінкою Facebook."
+  ],
+  [
+    "Pendiente: definir con Booking si cobran seña al reservar.",
+    "Pending: configure whether a deposit is required for booking.",
+    "Ausstehend: festlegen, ob bei der Buchung eine Anzahlung erforderlich ist.",
+    "Очікує налаштування: чи потрібна передоплата під час запису."
+  ],
+  [
+    "no quedó conectado",
+    "was not connected",
+    "wurde nicht verbunden",
+    "не підключено"
+  ],
+  [
+    "Avisale a quien te mandó el link y lo intentan de nuevo.",
+    "Tell the person who sent you the link and try again.",
+    "Informiere die Person, die dir den Link geschickt hat, und versuche es erneut.",
+    "Повідомте людину, яка надіслала посилання, і спробуйте ще раз."
+  ],
+  [
+    "Hoy, desde las",
+    "Today, from",
+    "Heute ab",
+    "Сьогодні з"
+  ],
+  [
+    "Entró",
+    "Received",
+    "Eingang",
+    "Надійшло"
+  ],
+  [
+    "hoy",
+    "today",
+    "heute",
+    "сьогодні"
+  ],
+  [
+    "propina",
+    "tip",
+    "Trinkgeld",
+    "чайові"
+  ],
+  [
+    "Agente en línea",
+    "AI Agent online",
+    "KI-Assistent online",
+    "AI-асистент онлайн"
+  ],
+  [
+    "Agente pausado",
+    "AI Agent paused",
+    "KI-Assistent pausiert",
+    "AI-асистент призупинено"
+  ],
+  [
+    "Agente activo otra vez.",
+    "AI Agent is active again.",
+    "KI-Assistent ist wieder aktiv.",
+    "AI-асистент знову активний."
+  ],
+  [
+    "Los mensajes quedan para el equipo.",
+    "Messages stay with the team.",
+    "Nachrichten bleiben beim Team.",
+    "Повідомлення залишаються команді."
+  ],
+  [
+    "Activar agente",
+    "Enable AI Agent",
+    "KI-Assistent aktivieren",
+    "Увімкнути AI-асистента"
+  ],
+  [
+    "cliente llega, se anota con",
+    "when the client arrives, create a",
+    "wenn der Kunde kommt, erstelle einen",
+    "коли клієнт приходить, створіть"
+  ],
+  [
+    "Guardado. Ojo: ya hay",
+    "Saved. Note: there are already",
+    "Gespeichert. Hinweis: Es gibt bereits",
+    "Збережено. Увага: вже є"
+  ],
+  [
+    "cargado",
+    "scheduled",
+    "eingetragen",
+    "заплановано"
+  ],
+  [
+    "en ese horario. Movelos desde la agenda.",
+    "in that time range. Move them from the schedule.",
+    "in diesem Zeitraum. Verschiebe sie im Kalender.",
+    "у цьому проміжку. Перенесіть їх у календарі."
+  ],
+  [
+    "Barbero ·",
+    "Staff member ·",
+    "Mitarbeiter ·",
+    "Майстер ·"
+  ],
+  [
+    "de comisión + propinas",
+    "commission + tips",
+    "Provision + Trinkgeld",
+    "комісія + чайові"
+  ],
+  [
+    "ya tiene",
+    "already has",
+    "hat bereits",
+    "вже має"
+  ],
+  [
+    "en ese lapso. Movelos desde la agenda.",
+    "in that period. Move them from the schedule.",
+    "in diesem Zeitraum. Verschiebe sie im Kalender.",
+    "у цьому періоді. Перенесіть їх у календарі."
+  ],
+  [
+    "un solo día",
+    "one day only",
+    "nur einmal",
+    "один день"
+  ],
+  [
+    "todas las semanas",
+    "every week",
+    "jede Woche",
+    "щотижня"
+  ],
+  [
+    "Hoy, de",
+    "Today, from",
+    "Heute von",
+    "Сьогодні з"
+  ],
+  [
+    "Horario con",
+    "Time with",
+    "Zeit mit",
+    "Час із"
+  ],
+  [
+    "de",
+    "from",
+    "von",
+    "з"
+  ],
+  [
+    "Se edita en Ajustes.",
+    "Edit it in Settings.",
+    "Unter Einstellungen bearbeiten.",
+    "Редагується в Налаштуваннях."
+  ],
+  [
+    "Cargala en",
+    "Add it to",
+    "In",
+    "Додайте в"
+  ],
+  [
+    "y reiniciá el servidor.",
+    "and restart the server.",
+    "eintragen und Server neu starten.",
+    "і перезапустіть сервер."
+  ],
+  [
+    "Este mes",
+    "This month",
+    "Dieser Monat",
+    "Цей місяць"
+  ],
+  [
+    "Día",
+    "Day",
+    "Tag",
+    "День"
+  ],
+  [
+    "por día",
+    "per day",
+    "pro Tag",
+    "за день"
+  ],
+  [
+    "Facturado en la semana",
+    "Weekly revenue",
+    "Wochenumsatz",
+    "Дохід за тиждень"
+  ],
+  [
+    "Sueldos y propinas",
+    "Staff payouts and tips",
+    "Auszahlungen und Trinkgeld",
+    "Виплати й чайові"
+  ],
+  [
+    "comisión de los barberos",
+    "staff commissions",
+    "Mitarbeiterprovisionen",
+    "комісії майстрів"
+  ],
+  [
+    "Gastos del local",
+    "Business expenses",
+    "Betriebsausgaben",
+    "Витрати закладу"
+  ],
+  [
+    "sin vales ni sueldos",
+    "excluding advances and payouts",
+    "ohne Vorschüsse und Auszahlungen",
+    "без авансів і виплат"
+  ],
+  [
+    "Le queda a la casa",
+    "Business share",
+    "Anteil des Betriebs",
+    "Залишається закладу"
+  ],
+  [
+    "ingresos − sueldos − gastos",
+    "revenue − payouts − expenses",
+    "Umsatz − Auszahlungen − Ausgaben",
+    "дохід − виплати − витрати"
+  ],
+  [
+    "Facturó",
+    "Revenue",
+    "Umsatz",
+    "Дохід"
+  ],
+  [
+    "y sus vales de esta semana",
+    "and this week's advances",
+    "und die Vorschüsse dieser Woche",
+    "і аванси цього тижня"
+  ],
+  [
+    "son retiros",
+    "are withdrawals",
+    "sind Entnahmen",
+    "є вилученнями"
+  ],
+  [
+    "Día por día",
+    "Day by day",
+    "Tag für Tag",
+    "За днями"
+  ],
+  [
+    "gastos",
+    "expenses",
+    "Ausgaben",
+    "витрати"
+  ],
+  [
+    "Sin vales ni pagos esta semana.",
+    "No advances or payouts this week.",
+    "Keine Vorschüsse oder Auszahlungen diese Woche.",
+    "Цього тижня немає авансів або виплат."
+  ]
+]
