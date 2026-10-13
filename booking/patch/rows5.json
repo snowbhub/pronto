@@ -1,0 +1,19 @@
+[
+  ["El final tiene que ser después del comienzo.","End time must be after start time.","Ende muss nach dem Beginn liegen.","Час завершення має бути після початку."],
+  ["No encontré ese franco.","Time off not found.","Abwesenheit nicht gefunden.","Відсутність не знайдено."],
+  ["Elegí quién atiende.","Choose who provides the service.","Mitarbeiter auswählen.","Оберіть майстра."],
+  ["Elegí la fecha.","Choose a date.","Datum auswählen.","Оберіть дату."],
+  ["Ese día el local está cerrado.","The business is closed that day.","Der Betrieb ist an diesem Tag geschlossen.","Заклад цього дня зачинений."],
+  ["Esa fecha ya pasó.","That date has already passed.","Dieses Datum ist bereits vorbei.","Ця дата вже минула."],
+  ["No encontré ese turno fijo.","Fixed booking not found.","Fixtermin nicht gefunden.","Постійний запис не знайдено."],
+  ["Elegí 30, 45 o 60 minutos.","Choose 30, 45 or 60 minutes.","30, 45 oder 60 Minuten wählen.","Оберіть 30, 45 або 60 хвилин."],
+  ["Revisá el teléfono: tiene que tener al menos 8 números.","Check the phone number: it needs at least 8 digits.","Telefonnummer prüfen: mindestens 8 Ziffern.","Перевірте номер телефону: щонайменше 8 цифр."],
+  ["El local está cerrado a esta hora, así que la demo simula una tarde de trabajo. Los datos son de ejemplo.","The business is closed at this time, so the demo simulates an active workday. The data is for demonstration.","Der Betrieb ist derzeit geschlossen, daher simuliert die Demo einen Arbeitstag. Die Daten sind Beispieldaten.","Зараз заклад зачинений, тому демо імітує робочий день. Дані демонстраційні."],
+  ["Responde WhatsApp e Instagram, agenda, reprograma y cancela turnos solo, y le pasa a una persona lo que no le corresponde.","Handles WhatsApp and Instagram, creates, reschedules and cancels bookings, and hands off anything that needs a person.","Bearbeitet WhatsApp und Instagram, erstellt, verschiebt und storniert Termine und übergibt alles Weitere an eine Person.","Працює з WhatsApp та Instagram, створює, переносить і скасовує записи та передає людині те, що потребує її участі."],
+  ["Lo que acá se cambia lo usan la agenda, la caja y el agente al mismo tiempo.","Changes here are used by the schedule, cash and AI Agent at the same time.","Änderungen hier gelten gleichzeitig für Kalender, Kasse und KI-Assistent.","Зміни тут одночасно використовують календар, каса та AI-асистент."],
+  ["El agente y la reserva web lo usan apenas lo guardás.","The AI Agent and online booking use it as soon as you save it.","KI-Assistent und Online-Buchung verwenden es sofort nach dem Speichern.","AI-асистент і онлайн-запис використовують це одразу після збереження."],
+  ["La comisión se usa en la liquidación de la caja.","Commission is used in staff settlement.","Die Provision wird für die Mitarbeiterabrechnung verwendet.","Комісія використовується для розрахунку з майстром."],
+  ["Arranca con el horario del local; después lo ajustás.","Starts with the business hours; you can adjust it afterwards.","Beginnt mit den Öffnungszeiten und kann danach angepasst werden.","Спочатку використовується графік закладу, потім його можна змінити."],
+  ["El agente responde solo las que están en modo IA. Las marcadas en rojo esperan a una persona.","The AI Agent only answers conversations in AI mode. Red conversations are waiting for a person.","Der KI-Assistent beantwortet nur Unterhaltungen im KI-Modus. Rot markierte warten auf eine Person.","AI-асистент відповідає лише в режимі AI. Червоні розмови очікують людину."],
+  ["Todavía no es cliente. Cuando agende su primer turno se crea la ficha automáticamente.","Not a client yet. The profile is created automatically with the first booking.","Noch kein Kunde. Das Profil wird beim ersten Termin automatisch erstellt.","Ще не клієнт. Профіль автоматично створиться після першого запису."]
+]
