@@ -10,23 +10,30 @@ ROWS.sort(key=lambda x: len(x[0]), reverse=True)
 
 def english_source(s: str) -> str:
     for es, en, _, _ in ROWS:
-        s = s.replace(json.dumps(es, ensure_ascii=False), json.dumps(en, ensure_ascii=False))
-        if "'" not in es and "'" not in en:
-            s = s.replace("'" + es + "'", "'" + en + "'")
+        # Never rewrite lowercase single-token string literals: those are frequently
+        # internal enums/IDs (barbero, cliente, servicio, efectivo, etc.).
+        safe_literal = re.fullmatch(r"[a-záéíóúñü_]+", es) is None
+        if safe_literal:
+            s = s.replace(json.dumps(es, ensure_ascii=False), json.dumps(en, ensure_ascii=False))
+            if "'" not in es and "'" not in en:
+                s = s.replace("'" + es + "'", "'" + en + "'")
         s = s.replace('>' + es + '<', '>' + en + '<')
-        # Long phrases are safe to normalize inside template literals and split JSX text.
-        if len(es) >= 6 and (' ' in es or any(ch in es for ch in ".,!?¿¡:;—")):
+        # Raw replacements are limited to real multi-word/punctuated copy. Leading
+        # spaces around a single word must never turn barbero_id into staff member_id.
+        if len(es) >= 6 and (len(es.strip().split()) >= 2 or any(ch in es for ch in ".,!?¿¡:;—")):
             s = s.replace(es, en)
     s = s.replace('Virex Barber Shop', 'Booking').replace('VIREX', 'BOOKING').replace('Virex', 'Booking')
     s = s.replace('virex.ar/reservar', '/reservar').replace('@virex_barbershop', '@booking')
     # Run again after tenant-name normalization so brand-containing phrases
     # and dynamic sentence fragments also end up in canonical English.
     for es, en, _, _ in ROWS:
-        s = s.replace(json.dumps(es, ensure_ascii=False), json.dumps(en, ensure_ascii=False))
-        if "'" not in es and "'" not in en:
-            s = s.replace("'" + es + "'", "'" + en + "'")
+        safe_literal = re.fullmatch(r"[a-záéíóúñü_]+", es) is None
+        if safe_literal:
+            s = s.replace(json.dumps(es, ensure_ascii=False), json.dumps(en, ensure_ascii=False))
+            if "'" not in es and "'" not in en:
+                s = s.replace("'" + es + "'", "'" + en + "'")
         s = s.replace('>' + es + '<', '>' + en + '<')
-        if len(es) >= 6 and (' ' in es or any(ch in es for ch in ".,!?¿¡:;—")):
+        if len(es) >= 6 and (len(es.strip().split()) >= 2 or any(ch in es for ch in ".,!?¿¡:;—")):
             s = s.replace(es, en)
     return s
 
@@ -35,6 +42,14 @@ for p in list((ROOT/'src').rglob('*.ts')) + list((ROOT/'src').rglob('*.tsx')):
     new = english_source(old)
     if new != old:
         p.write_text(new, encoding='utf-8')
+
+
+# Fail fast if a translation ever corrupts a technical identifier.
+for p in list((ROOT/'src').rglob('*.ts')) + list((ROOT/'src').rglob('*.tsx')):
+    body = p.read_text(encoding='utf-8')
+    bad = re.search(r'\b(?:staff member|booking|client|service)_[A-Za-z0-9_]+\s*:', body)
+    if bad:
+        raise RuntimeError(f"TRANSLATION_CORRUPTED_IDENTIFIER {p.relative_to(ROOT)}: {bad.group(0)}")
 
 (ROOT/'src/config/brand.ts').write_text('''/** Product / tenant defaults. */
 export const BRAND = {
