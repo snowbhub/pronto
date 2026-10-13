@@ -245,6 +245,16 @@ patch("src/lib/import/historial.ts", [
      BT + '${tarjetas[tarjetas.length - 1].name}: phone "${String(a)}" does not have 10 digits (not loaded).' + BT),
 ])
 
+
+patch("src/lib/zernio/actions.ts", [
+    ('"ZERNIO_PROFILE_ID is missing: creá en Zernio un profile for Booking (each profile supports one WhatsApp account)."',
+     '"ZERNIO_PROFILE_ID is missing: create a Zernio profile for Booking (each profile supports one WhatsApp account)."'),
+])
+patch("src/lib/import/historial.ts", [
+    (BT + '${day}: ${barbero ? barbero.toLowerCase() : concept} tiene ${n} quantity but no amount recorded (those services were not imported).' + BT,
+     BT + '${day}: ${barbero ? barbero.toLowerCase() : concept} has quantity ${n} but no amount recorded (those services were not imported).' + BT),
+])
+
 spanish = re.compile(
     r"[¿¡áéíóúñü]|\b(?:Quedan|turnos?|barberos?|clientes?|servicios?|propinas?|"
     r"dueño|gastos?|Día|Hoy|Mañana|Tenés|Entró|cargados?|Guardar|Elegí|Revisá|"
