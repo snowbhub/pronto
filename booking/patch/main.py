@@ -150,7 +150,7 @@ s=re.sub(r'const TONE:[\s\S]*?\n}\n\nexport function buildSystemPrompt', '''cons
 export function buildSystemPrompt''', s, count=1)
 s=s.replace('# How you speak', '# Supported languages\nOnly Ukrainian, German and English are supported. Reply in the customer’s language when it is one of these three. If the language is unclear or unsupported, use English. Do not mix languages unless asked to translate.\n\n# How you speak')
 s=s.replace('# Cómo hablás', '# Supported languages\nOnly Ukrainian, German and English are supported. Reply in the customer’s language when it is one of these three. If the language is unclear or unsupported, use English. Do not mix languages unless asked to translate.\n\n# How you speak')
-p.write_text(english_source(s),encoding='utf-8')
+p.write_text(english_source(s),encoding='utf-8')\n# Canonical AI prompt is fully English and explicitly supports only EN/DE/UK.\np.write_text((BUNDLE/'agent-prompt.ts').read_text(encoding='utf-8'),encoding='utf-8')
 
 markers=re.compile(r'[¿¡áéíóúñü]|\b(?:turno|turnos|barbero|barberos|cliente|clientes|caja|finanzas|ajustes|bandeja|agente|fidelidad|gasto|gastos|seña|guardar|elegí|revisá|dueño|hoy|mañana|servicio|servicios|efectivo|transferencia|propina|horario|semana|mes)\b',re.I)
 res=[]
