@@ -14,6 +14,9 @@ def english_source(s: str) -> str:
         if "'" not in es and "'" not in en:
             s = s.replace("'" + es + "'", "'" + en + "'")
         s = s.replace('>' + es + '<', '>' + en + '<')
+        # Long phrases are safe to normalize inside template literals and split JSX text.
+        if len(es) >= 6 and (' ' in es or any(ch in es for ch in ".,!?¿¡:;—")):
+            s = s.replace(es, en)
     s = s.replace('Virex Barber Shop', 'Booking').replace('VIREX', 'BOOKING').replace('Virex', 'Booking')
     s = s.replace('virex.ar/reservar', '/reservar').replace('@virex_barbershop', '@booking')
     return s
