@@ -19,6 +19,15 @@ def english_source(s: str) -> str:
             s = s.replace(es, en)
     s = s.replace('Virex Barber Shop', 'Booking').replace('VIREX', 'BOOKING').replace('Virex', 'Booking')
     s = s.replace('virex.ar/reservar', '/reservar').replace('@virex_barbershop', '@booking')
+    # Run again after tenant-name normalization so brand-containing phrases
+    # and dynamic sentence fragments also end up in canonical English.
+    for es, en, _, _ in ROWS:
+        s = s.replace(json.dumps(es, ensure_ascii=False), json.dumps(en, ensure_ascii=False))
+        if "'" not in es and "'" not in en:
+            s = s.replace("'" + es + "'", "'" + en + "'")
+        s = s.replace('>' + es + '<', '>' + en + '<')
+        if len(es) >= 6 and (' ' in es or any(ch in es for ch in ".,!?¿¡:;—")):
+            s = s.replace(es, en)
     return s
 
 for p in list((ROOT/'src').rglob('*.ts')) + list((ROOT/'src').rglob('*.tsx')):
