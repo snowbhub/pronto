@@ -352,5 +352,71 @@
     "Sat",
     "Sa",
     "Сб"
+  ],
+  [
+    "Corte + barba",
+    "Haircut + beard",
+    "Haarschnitt + Bart",
+    "Стрижка + борода"
+  ],
+  [
+    "Corte",
+    "Haircut",
+    "Haarschnitt",
+    "Стрижка"
+  ],
+  [
+    "Haircut",
+    "Haircut",
+    "Haarschnitt",
+    "Стрижка"
+  ],
+  [
+    "Haircut + beard",
+    "Haircut + beard",
+    "Haarschnitt + Bart",
+    "Стрижка + борода"
+  ],
+  [
+    "Any available specialist",
+    "Any available specialist",
+    "Beliebige verfügbare Fachkraft",
+    "Будь-який доступний спеціаліст"
+  ],
+  [
+    "Choose date and time",
+    "Choose date and time",
+    "Datum und Uhrzeit wählen",
+    "Виберіть дату та час"
+  ],
+  [
+    "Choose a service",
+    "Choose a service",
+    "Leistung auswählen",
+    "Вибір послуг"
+  ],
+  [
+    "Available times",
+    "Available times",
+    "Verfügbare Zeiten",
+    "Доступний час"
+  ],
+  [
+    "Full name",
+    "Full name",
+    "Vor- und Nachname",
+    "Ім’я та прізвище"
+  ],
+  [
+    "Confirm booking",
+    "Confirm booking",
+    "Termin bestätigen",
+    "Підтвердити запис"
+  ],
+  [
+    "No available slots on this day.",
+    "No available slots on this day.",
+    "An diesem Tag sind keine Termine frei.",
+    "На цей день немає вільних місць."
   ]
 ]
