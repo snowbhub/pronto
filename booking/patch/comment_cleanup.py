@@ -78,7 +78,7 @@ for p in files:
         s = p.read_text(encoding="utf-8")
     except Exception:
         continue
-    for m in re.finditer(r"/\*[\s\S]*?\*/|(?m)^\s*//[^\n]*", s):
+    for m in re.finditer(r"/\*[\s\S]*?\*/|^\s*//[^\n]*", s, re.M):
         if spanish.search(m.group(0)):
             residuals.append(str(p.relative_to(ROOT)))
             break
