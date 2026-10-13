@@ -19,7 +19,7 @@ function replaceOnce(input:string,pairs:Pair[]):string{
     if(!source||!text.includes(source))continue
     const mark=()=>String.fromCharCode(0xe000)+(replacements.push(target)-1)+String.fromCharCode(0xe001)
     if(/^[a-zA-Z]+$/.test(source)){
-      const safe=source.replace(/[.*+?^$()|[\]{}]/g,"\\$&")
+      const safe=source
       text=text.replace(new RegExp("(?<![a-zA-Z])"+safe+"(?![a-zA-Z])","g"),mark)
     }else text=text.split(source).join(mark())
   }
