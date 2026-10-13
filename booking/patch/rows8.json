@@ -1,0 +1,260 @@
+[
+  [
+    "Servicios y precios",
+    "Services & prices",
+    "Leistungen & Preise",
+    "Послуги й ціни"
+  ],
+  [
+    "Agregar servicio",
+    "Add service",
+    "Leistung hinzufügen",
+    "Додати послугу"
+  ],
+  [
+    "suma sello de fidelidad",
+    "adds loyalty stamp",
+    "gibt Treuestempel",
+    "додає відмітку лояльності"
+  ],
+  [
+    "Servicio actualizado",
+    "Service updated",
+    "Leistung aktualisiert",
+    "Послугу оновлено"
+  ],
+  [
+    "Servicio agregado",
+    "Service added",
+    "Leistung hinzugefügt",
+    "Послугу додано"
+  ],
+  [
+    "Editar servicio",
+    "Edit service",
+    "Leistung bearbeiten",
+    "Редагувати послугу"
+  ],
+  [
+    "Nuevo servicio",
+    "New service",
+    "Neue Leistung",
+    "Нова послуга"
+  ],
+  [
+    "Suma sello en la tarjeta de fidelidad",
+    "Adds a loyalty stamp",
+    "Gibt einen Treuestempel",
+    "Додає відмітку лояльності"
+  ],
+  [
+    "Se ofrece (agenda, web y agente)",
+    "Available in schedule, web and AI",
+    "In Kalender, Web und KI verfügbar",
+    "Доступно в календарі, вебі та AI"
+  ],
+  [
+    "Fondo de caja guardado",
+    "Opening cash saved",
+    "Kassenbestand gespeichert",
+    "Стартову суму збережено"
+  ],
+  [
+    "Seña activada",
+    "Deposit enabled",
+    "Anzahlung aktiviert",
+    "Передоплату увімкнено"
+  ],
+  [
+    "Seña desactivada",
+    "Deposit disabled",
+    "Anzahlung deaktiviert",
+    "Передоплату вимкнено"
+  ],
+  [
+    "Si no llega el pago a tiempo, el horario se libera solo. El resto se cobra en el local, ya descontado.",
+    "If payment does not arrive in time, the slot is released automatically. The remaining amount is collected on site after deducting the deposit.",
+    "Wenn die Zahlung nicht rechtzeitig eingeht, wird der Termin automatisch freigegeben. Der Restbetrag wird vor Ort abzüglich der Anzahlung kassiert.",
+    "Якщо оплата не надійде вчасно, час автоматично звільниться. Решта сплачується в закладі з урахуванням передоплати."
+  ],
+  [
+    "Hoy se reserva sin pagar nada por adelantado.",
+    "Bookings currently require no advance payment.",
+    "Aktuell ist keine Vorauszahlung erforderlich.",
+    "Зараз запис можливий без передоплати."
+  ],
+  [
+    "Sin turnos fijos.",
+    "No fixed bookings.",
+    "Keine Fixtermine.",
+    "Немає постійних записів."
+  ],
+  [
+    "Pausar este turno fijo",
+    "Pause this fixed booking",
+    "Diesen Fixtermin pausieren",
+    "Призупинити цей постійний запис"
+  ],
+  [
+    "Reactivar este turno fijo",
+    "Reactivate this fixed booking",
+    "Diesen Fixtermin reaktivieren",
+    "Відновити цей постійний запис"
+  ],
+  [
+    "Quitar turno fijo",
+    "Remove fixed booking",
+    "Fixtermin entfernen",
+    "Видалити постійний запис"
+  ],
+  [
+    "Turno fijo quitado",
+    "Fixed booking removed",
+    "Fixtermin entfernt",
+    "Постійний запис видалено"
+  ],
+  [
+    "Turno fijo guardado",
+    "Fixed booking saved",
+    "Fixtermin gespeichert",
+    "Постійний запис збережено"
+  ],
+  [
+    "Ese horario deja de ofrecerse a los demás clientes.",
+    "That time is no longer offered to other clients.",
+    "Diese Zeit wird anderen Kunden nicht mehr angeboten.",
+    "Цей час більше не пропонується іншим клієнтам."
+  ],
+  [
+    "El fin tiene que ser después del inicio.",
+    "End time must be after start time.",
+    "Ende muss nach dem Beginn liegen.",
+    "Час завершення має бути після початку."
+  ],
+  [
+    "¿Quién es? (opcional, sólo lo ve el equipo)",
+    "Who is it? (optional, team only)",
+    "Wer ist es? (optional, nur Team)",
+    "Хто це? (необов’язково, лише для команди)"
+  ],
+  [
+    "Horario de la semana",
+    "Weekly schedule",
+    "Wochenplan",
+    "Тижневий графік"
+  ],
+  [
+    "La salida tiene que ser después de la entrada",
+    "End time must be after start time",
+    "Ende muss nach dem Beginn liegen",
+    "Час завершення має бути після початку"
+  ],
+  [
+    "Agregar franja (corte al mediodía)",
+    "Add shift interval",
+    "Zeitfenster hinzufügen",
+    "Додати проміжок"
+  ],
+  [
+    "En esos días el agente y la reserva web no lo ofrecen.",
+    "On those days the AI Agent and online booking do not offer this staff member.",
+    "An diesen Tagen wird der Mitarbeiter von KI und Online-Buchung nicht angeboten.",
+    "У ці дні AI-асистент та онлайн-запис не пропонують цього майстра."
+  ],
+  [
+    "Motivo (sólo lo ve el equipo)",
+    "Reason (team only)",
+    "Grund (nur Team)",
+    "Причина (лише для команди)"
+  ],
+  [
+    "Guardar franco",
+    "Save time off",
+    "Abwesenheit speichern",
+    "Зберегти відсутність"
+  ],
+  [
+    "Datos guardados",
+    "Details saved",
+    "Daten gespeichert",
+    "Дані збережено"
+  ],
+  [
+    "ya está en el equipo",
+    "is now on the team",
+    "ist jetzt im Team",
+    "тепер у команді"
+  ],
+  [
+    "Comisión sobre cada servicio",
+    "Commission on each service",
+    "Provision pro Leistung",
+    "Комісія з кожної послуги"
+  ],
+  [
+    "Atiende (si lo apagás, deja de aparecer para agendar)",
+    "Available for bookings",
+    "Für Buchungen verfügbar",
+    "Доступний для запису"
+  ],
+  [
+    "Link copiado: mandáselo al dueño",
+    "Link copied. Send it to the owner.",
+    "Link kopiert. An den Inhaber senden.",
+    "Посилання скопійовано. Надішліть власнику."
+  ],
+  [
+    "No se pudo copiar: seleccioná el link y copialo a mano.",
+    "Could not copy automatically. Select the link and copy it manually.",
+    "Automatisches Kopieren fehlgeschlagen. Link markieren und manuell kopieren.",
+    "Не вдалося скопіювати автоматично. Виділіть посилання та скопіюйте вручну."
+  ],
+  [
+    "Martes a sábado",
+    "Tuesday to Saturday",
+    "Dienstag bis Samstag",
+    "З вівторка по суботу"
+  ],
+  [
+    "Con este monto arranca la caja cada día: el efectivo esperado es fondo + cobros en efectivo − gastos en efectivo.",
+    "The cash register starts each day with this amount: expected cash = opening float + cash payments − cash expenses.",
+    "Mit diesem Betrag startet die Kasse täglich: erwartetes Bargeld = Startbestand + Bareinnahmen − Barausgaben.",
+    "З цієї суми щодня починається каса: очікувана готівка = стартова сума + готівкові оплати − готівкові витрати."
+  ],
+  [
+    "Cada servicio con corte suma un sello.",
+    "Each qualifying service adds one loyalty stamp.",
+    "Jede passende Leistung gibt einen Treuestempel.",
+    "Кожна відповідна послуга додає одну відмітку лояльності."
+  ],
+  [
+    "sellos",
+    "stamps",
+    "Stempel",
+    "відміток"
+  ],
+  [
+    "el siguiente corte",
+    "the next qualifying service",
+    "die nächste passende Leistung",
+    "наступна відповідна послуга"
+  ],
+  [
+    "la misma regla de la tarjeta física que ya entregan.",
+    "the configured loyalty rule.",
+    "die konfigurierte Treueregel.",
+    "налаштоване правило лояльності."
+  ],
+  [
+    "Sin conectar.",
+    "Not connected.",
+    "Nicht verbunden.",
+    "Не підключено."
+  ],
+  [
+    "Pendiente: definir con Booking si cobran seña al reservar.",
+    "Pending: configure whether a deposit is required for booking.",
+    "Ausstehend: festlegen, ob bei der Buchung eine Anzahlung erforderlich ist.",
+    "Очікує налаштування: чи потрібна передоплата під час запису."
+  ]
+]
