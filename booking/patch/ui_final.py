@@ -212,6 +212,39 @@ patch("src/lib/import/historial.ts", [
      BT + '${tarjetas[tarjetas.length - 1].name}: phone "${String(a)}" does not have 10 digits (not loaded).' + BT),
 ])
 
+
+# Resolve mixed-language strings created when earlier dictionary passes translate only a prefix.
+patch("src/components/inbox/inbox.tsx", [
+    (BT + 'WhatsApp window open: quedan ${Math.floor(window24)} h left to reply freely.' + BT,
+     BT + 'WhatsApp window open: ${Math.floor(window24)} h left to reply freely.' + BT),
+])
+patch("src/lib/mercadopago/config.ts", [
+    (BT + 'MERCADOPAGO_WEBHOOK_SECRET looks incomplete (mínimo ${MIN_WEBHOOK_SECRET_LENGTH} caracteres).' + BT,
+     BT + 'MERCADOPAGO_WEBHOOK_SECRET looks incomplete (minimum ${MIN_WEBHOOK_SECRET_LENGTH} characters).' + BT),
+])
+patch("src/lib/zernio/actions.ts", [
+    ('"ZERNIO_PROFILE_ID is missing: creá en Zernio un profile para Booking (cada profile admite un solo WhatsApp)."',
+     '"ZERNIO_PROFILE_ID is missing: create a Zernio profile for Booking (each profile supports one WhatsApp account)."'),
+])
+patch("src/lib/zernio/config.ts", [
+    (BT + 'ZERNIO_API_KEY is too short (mínimo ${MIN_API_KEY_LENGTH} caracteres).' + BT,
+     BT + 'ZERNIO_API_KEY is too short (minimum ${MIN_API_KEY_LENGTH} characters).' + BT),
+    (BT + 'ZERNIO_WEBHOOK_SECRET is too short (mínimo ${MIN_WEBHOOK_SECRET_LENGTH} caracteres).' + BT,
+     BT + 'ZERNIO_WEBHOOK_SECRET is too short (minimum ${MIN_WEBHOOK_SECRET_LENGTH} characters).' + BT),
+])
+patch("src/lib/agent/tools.ts", [
+    (BT + 'That time was just taken. Volvé a consultar disponibilidad.' + BT,
+     BT + 'That time was just taken. Check availability again.' + BT),
+])
+patch("src/lib/import/historial.ts", [
+    (BT + '${day}: ${barbero ? barbero.toLowerCase() : concept} tiene ${n} en cantidad but no amount recorded (those services were not imported).' + BT,
+     BT + '${day}: ${barbero ? barbero.toLowerCase() : concept} has quantity ${n} but no amount recorded (those services were not imported).' + BT),
+    (BT + '${day}: fila "${l.label.toLowerCase()}" is not a known staff member: se cargó ${l.cash + l.tr} without an assigned staff member.' + BT,
+     BT + '${day}: row "${l.label.toLowerCase()}" is not a known staff member: ${l.cash + l.tr} was loaded without an assigned staff member.' + BT),
+    (BT + '${tarjetas[tarjetas.length - 1].name}: el teléfono "${String(a)}" does not have 10 digits (not loaded).' + BT,
+     BT + '${tarjetas[tarjetas.length - 1].name}: phone "${String(a)}" does not have 10 digits (not loaded).' + BT),
+])
+
 spanish = re.compile(
     r"[¿¡áéíóúñü]|\b(?:Quedan|turnos?|barberos?|clientes?|servicios?|propinas?|"
     r"dueño|gastos?|Día|Hoy|Mañana|Tenés|Entró|cargados?|Guardar|Elegí|Revisá|"
