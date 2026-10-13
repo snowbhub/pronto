@@ -4,6 +4,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends git ca-certific
 RUN git clone https://github.com/operonhub/virex-barbershop.git . && git checkout b5433b62213f88223c868cca279364d524546336
 COPY patch /tmp/booking-patch
 RUN python3 /tmp/booking-patch/main.py
+RUN python3 /tmp/booking-patch/finalize.py
 RUN npm ci
 RUN npm run build
 
