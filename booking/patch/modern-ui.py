@@ -131,3 +131,15 @@ overview='''  {step==="inicio"&&<section className="mt-10 rounded-[28px] bg-surf
 s=s.replace('  {step==="servicio"&&<section',overview+'  {step==="servicio"&&<section')
 p.write_text(s,encoding="utf-8")
 print("BOOKING_LANDING_APPLIED")
+
+
+p=ROOT/"src/components/booking/booking-flow.tsx"
+s=p.read_text(encoding="utf-8")
+s=s.replace('type Step = "inicio" | "servicio"', 'type Step = "inicio" | "personal" | "servicio"')
+s=s.replace('target:"horario"},\n        {icon:CalendarDays', 'target:"personal"},\n        {icon:CalendarDays')
+s=s.replace('{icon:CalendarDays,label:w.time,target:"horario"}', '{icon:CalendarDays,label:w.time,target:"servicio"}')
+s=s.replace('if(item.target==="horario"&&!serviceId){const first=services.find(s=>s.active);if(first)setServiceId(first.id)}','')
+s=s.replace('  {step==="servicio"&&<section', '''  {step==="personal"&&<section><h1 className="mb-5 text-3xl font-semibold">{w.staff}</h1><div className="space-y-3">{[{id:"cualquiera",name:w.any},...staff.filter(x=>x.active)].map(x=><button key={x.id} type="button" onClick={()=>{setStaffId(x.id);setStep("servicio")}} className="flex min-h-16 w-full items-center justify-between rounded-xl border border-line-strong bg-surface-1 px-5 text-left text-ivory hover:bg-surface-2"><span>{x.name}</span><ChevronRight size={18}/></button>)}</div></section>}
+  {step==="servicio"&&<section''')
+p.write_text(s,encoding="utf-8")
+print("BOOKING_ENTRY_NAV_FIXED")
