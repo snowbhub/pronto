@@ -6,6 +6,7 @@ COPY patch /tmp/booking-patch
 RUN python3 /tmp/booking-patch/main.py
 RUN python3 /tmp/booking-patch/finalize.py
 RUN python3 /tmp/booking-patch/cleanup.py
+RUN python3 /tmp/booking-patch/demo_cleanup.py
 RUN npm ci
 RUN npm run build
 
