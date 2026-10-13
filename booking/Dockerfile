@@ -20,6 +20,8 @@ RUN python3 /tmp/booking-patch/mobile-polish.py
 RUN python3 /tmp/booking-patch/verify_i18n.py
 RUN cp /tmp/booking-patch/migrate-booking.mjs /app/scripts/migrate-booking.mjs
 RUN npm ci
+RUN npm run test:db
+RUN npm test
 RUN npm run build
 
 FROM node:22-bookworm-slim
