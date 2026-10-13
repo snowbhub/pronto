@@ -9,6 +9,7 @@ RUN python3 /tmp/booking-patch/cleanup.py
 RUN python3 /tmp/booking-patch/demo_cleanup.py
 RUN python3 /tmp/booking-patch/brand_cleanup.py
 RUN python3 /tmp/booking-patch/comment_cleanup.py
+RUN python3 /tmp/booking-patch/ui_final.py
 RUN npm ci
 RUN npm run build
 
