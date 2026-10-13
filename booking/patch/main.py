@@ -45,7 +45,7 @@ export type Brand = typeof BRAND
 
 (ROOT/'src/components/brand/virex-mark.tsx').write_text(r'''"use client"
 import { cn } from "@/lib/utils"
-export function VirexMark({ size=32, className, title="Booking" }: { size?:number; detail?:boolean; animated?:boolean; className?:string; title?:string }) {
+export function BookingMark({ size=32, className, title="Booking" }: { size?:number; detail?:boolean; animated?:boolean; className?:string; title?:string }) {
   return <svg viewBox="0 0 64 64" width={size} height={size} role="img" aria-label={title} className={cn("shrink-0 text-ivory",className)} fill="none">
     <rect x="7" y="9" width="50" height="48" rx="13" stroke="currentColor" strokeWidth="3"/>
     <path d="M18 5v10M46 5v10M8.5 23h47" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
