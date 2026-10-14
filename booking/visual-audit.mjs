@@ -42,7 +42,7 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
     const positionedNavs=[...document.querySelectorAll("nav.booking-app-nav")].filter(visible)
     const navs=positionedNavs.map(el=>{const r=el.getBoundingClientRect();return {top:Math.round(r.top),bottom:Math.round(r.bottom),height:Math.round(r.height)}})
     const visibleText=(document.body.innerText||"").trim()
-    return {screenWidth:innerWidth,pageWidth:document.documentElement.scrollWidth,
+    return {visibleText:visibleText.slice(0,3500),screenWidth:innerWidth,pageWidth:document.documentElement.scrollWidth,
       bodyTextLength:visibleText.length,mainTextLength:(main?.innerText||"").trim().length,
       workspace:document.querySelector('[data-booking-workspace]')?.getAttribute('data-booking-workspace')||"none",
       fixedNavCount:fixedNavs.length,navs,mainTop:main?Math.round(main.getBoundingClientRect().top):null,
@@ -72,6 +72,33 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
      }
      const scroll=page.locator('[data-booking-workspace="calendar"] main')
      await scroll.evaluate(el=>el.scrollTop=580);await logFrame("calendar-scrolled",route)
+     if(locale==="uk"){
+       const newButton=page.locator('[data-booking-workspace="calendar"] button[aria-label="New appointment"]').first()
+       if(await newButton.count()){
+         await newButton.click()
+         await logFrame("appointment-create",route)
+         await page.keyboard.press("Escape")
+       }
+       const appointmentId=await page.evaluate(()=>([...document.querySelectorAll('[data-booking-workspace="calendar"] button[id]')]
+         .find(el=>/^[a-f0-9]{8}-[a-f0-9-]{27,}$/.test(el.id))?.id||""))
+       if(appointmentId){
+         await page.locator('[id="'+appointmentId+'"]').click()
+         await logFrame("appointment-detail",route)
+         await page.keyboard.press("Escape")
+       }
+     }
+    }
+    if(name==="settings-main"&&device.id==="iphone"&&locale==="uk"){
+      const switcher=page.locator('select[aria-label="Interface language"]')
+      if(await switcher.count()){
+        const original=await page.locator('main').innerText()
+        await switcher.selectOption("en");await page.waitForTimeout(180)
+        const translated=await page.locator('main').innerText()
+        if(original===translated)errors.push({device:device.id,locale,name,type:"language-switch-did-not-update",detail:"English and Ukrainian rendered text is unchanged"})
+        await logFrame("switch-to-english",route)
+        await switcher.selectOption("uk");await page.waitForTimeout(150)
+        await logFrame("switch-back-to-ukrainian",route)
+      }
     }
     if(name==="settings-team"){
       const details=page.locator('details').first()
