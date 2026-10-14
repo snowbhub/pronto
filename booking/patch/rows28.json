@@ -1,0 +1,92 @@
+[
+  [
+    "con",
+    "with",
+    "bei",
+    "із"
+  ],
+  [
+    "commission",
+    "commission",
+    "Provision",
+    "комісії"
+  ],
+  [
+    "services",
+    "services",
+    "Leistungen",
+    "послуг"
+  ],
+  [
+    "AI model:",
+    "AI model:",
+    "KI-Modell:",
+    "Модель ШІ:"
+  ],
+  [
+    "WhatsApp / Instagram provider:",
+    "WhatsApp / Instagram provider:",
+    "WhatsApp-/Instagram-Anbindung:",
+    "Підключення WhatsApp / Instagram:"
+  ],
+  [
+    "Incoming messages:",
+    "Incoming messages:",
+    "Eingehende Nachrichten:",
+    "Вхідні повідомлення:"
+  ],
+  [
+    "ZERNIO_API_KEY required",
+    "ZERNIO_API_KEY required",
+    "ZERNIO_API_KEY erforderlich",
+    "Потрібен ZERNIO_API_KEY"
+  ],
+  [
+    "ZERNIO_WEBHOOK_SECRET required",
+    "ZERNIO_WEBHOOK_SECRET required",
+    "ZERNIO_WEBHOOK_SECRET erforderlich",
+    "Потрібен ZERNIO_WEBHOOK_SECRET"
+  ],
+  [
+    "API key configured",
+    "API key configured",
+    "API-Schlüssel hinterlegt",
+    "API-ключ налаштовано"
+  ],
+  [
+    "Webhook secret configured",
+    "Webhook secret configured",
+    "Webhook-Secret hinterlegt",
+    "Секретний ключ вебхука налаштовано"
+  ],
+  [
+    "Configure GEMINI_API_KEY (or ANTHROPIC_API_KEY), ZERNIO_API_KEY and ZERNIO_WEBHOOK_SECRET in your Railway service variables. Then connect messaging accounts under Settings → Connections. No AI can respond without these credentials.",
+    "Configure GEMINI_API_KEY (or ANTHROPIC_API_KEY), ZERNIO_API_KEY and ZERNIO_WEBHOOK_SECRET in your Railway service variables. Then connect messaging accounts under Settings → Connections. No AI can respond without these credentials.",
+    "Hinterlege GEMINI_API_KEY (oder ANTHROPIC_API_KEY), ZERNIO_API_KEY und ZERNIO_WEBHOOK_SECRET in den Railway-Umgebungsvariablen. Verbinde anschließend die Nachrichtendienste unter Einstellungen → Verbindungen. Ohne diese Zugangsdaten kann die KI nicht antworten.",
+    "Додайте GEMINI_API_KEY (або ANTHROPIC_API_KEY), ZERNIO_API_KEY та ZERNIO_WEBHOOK_SECRET у змінні сервісу Railway. Потім підключіть месенджери в розділі «Налаштування → Підключення». Без цих ключів AI-асистент не зможе відповідати."
+  ],
+  [
+    "0 bookings",
+    "0 bookings",
+    "0 Termine",
+    "0 записів"
+  ],
+  [
+    "1 booking",
+    "1 booking",
+    "1 Termin",
+    "1 запис"
+  ],
+  [
+    "No account yet",
+    "No account yet",
+    "Noch kein Konto",
+    "Обліковий запис відсутній"
+  ],
+  [
+    "Staff member",
+    "Staff member",
+    "Mitarbeiter",
+    "Співробітник"
+  ]
+]
