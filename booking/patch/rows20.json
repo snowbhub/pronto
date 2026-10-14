@@ -1,0 +1,398 @@
+[
+  [
+    "Empezar",
+    "Start service",
+    "Behandlung beginnen",
+    "Почати послугу"
+  ],
+  [
+    "No vino",
+    "No-show",
+    "Nicht erschienen",
+    "Не прийшов"
+  ],
+  [
+    "Cancelado",
+    "Cancelled",
+    "Abgesagt",
+    "Скасовано"
+  ],
+  [
+    "Cancelar turno",
+    "Cancel appointment",
+    "Termin stornieren",
+    "Скасувати запис"
+  ],
+  [
+    "Confirmado",
+    "Confirmed",
+    "Bestätigt",
+    "Підтверджено"
+  ],
+  [
+    "Origen",
+    "Source",
+    "Herkunft",
+    "Джерело"
+  ],
+  [
+    "ORIGEN",
+    "SOURCE",
+    "HERKUNFT",
+    "ДЖЕРЕЛО"
+  ],
+  [
+    "Panel",
+    "Admin panel",
+    "Verwaltung",
+    "Адмінпанель"
+  ],
+  [
+    "Agendar",
+    "Book appointment",
+    "Termin buchen",
+    "Створити запис"
+  ],
+  [
+    "Nuevo:",
+    "New:",
+    "Neu:",
+    "Новий:"
+  ],
+  [
+    "Nuevo",
+    "New",
+    "Neu",
+    "Новий"
+  ],
+  [
+    "Bebida",
+    "Drink",
+    "Getränk",
+    "Напій"
+  ],
+  [
+    "Total",
+    "Total",
+    "Gesamt",
+    "Разом"
+  ],
+  [
+    "Confirmar",
+    "Confirm",
+    "Bestätigen",
+    "Підтвердити"
+  ],
+  [
+    "Crear turno",
+    "Create appointment",
+    "Termin erstellen",
+    "Створити запис"
+  ],
+  [
+    "Servicio",
+    "Service",
+    "Leistung",
+    "Послуга"
+  ],
+  [
+    "Barbero",
+    "Barber",
+    "Barbier",
+    "Барбер"
+  ],
+  [
+    "Cliente",
+    "Client",
+    "Kunde",
+    "Клієнт"
+  ],
+  [
+    "Elegí otra hora abajo, o probá con otro barbero o día.",
+    "Select another time below, or choose another barber or day.",
+    "Wähle unten eine andere Uhrzeit, einen anderen Barbier oder Tag.",
+    "Виберіть інший час нижче або іншого барбера чи день."
+  ],
+  [
+    "has no free slots of",
+    "has no available slots of",
+    "hat keine freien Zeitfenster von",
+    "не має вільних проміжків тривалістю"
+  ],
+  [
+    "that day.",
+    "on that day.",
+    "an diesem Tag.",
+    "на цей день."
+  ],
+  [
+    "No hay turnos disponibles.",
+    "There are no available appointments.",
+    "Keine Termine verfügbar.",
+    "Немає вільних записів."
+  ],
+  [
+    "Cargando…",
+    "Loading…",
+    "Laden…",
+    "Завантаження…"
+  ],
+  [
+    "Guardando…",
+    "Saving…",
+    "Speichern…",
+    "Збереження…"
+  ],
+  [
+    "Cobrar",
+    "Charge",
+    "Kassieren",
+    "Розрахувати"
+  ],
+  [
+    "Cobro",
+    "Payment",
+    "Zahlung",
+    "Оплата"
+  ],
+  [
+    "Transferencia",
+    "Bank transfer",
+    "Überweisung",
+    "Переказ"
+  ],
+  [
+    "Efectivo",
+    "Cash",
+    "Bargeld",
+    "Готівка"
+  ],
+  [
+    "Tarjeta de débito",
+    "Debit card",
+    "Debitkarte",
+    "Дебетова картка"
+  ],
+  [
+    "Tarjeta de crédito",
+    "Credit card",
+    "Kreditkarte",
+    "Кредитна картка"
+  ],
+  [
+    "Propina",
+    "Tip",
+    "Trinkgeld",
+    "Чайові"
+  ],
+  [
+    "Pago",
+    "Payment",
+    "Zahlung",
+    "Оплата"
+  ],
+  [
+    "Hora",
+    "Time",
+    "Uhrzeit",
+    "Час"
+  ],
+  [
+    "Fecha",
+    "Date",
+    "Datum",
+    "Дата"
+  ],
+  [
+    "No trabaja",
+    "Day off",
+    "Arbeitsfrei",
+    "Не працює"
+  ],
+  [
+    "Horario de la semana",
+    "Weekly schedule",
+    "Wochenplan",
+    "Тижневий графік"
+  ],
+  [
+    "Francos y vacaciones",
+    "Days off and holidays",
+    "Freie Tage und Urlaub",
+    "Вихідні та відпустки"
+  ],
+  [
+    "Agregar franja",
+    "Add time range",
+    "Zeitfenster hinzufügen",
+    "Додати часовий проміжок"
+  ],
+  [
+    "Días completos",
+    "Full days",
+    "Ganze Tage",
+    "Повні дні"
+  ],
+  [
+    "Quitar esta franja",
+    "Remove this time range",
+    "Zeitfenster entfernen",
+    "Видалити проміжок"
+  ],
+  [
+    "Dueño",
+    "Owner",
+    "Inhaber",
+    "Власник"
+  ],
+  [
+    "de comisión + propinas",
+    "commission + tips",
+    "Provision + Trinkgeld",
+    "комісії + чайові"
+  ],
+  [
+    "Editar",
+    "Edit",
+    "Bearbeiten",
+    "Редагувати"
+  ],
+  [
+    "Ninguno cargado.",
+    "Nothing added yet.",
+    "Noch keine Einträge.",
+    "Поки немає записів."
+  ],
+  [
+    "Agregar",
+    "Add",
+    "Hinzufügen",
+    "Додати"
+  ],
+  [
+    "Ajustes",
+    "Settings",
+    "Einstellungen",
+    "Налаштування"
+  ],
+  [
+    "Equipo",
+    "Team",
+    "Team",
+    "Співробітники"
+  ],
+  [
+    "Turnos fijos",
+    "Recurring bookings",
+    "Wiederkehrende Termine",
+    "Постійні записи"
+  ],
+  [
+    "Local y fidelidad",
+    "Venue and loyalty",
+    "Standort und Kundenbindung",
+    "Заклад і лояльність"
+  ],
+  [
+    "Conexiones",
+    "Connections",
+    "Verbindungen",
+    "Підключення"
+  ],
+  [
+    "Ventas",
+    "Sales",
+    "Verkäufe",
+    "Продажі"
+  ],
+  [
+    "Gastos",
+    "Expenses",
+    "Ausgaben",
+    "Витрати"
+  ],
+  [
+    "Inventario",
+    "Inventory",
+    "Inventar",
+    "Склад"
+  ],
+  [
+    "Reservas",
+    "Bookings",
+    "Buchungen",
+    "Записи"
+  ],
+  [
+    "Filtro",
+    "Filter",
+    "Filter",
+    "Фільтр"
+  ],
+  [
+    "Filtros",
+    "Filters",
+    "Filter",
+    "Фільтри"
+  ],
+  [
+    "Ingresos",
+    "Revenue",
+    "Einnahmen",
+    "Доходи"
+  ],
+  [
+    "Ventas del día",
+    "Today's sales",
+    "Heutige Verkäufe",
+    "Продажі за сьогодні"
+  ],
+  [
+    "Staff access",
+    "Staff access",
+    "Mitarbeiterzugang",
+    "Доступ співробітників"
+  ],
+  [
+    "Employee login",
+    "Employee login",
+    "Mitarbeiteranmeldung",
+    "Вхід співробітника"
+  ],
+  [
+    "Professional level",
+    "Professional level",
+    "Berufsstufe",
+    "Рівень барбера"
+  ],
+  [
+    "Edit employee",
+    "Edit employee",
+    "Mitarbeiter bearbeiten",
+    "Редагувати співробітника"
+  ],
+  [
+    "View earnings and payouts",
+    "View earnings and payouts",
+    "Verdienst und Auszahlungen anzeigen",
+    "Переглянути заробіток і виплати"
+  ],
+  [
+    "Create / update staff login",
+    "Create / update staff login",
+    "Mitarbeiterzugang anlegen / ändern",
+    "Створити або змінити доступ"
+  ],
+  [
+    "Disable employee login",
+    "Disable employee login",
+    "Mitarbeiterzugang deaktivieren",
+    "Вимкнути доступ"
+  ],
+  [
+    "Enable employee login",
+    "Enable employee login",
+    "Mitarbeiterzugang aktivieren",
+    "Увімкнути доступ"
+  ]
+]
