@@ -18,6 +18,7 @@ for src,dst in paths.items():
 p=root/"src/proxy.ts"
 s=p.read_text(encoding="utf-8")
 s=s.replace('import { isValidSession, PANEL_COOKIE } from "@/lib/auth/session"','import { isValidSession, PANEL_COOKIE } from "@/lib/auth/session"\nimport { STAFF_COOKIE,staffIdFromCookie } from "@/lib/auth/staff-session"')
+s=s.replace("|login|reservar|","|login|staff-login|reservar|")
 s=s.replace('export function proxy(request: NextRequest) {','''export function proxy(request: NextRequest) {
   const pathname=request.nextUrl.pathname
   if(pathname==="/staff-login")return NextResponse.next()
