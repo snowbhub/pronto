@@ -18,39 +18,33 @@ export default async function AgendaPage({searchParams}:PageProps<"/agenda">){
  const weekly=mode==="week"?await db():null
  const paidSet=new Set(weekly?.payments.filter(p=>p.kind==="servicio"&&p.appointmentId).map(p=>p.appointmentId)||[])
  const link=(day:string,view=mode)=>`/agenda?dia=${day}&view=${view}`
- return <section className="mx-auto flex w-full max-w-[1540px] min-w-0 flex-col px-2 pb-4 pt-3 sm:px-5">
-   <div className="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-2xl border border-line bg-surface-1 p-3">
-     <div className="flex min-w-0 items-center gap-1.5">
-       <Link href={link(addDays(d.day,mode==="week"?-7:-1))} aria-label="Previous date" className="grid size-10 shrink-0 place-items-center rounded-xl border border-line-strong"><ChevronLeft className="size-5"/></Link>
-       <div className="min-w-0 px-1.5">
-         <p className="text-[10px] uppercase tracking-[0.13em] text-ivory-3">{isToday?"Today":"Selected date"}</p>
-         <h1 className="max-w-[170px] truncate text-sm font-semibold capitalize leading-6 text-ivory sm:max-w-none sm:text-lg">{formatDayLong(d.day)}</h1>
+ return <section className="mx-auto flex w-full max-w-[1540px] min-w-0 flex-col gap-2 px-2 pb-4 pt-0 sm:gap-3 sm:px-5 sm:pt-3">
+   <div className="sticky top-0 z-20 -mx-2 border-b border-line bg-obsidian/95 px-2 pb-2 pt-1 backdrop-blur sm:static sm:mx-0 sm:rounded-2xl sm:border sm:p-3">
+     <div className="flex min-w-0 items-center justify-between gap-2">
+       <div className="flex min-w-0 items-center gap-0.5">
+         <Link href={link(addDays(d.day,mode==="week"?-7:-1))} aria-label="Previous date" className="grid size-9 shrink-0 place-items-center rounded-lg border border-line-strong"><ChevronLeft className="size-4"/></Link>
+         <div className="min-w-0 px-2 text-center">
+           <h1 className="max-w-[175px] truncate text-sm font-semibold capitalize text-ivory sm:max-w-none sm:text-base">{formatDayLong(d.day)}</h1>
+         </div>
+         <Link href={link(addDays(d.day,mode==="week"?7:1))} aria-label="Next date" className="grid size-9 shrink-0 place-items-center rounded-lg border border-line-strong"><ChevronRight className="size-4"/></Link>
        </div>
-       <Link href={link(addDays(d.day,mode==="week"?7:1))} aria-label="Next date" className="grid size-10 shrink-0 place-items-center rounded-xl border border-line-strong"><ChevronRight className="size-5"/></Link>
+       <nav aria-label="Calendar views" className="inline-grid shrink-0 grid-cols-2 rounded-lg border border-line-strong bg-surface-1 p-0.5">
+         <Link href={link(d.day,"day")} aria-current={mode==="day"?"page":undefined} className={cn("rounded-md px-3 py-2 text-xs font-semibold",mode==="day"?"bg-surface-3 text-ivory":"text-ivory-3")}>Day</Link>
+         <Link href={link(d.day,"week")} aria-current={mode==="week"?"page":undefined} className={cn("rounded-md px-3 py-2 text-xs font-semibold",mode==="week"?"bg-surface-3 text-ivory":"text-ivory-3")}>Week</Link>
+       </nav>
      </div>
-     <div className="flex shrink-0 items-center gap-1.5">
-       <Link href="/agenda" className="hidden h-10 items-center rounded-xl border border-line-strong px-3 text-xs font-semibold sm:inline-flex">Today</Link>
-       <NewAppointmentButton day={d.day}/>
-     </div>
-   </div>
-   <div className="mb-3 flex w-full items-center justify-between gap-2">
-     <nav aria-label="Calendar views" className="inline-grid grid-cols-2 rounded-xl border border-line-strong bg-surface-1 p-1">
-      <Link href={link(d.day,"day")} aria-current={mode==="day"?"page":undefined} className={cn("rounded-lg px-5 py-2 text-xs font-semibold",mode==="day"?"bg-surface-3 text-ivory":"text-ivory-3")}>Day</Link>
-      <Link href={link(d.day,"week")} aria-current={mode==="week"?"page":undefined} className={cn("rounded-lg px-5 py-2 text-xs font-semibold",mode==="week"?"bg-surface-3 text-ivory":"text-ivory-3")}>Week</Link>
+     <nav aria-label="Select day" className="mt-2 grid grid-cols-7 gap-0.5">
+       {d.week.map(w=>{
+         const active=w.day===d.day
+         return <Link key={w.day} href={link(w.day)} aria-current={active?"date":undefined}
+           className={cn("grid min-w-0 place-items-center gap-1 rounded-lg px-0.5 py-1.5 text-center transition-colors",active?"bg-surface-3 text-ivory ring-1 ring-line-strong":"text-ivory-2",!w.open&&"opacity-50")}>
+           <span className="text-[10px] uppercase leading-4">{WEEKDAY_SHORT[weekday(w.day)]}</span>
+           <span className="num text-sm font-semibold leading-5">{Number(w.day.slice(8))}</span>
+           <span className={cn("size-1 rounded-full",w.count>0?"bg-ivory":"bg-transparent")} aria-label={w.count+" bookings"}/>
+         </Link>
+       })}
      </nav>
-     <span className="flex items-center gap-1 text-xs text-ivory-3"><CalendarDays className="size-4"/> {d.staff.length} staff</span>
    </div>
-   <nav aria-label="Select day" className="mb-3 grid min-w-0 grid-cols-7 gap-1.5 sm:gap-2">
-    {d.week.map(w=>{
-     const active=w.day===d.day
-     return <Link key={w.day} href={link(w.day)} aria-current={active?"date":undefined}
-      className={cn("min-w-0 rounded-xl border px-0.5 py-2 text-center transition-colors",active?"border-ivory-2 bg-surface-3 text-ivory":"border-line bg-surface-1 text-ivory-2",!w.open&&"opacity-50")}>
-       <span className="block truncate text-[10px] uppercase">{w.day===d.today?"Today":WEEKDAY_SHORT[weekday(w.day)]}</span>
-       <strong className="num mt-1 block text-base font-semibold">{Number(w.day.slice(8))}</strong>
-       <span className="mt-1 block text-[10px] text-ivory-3">{w.count} {w.count===1?"booking":"bookings"}</span>
-      </Link>
-    })}
-   </nav>
    {mode==="week"?<div className="grid min-w-0 grid-cols-1 items-start gap-2 sm:grid-cols-2 xl:grid-cols-4">
     {d.week.map(w=>{
       const bookings=(weekly?.appointments||[]).filter(a=>dayKey(a.startsAt)===w.day&&a.status!=="cancelado").sort((a,b)=>a.startsAt.localeCompare(b.startsAt))
