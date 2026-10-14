@@ -87,6 +87,7 @@ for(const locale of ["uk","de","en"]){
        shots.push({locale,name:"employee-expanded",file:expanded})
      }
    }
+   if(report.spanish.length)problems.push({locale,name,type:"untranslated-spanish",message:report.spanish.join(", ")})
    if(report.overflow)problems.push({locale,name,type:"horizontal-overflow",message:`${report.width}px content within ${report.viewport}px viewport`})
    if(status>=400)problems.push({locale,name,type:"http",message:String(status)})
    if(now==="/login"&&path!=="/login")problems.push({locale,name,type:"auth",message:"Protected route redirected to login"})
@@ -98,3 +99,4 @@ await browser.close()
 await writeFile(dir+"/report.json",JSON.stringify({base,shots,problems},null,2))
 console.log("BOOKING_SCREENSHOTS",shots.length,"PROBLEMS",problems.length)
 console.log(problems.slice(0,50))
+\nif(problems.length)process.exitCode=1\n
