@@ -58,6 +58,25 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
    if(device.id==="iphone"&&metrics.workspace==="admin"&&metrics.navs.some(n=>n.top<device.height*.40&&n.height>45))errors.push({device:device.id,locale,name,type:"admin-navigation-at-top",detail:JSON.stringify(metrics.navs)})
    if(metrics.spanish.length)errors.push({device:device.id,locale,name,type:"untranslated-spanish",detail:metrics.spanish.join(", ")})
    if(locale==="uk" && /(Payroll by date range|Set professional ranks|Products, purchases|Create individual passwords|Record expenses by category|Passwords are not stored|Cash movement shows net|Choose a specialist|Choose a service|Admin panon|Registrar pago|Sin leer)/i.test(metrics.visibleText))errors.push({device:device.id,locale,name,type:"untranslated-ukrainian-sentence",detail:metrics.visibleText.match(/.{0,60}(?:Payroll by date range|Set professional ranks|Products, purchases|Create individual passwords|Record expenses by category|Passwords are not stored|Cash movement shows net|Choose a specialist|Choose a service|Admin panon|Registrar pago|Sin leer).{0,90}/i)?.[0]||""})
+   // Known defects from manual mobile screenshot review; catch partial words,
+   // incorrect declensions, data corruption and untranslated date/payment copy.
+   if(locale==="uk"){
+     const strictChecks=[
+       ["customer-name-corrupted",/Test Клієнт/],
+       ["mixed-language-payroll",/\d+%\s+commissi[oу]n?\b/],
+       ["incorrect-ukrainian-plural",/\b1\s+(?:записів|відвідувань|послуг)\b|\b0\s+(?:запис|відвідування|послуга)\b/],
+       ["untranslated-date",/\b\d{1,2}\s+(?:Sep|Oct|Nov|Dec)\b/],
+       ["untranslated-booking-preposition",/\bcon\s+(?:Max|Olena|Danylo)\b/],
+       ["untranslated-status",/\b(?:Atendido|Otra hora)\b/],
+       ["duplicate-rank",/Стажер\s*\/\s*Стажер/],
+       ["untranslated-ai-provider",/(?:ZERNIO_API_KEY required|ZERNIO_WEBHOOK_SECRET required|Configure GEMINI_API_KEY.*in your Railway)/]
+     ]
+     for(const [type,pattern] of strictChecks){
+       const found=metrics.visibleText.match(pattern)
+       if(found)errors.push({device:device.id,locale,name,type,detail:found[0]})
+     }
+   }
+
   }
   for(const [name,route] of routes){
    try{
