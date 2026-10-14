@@ -47,7 +47,7 @@ function grammar(text:string,locale:Locale){
     return out
   }
   if(locale==="de"){
-    out=out.replace(/\b(Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag)\s+(\d{1,2})\s+(Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember)\b/g,
+    out=out.replace(/\b(Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag)(?:,\s*|\s+)(\d{1,2})\s+(Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember)\b/g,
       (_full,day,date,month)=>day+", "+date+". "+month)
     out=out.replace(/\b1\s+Termine\b/g,"1 Termin")
       .replace(/\b1\s+Besuche\b/g,"1 Besuch")
