@@ -39,7 +39,24 @@ function grammar(text:string,locale:Locale){
     out=out.replace(/(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b/g,
       (_whole,d,month)=>d+" "+SHORT_MONTHS[month][locale==="de"?0:1])
   }
-  if(locale!=="uk")return out
+  if(locale==="en"){
+    out=out.replace(/\b1\s+bookings\b/g,"1 booking")
+      .replace(/\b1\s+visits\b/g,"1 visit")
+      .replace(/\b1\s+services\b/g,"1 service")
+      .replace(/\b1\s+clients\b/g,"1 client")
+    return out
+  }
+  if(locale==="de"){
+    out=out.replace(/\b(Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag)\s+(\d{1,2})\s+(Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember)\b/g,
+      (_full,day,date,month)=>day+", "+date+". "+month)
+    out=out.replace(/\b1\s+Termine\b/g,"1 Termin")
+      .replace(/\b1\s+Besuche\b/g,"1 Besuch")
+      .replace(/\b1\s+Leistungen\b/g,"1 Leistung")
+      .replace(/\b1\s+Kunden\b/g,"1 Kunde")
+    return out
+  }
+  out=out.replace(/(Понеділок|Вівторок|Середа|Четвер|П’ятниця|П'ятниця|Субота|Неділя)\s+(\d{1,2})\s+([А-Яа-яІіЇїЄєҐґ]+)(?=$|[^\p{L}])/gu,
+    (_full,day,date,month)=>day+", "+date+" "+month.toLocaleLowerCase("uk"))
   out=out.replace(/\b(\d{1,2})\s+(Січень|Лютий|Березень|Квітень|Травень|Червень|Липень|Серпень|Вересень|Жовтень|Листопад|Грудень)(?=$|[^\p{L}])/gu,
     (_full,d,month)=>d+" "+MONTHS_UK[month])
   const endings:[string,string,string,string][]=[
