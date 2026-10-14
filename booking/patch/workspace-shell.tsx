@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { CalendarDays, LayoutDashboard, Menu, Plus, Package, CreditCard, Scissors, Settings2, Users, X } from "lucide-react"
 import { useNewAppointment } from "@/components/agenda/new-appointment"
+import { CalendarMonthPicker } from "./calendar-month-picker"
 
 export function BookingWorkspaceShell({ children, sidebar, topbar, mobileNav }:{
  children:React.ReactNode; sidebar:React.ReactNode;topbar:React.ReactNode; mobileNav:React.ReactNode
@@ -45,16 +46,17 @@ export function BookingWorkspaceShell({ children, sidebar, topbar, mobileNav }:{
    </nav>
    {open&&<>
      <button type="button" aria-label="Close calendar menu" onClick={()=>setOpen(false)} className="fixed inset-0 z-40 bg-black/60"/>
-     <aside className="fixed inset-y-0 left-0 z-50 flex w-[min(84vw,340px)] flex-col border-r border-line bg-obsidian p-4 shadow-2xl" aria-label="Calendar menu">
+     <aside className="fixed inset-y-0 left-0 z-50 flex w-[min(84vw,340px)] flex-col overflow-y-auto overscroll-contain border-r border-line bg-obsidian p-4 shadow-2xl" aria-label="Calendar menu">
        <div className="flex items-center justify-between gap-3 pb-6"><div className="font-semibold">Booking · Calendar</div><button aria-label="Close menu" onClick={()=>setOpen(false)} className="grid size-10 place-items-center"><X/></button></div>
-       <div className="grid gap-2">
+       <CalendarMonthPicker onNavigate={()=>setOpen(false)}/>
+       <div className="grid grid-cols-2 gap-2">
          {([
           ["/agenda","Calendar",CalendarDays],["/","Administration",LayoutDashboard],
           ["/inventory","Products",Package],["/cash-management","Sales & cash",CreditCard],
           ["/ajustes?tab=equipo","Staff",Users],["/ajustes?tab=servicios","Services",Scissors],
           ["/ajustes","Settings",Settings2]
          ] as const).map(([href,label,Icon])=><Link key={href} href={href} onClick={()=>setOpen(false)}
-          className="flex min-h-12 items-center gap-3 rounded-xl border border-line bg-surface-1 px-4 text-sm font-medium"><Icon className="size-5 text-ivory-3"/>{label}</Link>)}
+          className="flex min-h-14 min-w-0 flex-col items-center justify-center gap-1 rounded-xl border border-line bg-surface-1 px-2 py-2 text-center text-[11px] font-medium"><Icon className="size-5 text-ivory-3"/>{label}</Link>)}
        </div>
        <button type="button" onClick={()=>{setOpen(false);openBooking()}} className="mt-5 flex min-h-12 items-center justify-center gap-2 rounded-xl bg-ivory font-semibold text-obsidian"><Plus className="size-5"/>New booking</button>
      </aside>
