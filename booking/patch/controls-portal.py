@@ -54,7 +54,7 @@ export function LocaleThemeControls() {
     (target ? "relative z-40" : "fixed right-3 top-3 z-[90]") +
     " flex h-10 shrink-0 items-center gap-0.5 rounded-full border border-line-strong bg-surface-1/95 p-1 shadow-sm backdrop-blur"
   }>
-    {(["uk","de","en"] as Locale[]).map(code =>
+    {(["en","de","uk"] as Locale[]).map(code =>
       <button key={code} type="button" aria-label={"Language " + code.toUpperCase()}
         aria-pressed={locale===code} onClick={()=>choose(code)}
         className={"grid h-8 min-w-7 place-items-center rounded-full px-1.5 text-[11px] font-semibold transition-colors "+
