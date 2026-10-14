@@ -4,7 +4,7 @@ p.write_text(r'''"use client"
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 import { usePathname } from "next/navigation"
-import { Moon, Sun } from "lucide-react"
+import { Moon, Sun, ChevronDown } from "lucide-react"
 import { normalizeLocale, type Locale } from "./messages"
 
 type Theme = "dark" | "light"
@@ -51,20 +51,21 @@ export function LocaleThemeControls() {
     document.documentElement.classList.toggle("dark", next === "dark")
   }
   const controls = <div aria-label="Language and appearance" className={
-    (target ? "relative z-40" : "fixed right-3 top-3 z-[90]") +
-    " flex h-10 shrink-0 items-center gap-0.5 rounded-full border border-line-strong bg-surface-1/95 p-1 shadow-sm backdrop-blur"
+    (target ? "relative z-30" : "fixed right-3 top-3 z-[90]") +
+    " flex h-10 shrink-0 items-center gap-1 rounded-xl border border-line-strong bg-surface-1/95 px-1.5 shadow-sm backdrop-blur"
   }>
-    {(["en","de","uk"] as Locale[]).map(code =>
-      <button key={code} type="button" aria-label={"Language " + code.toUpperCase()}
-        aria-pressed={locale===code} onClick={()=>choose(code)}
-        className={"grid h-8 min-w-7 place-items-center rounded-full px-1.5 text-[11px] font-semibold transition-colors "+
-          (locale===code ? "bg-ivory text-obsidian" : "text-ivory-2 hover:bg-surface-3")}>
-        {code === "uk" ? "UA" : code.toUpperCase()}
-      </button>
-    )}
-    <span aria-hidden className="mx-0.5 h-5 w-px bg-line-strong"/>
+    <label className="relative flex h-9 items-center" aria-label="Interface language">
+      <select aria-label="Interface language" value={locale} onChange={event=>choose(event.target.value as Locale)}
+        className="h-9 w-[48px] cursor-pointer appearance-none rounded-lg bg-transparent pl-1.5 pr-3 text-xs font-semibold text-ivory outline-none focus-visible:ring-2 focus-visible:ring-ivory-2">
+        <option value="uk">UA</option>
+        <option value="de">DE</option>
+        <option value="en">EN</option>
+      </select>
+      <ChevronDown aria-hidden className="pointer-events-none absolute right-0 top-3 size-3 text-ivory-3"/>
+    </label>
+    <span aria-hidden className="h-5 w-px bg-line-strong"/>
     <button type="button" aria-label={theme==="dark"?"Use light theme":"Use dark theme"}
-      onClick={toggle} className="grid size-8 place-items-center rounded-full text-ivory-2 hover:bg-surface-3">
+      onClick={toggle} className="grid size-8 place-items-center rounded-lg text-ivory-2 hover:bg-surface-3">
       {theme==="dark"?<Sun className="size-4"/>:<Moon className="size-4"/>}
     </button>
   </div>
