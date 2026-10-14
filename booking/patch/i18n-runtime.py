@@ -64,7 +64,10 @@ export function translateText(value:string,locale:Locale):string{
   const known=cache.get(key)
   if(known!==undefined)return known
   const middle=value.trim()
+  // Business brands and customer/staff names are user data, never interface copy.
+  if(["Mercado Pago","WhatsApp","Instagram","Zernio","Railway","GitHub"].includes(middle))return value
   const exact=exactEnglish.get(middle)||exactSpanish.get(middle)
+  if(!exact && /^[\\p{Lu}][\\p{L}'’-]+(?:\\s+[\\p{Lu}][\\p{L}'’-]+){1,4}$/u.test(middle))return value
   if(exact){
     const translated=locale==="en"?exact.en:locale==="de"?exact.de:exact.uk
     const first=value.indexOf(middle)
