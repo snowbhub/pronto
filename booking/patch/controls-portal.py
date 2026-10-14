@@ -57,9 +57,7 @@ export function LocaleThemeControls() {
     <label className="relative flex h-9 items-center" aria-label="Interface language">
       <select aria-label="Interface language" value={locale} onChange={event=>choose(event.target.value as Locale)}
         className="h-9 w-[48px] cursor-pointer appearance-none rounded-lg bg-transparent pl-1.5 pr-3 text-xs font-semibold text-ivory outline-none focus-visible:ring-2 focus-visible:ring-ivory-2">
-        <option value="uk">UA</option>
-        <option value="de">DE</option>
-        <option value="en">EN</option>
+        {(["en","de","uk"] as Locale[]).map(code=><option key={code} value={code}>{code==="uk"?"UA":code.toUpperCase()}</option>)}
       </select>
       <ChevronDown aria-hidden className="pointer-events-none absolute right-0 top-3 size-3 text-ivory-3"/>
     </label>
