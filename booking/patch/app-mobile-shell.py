@@ -69,3 +69,40 @@ s=p.read_text(encoding="utf-8")
 s=s.replace('className="rounded-t-2xl border-line px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))]"','className="max-h-[85dvh] overflow-y-auto rounded-t-2xl border-line px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))]"')
 p.write_text(s,encoding="utf-8")
 print("BOOKING_MOBILE_MORE_SCROLL_CONTAINED")
+
+
+# Every panel dialog must remain inside the phone viewport, including popups
+# rendered through portals directly under <body>.
+p=Path("/app/src/app/globals.css")
+s=p.read_text(encoding="utf-8")
+s += """
+@media(max-width:767px) {
+ [data-slot="dialog-content"] {
+   left:0!important;right:0!important;top:auto!important;bottom:0!important;
+   transform:none!important;translate:none!important;
+   width:100vw!important;max-width:100vw!important;min-width:0!important;
+   height:auto;max-height:calc(100dvh - env(safe-area-inset-top) - 12px)!important;
+   overflow-x:hidden!important;overflow-y:auto!important;
+   overscroll-behavior:contain;border-radius:20px 20px 0 0!important;
+   padding-bottom:max(16px,env(safe-area-inset-bottom))!important;
+   box-sizing:border-box;
+ }
+ [data-slot="dialog-content"] > *,[data-slot="dialog-content"] form,
+ [data-slot="dialog-content"] section,[data-slot="dialog-content"] header,
+ [data-slot="dialog-content"] footer {min-width:0!important;max-width:100%!important;}
+ [data-slot="dialog-content"] .flex{min-width:0;}
+ [data-slot="dialog-content"] [class*="min-w-["]{min-width:0!important;}
+ [data-slot="dialog-content"] [class*="grid-cols-3"]{grid-template-columns:repeat(3,minmax(0,1fr));}
+ [data-slot="dialog-content"] button{white-space:normal;overflow-wrap:anywhere;}
+ [data-slot="dialog-content"] input,[data-slot="dialog-content"] select {min-width:0;max-width:100%;}
+}
+"""
+p.write_text(s,encoding="utf-8")
+# Contain the appointment form's day/service rows. Scrolling a row is allowed,
+# scrolling or moving the entire modal sideways is not.
+p=Path("/app/src/components/agenda/new-appointment.tsx")
+s=p.read_text(encoding="utf-8")
+s=s.replace('max-h-[92dvh] gap-0 overflow-y-auto p-0 sm:max-w-[640px] scroll-thin',
+            'max-h-[92dvh] min-w-0 max-w-[calc(100vw-16px)] gap-0 overflow-x-hidden overflow-y-auto p-0 sm:max-w-[640px] scroll-thin')
+p.write_text(s,encoding="utf-8")
+print("BOOKING_PORTAL_DIALOG_VIEWPORT_FIXED")
