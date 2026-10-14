@@ -6,6 +6,17 @@ ROWS = []
 for p in sorted(BUNDLE.glob('rows*.json')):
     ROWS.extend(json.loads(p.read_text(encoding='utf-8')))
 ROWS = [tuple(x) for x in ROWS]
+# One canonical DE/UK translation per English phrase, even if a phrase
+# appears several times in earlier source dictionaries.
+canonical = {}
+consistent = []
+for es,en,de,uk in ROWS:
+    if en not in canonical:
+        canonical[en] = (de, uk)
+    else:
+        de,uk = canonical[en]
+    consistent.append((es,en,de,uk))
+ROWS = consistent
 ROWS.sort(key=lambda x: len(x[0]), reverse=True)
 
 def english_source(s: str) -> str:
