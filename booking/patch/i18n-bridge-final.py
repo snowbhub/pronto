@@ -13,7 +13,7 @@ function selectedLocale():Locale{
   try{
     const stored=localStorage.getItem("booking_locale")
     if(stored)return normalizeLocale(stored)
-    const cookie=document.cookie.match(/(?:^|;\\s*)booking_locale=([^;]+)/)?.[1]
+    const cookie=document.cookie.match(/(?:^|;\s*)booking_locale=([^;]+)/)?.[1]
     if(cookie)return normalizeLocale(decodeURIComponent(cookie))
     return normalizeLocale(navigator.language)
   }catch{return "en"}
