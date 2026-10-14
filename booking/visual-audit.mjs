@@ -56,6 +56,37 @@ for(const locale of ["uk","de","en"]){
    const filename=`${dir}/${locale}-${name}.png`
    await page.screenshot({path:filename,fullPage:true,animations:"disabled"})
    shots.push({locale,name,url:page.url(),status,file:filename,...report})
+   if(path==="/agenda"&&now==="/agenda"){
+     const headerMenu=page.locator('[data-booking-workspace="calendar"] header button').first()
+     if(await headerMenu.isVisible()){
+       await headerMenu.click()
+       await page.waitForTimeout(200)
+       const drawerFile=`${dir}/${locale}-calendar-month-drawer.png`
+       await page.screenshot({path:drawerFile,fullPage:false,animations:"disabled"})
+       shots.push({locale,name:"calendar-month-drawer",file:drawerFile})
+       const close=page.locator('aside button[aria-label]').first()
+       if(await close.count())await close.click()
+     }
+     const nav=page.locator('[data-booking-workspace="calendar"] main')
+     for(const y of [450,1000]){
+       await nav.evaluate((element,offset)=>{element.scrollTop=offset},y)
+       await page.waitForTimeout(150)
+       const scrolled=`${dir}/${locale}-calendar-scroll-${y}.png`
+       await page.screenshot({path:scrolled,fullPage:false,animations:"disabled"})
+       shots.push({locale,name:"calendar-scroll-"+y,file:scrolled})
+     }
+   }
+   if(path.startsWith("/ajustes")&&path.includes("equipo")){
+     const details=page.locator('details').first()
+     if(await details.count()){
+       await details.evaluate(el=>el.scrollIntoView({block:"start"}))
+       await details.evaluate(el=>el.open=true)
+       await page.waitForTimeout(200)
+       const expanded=`${dir}/${locale}-employee-expanded.png`
+       await page.screenshot({path:expanded,fullPage:false,animations:"disabled"})
+       shots.push({locale,name:"employee-expanded",file:expanded})
+     }
+   }
    if(report.overflow)problems.push({locale,name,type:"horizontal-overflow",message:`${report.width}px content within ${report.viewport}px viewport`})
    if(status>=400)problems.push({locale,name,type:"http",message:String(status)})
    if(now==="/login"&&path!=="/login")problems.push({locale,name,type:"auth",message:"Protected route redirected to login"})
