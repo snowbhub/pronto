@@ -11,7 +11,8 @@ const versions=[
   "0004_cierre_de_caja.sql","0005_turnos_fijos.sql",
   "0006_historial.sql","0007_intervalo_de_horarios.sql",
   "0008_vales_y_semana.sql",
-  "0009_staff_levels.sql","0010_inventory.sql","0011_staff_accounts.sql","0012_cash_management.sql"
+  "0009_staff_levels.sql","0010_inventory.sql","0011_staff_accounts.sql","0012_cash_management.sql",
+  "0013_staff_avatars.sql","0014_booking_checkins.sql"
 ];
 try {
   await sql`create table if not exists booking_schema_migrations (
