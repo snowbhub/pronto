@@ -3,6 +3,7 @@ root=Path("/app")
 src=Path("/tmp/booking-patch/workspace-shell.tsx")
 dest=root/"src/components/shell/booking-workspace-shell.tsx"
 dest.write_text(src.read_text(encoding="utf-8"),encoding="utf-8")
+(root/"src/components/shell/calendar-month-picker.tsx").write_text((Path("/tmp/booking-patch")/"calendar-month-picker.tsx").read_text(encoding="utf-8"),encoding="utf-8")
 layout=root/"src/app/(panel)/layout.tsx"
 s=layout.read_text(encoding="utf-8")
 anchor='import { MobileNav } from "@/components/shell/mobile-nav"'
