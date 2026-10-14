@@ -37,6 +37,29 @@ s=s.replace('''{paid && <span className="text-[11px] font-medium text-ok">Cobrad
                 </span>''')
 s=s.replace('''<SheetContent className="w-full border-line sm:max-w-[420px]">''','''<SheetContent className="w-full min-w-0 max-w-full border-line sm:max-w-[420px]">''')
 if 'Team · all barbers' not in s or 'Unpaid' not in s:raise RuntimeError("Calendar workspace patch failed")
+# Expand the timeline to include real worker shifts and existing bookings.
+s=s.replace('''  const openMin = hmToMinutes(BRAND.openingHours.open)
+  const closeMin = hmToMinutes(BRAND.openingHours.close)''','''  const weekday=new Date(day+"T12:00:00Z").getUTCDay()
+  const shiftBounds=staff.flatMap(member=>(member.schedule||[])
+    .filter(shift=>shift.weekday===weekday)
+    .flatMap(shift=>[hmToMinutes(shift.start),hmToMinutes(shift.end)]))
+  const appointmentBounds=appointments.flatMap(a=>[minutesOfDay(a.startsAt),minutesOfDay(a.endsAt)])
+  const lower=Math.min(hmToMinutes(BRAND.openingHours.open),...shiftBounds,...appointmentBounds)
+  const upper=Math.max(hmToMinutes(BRAND.openingHours.close),...shiftBounds,...appointmentBounds)
+  const openMin=Math.max(0,Math.floor(lower/60)*60)
+  const closeMin=Math.min(1440,Math.ceil(upper/60)*60)''')
+p.write_text(s,encoding="utf-8")
+p=root/"src/lib/data/queries.ts"
+s=p.read_text(encoding="utf-8")
+s=s.replace('import { addDays, addMonths, dayKey, daysInMonth, monthKey, weekStart } from "@/lib/time"',
+'''import { addDays, addMonths, dayKey, daysInMonth, monthKey, weekStart, weekday } from "@/lib/time"''')
+s=s.replace('''    open: isOpen(day),
+    staff: s.staff,''','''    open: isOpen(day) || s.staff.some(m=>m.active && m.schedule?.some(shift=>shift.weekday===weekday(day))) ||
+      s.appointments.some(a=>dayKey(a.startsAt)===day),
+    staff: s.staff,''')
+s=s.replace('''        open: isOpen(d),
+        count: appts.filter(ACTIVE).length,''','''        open: isOpen(d) || s.staff.some(m=>m.active&&m.schedule?.some(shift=>shift.weekday===weekday(d))) || appts.length>0,
+        count: appts.filter(ACTIVE).length,''')
 p.write_text(s,encoding="utf-8")
 p=root/"src/app/globals.css"
 s=p.read_text(encoding="utf-8")
