@@ -113,7 +113,7 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
     if(!response||response.status()>=400)errors.push({device:device.id,locale,name,type:"http",detail:response?.status()})
     await logFrame(name,route)
     if(name==="calendar-day"&&device.id==="iphone"){
-     const menu=page.locator('[data-booking-workspace="calendar"] button[aria-label="Calendar menu"]')
+     const menu=page.locator('[data-booking-workspace="calendar"] [data-testid="calendar-mode-menu"]')
      if(await menu.count()){
       await menu.click();await logFrame("calendar-menu",route)
       const adminEntry=page.locator('[data-booking-workspace="calendar"] aside a[href="/"]').first()
