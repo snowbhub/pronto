@@ -11,6 +11,39 @@ const localeEntries:Record<"de"|"uk",Pair[]>={
   de:[...ROWS].filter(r=>String(r.en)!==String(r.de)).map(r=>({source:r.en,target:r.de})).sort((a,b)=>b.source.length-a.source.length),
   uk:[...ROWS].filter(r=>String(r.en)!==String(r.uk)).map(r=>({source:r.en,target:r.uk})).sort((a,b)=>b.source.length-a.source.length),
 }
+const exactEnglish=new Map<string,(typeof ROWS)[number]>()
+const exactSpanish=new Map<string,(typeof ROWS)[number]>()
+for(const row of ROWS){
+  if(!exactEnglish.has(row.en))exactEnglish.set(row.en,row)
+  if(!exactSpanish.has(row.es))exactSpanish.set(row.es,row)
+}
+function form(n:number,one:string,few:string,many:string):string{
+  const last=n%10,ten=n%100
+  return ten>=11&&ten<=14?many:last===1?one:last>=2&&last<=4?few:many
+}
+const MONTHS_UK:Record<string,string>={
+  Січень:"січня",Лютий:"лютого",Березень:"березня",Квітень:"квітня",
+  Травень:"травня",Червень:"червня",Липень:"липня",Серпень:"серпня",
+  Вересень:"вересня",Жовтень:"жовтня",Листопад:"листопада",Грудень:"грудня",
+}
+function grammar(text:string,locale:Locale){
+  if(locale!=="uk")return text
+  let out=text.replace(/\\b(\\d{1,2})\\s+(Січень|Лютий|Березень|Квітень|Травень|Червень|Липень|Серпень|Вересень|Жовтень|Листопад|Грудень)\\b/g,
+    (_full,d,month)=>d+" "+MONTHS_UK[month])
+  const endings:[string,string,string,string][]=[
+    ["записи","запис","записи","записів"],
+    ["відвідувань","відвідування","відвідування","відвідувань"],
+    ["послуги","послуга","послуги","послуг"],
+    ["оплат","оплата","оплати","оплат"],
+    ["клієнти","клієнт","клієнти","клієнтів"],
+    ["співробітники","співробітник","співробітники","співробітників"],
+  ]
+  for(const [word,one,few,many] of endings){
+    out=out.replace(new RegExp("(\\\\d+)\\\\s+"+word+"\\\\b","g"),
+      (_full,number)=>number+" "+form(Number(number),one,few,many))
+  }
+  return out
+}
 const cache=new Map<string,string>()
 function replaceOnce(input:string,pairs:Pair[]):string{
   let text=input
@@ -30,8 +63,19 @@ export function translateText(value:string,locale:Locale):string{
   const key=locale+"\0"+value
   const known=cache.get(key)
   if(known!==undefined)return known
+  const middle=value.trim()
+  const exact=exactEnglish.get(middle)||exactSpanish.get(middle)
+  if(exact){
+    const translated=locale==="en"?exact.en:locale==="de"?exact.de:exact.uk
+    const first=value.indexOf(middle)
+    const final=value.slice(0,first)+translated+value.slice(first+middle.length)
+    const answer=grammar(final,locale)
+    if(cache.size>2400)cache.clear()
+    cache.set(key,answer)
+    return answer
+  }
   const canonical=replaceOnce(value,spanishEntries)
-  const output=locale==="en"?canonical:replaceOnce(canonical,localeEntries[locale])
+  const output=grammar(locale==="en"?canonical:replaceOnce(canonical,localeEntries[locale]),locale)
   if(cache.size>2400)cache.clear()
   cache.set(key,output)
   return output
