@@ -17,3 +17,6 @@ for p in sorted(root.rglob("*.tsx")):
   entries.append((str(p.relative_to(root)),line,value[:170]))
 print("BOOKING_UI_SOURCE_SPANISH_CANDIDATES",len(entries))
 for row in entries[:130]:print("UI_CANDIDATE",*row)
+
+if entries:
+ raise SystemExit("Untranslated user-facing Spanish detected in final UI components")
