@@ -18,7 +18,7 @@ critical={
  "src/app/(panel)/staff-accounts/page.tsx":["Staff accounts","Username","New password (at least 12 characters)"],
  "src/app/staff-login/page.tsx":["Staff sign in","Administrator sign in"],
  "src/app/staff/page.tsx":["My schedule","Upcoming appointments","New appointment"],
- "src/app/(panel)/ranks/page.tsx":["Barber levels","Service permissions by rank","Professional level"],
+ "src/app/(panel)/ranks/page.tsx":["Barber levels","Service permissions by rank","Staff members"],
 }
 missing=[]
 for rel,phrases in critical.items():
