@@ -20,6 +20,6 @@ b='const content=<div className={(target?"relative z-40":"fixed right-3 top-3 z-
 if a not in s:raise RuntimeError("controls class did not match final patch")
 s=s.replace(a,b)
 if not s.endswith("</div>}\n"):raise RuntimeError("Unexpected JSX controls ending")
-s=s[:-len('</div>}\\n')]+'</div>;return target?createPortal(content,target):content}\\n'
+s=s[:-len('</div>}\n')]+'</div>;return target?createPortal(content,target):content}\n'
 p.write_text(s,encoding="utf-8")
 print("BOOKING_CONTROLS_ANCHORED_IN_HEADER", "createPortal" in s)
