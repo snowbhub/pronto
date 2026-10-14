@@ -63,8 +63,8 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
    if(locale==="uk"){
      const strictChecks=[
        ["customer-name-corrupted",/Test Клієнт/],
-       ["mixed-language-payroll",/\d+%\s+commissi[oу]n?\b/],
-       ["incorrect-ukrainian-plural",/\b1\s+(?:записів|відвідувань|послуг)\b|\b0\s+(?:запис|відвідування|послуга)\b/],
+       ["mixed-language-payroll",/\d+%\s+commissi(?:on|у)(?![\p{L}])/u],
+       ["incorrect-ukrainian-plural",/\b1\s+(?:записів|відвідувань|послуг)(?![\p{L}])|\b0\s+(?:запис|відвідування|послуга)(?![\p{L}])/u],
        ["untranslated-date",/\b\d{1,2}\s+(?:Sep|Oct|Nov|Dec)\b/],
        ["untranslated-booking-preposition",/\bcon\s+(?:Max|Olena|Danylo)\b/],
        ["untranslated-status",/\b(?:Atendido|Otra hora)\b/],
