@@ -13,6 +13,7 @@ p.write_text(s,encoding="utf-8")
 # Keep employee editing together while hiding 100+ time selector options until requested.
 p=root/"components/settings/team-editor.tsx"
 s=p.read_text(encoding="utf-8")
+s=s.replace("Staff commissions","Employees")
 start='''            <ScheduleEditor key={JSON.stringify(m.schedule ?? null)} member={m} />'''
 end='''            <TimeOffList entries={timeOff.filter((t) => t.staffId === m.id)} onAdd={() => setOffFor(m.id)} />'''
 if start not in s or end not in s:raise RuntimeError("Team card content changed")
@@ -31,6 +32,23 @@ s=s.replace('''<span className="block truncate text-[14px] font-medium text-ivor
 '''<span data-i18n-skip="true" className="block truncate text-[14px] font-medium text-ivory">{r.client.name}</span>''')
 s=s.replace('''<SheetTitle className="font-display text-[24px] leading-tight">{row.client.name}</SheetTitle>''',
 '''<SheetTitle data-i18n-skip="true" className="font-display text-[24px] leading-tight">{row.client.name}</SheetTitle>''')
+p.write_text(s,encoding="utf-8")
+# A complete mobile visit count must be in one text node so Ukrainian plurals
+# do not split into a number and an uninflected label.
+import re
+p=root/"components/clients/clients-view.tsx"
+s=p.read_text(encoding="utf-8")
+s,visits=re.subn(r'\{r\.visits\}\s*<span className="text-ivory-3 lg:hidden">[^<]*</span>',
+    '<span className="lg:hidden">{`\u0024{r.visits} visits`}</span><span className="hidden lg:inline">{r.visits}</span>',s,count=1)
+if visits!=1:raise RuntimeError("Client visit counter markup changed")
+p.write_text(s,encoding="utf-8")
+# Compose a single translated salary summary; React otherwise splits the number
+# from "commission"/"services" and runtime plural rules cannot act on the phrase.
+p=root/"app/(panel)/payroll/page.tsx"
+s=p.read_text(encoding="utf-8")
+old="{line.commissionPct}% commission · {line.count} services"
+if old not in s:raise RuntimeError("Payroll count wording changed")
+s=s.replace(old,'{`\u0024{line.commissionPct}% commission · \u0024{line.count} services`}',1)
 p.write_text(s,encoding="utf-8")
 # Status is presentation only; appointment status IDs remain untouched.
 p=root/"components/agenda/status.tsx"
@@ -51,7 +69,7 @@ changed=0
 for i,line in enumerate(lines):
     if "{mine.length}" in line and "formatARS(mine.reduce" in line:
         pad=line[:len(line)-len(line.lstrip())]
-        lines[i]=pad+"{mine.length} bookings\n"
+        lines[i]=pad+"{`${mine.length} bookings`}\n"
         changed+=1
 if changed!=1:raise RuntimeError(f"Expected one staff revenue label in day grid; got {changed}")
 s="".join(lines)
