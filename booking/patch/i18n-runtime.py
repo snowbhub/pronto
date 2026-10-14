@@ -6,10 +6,10 @@ s=p.read_text(encoding="utf-8")
 start=s.index("export function translateText(")
 stop=s.index("export const t=",start)
 replacement=r'''type Pair={source:string;target:string}
-const spanishEntries:Pair[]=[...ROWS].filter(r=>r.es!==r.en).map(r=>({source:r.es,target:r.en})).sort((a,b)=>b.source.length-a.source.length)
+const spanishEntries:Pair[]=[...ROWS].filter(r=>String(r.es)!==String(r.en)).map(r=>({source:r.es,target:r.en})).sort((a,b)=>b.source.length-a.source.length)
 const localeEntries:Record<"de"|"uk",Pair[]>={
-  de:[...ROWS].filter(r=>r.en!==r.de).map(r=>({source:r.en,target:r.de})).sort((a,b)=>b.source.length-a.source.length),
-  uk:[...ROWS].filter(r=>r.en!==r.uk).map(r=>({source:r.en,target:r.uk})).sort((a,b)=>b.source.length-a.source.length),
+  de:[...ROWS].filter(r=>String(r.en)!==String(r.de)).map(r=>({source:r.en,target:r.de})).sort((a,b)=>b.source.length-a.source.length),
+  uk:[...ROWS].filter(r=>String(r.en)!==String(r.uk)).map(r=>({source:r.en,target:r.uk})).sort((a,b)=>b.source.length-a.source.length),
 }
 const cache=new Map<string,string>()
 function replaceOnce(input:string,pairs:Pair[]):string{
