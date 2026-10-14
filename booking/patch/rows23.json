@@ -1,0 +1,374 @@
+[
+  [
+    "Facturaron",
+    "Revenue generated",
+    "Erzielter Umsatz",
+    "Отримана виручка"
+  ],
+  [
+    "Cartera",
+    "Client portfolio",
+    "Kundenstamm",
+    "Клієнтська база"
+  ],
+  [
+    "La jornada",
+    "Today's schedule",
+    "Heutiger Tagesplan",
+    "Графік на сьогодні"
+  ],
+  [
+    "No se pudo conectar",
+    "Could not connect",
+    "Verbindung fehlgeschlagen",
+    "Не вдалося підключитися"
+  ],
+  [
+    "Dura",
+    "Duration",
+    "Dauer",
+    "Тривалість"
+  ],
+  [
+    "Hora de inicio",
+    "Start time",
+    "Beginn",
+    "Час початку"
+  ],
+  [
+    "Canales",
+    "Channels",
+    "Kanäle",
+    "Канали"
+  ],
+  [
+    "Personalidad",
+    "Personality",
+    "Persönlichkeit",
+    "Стиль спілкування"
+  ],
+  [
+    "Quitar regla",
+    "Remove rule",
+    "Regel entfernen",
+    "Видалити правило"
+  ],
+  [
+    "Tono",
+    "Tone",
+    "Tonfall",
+    "Тон спілкування"
+  ],
+  [
+    "Enviar",
+    "Send",
+    "Senden",
+    "Надіслати"
+  ],
+  [
+    "Probalo",
+    "Try it",
+    "Ausprobieren",
+    "Спробувати"
+  ],
+  [
+    "Le toca el 50%",
+    "50% loyalty discount",
+    "50 % Treuerabatt",
+    "Знижка 50% за лояльністю"
+  ],
+  [
+    "Cobros",
+    "Payments",
+    "Zahlungen",
+    "Оплати"
+  ],
+  [
+    "Nota (opcional): ej. faltan $1.000 del cambio",
+    "Optional note: e.g. the cash drawer is short by 1,000",
+    "Optionale Notiz: z. B. fehlen 1.000 in der Kasse",
+    "Примітка (необов'язково): наприклад, у касі не вистачає 1 000"
+  ],
+  [
+    "Monto",
+    "Amount",
+    "Betrag",
+    "Сума"
+  ],
+  [
+    "Gastado",
+    "Spent",
+    "Ausgegeben",
+    "Витрачено"
+  ],
+  [
+    "visitas",
+    "visits",
+    "Besuche",
+    "відвідувань"
+  ],
+  [
+    "Sellado",
+    "Stamped",
+    "Abgestempelt",
+    "Штамп поставлено"
+  ],
+  [
+    "A pagar",
+    "To pay",
+    "Zu zahlen",
+    "До виплати"
+  ],
+  [
+    "Bebidas y productos",
+    "Drinks and products",
+    "Getränke und Produkte",
+    "Напої та товари"
+  ],
+  [
+    "Cierre por persona",
+    "Closing per person",
+    "Abrechnung je Person",
+    "Підсумок за співробітником"
+  ],
+  [
+    "Pagado",
+    "Paid",
+    "Bezahlt",
+    "Сплачено"
+  ],
+  [
+    "Vales y pagos",
+    "Advances and payments",
+    "Vorschüsse und Zahlungen",
+    "Аванси та виплати"
+  ],
+  [
+    "son de la casa",
+    "belong to the business",
+    "gehören dem Betrieb",
+    "залишаються закладу"
+  ],
+  [
+    "Lo atiende",
+    "Assigned to",
+    "Wird betreut von",
+    "Обслуговує"
+  ],
+  [
+    "Ej. 5000",
+    "e.g. 5000",
+    "z. B. 5000",
+    "Наприклад, 5000"
+  ],
+  [
+    "Minutos para pagar",
+    "Minutes to pay",
+    "Zahlungsfrist in Minuten",
+    "Час на оплату (хв)"
+  ],
+  [
+    "Las horas van de 5 en 5 minutos: 17:15 a 18:00, 17:00 a 17:45, lo que necesite.",
+    "You can choose times in 5-minute increments, such as 17:15–18:00 or 17:00–17:45.",
+    "Zeiten sind in 5-Minuten-Schritten wählbar, zum Beispiel 17:15–18:00 oder 17:00–17:45.",
+    "Час можна вибирати з кроком 5 хвилин, наприклад 17:15–18:00 або 17:00–17:45."
+  ],
+  [
+    "· pausado",
+    "· paused",
+    "· pausiert",
+    "· призупинено"
+  ],
+  [
+    "(no se ofrece)",
+    "(not offered)",
+    "(nicht verfügbar)",
+    "(недоступно)"
+  ],
+  [
+    "Tipo",
+    "Type",
+    "Typ",
+    "Тип"
+  ],
+  [
+    "(dado de baja)",
+    "(inactive)",
+    "(inaktiv)",
+    "(неактивний)"
+  ],
+  [
+    "Entra",
+    "Starts",
+    "Beginnt",
+    "Починає"
+  ],
+  [
+    "Overview",
+    "Overview",
+    "Übersicht",
+    "Огляд"
+  ],
+  [
+    "Reporting period",
+    "Reporting period",
+    "Berichtszeitraum",
+    "Звітний період"
+  ],
+  [
+    "Transactions",
+    "Transactions",
+    "Transaktionen",
+    "Операції"
+  ],
+  [
+    "Apply dates",
+    "Apply dates",
+    "Zeitraum anwenden",
+    "Застосувати дати"
+  ],
+  [
+    "No transactions within this period.",
+    "No transactions within this period.",
+    "Keine Transaktionen in diesem Zeitraum.",
+    "За цей період операцій немає."
+  ],
+  [
+    "Record cash movement",
+    "Record cash movement",
+    "Bargeldbewegung erfassen",
+    "Записати рух готівки"
+  ],
+  [
+    "No cash movements yet.",
+    "No cash movements yet.",
+    "Noch keine Bargeldbewegungen.",
+    "Рухів готівки поки немає."
+  ],
+  [
+    "Owner, bank, employee",
+    "Owner, bank, employee",
+    "Inhaber, Bank, Mitarbeiter",
+    "Власник, банк, співробітник"
+  ],
+  [
+    "Responsible / recipient",
+    "Responsible / recipient",
+    "Verantwortlich / Empfänger",
+    "Відповідальний / отримувач"
+  ],
+  [
+    "Supplier / recipient",
+    "Supplier / recipient",
+    "Lieferant / Empfänger",
+    "Постачальник / отримувач"
+  ],
+  [
+    "e.g. Cleaning supplies",
+    "e.g. Cleaning supplies",
+    "z. B. Reinigungsmittel",
+    "Наприклад, засоби для прибирання"
+  ],
+  [
+    "Available appointment intervals",
+    "Available appointment intervals",
+    "Verfügbare Buchungsintervalle",
+    "Доступні інтервали запису"
+  ],
+  [
+    "Amount",
+    "Amount",
+    "Betrag",
+    "Сума"
+  ],
+  [
+    "Product",
+    "Product",
+    "Produkt",
+    "Товар"
+  ],
+  [
+    "Hair care",
+    "Hair care",
+    "Haarpflege",
+    "Догляд за волоссям"
+  ],
+  [
+    "Security",
+    "Security",
+    "Sicherheit",
+    "Безпека"
+  ],
+  [
+    "We are confirming your payment",
+    "We are confirming your payment",
+    "Wir bestätigen gerade deine Zahlung",
+    "Ми підтверджуємо ваш платіж"
+  ],
+  [
+    "Use the credentials provided by your manager.",
+    "Use the credentials provided by your manager.",
+    "Melde dich mit den Zugangsdaten deiner Leitung an.",
+    "Увійдіть за даними, які надав керівник."
+  ],
+  [
+    "Current commission rates are applied to payments within the selected period. Historical rate changes are not tracked yet. Deposits are included when collected.",
+    "Current commission rates are applied to payments within the selected period. Historical rate changes are not tracked yet. Deposits are included when collected.",
+    "Für den ausgewählten Zeitraum gelten aktuelle Provisionssätze. Frühere Änderungen werden noch nicht erfasst. Anzahlungen werden beim Zahlungseingang berücksichtigt.",
+    "Для вибраного періоду використовуються поточні відсотки комісії. Історія зміни відсотків поки не зберігається. Передоплати враховуються в момент отримання."
+  ],
+  [
+    "Change the name and commission with the pencil above; other employee details are below.",
+    "Change the name and commission with the pencil above; other employee details are below.",
+    "Name und Provision mit dem Stift oben ändern; weitere Mitarbeiterdaten stehen unten.",
+    "Ім’я та відсоток змінюються кнопкою редагування вище. Інші дані співробітника — нижче."
+  ],
+  [
+    "Cash counted",
+    "Cash counted",
+    "Gezähltes Bargeld",
+    "Фактично готівки"
+  ],
+  [
+    "Remove day off",
+    "Remove day off",
+    "Freien Tag entfernen",
+    "Видалити вихідний"
+  ],
+  [
+    "No appointments",
+    "No appointments",
+    "Keine Termine",
+    "Немає записів"
+  ],
+  [
+    "Close menu",
+    "Close menu",
+    "Menü schließen",
+    "Закрити меню"
+  ],
+  [
+    "Month calendar",
+    "Month calendar",
+    "Monatskalender",
+    "Календар місяця"
+  ],
+  [
+    "Progress",
+    "Progress",
+    "Fortschritt",
+    "Прогрес"
+  ],
+  [
+    "Ticket",
+    "Ticket",
+    "Bon",
+    "Чек"
+  ],
+  [
+    "Instagram",
+    "Instagram",
+    "Instagram",
+    "Instagram"
+  ]
+]
