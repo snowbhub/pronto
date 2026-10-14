@@ -39,7 +39,7 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
     const visible=(el)=>{const rect=el.getBoundingClientRect();const styles=getComputedStyle(el);return styles.display!=="none" && styles.visibility!=="hidden"&&rect.width>0&&rect.height>0}
     const main=document.querySelector('main')
     const fixedNavs=[...document.querySelectorAll('nav')].filter(el=>visible(el)&&getComputedStyle(el).position==="fixed")
-    const positionedNavs=[...document.querySelectorAll('nav')].filter(el=>visible(el)&&el.getBoundingClientRect().width>innerWidth*.6)
+    const positionedNavs=[...document.querySelectorAll("nav.booking-app-nav")].filter(visible)
     const navs=positionedNavs.map(el=>{const r=el.getBoundingClientRect();return {top:Math.round(r.top),bottom:Math.round(r.bottom),height:Math.round(r.height)}})
     const visibleText=(document.body.innerText||"").trim()
     return {screenWidth:innerWidth,pageWidth:document.documentElement.scrollWidth,
