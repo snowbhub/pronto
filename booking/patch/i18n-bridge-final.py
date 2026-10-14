@@ -20,7 +20,7 @@ function selectedLocale():Locale{
 }
 function translateNode(node:Text,locale:Locale){
   const parent=node.parentElement
-  if(!parent||parent.closest("script,style,code,pre,[contenteditable=true]"))return
+  if(!parent||parent.closest("script,style,code,pre,[contenteditable=true],[data-i18n-skip=true]"))return
   const text=node.nodeValue||""
   if(!text.trim())return
   const existing=texts.get(node)
