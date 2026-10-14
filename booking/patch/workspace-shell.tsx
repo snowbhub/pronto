@@ -21,7 +21,7 @@ export function BookingWorkspaceShell({ children, sidebar, topbar, mobileNav }:{
  return <div data-booking-workspace="calendar" className="flex h-dvh min-h-0 w-full max-w-full flex-col overflow-hidden bg-obsidian text-ivory">
    <header className="z-30 flex h-14 shrink-0 items-center justify-between gap-2 border-b border-line bg-obsidian px-2.5 sm:px-5" aria-label="Calendar workspace">
      <div className="flex min-w-0 items-center gap-2">
-       <button type="button" onClick={()=>setOpen(v=>!v)} aria-label="Calendar menu" aria-expanded={open}
+       <button type="button" data-testid="calendar-mode-menu" onClick={()=>setOpen(v=>!v)} aria-label="Calendar menu" aria-expanded={open}
         className="grid size-10 shrink-0 place-items-center rounded-xl border border-line-strong bg-surface-1 text-ivory">
          {open?<X className="size-5"/>:<Menu className="size-5"/>}
        </button>
