@@ -26,3 +26,12 @@ change("src/components/settings/team-editor.tsx",[
  ('"Franco quitado"','"Day off removed"'),
 ])
 print("BOOKING_LAST_SIX_SPANISH_UI_STRINGS_FIXED")
+
+change("src/components/shell/sidebar.tsx",[
+ (">Santi</span>",">Administrator</span>"),
+ (">Dueño</span>",">Owner</span>"),
+])
+change("src/app/(panel)/page.tsx",[
+ ('${greeting}, Santi','${greeting}'),
+])
+print("BOOKING_OWNER_NAME_DEMO_COPY_REMOVED")
