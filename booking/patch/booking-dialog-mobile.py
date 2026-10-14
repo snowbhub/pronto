@@ -1,17 +1,19 @@
 from pathlib import Path
+import re
 p=Path("/app/src/components/agenda/new-appointment.tsx")
 s=p.read_text(encoding="utf-8")
-before=s
-checks=[
- ('className="max-h-[92dvh] gap-0 overflow-y-auto p-0 sm:max-w-[640px] scroll-thin"','className="booking-create-dialog max-h-[92dvh] min-w-0 max-w-[calc(100vw-12px)] overflow-x-hidden overflow-y-auto overscroll-contain p-0 sm:max-w-[640px] scroll-thin"'),
- ('className="num ml-auto h-8 w-40 rounded-md','className="num ml-auto h-10 min-w-0 w-full sm:w-40 rounded-md'),
- ('className="grid grid-cols-2 gap-2 sm:grid-cols-3"','className="grid min-w-0 grid-cols-2 gap-2 sm:grid-cols-3"'),
- ('className="grid grid-cols-4 gap-1.5 sm:grid-cols-6"','className="grid min-w-0 grid-cols-3 gap-2 sm:grid-cols-6"'),
- ('<div className="space-y-6 px-6 py-5">','<div className="min-w-0 space-y-6 px-4 py-5 sm:px-6">'),
+replacements=[
+ ("className=\"num ml-auto h-8 w-40 rounded-md","className=\"num ml-auto h-10 min-w-0 w-full sm:w-40 rounded-md"),
+ ("className=\"grid grid-cols-2 gap-2 sm:grid-cols-3\"","className=\"grid min-w-0 grid-cols-2 gap-2 sm:grid-cols-3\""),
+ ("className=\"grid grid-cols-4 gap-1.5 sm:grid-cols-6\"","className=\"grid min-w-0 grid-cols-3 gap-2 sm:grid-cols-6\""),
+ ("<div className=\"space-y-6 px-6 py-5\">","<div className=\"min-w-0 space-y-6 px-4 py-5 sm:px-6\">"),
 ]
-for old,new in checks:
- if old not in s:raise RuntimeError("Modal markup changed: "+old)
- s=s.replace(old,new)
+for old,new in replacements:
+ if old in s:s=s.replace(old,new)
+s,count=re.subn(r'(<DialogContent\s+className=")([^"]*)(")',
+ lambda m:m.group(1)+("booking-create-dialog " if "booking-create-dialog" not in m.group(2) else "")+m.group(2)+m.group(3),
+ s,count=1)
+if count!=1:raise RuntimeError("Appointment dialog markup missing")
 p.write_text(s,encoding="utf-8")
 p=Path("/app/src/app/globals.css")
 s=p.read_text(encoding="utf-8")
@@ -31,4 +33,4 @@ s+="""
 }
 """
 p.write_text(s,encoding="utf-8")
-print("BOOKING_NEW_APPOINTMENT_FITS_MOBILE_SCREEN",len(checks))
+print("BOOKING_NEW_APPOINTMENT_FITS_MOBILE_SCREEN",count)
