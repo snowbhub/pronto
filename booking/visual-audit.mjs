@@ -116,7 +116,19 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
      const menu=page.locator('[data-booking-workspace="calendar"] button[aria-label="Calendar menu"]')
      if(await menu.count()){
       await menu.click();await logFrame("calendar-menu",route)
-      await page.locator('button[aria-label="Close menu"]').first().click().catch(()=>{})
+      const adminEntry=page.locator('[data-booking-workspace="calendar"] aside a[href="/"]').first()
+      if(await adminEntry.count()){
+        await adminEntry.click()
+        await page.waitForTimeout(550)
+        await logFrame("switch-calendar-to-admin","/")
+        if(!(await page.locator('[data-booking-workspace="admin"]').count()))
+          errors.push({device:device.id,locale,name,type:"two-modes-not-separated",detail:"Calendar Administration link did not open admin shell"})
+        await page.goto(base+"/agenda",{waitUntil:"domcontentloaded"})
+        await page.waitForTimeout(550)
+      }else{
+        errors.push({device:device.id,locale,name,type:"missing-calendar-admin-switch",detail:"Calendar menu has no Administration link"})
+        await page.locator('button[aria-label="Close menu"]').first().click().catch(()=>{})
+      }
      }
      const scroll=page.locator('[data-booking-workspace="calendar"] main')
      await scroll.evaluate(el=>el.scrollTop=580);await logFrame("calendar-scrolled",route)
