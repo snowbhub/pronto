@@ -1,0 +1,350 @@
+[
+  [
+    "Panel password",
+    "Panel password",
+    "Panel-Passwort",
+    "Пароль панелі"
+  ],
+  [
+    "Sign in",
+    "Sign in",
+    "Anmelden",
+    "Увійти"
+  ],
+  [
+    "Signing in…",
+    "Signing in…",
+    "Anmeldung…",
+    "Вхід…"
+  ],
+  [
+    "Staff sign in",
+    "Staff sign in",
+    "Mitarbeiter-Anmeldung",
+    "Вхід співробітника"
+  ],
+  [
+    "Administrator sign in",
+    "Administrator sign in",
+    "Administrator-Anmeldung",
+    "Вхід адміністратора"
+  ],
+  [
+    "Username",
+    "Username",
+    "Benutzername",
+    "Ім’я користувача"
+  ],
+  [
+    "Password",
+    "Password",
+    "Passwort",
+    "Пароль"
+  ],
+  [
+    "Staff accounts",
+    "Staff accounts",
+    "Mitarbeiterkonten",
+    "Облікові записи співробітників"
+  ],
+  [
+    "Create / change credentials",
+    "Create / change credentials",
+    "Zugangsdaten erstellen / ändern",
+    "Створити або змінити доступ"
+  ],
+  [
+    "Disable staff login",
+    "Disable staff login",
+    "Mitarbeiterzugang deaktivieren",
+    "Вимкнути доступ співробітника"
+  ],
+  [
+    "Enable staff login",
+    "Enable staff login",
+    "Mitarbeiterzugang aktivieren",
+    "Увімкнути доступ співробітника"
+  ],
+  [
+    "My schedule",
+    "My schedule",
+    "Mein Dienstplan",
+    "Мій графік"
+  ],
+  [
+    "Upcoming appointments",
+    "Upcoming appointments",
+    "Anstehende Termine",
+    "Майбутні записи"
+  ],
+  [
+    "New appointment",
+    "New appointment",
+    "Neuer Termin",
+    "Новий запис"
+  ],
+  [
+    "Create appointment",
+    "Create appointment",
+    "Termin erstellen",
+    "Створити запис"
+  ],
+  [
+    "This appointment slot is no longer available.",
+    "This appointment slot is no longer available.",
+    "Dieser Termin ist nicht mehr verfügbar.",
+    "Цей час уже недоступний."
+  ],
+  [
+    "Inventory",
+    "Inventory",
+    "Warenlager",
+    "Склад"
+  ],
+  [
+    "Products & stock",
+    "Products & stock",
+    "Produkte und Lagerbestand",
+    "Товари та залишки"
+  ],
+  [
+    "Product name",
+    "Product name",
+    "Produktname",
+    "Назва товару"
+  ],
+  [
+    "Category",
+    "Category",
+    "Kategorie",
+    "Категорія"
+  ],
+  [
+    "New product",
+    "New product",
+    "Neues Produkt",
+    "Новий товар"
+  ],
+  [
+    "Add product",
+    "Add product",
+    "Produkt hinzufügen",
+    "Додати товар"
+  ],
+  [
+    "Sale price",
+    "Sale price",
+    "Verkaufspreis",
+    "Ціна продажу"
+  ],
+  [
+    "Purchase cost",
+    "Purchase cost",
+    "Einkaufspreis",
+    "Закупівельна ціна"
+  ],
+  [
+    "Low stock threshold",
+    "Low stock threshold",
+    "Mindestbestand",
+    "Мінімальний залишок"
+  ],
+  [
+    "Low stock",
+    "Low stock",
+    "Niedriger Bestand",
+    "Малий залишок"
+  ],
+  [
+    "Stock receipt",
+    "Stock receipt",
+    "Wareneingang",
+    "Прихід товару"
+  ],
+  [
+    "Sale",
+    "Sale",
+    "Verkauf",
+    "Продаж"
+  ],
+  [
+    "Write-off",
+    "Write-off",
+    "Abschreibung",
+    "Списання"
+  ],
+  [
+    "Return to stock",
+    "Return to stock",
+    "Rückgabe ins Lager",
+    "Повернення на склад"
+  ],
+  [
+    "Stock balance",
+    "Stock balance",
+    "Lagerbestand",
+    "Залишки на складі"
+  ],
+  [
+    "Recent stock movements",
+    "Recent stock movements",
+    "Letzte Lagerbewegungen",
+    "Останні рухи товарів"
+  ],
+  [
+    "Payment method (for sales)",
+    "Payment method (for sales)",
+    "Zahlungsart (beim Verkauf)",
+    "Спосіб оплати (продаж)"
+  ],
+  [
+    "Receive / Sell / Write off",
+    "Receive / Sell / Write off",
+    "Wareneingang / Verkauf / Abschreibung",
+    "Прихід / Продаж / Списання"
+  ],
+  [
+    "Save operation",
+    "Save operation",
+    "Vorgang speichern",
+    "Зберегти операцію"
+  ],
+  [
+    "No products yet.",
+    "No products yet.",
+    "Noch keine Produkte.",
+    "Товарів поки немає."
+  ],
+  [
+    "No one yet.",
+    "No one yet.",
+    "Noch niemand.",
+    "Поки нікого немає."
+  ],
+  [
+    "Nobody yet. 👌",
+    "Nobody yet. 👌",
+    "Noch niemand. 👌",
+    "Поки нікого немає. 👌"
+  ],
+  [
+    "Add team member",
+    "Add team member",
+    "Teammitglied hinzufügen",
+    "Додати співробітника"
+  ],
+  [
+    "Connected. Your data is saved in PostgreSQL.",
+    "Connected. Your data is saved in PostgreSQL.",
+    "Verbunden. Deine Daten werden in PostgreSQL gespeichert.",
+    "Підключено. Ваші дані зберігаються в PostgreSQL."
+  ],
+  [
+    "ZERNIO_API_KEY is missing. Create an API key in Zernio and add it to Railway.",
+    "ZERNIO_API_KEY is missing. Create an API key in Zernio and add it to Railway.",
+    "ZERNIO_API_KEY fehlt. Erstelle einen API-Schlüssel bei Zernio und füge ihn in Railway hinzu.",
+    "Відсутній ZERNIO_API_KEY. Створіть API-ключ у Zernio та додайте його в Railway."
+  ],
+  [
+    "ZERNIO_WEBHOOK_SECRET is missing.",
+    "ZERNIO_WEBHOOK_SECRET is missing.",
+    "ZERNIO_WEBHOOK_SECRET fehlt.",
+    "Відсутній ZERNIO_WEBHOOK_SECRET."
+  ],
+  [
+    "Barber levels",
+    "Barber levels",
+    "Barbier-Stufen",
+    "Рівні барберів"
+  ],
+  [
+    "Staff members",
+    "Staff members",
+    "Mitarbeiter",
+    "Співробітники"
+  ],
+  [
+    "Trainee",
+    "Trainee",
+    "Azubi",
+    "Стажер"
+  ],
+  [
+    "Junior",
+    "Junior",
+    "Junior-Barbier",
+    "Молодший барбер"
+  ],
+  [
+    "Senior",
+    "Senior",
+    "Senior-Barbier",
+    "Старший барбер"
+  ],
+  [
+    "Service permissions by rank",
+    "Service permissions by rank",
+    "Leistungsberechtigungen nach Stufe",
+    "Послуги за рівнями"
+  ],
+  [
+    "Edit commission",
+    "Edit commission",
+    "Provision bearbeiten",
+    "Змінити відсоток"
+  ],
+  [
+    "Staff payroll",
+    "Staff payroll",
+    "Mitarbeiterabrechnung",
+    "Зарплата співробітників"
+  ],
+  [
+    "Outstanding payroll",
+    "Outstanding payroll",
+    "Ausstehende Auszahlung",
+    "Залишок до виплати"
+  ],
+  [
+    "Apply date range",
+    "Apply date range",
+    "Zeitraum anwenden",
+    "Застосувати період"
+  ],
+  [
+    "Service revenue",
+    "Service revenue",
+    "Umsatz aus Leistungen",
+    "Виручка від послуг"
+  ],
+  [
+    "Sign out",
+    "Sign out",
+    "Abmelden",
+    "Вийти"
+  ],
+  [
+    "Staff logins · Individual passwords",
+    "Staff logins · Individual passwords",
+    "Mitarbeiterzugänge · Eigene Passwörter",
+    "Доступ співробітників · Окремі паролі"
+  ],
+  [
+    "Payroll · Custom date ranges",
+    "Payroll · Custom date ranges",
+    "Abrechnung · Freier Zeitraum",
+    "Зарплата · Довільний період"
+  ],
+  [
+    "Barber ranks · Service permissions",
+    "Barber ranks · Service permissions",
+    "Barbier-Stufen · Leistungen",
+    "Рівні барберів · Доступні послуги"
+  ],
+  [
+    "Inventory · Products, stock & sales",
+    "Inventory · Products, stock & sales",
+    "Lager · Produkte, Bestand und Verkauf",
+    "Склад · Товари, залишки й продажі"
+  ]
+]
