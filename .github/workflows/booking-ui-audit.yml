@@ -7,7 +7,7 @@ on:
       - '.github/workflows/booking-ui-audit.yml'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: booking-mobile-ui-${{ github.ref }}
   cancel-in-progress: true
@@ -52,6 +52,27 @@ jobs:
           if test -f booking/screenshots/report.md; then
             cat booking/screenshots/report.md >> "$GITHUB_STEP_SUMMARY"
           fi
+      - name: Create visual contact sheets for manual review
+        if: always()
+        run: |
+          python3 -m pip install --user Pillow --break-system-packages
+          python3 booking/qa-montage.py
+      - name: Publish QA report on a separate generated-results branch
+        if: always()
+        continue-on-error: true
+        run: |
+          if test ! -f booking/qa-results/report.json; then exit 0; fi
+          mkdir -p /tmp/booking-audit-result
+          cp booking/qa-results/*.b64 booking/qa-results/report.json /tmp/booking-audit-result/
+          git config user.name "booking-qa-bot"
+          git config user.email "booking-qa-bot@users.noreply.github.com"
+          git switch --orphan booking-qa-results
+          git rm -r --cached . >/dev/null 2>&1 || true
+          mkdir -p booking/qa-results
+          cp /tmp/booking-audit-result/* booking/qa-results/
+          git add booking/qa-results
+          git commit -m "Update booking visual audit results"
+          git push -f origin HEAD:refs/heads/booking-qa-results
       - name: Upload screenshots and route-by-route findings
         if: always()
         uses: actions/upload-artifact@v4
