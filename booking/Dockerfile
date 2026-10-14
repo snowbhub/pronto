@@ -17,6 +17,8 @@ RUN python3 /tmp/booking-patch/payroll-discovery.py
 RUN python3 /tmp/booking-patch/timezone-i18n.py
 RUN python3 /tmp/booking-patch/i18n-runtime.py
 RUN python3 /tmp/booking-patch/mobile-polish.py
+RUN python3 /tmp/booking-patch/app-mobile-shell.py
+RUN python3 /tmp/booking-patch/inventory-install.py
 RUN python3 /tmp/booking-patch/verify_i18n.py
 RUN cp /tmp/booking-patch/migrate-booking.mjs /app/scripts/migrate-booking.mjs
 RUN npm ci
