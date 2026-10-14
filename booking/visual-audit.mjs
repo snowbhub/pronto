@@ -57,6 +57,30 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
    if(metrics.workspace==="calendar"&&metrics.fixedNavCount>0)errors.push({device:device.id,locale,name,type:"calendar-navigation-overlap",detail:"Legacy fixed nav remains"})
    if(device.id==="iphone"&&metrics.workspace==="admin"&&metrics.navs.some(n=>n.top<device.height*.40&&n.height>45))errors.push({device:device.id,locale,name,type:"admin-navigation-at-top",detail:JSON.stringify(metrics.navs)})
    if(metrics.spanish.length)errors.push({device:device.id,locale,name,type:"untranslated-spanish",detail:metrics.spanish.join(", ")})
+
+   // Manually observed defects from real screens: check complete sentences, not
+   // just an optimistic dictionary-coverage percentage.
+   const localeChecks={
+     en:[
+       ["english-plural",/\b1 (?:bookings|visits|services|clients)\b/],
+     ],
+     de:[
+       ["german-plural",/\b1 (?:Termine|Besuche|Leistungen|Kunden)\b/],
+       ["german-calendar-date",/\b(?:Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag)\s+\d{1,2}\s+(?:Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember)\b/],
+     ],
+     uk:[
+       ["unnatural-completed-status",/(?:Обслужено|Обслуговано)/],
+       ["incorrect-ukrainian-calendar-date",/(?:Понеділок|Вівторок|Середа|Четвер|П’ятниця|Субота|Неділя)\s+\d{1,2}\s+(?:січня|лютого|березня|квітня|травня|червня|липня|серпня|вересня|жовтня|листопада|грудня)/i],
+     ]
+   }
+   const commonChecks=[
+     ["untranslated-finance-paragraph",/(?:comisión \+|vales −|pagos ya hechos|Los dueños no cobran)/],
+   ]
+   for(const [kind,pattern] of [...commonChecks,...localeChecks[locale]]){
+     const found=metrics.visibleText.match(pattern)
+     if(found)errors.push({device:device.id,locale,name,type:kind,detail:found[0]})
+   }
+
    if(locale==="uk" && /(Payroll by date range|Set professional ranks|Products, purchases|Create individual passwords|Record expenses by category|Passwords are not stored|Cash movement shows net|Choose a specialist|Choose a service|Admin panon|Registrar pago|Sin leer)/i.test(metrics.visibleText))errors.push({device:device.id,locale,name,type:"untranslated-ukrainian-sentence",detail:metrics.visibleText.match(/.{0,60}(?:Payroll by date range|Set professional ranks|Products, purchases|Create individual passwords|Record expenses by category|Passwords are not stored|Cash movement shows net|Choose a specialist|Choose a service|Admin panon|Registrar pago|Sin leer).{0,90}/i)?.[0]||""})
    // Known defects from manual mobile screenshot review; catch partial words,
    // incorrect declensions, data corruption and untranslated date/payment copy.
