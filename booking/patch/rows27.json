@@ -1,0 +1,116 @@
+[
+  [
+    "Atendido",
+    "Served",
+    "Bedient",
+    "Обслужено"
+  ],
+  [
+    "Served",
+    "Served",
+    "Bedient",
+    "Обслужено"
+  ],
+  [
+    "En curso",
+    "In progress",
+    "In Bearbeitung",
+    "Послуга триває"
+  ],
+  [
+    "In progress",
+    "In progress",
+    "In Bearbeitung",
+    "Послуга триває"
+  ],
+  [
+    "Cancelado",
+    "Cancelled",
+    "Storniert",
+    "Скасовано"
+  ],
+  [
+    "Cancelled",
+    "Cancelled",
+    "Storniert",
+    "Скасовано"
+  ],
+  [
+    "No-show",
+    "No-show",
+    "Nicht erschienen",
+    "Не з’явився"
+  ],
+  [
+    "Working hours and absences",
+    "Working hours and absences",
+    "Arbeitszeiten und Abwesenheiten",
+    "Робочі години та відсутності"
+  ],
+  [
+    "Employees",
+    "Employees",
+    "Mitarbeitende",
+    "Співробітники"
+  ],
+  [
+    "Junior barber",
+    "Junior barber",
+    "Junior-Barbier",
+    "Молодший барбер"
+  ],
+  [
+    "Senior barber",
+    "Senior barber",
+    "Senior-Barbier",
+    "Старший барбер"
+  ],
+  [
+    "bookings",
+    "bookings",
+    "Termine",
+    "записи"
+  ],
+  [
+    "Booking status",
+    "Booking status",
+    "Terminstatus",
+    "Статус запису"
+  ],
+  [
+    "No-show appointment",
+    "No-show appointment",
+    "Nicht erschienen",
+    "Клієнт не з’явився"
+  ],
+  [
+    "Team · all barbers",
+    "Team · all barbers",
+    "Team · alle Mitarbeitenden",
+    "Команда · всі майстри"
+  ],
+  [
+    "One barber",
+    "One barber",
+    "Ein Mitarbeiter",
+    "Один майстер"
+  ],
+  [
+    "Change employee name, commission and profile details using the pencil above.",
+    "Change employee name, commission and profile details using the pencil above.",
+    "Name, Provision und Profil über den Stift oben bearbeiten.",
+    "Змініть ім’я, комісію та профіль співробітника кнопкою редагування вище."
+  ],
+  [
+    "Staff member",
+    "Staff member",
+    "Mitarbeiter",
+    "Співробітник"
+  ],
+  [
+    "New booking",
+    "New booking",
+    "Neuer Termin",
+    "Новий запис"
+  ]
+]
