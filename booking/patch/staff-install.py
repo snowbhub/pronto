@@ -82,8 +82,9 @@ section='''          <div className="space-y-4 px-5 pb-5">
               </div>
             </details>
             {/* La key'''
-if anchor not in s: raise RuntimeError("Employee card anchor not found")
-s=s.replace(anchor,section,1)
+details = "            <details" + section.split("<details",1)[1].split("            {/* La key",1)[0]
+if "          </header>" not in s: raise RuntimeError("Employee header missing")
+s=s.replace("          </header>", "          </header>\n"+details,1)
 p.write_text(s,encoding="utf-8")
 p=root/"src/app/(panel)/ajustes/page.tsx"
 s=p.read_text(encoding="utf-8")
