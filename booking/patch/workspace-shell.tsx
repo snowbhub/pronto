@@ -35,7 +35,7 @@ export function BookingWorkspaceShell({ children, sidebar, topbar, mobileNav }:{
    <main className="min-h-0 min-w-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain">{children}</main>
    <nav aria-label="Calendar quick actions" className="z-30 grid h-[calc(64px+env(safe-area-inset-bottom))] shrink-0 grid-cols-3 items-center border-t border-line bg-obsidian px-4 pb-[env(safe-area-inset-bottom)]">
      <Link href="/agenda" className="flex min-h-12 flex-col items-center justify-center gap-1 text-[11px] text-ivory-2"><CalendarDays className="size-5"/>Today</Link>
-     <button type="button" aria-label="New appointment" onClick={()=>openBooking()} className="flex min-h-12 flex-col items-center justify-center gap-1 text-[11px] font-semibold text-ivory">
+     <button type="button" aria-label="New appointment" data-testid="calendar-new-booking" onClick={()=>openBooking()} className="flex min-h-12 flex-col items-center justify-center gap-1 text-[11px] font-semibold text-ivory">
        <span className="grid size-11 place-items-center rounded-full bg-ivory text-obsidian"><Plus className="size-6"/></span>
      </button>
      <button type="button" aria-label="Open menu" onClick={()=>setOpen(true)} className="flex min-h-12 flex-col items-center justify-center gap-1 text-[11px] text-ivory-2"><Menu className="size-5"/>Menu</button>
