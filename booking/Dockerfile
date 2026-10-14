@@ -23,6 +23,7 @@ RUN python3 /tmp/booking-patch/ranks-install.py
 RUN python3 /tmp/booking-patch/staff-install.py
 RUN python3 /tmp/booking-patch/payroll-install.py
 RUN python3 /tmp/booking-patch/analytics-install.py
+RUN python3 /tmp/booking-patch/cash-install.py
 RUN python3 /tmp/booking-patch/ai-setup.py
 RUN python3 /tmp/booking-patch/mixed-ui-copy.py
 RUN python3 /tmp/booking-patch/verify_i18n.py
