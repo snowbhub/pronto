@@ -50,13 +50,18 @@ const cache=new Map<string,string>()
 function replaceOnce(input:string,pairs:Pair[]):string{
   let text=input
   const replacements:string[]=[]
+  // Every partial match must be bounded at the start/end of a whole word.
+  // Never change fragments of employee names, "commission" or service titles.
+  const escapePattern=(value:string)=>value.replace(/[.*+?^$()|[\]{}\\]/g,"\\$&")
   for(const {source,target} of pairs){
-    if(!source||!text.includes(source))continue
+    if(!source||source.length<2||!text.includes(source))continue
     const mark=()=>String.fromCharCode(0xe000)+(replacements.push(target)-1)+String.fromCharCode(0xe001)
-    if(/^[a-zA-Z]+$/.test(source)){
-      const safe=source
-      text=text.replace(new RegExp("(?<![a-zA-Z])"+safe+"(?![a-zA-Z])","g"),mark)
-    }else text=text.split(source).join(mark())
+    const startsWord=/^[\p{L}\p{N}]/u.test(source)
+    const endsWord=/[\p{L}\p{N}]$/u.test(source)
+    const left=startsWord?"(?<![\\p{L}\\p{N}])":""
+    const right=endsWord?"(?![\\p{L}\\p{N}])":""
+    const regex=new RegExp(left+escapePattern(source)+right,"gu")
+    text=text.replace(regex,mark)
   }
   return text.replace(/\uE000(\d+)\uE001/g,(_whole,i)=>replacements[Number(i)]||"")
 }
@@ -69,7 +74,7 @@ export function translateText(value:string,locale:Locale):string{
   // Business brands and customer/staff names are user data, never interface copy.
   if(["Mercado Pago","WhatsApp","Instagram","Zernio","Railway","GitHub"].includes(middle))return value
   const exact=exactEnglish.get(middle)||exactSpanish.get(middle)
-  if(!exact && /^[\\p{Lu}][\\p{L}'’-]+(?:\\s+[\\p{Lu}][\\p{L}'’-]+){1,4}$/u.test(middle))return value
+  if(!exact && /^[\p{Lu}][\p{L}'’-]+(?:\s+[\p{Lu}][\p{L}'’-]+){1,4}$/u.test(middle))return value
   if(exact){
     const translated=locale==="en"?exact.en:locale==="de"?exact.de:exact.uk
     const first=value.indexOf(middle)
