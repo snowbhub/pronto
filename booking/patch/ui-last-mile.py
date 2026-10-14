@@ -19,6 +19,7 @@ for path in ["src/components/caja/charge-dialog.tsx","src/components/caja/quick-
 change("src/components/finance/week-view.tsx",[
  ("Cortes, products, drinks and tips.","Haircuts, products, drinks and tips."),
  ("Cortes, productos, bebidas y propinas.","Haircuts, products, drinks and tips."),
+ ("Cortes","Haircuts"),
 ])
 change("src/components/settings/team-editor.tsx",[
  ('aria-label="Quitar franco"','aria-label="Remove day off"'),
