@@ -22,18 +22,34 @@ jobs:
           node-version: '22'
       - name: Build isolated QA environment from the same Booking Dockerfile as Railway
         run: docker build --progress=plain -f booking/Dockerfile -t booking-visual-qa booking
-      - name: Run live Booking locally using ephemeral QA password and demo dataset
+      - name: Start isolated PostgreSQL for real-feature QA
         run: |
-          docker run -d --name booking-visual-qa -p 3000:3000 \
-            -e NODE_ENV=production -e DATA_SOURCE=demo \
+          docker network create booking-ci
+          docker run -d --name booking-postgres --network booking-ci \
+            -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=booking-ci-only \
+            -e POSTGRES_DB=postgres postgres:16-alpine
+          for i in $(seq 1 60); do
+            if docker exec booking-postgres pg_isready -U postgres; then break; fi
+            sleep 2
+          done
+          docker exec booking-postgres pg_isready -U postgres
+      - name: Run Booking locally against fresh PostgreSQL (never production Supabase)
+        run: |
+          docker run -d --name booking-visual-qa --network booking-ci -p 3000:3000 \
+            -e NODE_ENV=production \
+            -e DATABASE_URL=postgresql://postgres:booking-ci-only@booking-postgres:5432/postgres \
             -e PANEL_PASSWORD=visual-audit-ci-only-password \
             -e NEXT_PUBLIC_BOOKING_TIME_ZONE=Europe/Berlin \
             booking-visual-qa
+          ready=0
           for i in $(seq 1 90); do
-            if curl -sf http://127.0.0.1:3000/login > /dev/null; then echo "QA server ready"; break; fi
+            if curl -sf http://127.0.0.1:3000/login > /dev/null; then ready=1; break; fi
+            if ! docker inspect -f '{{.State.Running}}' booking-visual-qa | grep -q true; then break; fi
             sleep 2
           done
-          curl -f http://127.0.0.1:3000/login > /dev/null
+          docker logs booking-visual-qa --tail 100
+          test "$ready" -eq 1
+          docker exec booking-postgres psql -U postgres -d postgres -Atc "select count(*) from booking_schema_migrations" | grep -x 14
       - name: Install actual Chromium browser for screenshots
         run: |
           cd booking
@@ -46,6 +62,12 @@ jobs:
           BOOKING_BASE_URL: http://127.0.0.1:3000
           BOOKING_TEST_PANEL_PASSWORD: visual-audit-ci-only-password
         run: node booking/visual-audit.mjs
+      - name: Include server logs for all screenshot failures
+        if: always()
+        run: |
+          mkdir -p booking/screenshots
+          docker logs booking-visual-qa > booking/screenshots/server.log 2>&1 || true
+          docker logs booking-postgres > booking/screenshots/postgres.log 2>&1 || true
       - name: Save QA report in the workflow summary
         if: always()
         run: |
