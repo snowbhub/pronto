@@ -30,13 +30,14 @@ RUN python3 /tmp/booking-patch/ai-setup.py
 RUN python3 /tmp/booking-patch/mixed-ui-copy.py
 RUN python3 /tmp/booking-patch/workspace-install.py
 RUN python3 /tmp/booking-patch/calendar-workspace-install.py
+RUN python3 /tmp/booking-patch/checkin-install.py
 RUN python3 /tmp/booking-patch/ui-last-mile.py
 RUN python3 /tmp/booking-patch/source-deep-copy.py
 RUN python3 /tmp/booking-patch/ui-source-audit.py
 RUN python3 /tmp/booking-patch/visible-coverage.py
 RUN python3 /tmp/booking-patch/verify_i18n.py
 RUN python3 /tmp/booking-patch/i18n-qa.py
-RUN cp /tmp/booking-patch/0009_staff_levels.sql /tmp/booking-patch/0010_inventory.sql /tmp/booking-patch/0011_staff_accounts.sql /tmp/booking-patch/0012_cash_management.sql /tmp/booking-patch/0013_staff_avatars.sql /app/supabase/migrations/
+RUN cp /tmp/booking-patch/0009_staff_levels.sql /tmp/booking-patch/0010_inventory.sql /tmp/booking-patch/0011_staff_accounts.sql /tmp/booking-patch/0012_cash_management.sql /tmp/booking-patch/0013_staff_avatars.sql /tmp/booking-patch/0014_booking_checkins.sql /app/supabase/migrations/
 RUN cp /tmp/booking-patch/migrate-booking.mjs /app/scripts/migrate-booking.mjs
 RUN npm ci
 RUN python3 /tmp/booking-patch/test-compat.py
