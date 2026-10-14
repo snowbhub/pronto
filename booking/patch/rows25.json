@@ -1,0 +1,80 @@
+[
+  [
+    "Edit to staff member to set their commission percentage. Weekly payroll is shown under Finance.",
+    "Choose a staff member to change their commission. Payroll is available under Finance.",
+    "Wähle Mitarbeitende aus, um die Provision zu ändern. Gehaltsabrechnungen findest du unter Finanzen.",
+    "Оберіть співробітника, щоб змінити відсоток комісії. Розрахунок зарплати доступний у розділі «Фінанси»."
+  ],
+  [
+    "To pay = comisión + tips − vales − pagos ya hechos. Los owners no cobran comisión: lo que facturan queda en la casa.",
+    "Amount due = commission + tips − advances − payments made. Owners do not earn commissions; their service revenue belongs to the business.",
+    "Auszahlung = Provision + Trinkgeld − Vorschüsse − bereits geleistete Zahlungen. Eigentümer erhalten keine Provision.",
+    "До виплати = комісія + чайові − аванси − вже сплачені кошти. Власники не отримують комісію: їхня виручка залишається закладу."
+  ],
+  [
+    "Handles WhatsApp and Instagram, creates, reschedules and cancels bookings, and hands off anything that needs to person.",
+    "Handles WhatsApp and Instagram, manages bookings and transfers conversations that need a staff member.",
+    "Bearbeitet WhatsApp und Instagram, verwaltet Termine und übergibt Gespräche bei Bedarf an Mitarbeitende.",
+    "Працює з WhatsApp та Instagram, керує записами й за потреби передає розмови співробітникам."
+  ],
+  [
+    "HANDED OFF TO TO PERSON",
+    "HANDED OFF TO STAFF",
+    "AN MITARBEITENDE ÜBERGEBEN",
+    "ПЕРЕДАНО СПІВРОБІТНИКАМ"
+  ],
+  [
+    "Admin panon password",
+    "Administrator password",
+    "Administratorpasswort",
+    "Пароль адміністратора"
+  ],
+  [
+    "Cancу appointment",
+    "Cancel appointment",
+    "Termin stornieren",
+    "Скасувати запис"
+  ],
+  [
+    "Sin confirmar",
+    "Not confirmed",
+    "Nicht bestätigt",
+    "Не підтверджено"
+  ],
+  [
+    "Otra hora",
+    "Other time",
+    "Andere Uhrzeit",
+    "Інший час"
+  ],
+  [
+    "libre",
+    "Available",
+    "Frei",
+    "Вільно"
+  ],
+  [
+    "Mercado Payment",
+    "Mercado Pago",
+    "Mercado Pago",
+    "Mercado Pago"
+  ],
+  [
+    "Modelo: sin configurar. Cada respuesta se arma con los precios, horarios y reglas from esta pantalla; la agenda la consulta en vivo, nunca from memoria.",
+    "Model not configured. Replies use the actual prices, hours and rules shown here; availability is checked live.",
+    "Modell nicht konfiguriert. Antworten verwenden die hier eingestellten Preise und Öffnungszeiten und prüfen Termine live.",
+    "Модель не налаштована. Відповіді використовують поточні ціни, години роботи та правила; доступність перевіряється в календарі."
+  ],
+  [
+    "Write as to client. It checks the real schedule, but this is to test and saves nothing.",
+    "Write as a client. This test checks real availability without saving changes.",
+    "Schreibe als Kunde. Der Test prüft die tatsächliche Verfügbarkeit, ohne Daten zu speichern.",
+    "Напишіть як клієнт. Тест перевіряє справжню доступність і нічого не зберігає."
+  ],
+  [
+    "Falta GEMINI_API_KEY is missing from the server environment. The AI Agent cannot reply without it.",
+    "GEMINI_API_KEY is missing from the server environment. The AI Agent cannot reply without it.",
+    "GEMINI_API_KEY fehlt in den Servervariablen. Der KI-Assistent kann ohne diesen Schlüssel nicht antworten.",
+    "У змінних сервера відсутній GEMINI_API_KEY. Без нього AI-асистент не може відповідати."
+  ]
+]
