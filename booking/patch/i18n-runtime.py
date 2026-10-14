@@ -28,9 +28,18 @@ const MONTHS_UK:Record<string,string>={
   Травень:"травня",Червень:"червня",Липень:"липня",Серпень:"серпня",
   Вересень:"вересня",Жовтень:"жовтня",Листопад:"листопада",Грудень:"грудня",
 }
+const SHORT_MONTHS:Record<string,[string,string]>={
+  Jan:["Jan.","січня"],Feb:["Feb.","лютого"],Mar:["März","березня"],Apr:["Apr.","квітня"],
+  May:["Mai","травня"],Jun:["Juni","червня"],Jul:["Juli","липня"],Aug:["Aug.","серпня"],
+  Sep:["Sept.","вересня"],Oct:["Okt.","жовтня"],Nov:["Nov.","листопада"],Dec:["Dez.","грудня"]
+}
 function grammar(text:string,locale:Locale){
-  if(locale!=="uk")return text
-  let out=text.replace(/\b(\d{1,2})\s+(Січень|Лютий|Березень|Квітень|Травень|Червень|Липень|Серпень|Вересень|Жовтень|Листопад|Грудень)(?=$|[\\s.,!?])/g,
+  let out=text
+  if(locale==="de"||locale==="uk"){
+    out=out.replace(/(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b/g,
+      (_whole,d,month)=>d+" "+SHORT_MONTHS[month][locale==="de"?0:1])
+  }
+  if(locale!=="uk")return out.replace(/\b(\d{1,2})\s+(Січень|Лютий|Березень|Квітень|Травень|Червень|Липень|Серпень|Вересень|Жовтень|Листопад|Грудень)(?=$|[\\s.,!?])/g,
     (_full,d,month)=>d+" "+MONTHS_UK[month])
   const endings:[string,string,string,string][]=[
     ["записів","запис","записи","записів"],
