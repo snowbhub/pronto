@@ -11,6 +11,8 @@ ROWS = [tuple(x) for x in ROWS]
 canonical = {}
 consistent = []
 for es,en,de,uk in ROWS:
+    if en == "Paid":
+        de, uk = "Bezahlt", "Оплачено"
     if en not in canonical:
         canonical[en] = (de, uk)
     else:
