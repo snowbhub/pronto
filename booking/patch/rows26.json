@@ -1,0 +1,98 @@
+[
+  [
+    "Cancel appointment",
+    "Cancel appointment",
+    "Termin stornieren",
+    "Скасувати запис"
+  ],
+  [
+    "Not confirmed",
+    "Not confirmed",
+    "Nicht bestätigt",
+    "Не підтверджено"
+  ],
+  [
+    "Confirmed",
+    "Confirmed",
+    "Bestätigt",
+    "Підтверджено"
+  ],
+  [
+    "No show",
+    "No show",
+    "Nicht erschienen",
+    "Не з’явився"
+  ],
+  [
+    "Start service",
+    "Start service",
+    "Behandlung beginnen",
+    "Почати послугу"
+  ],
+  [
+    "Client arrived",
+    "Client arrived",
+    "Kunde ist da",
+    "Клієнт прийшов"
+  ],
+  [
+    "Other time",
+    "Other time",
+    "Andere Uhrzeit",
+    "Інший час"
+  ],
+  [
+    "Trainee",
+    "Trainee",
+    "Auszubildender",
+    "Стажер"
+  ],
+  [
+    "Junior",
+    "Junior",
+    "Junior",
+    "Молодший барбер"
+  ],
+  [
+    "Barber",
+    "Barber",
+    "Barbier",
+    "Барбер"
+  ],
+  [
+    "Senior",
+    "Senior",
+    "Senior",
+    "Старший барбер"
+  ],
+  [
+    "available",
+    "Available",
+    "Frei",
+    "Вільно"
+  ],
+  [
+    "No appointments left today.",
+    "No appointments left today.",
+    "Heute keine weiteren Termine.",
+    "На сьогодні записів більше немає."
+  ],
+  [
+    "Beard trim",
+    "Beard trim",
+    "Bart trimmen",
+    "Підрівнювання бороди"
+  ],
+  [
+    "Haircut (scissors + clipper)",
+    "Haircut (scissors + clipper)",
+    "Haarschnitt (Schere und Maschine)",
+    "Стрижка (ножиці та машинка)"
+  ],
+  [
+    "Haircut + beard",
+    "Haircut + beard",
+    "Haarschnitt und Bart",
+    "Стрижка та борода"
+  ]
+]
