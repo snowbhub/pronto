@@ -75,7 +75,10 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
    }
    const commonChecks=[
      ["untranslated-finance-paragraph",/(?:comisión \+|vales −|pagos ya hechos|Los dueños no cobran)/],
+     ["untranslated-ai-model-note",/(?:Modelo: sin configurar|Cada respuesta se arma|los precios, horarios y reglas)/],
    ]
+   if(locale!=="en" && name==="analytics" && /\b(?:Day|Week|Month|Year|Custom)\b/.test(metrics.visibleText))errors.push({device:device.id,locale,name,type:"analytics-period-not-localized",detail:metrics.visibleText.slice(0,220)})
+   if(locale==="uk" && name==="analytics" && /Оплати in selected period/.test(metrics.visibleText))errors.push({device:device.id,locale,name,type:"analytics-payment-label-not-localized",detail:"Оплати in selected period"})
    for(const [kind,pattern] of [...commonChecks,...localeChecks[locale]]){
      const found=metrics.visibleText.match(pattern)
      if(found)errors.push({device:device.id,locale,name,type:kind,detail:found[0]})
