@@ -50,6 +50,11 @@ jobs:
           docker logs booking-visual-qa --tail 100
           test "$ready" -eq 1
           docker exec booking-postgres psql -U postgres -d postgres -Atc "select count(*) from booking_schema_migrations" | grep -x 14
+      - name: Load fictional staff, appointment and payment fixtures into QA only
+        run: |
+          docker exec -i booking-postgres psql -U postgres -d postgres -v ON_ERROR_STOP=1 < booking/qa-fixtures.sql
+          docker exec booking-postgres psql -U postgres -d postgres -Atc "select count(*) from appointments" | grep -x 4
+
       - name: Install actual Chromium browser for screenshots
         run: |
           cd booking
