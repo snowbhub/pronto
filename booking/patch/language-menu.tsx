@@ -1,5 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
+import { createPortal } from "react-dom"
+import { usePathname } from "next/navigation"
 import { ChevronDown, Languages, Moon, Sun } from "lucide-react"
 import { normalizeLocale, type Locale } from "./messages"
 
@@ -19,6 +21,9 @@ export function LocaleThemeControls() {
  const [locale,setLocale]=useState<Locale>("en")
  const [theme,setTheme]=useState<Theme>("dark")
  const [open,setOpen]=useState(false)
+ const pathname=usePathname()
+ const [mount,setMount]=useState<HTMLElement|null>(null)
+ useEffect(()=>{setMount(document.getElementById("booking-header-actions")||document.getElementById("booking-public-header-actions"))},[pathname])
  useEffect(()=>{setLocale(storedLocale());setTheme(storedTheme())},[])
  function choose(next:Locale){
    setLocale(next);setOpen(false)
@@ -35,7 +40,7 @@ export function LocaleThemeControls() {
    document.documentElement.dataset.theme=next
    document.documentElement.classList.toggle("dark",next==="dark")
  }
- return <div className="fixed right-3 top-3 z-[90] sm:right-5 sm:top-4">
+ const ui=<div className={mount?"relative z-50":"fixed right-3 top-3 z-[90] sm:right-5 sm:top-4"}>
    <div className="flex h-10 items-center gap-0.5 rounded-full border border-line-strong bg-surface-1/95 p-1 shadow-lg backdrop-blur-xl">
      <button type="button" onClick={()=>setOpen(v=>!v)} aria-expanded={open} aria-label="Change language" className="flex h-8 items-center gap-1.5 rounded-full px-2 text-xs font-semibold text-ivory hover:bg-surface-3">
        <Languages className="size-3.5"/><span>{locale==="uk"?"UA":locale.toUpperCase()}</span><ChevronDown className="size-3"/>
@@ -51,4 +56,5 @@ export function LocaleThemeControls() {
      </button>)}
    </div>}
  </div>
+ return mount?createPortal(ui,mount):ui
 }
