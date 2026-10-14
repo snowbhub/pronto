@@ -20,7 +20,7 @@ p.write_text(s,encoding="utf-8")
 # Transaction count and word must be a single React text node for plural rules.
 p=root/"components/caja/caja-view.tsx"
 s=p.read_text(encoding="utf-8")
-s,n=re.subn(r'\\{l\\.services\\}\\s+(?:servicios|services)\\s+·\\s+\\{formatARS\\(l\\.revenue\\)\\}',
+s,n=re.subn(r'\{l\.services\}\s+(?:servicios|services)\s+·\s+\{formatARS\(l\.revenue\)\}',
   '{`\u0024{l.services} services`} · {formatARS(l.revenue)}',s,count=1)
 if n!=1:raise RuntimeError("Cash employee service count anchor changed")
 p.write_text(s,encoding="utf-8")
