@@ -1,102 +1,89 @@
 import { chromium } from "playwright"
-import { mkdir,writeFile } from "node:fs/promises"
+import { createHmac } from "node:crypto"
+import { mkdir, writeFile } from "node:fs/promises"
 
-const base=process.env.BOOKING_BASE_URL || "https://booking-production-8515.up.railway.app"
-const adminPassword=process.env.BOOKING_TEST_PANEL_PASSWORD || ""
-const dir="booking/screenshots"
-await mkdir(dir,{recursive:true})
-const browser=await chromium.launch({headless:true,args:["--no-sandbox"]})
-const problems=[]
-const shots=[]
-const routes=[
-  ["today","/"],["calendar","/agenda"],["cash","/caja"],["finance","/finanzas"],
-  ["employees","/ajustes?tab=equipo"],["services","/ajustes?tab=servicios"],
-  ["ranks","/ranks"],["inventory","/inventory"],["payroll","/payroll"],
-  ["cash-management","/cash-management"],["analytics","/analytics"],
-  ["ai","/agente"],["inbox","/bandeja"],["customers","/clientes"],
-  ["settings","/ajustes"],["staff-accounts","/staff-accounts"]
+const base = process.env.BOOKING_BASE_URL || "http://127.0.0.1:3000"
+const password = process.env.BOOKING_TEST_PANEL_PASSWORD || ""
+const dir = "booking/screenshots"
+await mkdir(dir, { recursive:true })
+const errors = []
+const captures = []
+const routes = [
+ ["dashboard","/"],["calendar-day","/agenda"],["calendar-week","/agenda?view=week"],
+ ["settings-team","/ajustes?tab=equipo"],["settings-services","/ajustes?tab=servicios"],
+ ["settings-main","/ajustes"],["clients","/clientes"],["inbox","/bandeja"],
+ ["finance","/finanzas"],["cash","/caja"],["inventory","/inventory"],
+ ["cash-management","/cash-management"],["payroll","/payroll"],
+ ["ranks","/ranks"],["staff-accounts","/staff-accounts"],["analytics","/analytics"],
+ ["agent","/agente"],["public-booking","/reservar"],["login","/login"],
+ ["staff-login","/staff-login"]
 ]
-for(const locale of ["uk","de","en"]){
- const context=await browser.newContext({
-   viewport:{width:390,height:844},deviceScaleFactor:1,
-   locale:locale==="uk"?"uk-UA":locale==="de"?"de-DE":"en-GB",
-   isMobile:true,hasTouch:true
- })
- await context.addCookies([{name:"booking_locale",value:locale,url:base}])
- await context.addInitScript(language=>{
-   localStorage.setItem("booking_locale",language)
+const browser=await chromium.launch({headless:true,args:["--no-sandbox"]})
+for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"desktop",width:1440,height:900,isMobile:false}]){
+ for(const locale of ["uk","de","en"]){
+  const context=await browser.newContext({viewport:{width:device.width,height:device.height},deviceScaleFactor:1,isMobile:device.isMobile,hasTouch:device.isMobile,locale:locale==="uk"?"uk-UA":locale==="de"?"de-DE":"en-GB"})
+  await context.addCookies([{name:"booking_locale",value:locale,url:base}])
+  if(password){
+    const cookie=createHmac("sha256",password).update("virex-panel-v1").digest("hex")
+    await context.addCookies([{name:"virex_panel",value:cookie,url:base,httpOnly:true}])
+  }
+  await context.addInitScript(lang=>{
+   localStorage.setItem("booking_locale",lang)
    localStorage.setItem("booking_theme","light")
- },locale)
- const page=await context.newPage()
- page.on("pageerror",e=>problems.push({locale,path:page.url(),type:"js",message:e.message}))
- const screens=[["customer-booking","/reservar"],["staff-login","/staff-login"],["admin-login","/login"]]
- if(adminPassword){
-  try{
-   await page.goto(base+"/login",{waitUntil:"domcontentloaded",timeout:30000})
-   await page.locator('input[type="password"]').first().fill(adminPassword)
-   await page.locator('button[type="submit"]').first().click()
-   await page.waitForTimeout(1000)
-   if(new URL(page.url()).pathname==="/login")problems.push({locale,type:"auth",message:"Admin login was rejected; protected screenshots skipped."})
-   else screens.push(...routes)
-  }catch(e){problems.push({locale,type:"auth",message:String(e)})}
- }
- for(const [name,path] of screens){
-  try{
-   const response=await page.goto(base+path,{waitUntil:"domcontentloaded",timeout:35000})
-   await page.waitForTimeout(850)
-   const status=response?.status()||0
-   const now=new URL(page.url()).pathname
-   const report=await page.evaluate(()=>{
-    const text=document.body?.innerText||""
-    const width=document.documentElement.scrollWidth
-    const viewport=window.innerWidth
-    const spanish=(text.match(/\b(Empezar|Nuevo turno|Entrando|No vino|Cobrar|Agendar|Cambiar|Sin confirmar|Nadie por ahora)\b/g)||[]).slice(0,20)
-    return {width,viewport,overflow:width>viewport+2,spanish}
+  },locale)
+  const page=await context.newPage()
+  page.on("pageerror",e=>errors.push({device:device.id,locale,route:page.url(),type:"javascript",detail:e.message}))
+  const logFrame=async (name,route)=>{
+   await page.waitForTimeout(350)
+   const metrics=await page.evaluate(()=>{
+    const visible=(el)=>{const rect=el.getBoundingClientRect();const styles=getComputedStyle(el);return styles.display!=="none" && styles.visibility!=="hidden"&&rect.width>0&&rect.height>0}
+    const main=document.querySelector('main')
+    const fixedNavs=[...document.querySelectorAll('nav')].filter(el=>visible(el)&&getComputedStyle(el).position==="fixed")
+    const positionedNavs=[...document.querySelectorAll('nav')].filter(el=>visible(el)&&el.getBoundingClientRect().width>innerWidth*.6)
+    const navs=positionedNavs.map(el=>{const r=el.getBoundingClientRect();return {top:Math.round(r.top),bottom:Math.round(r.bottom),height:Math.round(r.height)}})
+    const visibleText=(document.body.innerText||"").trim()
+    return {screenWidth:innerWidth,pageWidth:document.documentElement.scrollWidth,
+      bodyTextLength:visibleText.length,mainTextLength:(main?.innerText||"").trim().length,
+      workspace:document.querySelector('[data-booking-workspace]')?.getAttribute('data-booking-workspace')||"none",
+      fixedNavCount:fixedNavs.length,navs,mainTop:main?Math.round(main.getBoundingClientRect().top):null,
+      route:location.pathname,spanish:(visibleText.match(/\b(Empezar|Cobrar|Agendar|Entrando|Confirmado|No vino|Nadie por ahora|Configurar|Cancelar turno|Nuevo turno)\b/g)||[]).slice(0,12)}
    })
-   const filename=`${dir}/${locale}-${name}.png`
-   await page.screenshot({path:filename,fullPage:true,animations:"disabled"})
-   shots.push({locale,name,url:page.url(),status,file:filename,...report})
-   if(path==="/agenda"&&now==="/agenda"){
-     const headerMenu=page.locator('[data-booking-workspace="calendar"] header button').first()
-     if(await headerMenu.isVisible()){
-       await headerMenu.click()
-       await page.waitForTimeout(200)
-       const drawerFile=`${dir}/${locale}-calendar-month-drawer.png`
-       await page.screenshot({path:drawerFile,fullPage:false,animations:"disabled"})
-       shots.push({locale,name:"calendar-month-drawer",file:drawerFile})
-       const close=page.locator('aside button[aria-label]').first()
-       if(await close.count())await close.click()
+   const path=`${dir}/${device.id}-${locale}-${name}.png`
+   await page.screenshot({path,animations:"disabled",fullPage:false})
+   const item={device:device.id,locale,name,file:path,requestedRoute:route,finalRoute:page.url(),...metrics}
+   captures.push(item)
+   if(metrics.pageWidth>device.width+3)errors.push({device:device.id,locale,name,type:"horizontal-page-overflow",detail:`${metrics.pageWidth}px page > ${device.width}px viewport`})
+   if(name!=="login"&&name!=="staff-login"&&!name.includes("public") && metrics.route==="/login")errors.push({device:device.id,locale,name,type:"unavailable-route",detail:"Redirected to login (QA credentials missing)"})
+   if(metrics.workspace==="calendar"&&metrics.fixedNavCount>0)errors.push({device:device.id,locale,name,type:"calendar-navigation-overlap",detail:"Legacy fixed nav remains"})
+   if(device.id==="iphone"&&metrics.workspace==="admin"&&metrics.navs.some(n=>n.top<device.height*.40&&n.height>45))errors.push({device:device.id,locale,name,type:"admin-navigation-at-top",detail:JSON.stringify(metrics.navs)})
+   if(metrics.spanish.length)errors.push({device:device.id,locale,name,type:"untranslated-spanish",detail:metrics.spanish.join(", ")})
+  }
+  for(const [name,route] of routes){
+   try{
+    const response=await page.goto(base+route,{waitUntil:"domcontentloaded",timeout:30000})
+    await page.waitForTimeout(450)
+    if(!response||response.status()>=400)errors.push({device:device.id,locale,name,type:"http",detail:response?.status()})
+    await logFrame(name,route)
+    if(name==="calendar-day"&&device.id==="iphone"){
+     const menu=page.locator('[data-booking-workspace="calendar"] button[aria-label="Calendar menu"]')
+     if(await menu.count()){
+      await menu.click();await logFrame("calendar-menu",route)
+      await page.locator('button[aria-label="Close menu"]').first().click().catch(()=>{})
      }
-     const nav=page.locator('[data-booking-workspace="calendar"] main')
-     for(const y of [450,1000]){
-       await nav.evaluate((element,offset)=>{element.scrollTop=offset},y)
-       await page.waitForTimeout(150)
-       const scrolled=`${dir}/${locale}-calendar-scroll-${y}.png`
-       await page.screenshot({path:scrolled,fullPage:false,animations:"disabled"})
-       shots.push({locale,name:"calendar-scroll-"+y,file:scrolled})
-     }
-   }
-   if(path.startsWith("/ajustes")&&path.includes("equipo")){
-     const details=page.locator('details').first()
-     if(await details.count()){
-       await details.evaluate(el=>el.scrollIntoView({block:"start"}))
-       await details.evaluate(el=>el.open=true)
-       await page.waitForTimeout(200)
-       const expanded=`${dir}/${locale}-employee-expanded.png`
-       await page.screenshot({path:expanded,fullPage:false,animations:"disabled"})
-       shots.push({locale,name:"employee-expanded",file:expanded})
-     }
-   }
-   if(report.spanish.length)problems.push({locale,name,type:"untranslated-spanish",message:report.spanish.join(", ")})
-   if(report.overflow)problems.push({locale,name,type:"horizontal-overflow",message:`${report.width}px content within ${report.viewport}px viewport`})
-   if(status>=400)problems.push({locale,name,type:"http",message:String(status)})
-   if(now==="/login"&&path!=="/login")problems.push({locale,name,type:"auth",message:"Protected route redirected to login"})
-  }catch(e){problems.push({locale,name,type:"navigation",message:String(e)})}
+     const scroll=page.locator('[data-booking-workspace="calendar"] main')
+     await scroll.evaluate(el=>el.scrollTop=580);await logFrame("calendar-scrolled",route)
+    }
+    if(name==="settings-team"){
+      const details=page.locator('details').first()
+      if(await details.count()){await details.evaluate(el=>el.open=true);await logFrame("employee-expanded",route)}
+    }
+   }catch(e){errors.push({device:device.id,locale,name,type:"navigation",detail:String(e).slice(0,280)})}
+  }
+  await context.close()
  }
- await context.close()
 }
 await browser.close()
-await writeFile(dir+"/report.json",JSON.stringify({base,shots,problems},null,2))
-console.log("BOOKING_SCREENSHOTS",shots.length,"PROBLEMS",problems.length)
-console.log(problems.slice(0,50))
-\nif(problems.length)process.exitCode=1\n
+await writeFile(dir+"/report.json",JSON.stringify({base,captured:captures.length,captures,errors},null,2))
+await writeFile(dir+"/report.md","# Booking mobile and desktop visual audit\n\n"+`Captured ${captures.length} real browser screenshots, found ${errors.length} issues.\n\n`+"## Screens\n\n"+captures.map(x=>`- ${x.device} / ${x.locale} / **${x.name}** — [image](${x.file}) — workspace: ${x.workspace}, page width: ${x.pageWidth}px, main text: ${x.mainTextLength} chars`).join("\n")+"\n\n## Issues\n\n"+errors.map(x=>`- **${x.type}** ${x.device} ${x.locale} ${x.name}: ${x.detail}`).join("\n"))
+console.log("BOOKING_VISUAL_AUDIT_RESULT",JSON.stringify({captured:captures.length,issues:errors.length,byType:errors.reduce((p,e)=>(p[e.type]=(p[e.type]||0)+1,p),{})}))
+if(errors.length)process.exitCode=1
