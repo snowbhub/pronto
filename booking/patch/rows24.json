@@ -1,0 +1,296 @@
+[
+  [
+    "Frecuentes",
+    "Regular clients",
+    "Stammkunden",
+    "Постійні клієнти"
+  ],
+  [
+    "Nuevos",
+    "New clients",
+    "Neue Kunden",
+    "Нові клієнти"
+  ],
+  [
+    "Sin leer",
+    "Unread",
+    "Ungelesen",
+    "Непрочитані"
+  ],
+  [
+    "La IA",
+    "AI",
+    "KI",
+    "AI"
+  ],
+  [
+    "Registrar pago",
+    "Record payment",
+    "Zahlung erfassen",
+    "Зареєструвати оплату"
+  ],
+  [
+    "Cargar",
+    "Add expense",
+    "Ausgabe hinzufügen",
+    "Додати витрату"
+  ],
+  [
+    "Activo",
+    "Active",
+    "Aktiv",
+    "Активний"
+  ],
+  [
+    "Pausar",
+    "Pause",
+    "Pausieren",
+    "Призупинити"
+  ],
+  [
+    "Menu",
+    "Menu",
+    "Menü",
+    "Меню"
+  ],
+  [
+    "Management",
+    "Management",
+    "Verwaltung",
+    "Керування"
+  ],
+  [
+    "Staff access",
+    "Staff access",
+    "Mitarbeiterzugänge",
+    "Доступ співробітників"
+  ],
+  [
+    "Professional levels",
+    "Professional levels",
+    "Qualifikationsstufen",
+    "Професійні рівні"
+  ],
+  [
+    "Salaries",
+    "Salaries",
+    "Gehälter",
+    "Зарплати"
+  ],
+  [
+    "Products and stock",
+    "Products and stock",
+    "Produkte und Lager",
+    "Товари та склад"
+  ],
+  [
+    "Cash and expenses",
+    "Cash and expenses",
+    "Kasse und Ausgaben",
+    "Каса та витрати"
+  ],
+  [
+    "Regular",
+    "Regular",
+    "Stammkunde",
+    "Постійний"
+  ],
+  [
+    "New",
+    "New",
+    "Neu",
+    "Новий"
+  ],
+  [
+    "available",
+    "Available",
+    "Frei",
+    "Вільний"
+  ],
+  [
+    "scheduled",
+    "scheduled",
+    "geplant",
+    "заплановано"
+  ],
+  [
+    "chairs",
+    "chairs",
+    "Arbeitsplätze",
+    "робочі місця"
+  ],
+  [
+    "Choose a specialist",
+    "Choose a specialist",
+    "Fachkraft auswählen",
+    "Оберіть спеціаліста"
+  ],
+  [
+    "Choose a service",
+    "Choose a service",
+    "Dienstleistung auswählen",
+    "Оберіть послугу"
+  ],
+  [
+    "Administrator password",
+    "Administrator password",
+    "Administratorpasswort",
+    "Пароль адміністратора"
+  ],
+  [
+    "Select an employee to update their commission, working hours and access. Payroll is managed under Finance.",
+    "Select an employee to update their commission, working hours and access. Payroll is managed under Finance.",
+    "Wähle Mitarbeitende aus, um Provision, Arbeitszeiten und Zugriffsrechte zu bearbeiten. Gehaltsabrechnungen findest du unter Finanzen.",
+    "Оберіть співробітника, щоб змінити відсоток комісії, графік роботи й права доступу. Розрахунки зарплат — у розділі «Фінанси»."
+  ],
+  [
+    "Amount due = commission + tips − advances − payments already made. Owners do not receive commissions; revenue from their services belongs to the business.",
+    "Amount due = commission + tips − advances − payments already made. Owners do not receive commissions; revenue from their services belongs to the business.",
+    "Auszahlung = Provision + Trinkgeld − Vorschüsse − bereits gezahlte Beträge. Eigentümer erhalten keine Provision; deren Umsatz verbleibt im Betrieb.",
+    "До виплати = комісія + чайові − аванси − вже виплачені кошти. Власники не отримують комісію; їхня виручка залишається закладу."
+  ],
+  [
+    "Payroll by date range: commissions, tips, advances, paid amounts, and remaining balance.",
+    "Payroll by date range: commissions, tips, advances, paid amounts, and remaining balance.",
+    "Gehaltsabrechnung nach Zeitraum: Provisionen, Trinkgeld, Vorschüsse, Auszahlungen und offener Betrag.",
+    "Розрахунок зарплат за період: комісії, чайові, аванси, виплати та залишок."
+  ],
+  [
+    "Create individual passwords for barbers. Staff users only access their own schedule and the booking form; finances and settings remain admin-only.",
+    "Create individual passwords for barbers. Staff users only access their own schedule and the booking form; finances and settings remain admin-only.",
+    "Vergib persönliche Passwörter. Mitarbeitende sehen nur ihren Dienstplan und das Buchungsformular; Finanzen und Einstellungen bleiben der Verwaltung vorbehalten.",
+    "Створюйте індивідуальні паролі. Співробітники бачать лише свій графік і форму запису; фінанси та налаштування доступні тільки адміністратору."
+  ],
+  [
+    "Passwords are not stored in plaintext and cannot be displayed after saving.",
+    "Passwords are not stored in plaintext and cannot be displayed after saving.",
+    "Passwörter werden nicht im Klartext gespeichert und können nach dem Speichern nicht angezeigt werden.",
+    "Паролі не зберігаються у відкритому вигляді, тому після збереження їх неможливо переглянути."
+  ],
+  [
+    "Set professional ranks and specify which services each level can provide.",
+    "Set professional ranks and specify which services each level can provide.",
+    "Lege Qualifikationsstufen fest und bestimme, welche Leistungen jede Stufe anbieten darf.",
+    "Налаштуйте професійні рівні та послуги, доступні для кожного рівня."
+  ],
+  [
+    "Services without any rank restrictions are available to all levels. When you add a rule for one service, only levels explicitly allowed can book it. Different prices or durations must be configured as separate services, e.g. “Trainee haircut” and “Senior haircut”.",
+    "Services without any rank restrictions are available to all levels. When you add a rule for one service, only levels explicitly allowed can book it. Different prices or durations must be configured as separate services, e.g. “Trainee haircut” and “Senior haircut”.",
+    "Leistungen ohne Einschränkungen stehen allen Stufen zur Verfügung. Wird eine Regel erstellt, dürfen nur ausdrücklich zugelassene Stufen diese Leistung buchen. Unterschiedliche Preise oder Dauern werden als eigene Leistungen angelegt.",
+    "Послуги без обмежень доступні всім рівням. Якщо для послуги встановлено правило, запис можливий лише для дозволених рівнів. Різні ціни або тривалість потрібно налаштовувати як окремі послуги."
+  ],
+  [
+    "Revenue, expenses and cash movements by date.",
+    "Revenue, expenses and cash movements by date.",
+    "Umsätze, Ausgaben und Kassenbewegungen nach Datum.",
+    "Виручка, витрати та рух коштів за датами."
+  ],
+  [
+    "Cash movement shows net cash receipts and cash expenses for this period. It is not a verified cash-drawer balance; use the cash closing report for that.",
+    "Cash movement shows net cash receipts and cash expenses for this period. It is not a verified cash-drawer balance; use the cash closing report for that.",
+    "Die Kassenbewegung zeigt Bargeldeingänge abzüglich Barausgaben. Sie ersetzt nicht den geprüften Kassenbestand; nutze hierfür den Kassenabschluss.",
+    "Рух готівки показує надходження за вирахуванням витрат. Це не підтверджений залишок у касі — для нього використовуйте звіт закриття каси."
+  ],
+  [
+    "Products, purchases, sales, stock receipts and write-offs.",
+    "Products, purchases, sales, stock receipts and write-offs.",
+    "Produkte, Einkäufe, Verkäufe, Wareneingänge und Abschreibungen.",
+    "Товари, закупівлі, продажі, надходження та списання."
+  ],
+  [
+    "Record expenses by category and payee, cash deposits, and withdrawals without treating transfers as sales.",
+    "Record expenses by category and payee, cash deposits, and withdrawals without treating transfers as sales.",
+    "Erfasse Ausgaben nach Kategorie und Empfänger sowie Bareinlagen und Entnahmen, ohne Umbuchungen als Umsatz zu zählen.",
+    "Облік витрат за категоріями й отримувачами, внесення та вилучення готівки без зарахування переказів до продажів."
+  ],
+  [
+    "Estimate = configured opening cash + cash sales − cash expenses + cash deposits − withdrawals. Verify the physical drawer amount during cash closing.",
+    "Estimate = configured opening cash + cash sales − cash expenses + cash deposits − withdrawals. Verify the physical drawer amount during cash closing.",
+    "Geschätzter Kassenbestand = Anfangsbestand + Barumsatz − Barausgaben + Einlagen − Entnahmen. Prüfe den tatsächlichen Bestand beim Kassenabschluss.",
+    "Очікуваний залишок = початкова готівка + продажі готівкою − витрати готівкою + внесення − вилучення. Фактичну суму перевіряйте під час закриття каси."
+  ],
+  [
+    "No expenses yet.",
+    "No expenses yet.",
+    "Noch keine Ausgaben.",
+    "Витрат поки немає."
+  ],
+  [
+    "No cash movements yet.",
+    "No cash movements yet.",
+    "Noch keine Kassenbewegungen.",
+    "Руху готівки поки немає."
+  ],
+  [
+    "Handles WhatsApp and Instagram, manages bookings, and transfers conversations needing a staff member.",
+    "Handles WhatsApp and Instagram, manages bookings, and transfers conversations needing a staff member.",
+    "Bearbeitet WhatsApp und Instagram, verwaltet Buchungen und übergibt Gespräche bei Bedarf an Mitarbeitende.",
+    "Працює з WhatsApp та Instagram, керує записами й за потреби передає розмови співробітникам."
+  ],
+  [
+    "HANDED OFF TO STAFF",
+    "HANDED OFF TO STAFF",
+    "AN MITARBEITENDE ÜBERGEBEN",
+    "ПЕРЕДАНО СПІВРОБІТНИКАМ"
+  ],
+  [
+    "for completed visits",
+    "for completed visits",
+    "für abgeschlossene Besuche",
+    "за завершені візити"
+  ],
+  [
+    "Cancel bookings",
+    "Cancel bookings",
+    "Buchungen stornieren",
+    "Скасовувати записи"
+  ],
+  [
+    "Write as a client. This tests real availability without saving any changes.",
+    "Write as a client. This tests real availability without saving any changes.",
+    "Schreibe als Kunde. Es wird die tatsächliche Verfügbarkeit geprüft, ohne Änderungen zu speichern.",
+    "Напишіть як клієнт. Система перевірить реальну доступність без збереження змін."
+  ],
+  [
+    "GEMINI_API_KEY is missing from the server environment. The AI Agent cannot reply without it.",
+    "GEMINI_API_KEY is missing from the server environment. The AI Agent cannot reply without it.",
+    "GEMINI_API_KEY fehlt in den Servervariablen. Der KI-Assistent kann ohne diesen Schlüssel nicht antworten.",
+    "У змінних сервера відсутній GEMINI_API_KEY. Без цього ключа AI-асистент не може відповідати."
+  ],
+  [
+    "Personalized service",
+    "Personalized service",
+    "Individueller Service",
+    "Індивідуальна послуга"
+  ],
+  [
+    "Your business address",
+    "Your business address",
+    "Adresse Ihres Betriebs",
+    "Адреса вашого закладу"
+  ],
+  [
+    "Booking · Appointments made simple",
+    "Booking · Appointments made simple",
+    "Termin · Terminbuchung leicht gemacht",
+    "Запис · Зручний онлайн-запис"
+  ],
+  [
+    "What it can do on its own",
+    "What it can do on its own",
+    "Was der Assistent selbstständig erledigt",
+    "Що асистент може робити самостійно"
+  ],
+  [
+    "Write normal instructions. The AI Agent follows them exactly.",
+    "Write normal instructions. The AI Agent follows them exactly.",
+    "Formuliere klare Anweisungen. Der KI-Assistent berücksichtigt sie bei seiner Arbeit.",
+    "Напишіть зрозумілі інструкції. AI-асистент враховуватиме їх під час роботи."
+  ],
+  [
+    "Test Client One",
+    "Test Client One",
+    "Testkunde Eins",
+    "Тестовий клієнт 1"
+  ]
+]
