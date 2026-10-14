@@ -376,5 +376,53 @@
     "Administrator",
     "Administrator",
     "Адміністратор"
+  ],
+  [
+    "Client arrived",
+    "Client arrived",
+    "Kunde ist angekommen",
+    "Клієнт прийшов"
+  ],
+  [
+    "Arrived",
+    "Arrived",
+    "Erschienen",
+    "Прийшов"
+  ],
+  [
+    "Undo check-in",
+    "Undo check-in",
+    "Ankunft zurücknehmen",
+    "Скасувати позначку приходу"
+  ],
+  [
+    "Client checked in",
+    "Client checked in",
+    "Kunde als angekommen markiert",
+    "Клієнта позначено як такого, що прийшов"
+  ],
+  [
+    "Check-in undone",
+    "Check-in undone",
+    "Ankunft zurückgenommen",
+    "Позначку приходу скасовано"
+  ],
+  [
+    "Invalid appointment.",
+    "Invalid appointment.",
+    "Ungültiger Termin.",
+    "Некоректний запис."
+  ],
+  [
+    "Appointment not found.",
+    "Appointment not found.",
+    "Termin nicht gefunden.",
+    "Запис не знайдено."
+  ],
+  [
+    "A cancelled or missed appointment cannot be checked in.",
+    "A cancelled or missed appointment cannot be checked in.",
+    "Ein stornierter oder versäumter Termin kann nicht als erschienen markiert werden.",
+    "Не можна відмітити прихід для скасованого чи пропущеного запису."
   ]
 ]
