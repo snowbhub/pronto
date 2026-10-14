@@ -24,8 +24,8 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
   const context=await browser.newContext({viewport:{width:device.width,height:device.height},deviceScaleFactor:1,isMobile:device.isMobile,hasTouch:device.isMobile,locale:locale==="uk"?"uk-UA":locale==="de"?"de-DE":"en-GB"})
   await context.addCookies([{name:"booking_locale",value:locale,url:base}])
   if(password){
-    const cookie=createHmac("sha256",password).update("virex-panel-v1").digest("hex")
-    await context.addCookies([{name:"virex_panel",value:cookie,url:base,httpOnly:true}])
+    const cookie=createHmac("sha256",password).update("booking-panel-v1").digest("hex")
+    await context.addCookies([{name:"booking_panel",value:cookie,url:base,httpOnly:true}])
   }
   await context.addInitScript(lang=>{
    localStorage.setItem("booking_locale",lang)
