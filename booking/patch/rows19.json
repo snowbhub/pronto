@@ -160,5 +160,143 @@
     "No products yet.",
     "Noch keine Produkte.",
     "Товарів поки немає."
+  ],
+  [
+    "Cash & expenses",
+    "Cash & expenses",
+    "Kasse und Ausgaben",
+    "Каса та витрати"
+  ],
+  [
+    "Expected cash today",
+    "Expected cash today",
+    "Erwarteter Bargeldbestand heute",
+    "Очікувана готівка сьогодні"
+  ],
+  [
+    "Today's cash transfers",
+    "Today's cash transfers",
+    "Heutige Bargeldtransfers",
+    "Рух готівки сьогодні"
+  ],
+  [
+    "Expense categories",
+    "Expense categories",
+    "Ausgabenkategorien",
+    "Категорії витрат"
+  ],
+  [
+    "Record an expense",
+    "Record an expense",
+    "Ausgabe erfassen",
+    "Записати витрату"
+  ],
+  [
+    "What was purchased?",
+    "What was purchased?",
+    "Wofür wurde bezahlt?",
+    "На що витрачено?"
+  ],
+  [
+    "Paid to",
+    "Paid to",
+    "Empfänger",
+    "Кому сплачено"
+  ],
+  [
+    "Cash collection / withdrawal",
+    "Cash collection / withdrawal",
+    "Bargeldentnahme / Abholung",
+    "Інкасація / зняття готівки"
+  ],
+  [
+    "Cash withdrawal / collection",
+    "Cash withdrawal / collection",
+    "Bargeldentnahme / Abholung",
+    "Зняття / інкасація готівки"
+  ],
+  [
+    "Cash deposit to drawer",
+    "Cash deposit to drawer",
+    "Bareinlage in die Kasse",
+    "Внесення готівки в касу"
+  ],
+  [
+    "Cash deposit",
+    "Cash deposit",
+    "Bareinlage",
+    "Внесення готівки"
+  ],
+  [
+    "Cash withdrawal",
+    "Cash withdrawal",
+    "Bargeldentnahme",
+    "Зняття готівки"
+  ],
+  [
+    "Recent expenses",
+    "Recent expenses",
+    "Letzte Ausgaben",
+    "Останні витрати"
+  ],
+  [
+    "Cash movement history",
+    "Cash movement history",
+    "Verlauf der Bargeldbewegungen",
+    "Історія руху готівки"
+  ],
+  [
+    "Business analytics",
+    "Business analytics",
+    "Geschäftsanalysen",
+    "Аналітика бізнесу"
+  ],
+  [
+    "Revenue / expense trend",
+    "Revenue / expense trend",
+    "Umsatz- und Ausgabentrend",
+    "Динаміка доходів і витрат"
+  ],
+  [
+    "Cash movement",
+    "Cash movement",
+    "Bargeldbewegung",
+    "Рух готівки"
+  ],
+  [
+    "Net movement",
+    "Net movement",
+    "Nettobewegung",
+    "Чистий рух коштів"
+  ],
+  [
+    "Analytics · Day, week, month, year",
+    "Analytics · Day, week, month, year",
+    "Analysen · Tag, Woche, Monat, Jahr",
+    "Аналітика · День, тиждень, місяць, рік"
+  ],
+  [
+    "AI integration status",
+    "AI integration status",
+    "KI-Integrationsstatus",
+    "Статус інтеграції AI"
+  ],
+  [
+    "Setup required",
+    "Setup required",
+    "Einrichtung erforderlich",
+    "Потрібне налаштування"
+  ],
+  [
+    "Messaging connections",
+    "Messaging connections",
+    "Nachrichtenverbindungen",
+    "Підключення повідомлень"
+  ],
+  [
+    "Open Railway settings",
+    "Open Railway settings",
+    "Railway-Einstellungen öffnen",
+    "Відкрити налаштування Railway"
   ]
 ]
