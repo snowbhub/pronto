@@ -57,6 +57,7 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
    if(metrics.workspace==="calendar"&&metrics.fixedNavCount>0)errors.push({device:device.id,locale,name,type:"calendar-navigation-overlap",detail:"Legacy fixed nav remains"})
    if(device.id==="iphone"&&metrics.workspace==="admin"&&metrics.navs.some(n=>n.top<device.height*.40&&n.height>45))errors.push({device:device.id,locale,name,type:"admin-navigation-at-top",detail:JSON.stringify(metrics.navs)})
    if(metrics.spanish.length)errors.push({device:device.id,locale,name,type:"untranslated-spanish",detail:metrics.spanish.join(", ")})
+   if(locale==="uk" && /(Payroll by date range|Set professional ranks|Products, purchases|Create individual passwords|Record expenses by category|Passwords are not stored|Cash movement shows net|Choose a specialist|Choose a service|Admin panon|Registrar pago|Sin leer)/i.test(metrics.visibleText))errors.push({device:device.id,locale,name,type:"untranslated-ukrainian-sentence",detail:metrics.visibleText.match(/.{0,60}(?:Payroll by date range|Set professional ranks|Products, purchases|Create individual passwords|Record expenses by category|Passwords are not stored|Cash movement shows net|Choose a specialist|Choose a service|Admin panon|Registrar pago|Sin leer).{0,90}/i)?.[0]||""})
   }
   for(const [name,route] of routes){
    try{
@@ -73,7 +74,7 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
      const scroll=page.locator('[data-booking-workspace="calendar"] main')
      await scroll.evaluate(el=>el.scrollTop=580);await logFrame("calendar-scrolled",route)
      if(locale==="uk"){
-       const newButton=page.locator('[data-booking-workspace="calendar"] button[aria-label="New appointment"]').first()
+       const newButton=page.locator('[data-testid="calendar-new-booking"]').first()
        if(await newButton.count()){
          await newButton.click()
          await logFrame("appointment-create",route)
