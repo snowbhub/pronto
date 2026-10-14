@@ -30,6 +30,7 @@ RUN python3 /tmp/booking-patch/ai-setup.py
 RUN python3 /tmp/booking-patch/mixed-ui-copy.py
 RUN python3 /tmp/booking-patch/workspace-install.py
 RUN python3 /tmp/booking-patch/calendar-workspace-install.py
+RUN python3 /tmp/booking-patch/ui-last-mile.py
 RUN python3 /tmp/booking-patch/ui-source-audit.py
 RUN python3 /tmp/booking-patch/verify_i18n.py
 RUN python3 /tmp/booking-patch/i18n-qa.py
