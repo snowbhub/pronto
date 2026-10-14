@@ -59,8 +59,11 @@ export function LocaleBridge(){
     let locale=selectedLocale()
     let observer:MutationObserver|undefined
     let active=true
+    let started=false
     const start=()=>{
-      if(!active)return
+      if(!active||started)return
+      if(location.pathname==="/clientes"&&document.documentElement.dataset.bookingClientsHydrated!=="true")return
+      started=true
       locale=selectedLocale()
       document.documentElement.lang=locale
       translateTree(document.body,locale)
@@ -84,14 +87,16 @@ export function LocaleBridge(){
     }
     // Hydrate the React streaming tree first. Changing server-rendered text while
     // its client components are hydrating produces React #418 mismatches.
-    const timer=window.setTimeout(start,500)
+    const timer=window.setTimeout(start,450)
+    const onHydrated=()=>start()
+    window.addEventListener("booking:content-hydrated",onHydrated)
     const onLocale=()=>{
       locale=selectedLocale()
       document.documentElement.lang=locale
       if(observer)translateTree(document.body,locale)
     }
     window.addEventListener("booking:locale",onLocale)
-    return ()=>{active=false;clearTimeout(timer);observer?.disconnect();window.removeEventListener("booking:locale",onLocale)}
+    return ()=>{active=false;clearTimeout(timer);observer?.disconnect();window.removeEventListener("booking:locale",onLocale);window.removeEventListener("booking:content-hydrated",onHydrated)}
   },[])
   return null
 }
