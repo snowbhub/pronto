@@ -6,6 +6,9 @@ on:
       - 'booking/**'
       - '.github/workflows/booking-ui-audit.yml'
   workflow_dispatch:
+concurrency:
+  group: booking-mobile-ui-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   mobile-screenshots:
     runs-on: ubuntu-latest
