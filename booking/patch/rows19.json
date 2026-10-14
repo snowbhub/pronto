@@ -1,0 +1,164 @@
+[
+  [
+    "Pany password",
+    "Panel password",
+    "Panel-Passwort",
+    "Пароль панелі"
+  ],
+  [
+    "Entrando...",
+    "Signing in...",
+    "Anmeldung...",
+    "Вхід..."
+  ],
+  [
+    "Entrar",
+    "Sign in",
+    "Anmelden",
+    "Увійти"
+  ],
+  [
+    "Sumar a alguien al equipo",
+    "Add a team member",
+    "Teammitglied hinzufügen",
+    "Додати співробітника"
+  ],
+  [
+    "Configurar",
+    "Configure",
+    "Konfigurieren",
+    "Налаштувати"
+  ],
+  [
+    "Conectada: todo lo que se carga queda guardado.",
+    "Connected: all data is saved permanently.",
+    "Verbunden: Alle Daten werden dauerhaft gespeichert.",
+    "Підключено: усі дані зберігаються постійно."
+  ],
+  [
+    "Webhook de mensajes entrantes",
+    "Incoming message webhook",
+    "Webhook für eingehende Nachrichten",
+    "Вебхук вхідних повідомлень"
+  ],
+  [
+    "Base de datos (Supabase)",
+    "Database (Supabase)",
+    "Datenbank (Supabase)",
+    "База даних (Supabase)"
+  ],
+  [
+    "Conexiones",
+    "Connections",
+    "Verbindungen",
+    "Підключення"
+  ],
+  [
+    "Edit a staff member to set their commission percentage. Weekly payouts appear under Finance.",
+    "Edit a staff member to set their commission percentage. Weekly payouts appear under Finance.",
+    "Bearbeite ein Teammitglied, um den Provisionssatz festzulegen. Wöchentliche Auszahlungen stehen unter Finanzen.",
+    "Відредагуйте співробітника, щоб встановити відсоток комісії. Тижневі виплати відображаються у фінансах."
+  ],
+  [
+    "Staff sign in",
+    "Staff sign in",
+    "Mitarbeiteranmeldung",
+    "Вхід співробітника"
+  ],
+  [
+    "Staff accounts",
+    "Staff accounts",
+    "Mitarbeiterkonten",
+    "Облікові записи співробітників"
+  ],
+  [
+    "Barber levels",
+    "Barber levels",
+    "Barber-Stufen",
+    "Рівні барберів"
+  ],
+  [
+    "Service permissions by rank",
+    "Service permissions by rank",
+    "Leistungen nach Erfahrungsstufe",
+    "Послуги за рівнем барбера"
+  ],
+  [
+    "New product",
+    "New product",
+    "Neues Produkt",
+    "Новий товар"
+  ],
+  [
+    "Products & stock",
+    "Products & stock",
+    "Produkte und Bestand",
+    "Товари та залишки"
+  ],
+  [
+    "Stock receipt",
+    "Stock receipt",
+    "Wareneingang",
+    "Прихід товару"
+  ],
+  [
+    "Write-off",
+    "Write-off",
+    "Abschreibung",
+    "Списання"
+  ],
+  [
+    "Stock balance",
+    "Stock balance",
+    "Lagerbestand",
+    "Залишки товарів"
+  ],
+  [
+    "Payroll",
+    "Payroll",
+    "Lohnabrechnung",
+    "Зарплата"
+  ],
+  [
+    "Staff payroll",
+    "Staff payroll",
+    "Mitarbeiterabrechnung",
+    "Зарплата співробітників"
+  ],
+  [
+    "Outstanding payroll",
+    "Outstanding payroll",
+    "Offene Löhne",
+    "Залишок до виплати"
+  ],
+  [
+    "Add product",
+    "Add product",
+    "Produkt hinzufügen",
+    "Додати товар"
+  ],
+  [
+    "Payment method",
+    "Payment method",
+    "Zahlungsart",
+    "Спосіб оплати"
+  ],
+  [
+    "Username",
+    "Username",
+    "Benutzername",
+    "Ім’я користувача"
+  ],
+  [
+    "Password",
+    "Password",
+    "Passwort",
+    "Пароль"
+  ],
+  [
+    "No products yet.",
+    "No products yet.",
+    "Noch keine Produkte.",
+    "Товарів поки немає."
+  ]
+]
