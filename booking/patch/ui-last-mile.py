@@ -35,3 +35,16 @@ change("src/app/(panel)/page.tsx",[
  ('${greeting}, Santi','${greeting}'),
 ])
 print("BOOKING_OWNER_NAME_DEMO_COPY_REMOVED")
+
+change("src/components/clients/clients-view.tsx",[
+ (" visitas</span>"," visits</span>"),
+])
+change("src/components/hoy/day-timeline.tsx",[
+ (">fijo</span>",">Fixed</span>"),
+])
+change("src/components/settings/team-editor.tsx",[
+ ("\n                          a\n","\n                          to\n"),
+ (" al ${formatDayShort(last)}"," to ${formatDayShort(last)}"),
+ (" a ${hm(to)}"," to ${hm(to)}"),
+])
+print("BOOKING_SMALL_DYNAMIC_UI_SPANISH_REMOVED")
