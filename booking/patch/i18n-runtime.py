@@ -11,9 +11,11 @@ const localeEntries:Record<"de"|"uk",Pair[]>={
   de:[...ROWS].filter(r=>String(r.en)!==String(r.de)).map(r=>({source:r.en,target:r.de})).sort((a,b)=>b.source.length-a.source.length),
   uk:[...ROWS].filter(r=>String(r.en)!==String(r.uk)).map(r=>({source:r.en,target:r.uk})).sort((a,b)=>b.source.length-a.source.length),
 }
-const exactEnglish=new Map<string,(typeof ROWS)[number]>()
-const exactSpanish=new Map<string,(typeof ROWS)[number]>()
-for(const row of ROWS){
+type PhraseRow={es:string;en:string;de:string;uk:string}
+const dictionary:readonly PhraseRow[]=ROWS
+const exactEnglish=new Map<string,PhraseRow>()
+const exactSpanish=new Map<string,PhraseRow>()
+for(const row of dictionary){
   if(!exactEnglish.has(row.en))exactEnglish.set(row.en,row)
   if(!exactSpanish.has(row.es))exactSpanish.set(row.es,row)
 }
