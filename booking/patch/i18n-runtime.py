@@ -40,7 +40,7 @@ function grammar(text:string,locale:Locale){
       (_whole,d,month)=>d+" "+SHORT_MONTHS[month][locale==="de"?0:1])
   }
   if(locale!=="uk")return out
-  out=out.replace(/\b(\d{1,2})\s+(Січень|Лютий|Березень|Квітень|Травень|Червень|Липень|Серпень|Вересень|Жовтень|Листопад|Грудень)(?=$|[\\s.,!?])/g,
+  out=out.replace(/\b(\d{1,2})\s+(Січень|Лютий|Березень|Квітень|Травень|Червень|Липень|Серпень|Вересень|Жовтень|Листопад|Грудень)(?=$|[^\p{L}])/gu,
     (_full,d,month)=>d+" "+MONTHS_UK[month])
   const endings:[string,string,string,string][]=[
     ["записів","запис","записи","записів"],
