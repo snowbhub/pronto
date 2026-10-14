@@ -41,6 +41,7 @@ RUN python3 /tmp/booking-patch/settings-organization.py
 RUN python3 /tmp/booking-patch/clients-hydration.py
 RUN python3 /tmp/booking-patch/qa-ui-copy-repair.py
 RUN python3 /tmp/booking-patch/manual-ui-polish.py
+RUN python3 /tmp/booking-patch/finance-paragraph-final.py
 RUN python3 /tmp/booking-patch/ui-source-audit.py
 RUN python3 /tmp/booking-patch/visible-coverage.py
 RUN python3 /tmp/booking-patch/verify_i18n.py
