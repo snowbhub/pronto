@@ -69,6 +69,7 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
        ["untranslated-booking-preposition",/\bcon\s+(?:Max|Olena|Danylo)\b/],
        ["untranslated-status",/\b(?:Atendido|Otra hora)\b/],
        ["duplicate-rank",/Стажер\s*\/\s*Стажер/],
+       ["uninflected-ukrainian-month",/\d{1,2}\s+(?:Січень|Лютий|Березень|Квітень|Травень|Червень|Липень|Серпень|Вересень|Жовтень|Листопад|Грудень)(?![\p{L}])/u],
        ["untranslated-ai-provider",/(?:ZERNIO_API_KEY required|ZERNIO_WEBHOOK_SECRET required|Configure GEMINI_API_KEY.*in your Railway)/]
      ]
      for(const [type,pattern] of strictChecks){
