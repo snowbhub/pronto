@@ -1,4 +1,4 @@
-name: Booking mobile visual audit
+name: Booking visual audit — mobile and desktop
 on:
   push:
     branches: [booking-rebrand]
@@ -6,34 +6,62 @@ on:
       - 'booking/**'
       - '.github/workflows/booking-ui-audit.yml'
   workflow_dispatch:
+permissions:
+  contents: read
 concurrency:
   group: booking-mobile-ui-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  mobile-screenshots:
+  screenshots:
     runs-on: ubuntu-latest
-    timeout-minutes: 16
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Prepare real Chromium screenshot runner
+      - name: Build isolated QA environment from the same Booking Dockerfile as Railway
+        run: docker build --progress=plain -f booking/Dockerfile -t booking-visual-qa booking
+      - name: Run live Booking locally using ephemeral QA password and demo dataset
         run: |
+          docker run -d --name booking-visual-qa -p 3000:3000 \
+            -e NODE_ENV=production -e DATA_SOURCE=demo \
+            -e PANEL_PASSWORD=visual-audit-ci-only-password \
+            -e NEXT_PUBLIC_BOOKING_TIME_ZONE=Europe/Berlin \
+            booking-visual-qa
+          for i in $(seq 1 90); do
+            if curl -sf http://127.0.0.1:3000/login > /dev/null; then echo "QA server ready"; break; fi
+            sleep 2
+          done
+          curl -f http://127.0.0.1:3000/login > /dev/null
+      - name: Install actual Chromium browser for screenshots
+        run: |
+          cd booking
           npm install --no-save --no-package-lock playwright@1.56.1
           npx playwright install --with-deps chromium
-      - name: Give Railway time to finish rebuilding
-        run: sleep 150
-      - name: Screenshot public and protected screens (with optional QA credential)
+      - name: Capture all routes for iPhone and desktop in EN, DE, UK
+        id: capture
+        continue-on-error: true
         env:
-          BOOKING_BASE_URL: https://booking-production-8515.up.railway.app
-          BOOKING_TEST_PANEL_PASSWORD: ${{ secrets.BOOKING_TEST_PANEL_PASSWORD }}
+          BOOKING_BASE_URL: http://127.0.0.1:3000
+          BOOKING_TEST_PANEL_PASSWORD: visual-audit-ci-only-password
         run: node booking/visual-audit.mjs
-      - name: Upload mobile screenshots and QA report
+      - name: Save QA report in the workflow summary
+        if: always()
+        run: |
+          if test -f booking/screenshots/report.md; then
+            cat booking/screenshots/report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Upload screenshots and route-by-route findings
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: booking-mobile-ui-audit
+          name: booking-screen-by-screen-iphone-desktop-ua-de-en
           path: booking/screenshots/
-          if-no-files-found: warn
-          retention-days: 14
+          if-no-files-found: error
+          retention-days: 21
+      - name: Fail if screenshot audit found problems
+        if: steps.capture.outcome == 'failure'
+        run: |
+          echo "Screenshots were saved, but visual audit found errors. Download the artifact to review."
+          exit 1
