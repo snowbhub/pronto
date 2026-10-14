@@ -22,6 +22,9 @@ RUN python3 /tmp/booking-patch/inventory-install.py
 RUN python3 /tmp/booking-patch/ranks-install.py
 RUN python3 /tmp/booking-patch/staff-install.py
 RUN python3 /tmp/booking-patch/payroll-install.py
+RUN python3 /tmp/booking-patch/analytics-install.py
+RUN python3 /tmp/booking-patch/ai-setup.py
+RUN python3 /tmp/booking-patch/mixed-ui-copy.py
 RUN python3 /tmp/booking-patch/verify_i18n.py
 RUN cp /tmp/booking-patch/migrate-booking.mjs /app/scripts/migrate-booking.mjs
 RUN npm ci
