@@ -1,0 +1,50 @@
+[
+  [
+    "Year",
+    "Year",
+    "Jahr",
+    "Рік"
+  ],
+  [
+    "Custom",
+    "Custom",
+    "Eigener Zeitraum",
+    "Свій період"
+  ],
+  [
+    "Payments in selected period",
+    "Payments in selected period",
+    "Zahlungen im ausgewählten Zeitraum",
+    "Оплати за вибраний період"
+  ],
+  [
+    "Model:",
+    "Model:",
+    "Modell:",
+    "Модель:"
+  ],
+  [
+    "not configured",
+    "not configured",
+    "nicht konfiguriert",
+    "не налаштовано"
+  ],
+  [
+    ". Replies use the configured prices, opening hours and rules. The calendar is checked live, not from memory.",
+    ". Replies use the configured prices, opening hours and rules. The calendar is checked live, not from memory.",
+    ". Antworten verwenden die festgelegten Preise, Öffnungszeiten und Regeln. Die Verfügbarkeit wird live im Kalender geprüft, nicht aus dem Gedächtnis.",
+    ". Відповіді використовують налаштовані ціни, години роботи та правила. Доступність перевіряється безпосередньо в календарі, а не з пам’яті."
+  ],
+  [
+    "Apply dates",
+    "Apply dates",
+    "Zeitraum übernehmen",
+    "Застосувати дати"
+  ],
+  [
+    "Reporting period",
+    "Reporting period",
+    "Berichtszeitraum",
+    "Звітний період"
+  ]
+]
