@@ -1,0 +1,524 @@
+[
+  [
+    "Products",
+    "Products",
+    "Produkte",
+    "Товари"
+  ],
+  [
+    "Stock",
+    "Stock",
+    "Bestand",
+    "Залишки"
+  ],
+  [
+    "Inventory",
+    "Inventory",
+    "Lager",
+    "Склад"
+  ],
+  [
+    "Category",
+    "Category",
+    "Kategorie",
+    "Категорія"
+  ],
+  [
+    "Categories",
+    "Categories",
+    "Kategorien",
+    "Категорії"
+  ],
+  [
+    "Product name",
+    "Product name",
+    "Produktname",
+    "Назва товару"
+  ],
+  [
+    "Purchase cost",
+    "Purchase cost",
+    "Einkaufspreis",
+    "Закупівельна ціна"
+  ],
+  [
+    "Sale price",
+    "Sale price",
+    "Verkaufspreis",
+    "Ціна продажу"
+  ],
+  [
+    "Low stock threshold",
+    "Low stock threshold",
+    "Mindestbestand",
+    "Мінімальний залишок"
+  ],
+  [
+    "Low stock",
+    "Low stock",
+    "Geringer Bestand",
+    "Мало товару"
+  ],
+  [
+    "SKU",
+    "SKU",
+    "Artikelnummer",
+    "Артикул"
+  ],
+  [
+    "Receive / Sell / Write off",
+    "Receive / Sell / Write off",
+    "Wareneingang / Verkauf / Abschreibung",
+    "Прихід / продаж / списання"
+  ],
+  [
+    "Operation",
+    "Operation",
+    "Vorgang",
+    "Операція"
+  ],
+  [
+    "Quantity",
+    "Quantity",
+    "Menge",
+    "Кількість"
+  ],
+  [
+    "Return to stock",
+    "Return to stock",
+    "Rückgabe ins Lager",
+    "Повернення на склад"
+  ],
+  [
+    "Stock receipt",
+    "Stock receipt",
+    "Wareneingang",
+    "Прихід товару"
+  ],
+  [
+    "Recent stock movements",
+    "Recent stock movements",
+    "Letzte Lagerbewegungen",
+    "Останні рухи товарів"
+  ],
+  [
+    "Add product",
+    "Add product",
+    "Produkt hinzufügen",
+    "Додати товар"
+  ],
+  [
+    "Save operation",
+    "Save operation",
+    "Vorgang speichern",
+    "Зберегти операцію"
+  ],
+  [
+    "No products yet.",
+    "No products yet.",
+    "Noch keine Produkte.",
+    "Товарів поки немає."
+  ],
+  [
+    "Uncategorized",
+    "Uncategorized",
+    "Ohne Kategorie",
+    "Без категорії"
+  ],
+  [
+    "in stock",
+    "in stock",
+    "auf Lager",
+    "у наявності"
+  ],
+  [
+    "pcs",
+    "pcs",
+    "Stück",
+    "шт."
+  ],
+  [
+    "unit",
+    "unit",
+    "Einheit",
+    "од."
+  ],
+  [
+    "Note",
+    "Note",
+    "Notiz",
+    "Примітка"
+  ],
+  [
+    "Staff members",
+    "Staff members",
+    "Mitarbeitende",
+    "Співробітники"
+  ],
+  [
+    "Staff accounts",
+    "Staff accounts",
+    "Mitarbeiterkonten",
+    "Акаунти співробітників"
+  ],
+  [
+    "Staff access",
+    "Staff access",
+    "Mitarbeiterzugang",
+    "Доступ співробітників"
+  ],
+  [
+    "Staff sign in",
+    "Staff sign in",
+    "Mitarbeiteranmeldung",
+    "Вхід співробітника"
+  ],
+  [
+    "Administrator sign in",
+    "Administrator sign in",
+    "Administrator-Anmeldung",
+    "Вхід адміністратора"
+  ],
+  [
+    "No account yet",
+    "No account yet",
+    "Noch kein Konto",
+    "Акаунта ще немає"
+  ],
+  [
+    "Not set",
+    "Not set",
+    "Nicht eingerichtet",
+    "Не налаштовано"
+  ],
+  [
+    "Enabled",
+    "Enabled",
+    "Aktiviert",
+    "Увімкнено"
+  ],
+  [
+    "Disabled",
+    "Disabled",
+    "Deaktiviert",
+    "Вимкнено"
+  ],
+  [
+    "Create / change credentials",
+    "Create / change credentials",
+    "Zugangsdaten erstellen / ändern",
+    "Створити або змінити дані входу"
+  ],
+  [
+    "New password (at least 12 characters)",
+    "New password (at least 12 characters)",
+    "Neues Passwort (mindestens 12 Zeichen)",
+    "Новий пароль (від 12 символів)"
+  ],
+  [
+    "Sign out",
+    "Sign out",
+    "Abmelden",
+    "Вийти"
+  ],
+  [
+    "Signing in…",
+    "Signing in…",
+    "Anmeldung…",
+    "Вхід…"
+  ],
+  [
+    "Sign in",
+    "Sign in",
+    "Anmelden",
+    "Увійти"
+  ],
+  [
+    "Create appointment",
+    "Create appointment",
+    "Termin erstellen",
+    "Створити запис"
+  ],
+  [
+    "New appointment",
+    "New appointment",
+    "Neuer Termin",
+    "Новий запис"
+  ],
+  [
+    "Upcoming appointments",
+    "Upcoming appointments",
+    "Bevorstehende Termine",
+    "Майбутні записи"
+  ],
+  [
+    "My schedule",
+    "My schedule",
+    "Mein Kalender",
+    "Мій графік"
+  ],
+  [
+    "No appointments scheduled yet.",
+    "No appointments scheduled yet.",
+    "Noch keine Termine geplant.",
+    "Записів поки немає."
+  ],
+  [
+    "Client name",
+    "Client name",
+    "Kundenname",
+    "Ім'я клієнта"
+  ],
+  [
+    "Phone",
+    "Phone",
+    "Telefon",
+    "Телефон"
+  ],
+  [
+    "Choose a valid service and time.",
+    "Choose a valid service and time.",
+    "Wähle eine gültige Leistung und Uhrzeit.",
+    "Виберіть правильну послугу та час."
+  ],
+  [
+    "Appointment created",
+    "Appointment created",
+    "Termin erstellt",
+    "Запис створено"
+  ],
+  [
+    "Invalid credentials.",
+    "Invalid credentials.",
+    "Ungültige Zugangsdaten.",
+    "Неправильні дані входу."
+  ],
+  [
+    "Staff payroll",
+    "Staff payroll",
+    "Mitarbeiterabrechnung",
+    "Зарплата співробітників"
+  ],
+  [
+    "Outstanding payroll",
+    "Outstanding payroll",
+    "Offene Auszahlungen",
+    "Залишок до виплати"
+  ],
+  [
+    "Services",
+    "Services",
+    "Leistungen",
+    "Послуги"
+  ],
+  [
+    "Service revenue",
+    "Service revenue",
+    "Umsatz aus Leistungen",
+    "Виручка від послуг"
+  ],
+  [
+    "Commission",
+    "Commission",
+    "Provision",
+    "Відсоток"
+  ],
+  [
+    "Tips",
+    "Tips",
+    "Trinkgeld",
+    "Чайові"
+  ],
+  [
+    "Advances",
+    "Advances",
+    "Vorschüsse",
+    "Аванси"
+  ],
+  [
+    "Paid",
+    "Paid",
+    "Ausgezahlt",
+    "Виплачено"
+  ],
+  [
+    "From",
+    "From",
+    "Von",
+    "Від"
+  ],
+  [
+    "To",
+    "To",
+    "Bis",
+    "До"
+  ],
+  [
+    "Apply date range",
+    "Apply date range",
+    "Zeitraum anwenden",
+    "Застосувати період"
+  ],
+  [
+    "Choose a valid period of at most 3 years.",
+    "Choose a valid period of at most 3 years.",
+    "Wähle einen gültigen Zeitraum von höchstens 3 Jahren.",
+    "Виберіть правильний період до 3 років."
+  ],
+  [
+    "Change staff commission percentages",
+    "Change staff commission percentages",
+    "Provisionssätze bearbeiten",
+    "Змінити відсотки співробітників"
+  ],
+  [
+    "No staff added yet.",
+    "No staff added yet.",
+    "Noch keine Mitarbeitenden.",
+    "Співробітників поки немає."
+  ],
+  [
+    "Professional level",
+    "Professional level",
+    "Berufsstufe",
+    "Рівень майстра"
+  ],
+  [
+    "Trainee",
+    "Trainee",
+    "Auszubildender",
+    "Стажер"
+  ],
+  [
+    "Junior barber",
+    "Junior barber",
+    "Junior-Barbier",
+    "Молодший барбер"
+  ],
+  [
+    "Senior barber",
+    "Senior barber",
+    "Senior-Barbier",
+    "Старший барбер"
+  ],
+  [
+    "Barber",
+    "Barber",
+    "Barbier",
+    "Барбер"
+  ],
+  [
+    "Allowed",
+    "Allowed",
+    "Erlaubt",
+    "Дозволено"
+  ],
+  [
+    "Not allowed",
+    "Not allowed",
+    "Nicht erlaubt",
+    "Заборонено"
+  ],
+  [
+    "Not specified",
+    "Not specified",
+    "Nicht festgelegt",
+    "Не визначено"
+  ],
+  [
+    "Service permissions by rank",
+    "Service permissions by rank",
+    "Leistungen nach Erfahrungsstufe",
+    "Доступні послуги за рангом"
+  ],
+  [
+    "Staff members",
+    "Staff members",
+    "Mitarbeitende",
+    "Співробітники"
+  ],
+  [
+    "Edit commission",
+    "Edit commission",
+    "Provision bearbeiten",
+    "Змінити відсоток"
+  ],
+  [
+    "Save",
+    "Save",
+    "Speichern",
+    "Зберегти"
+  ],
+  [
+    "Apply",
+    "Apply",
+    "Anwenden",
+    "Застосувати"
+  ],
+  [
+    "Rank, commission & login · Edit employee",
+    "Rank, commission & login · Edit employee",
+    "Rang, Provision und Zugang · Mitarbeiter bearbeiten",
+    "Ранг, відсоток і доступ · Редагування співробітника"
+  ],
+  [
+    "Profile photo",
+    "Profile photo",
+    "Profilfoto",
+    "Фото профілю"
+  ],
+  [
+    "Photo saved",
+    "Photo saved",
+    "Foto gespeichert",
+    "Фото збережено"
+  ],
+  [
+    "Uploading photo…",
+    "Uploading photo…",
+    "Foto wird hochgeladen…",
+    "Фото завантажується…"
+  ],
+  [
+    "Change language",
+    "Change language",
+    "Sprache ändern",
+    "Змінити мову"
+  ],
+  [
+    "Use dark theme",
+    "Use dark theme",
+    "Dunkles Design verwenden",
+    "Увімкнути темну тему"
+  ],
+  [
+    "Use light theme",
+    "Use light theme",
+    "Helles Design verwenden",
+    "Увімкнути світлу тему"
+  ],
+  [
+    "No barbers added. Add staff under Settings → Team before creating appointments.",
+    "No barbers added. Add staff under Settings → Team before creating appointments.",
+    "Noch keine Barbiere. Füge unter Einstellungen → Team Mitarbeitende hinzu.",
+    "Барберів ще немає. Спочатку додайте співробітників у Налаштуваннях → Команда."
+  ],
+  [
+    "Tap an empty time to add a booking, or tap an appointment to open its details.",
+    "Tap an empty time to add a booking, or tap an appointment to open its details.",
+    "Tippe auf eine freie Zeit, um einen Termin hinzuzufügen, oder auf einen Termin für Details.",
+    "Натисніть на вільний час, щоб створити запис, або на запис, щоб переглянути деталі."
+  ],
+  [
+    "bookings",
+    "bookings",
+    "Termine",
+    "записів"
+  ],
+  [
+    "booking",
+    "booking",
+    "Termin",
+    "запис"
+  ]
+]
