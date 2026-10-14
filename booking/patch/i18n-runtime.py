@@ -28,7 +28,7 @@ const MONTHS_UK:Record<string,string>={
 }
 function grammar(text:string,locale:Locale){
   if(locale!=="uk")return text
-  let out=text.replace(/\b(\d{1,2})\s+(Січень|Лютий|Березень|Квітень|Травень|Червень|Липень|Серпень|Вересень|Жовтень|Листопад|Грудень)\b/g,
+  let out=text.replace(/\b(\d{1,2})\s+(Січень|Лютий|Березень|Квітень|Травень|Червень|Липень|Серпень|Вересень|Жовтень|Листопад|Грудень)(?=$|[\\s.,!?])/g,
     (_full,d,month)=>d+" "+MONTHS_UK[month])
   const endings:[string,string,string,string][]=[
     ["записи","запис","записи","записів"],
@@ -39,7 +39,7 @@ function grammar(text:string,locale:Locale){
     ["співробітники","співробітник","співробітники","співробітників"],
   ]
   for(const [word,one,few,many] of endings){
-    out=out.replace(new RegExp("(\\d+)\\s+"+word+"\\b","g"),
+    out=out.replace(new RegExp("(\\d+)\\s+"+word+"(?=$|[^А-Яа-яІіЇїЄєҐґ])","g"),
       (_full,number)=>number+" "+form(Number(number),one,few,many))
   }
   return out
