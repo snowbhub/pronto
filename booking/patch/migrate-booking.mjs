@@ -19,7 +19,16 @@ try {
   const prior=await sql`select version from booking_schema_migrations`;
   if (!prior.length) {
     const existing=await sql`select to_regclass('public.appointments') as appointments`;
-    if(existing[0].appointments) throw new Error("Refusing to initialize: existing tables without migration history");
+    if(existing[0].appointments) {
+      const check=await sql`select to_regclass('public.staff') as staff, to_regclass('public.services') as services, to_regclass('public.payments') as payments, to_regclass('public.shop_settings') as shop`;
+      if(!check[0].staff||!check[0].services||!check[0].payments||!check[0].shop) throw new Error("Incomplete Booking schema");
+      const registry=await sql`select to_regclass('supabase_migrations.schema_migrations') as present`;
+      if(!registry[0].present) throw new Error("Existing schema has no migration audit");
+      const records=await sql`select name from supabase_migrations.schema_migrations where name like 'booking_%'`;
+      if(records.length<versions.length) throw new Error("Supabase migrations incomplete");
+      for(const version of versions)await sql`insert into booking_schema_migrations(version) values (${version}) on conflict do nothing`;
+      console.log("BOOKING_SUPABASE_MIGRATIONS_VERIFIED");
+    } else {
     await sql.unsafe("create schema if not exists auth");
     await sql.unsafe("create table if not exists auth.users (id uuid primary key)");
     await sql.unsafe("create or replace function auth.uid() returns uuid language sql stable as $$ select null::uuid $$");
@@ -27,8 +36,10 @@ try {
       const found=await sql`select 1 from pg_roles where rolname=${role}`;
       if(!found.length) await sql.unsafe("create role "+role);
     }
+    }
   }
-  const done=new Set(prior.map(row=>row.version));
+  const refreshed=await sql`select version from booking_schema_migrations`;
+  const done=new Set(refreshed.map(row=>row.version));
   for(const filename of versions){
     if(done.has(filename)) continue;
     const body=readFileSync(new URL("../supabase/migrations/"+filename,import.meta.url),"utf8");
