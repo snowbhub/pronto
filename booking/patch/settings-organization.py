@@ -6,11 +6,13 @@ target='''      <div className="mt-5 max-w-3xl">'''
 if target not in s:raise RuntimeError("Settings tab content anchor missing")
 routes=["/cash-management","/analytics","/payroll","/staff-accounts","/ranks","/inventory"]
 removed=[]
+lines=s.splitlines(keepends=True)
 for route in routes:
- pattern=r'\\n\\s*<Link href="'+re.escape(route)+r'" className="mb-4[^\\n]+?</Link>'
- s,n=re.subn(pattern,"",s)
- if n!=1:raise RuntimeError(f"Settings feature shortcut {route}: expected 1, found {n}")
+ matches=[i for i,line in enumerate(lines) if ('<Link href="'+route+'"') in line and 'className="mb-4' in line]
+ if len(matches)!=1:raise RuntimeError(f"Settings feature shortcut {route}: expected 1, found {len(matches)}")
+ lines[matches[0]]=""
  removed.append(route)
+s="".join(lines)
 # Do not put unrelated inventory, cash, salary or analytics ahead of the employee
 # editor. Every tab must open directly with its own functional form or list.
 # Display the consolidated admin links only in the local/business management tab.
