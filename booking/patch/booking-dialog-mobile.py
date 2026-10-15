@@ -19,7 +19,7 @@ p=Path("/app/src/app/globals.css")
 s=p.read_text(encoding="utf-8")
 s+="""
 @media(max-width:767px){
- html body [data-slot="dialog-content"]{
+ html body [data-slot="dialog-content"].booking-create-dialog{
   width:calc(100vw - 12px)!important;
   max-width:calc(100vw - 12px)!important;
   max-height:calc(100dvh - env(safe-area-inset-top) - 12px)!important;
