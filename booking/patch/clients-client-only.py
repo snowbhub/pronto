@@ -17,7 +17,7 @@ p.write_text(s,encoding="utf-8")
 import re
 profile=root/"components/clients/clients-view.tsx"
 body=profile.read_text(encoding="utf-8")
-pattern=r'\\{r\\.visits\\}\\s*<span className="text-ivory-3 lg:hidden">\\s*(?:visitas|visits)</span>'
+pattern=r'\{r\.visits\}\s*<span className="text-ivory-3 lg:hidden">\\s*(?:visitas|visits)</span>'
 replacement='<span className="num hidden lg:inline">{r.visits}</span><span className="num lg:hidden">{r.visits===1?"1 visit":String(r.visits)+" visits"}</span>'
 body,count=re.subn(pattern,lambda _:replacement,body,count=1)
 if count!=1:raise RuntimeError("Responsive client-visit count marker changed")
