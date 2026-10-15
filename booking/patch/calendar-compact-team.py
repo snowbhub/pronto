@@ -145,13 +145,27 @@ p.write_text(s, encoding="utf-8")
 
 p = root / "src/i18n/controls.tsx"
 s = p.read_text(encoding="utf-8")
-old = 'useEffect(()=>{setMount(document.getElementById("booking-header-actions")||document.getElementById("booking-public-header-actions"))},[pathname])'
-new = 'useEffect(()=>{setMount(pathname==="/agenda"?document.getElementById("booking-calendar-menu-controls"):document.getElementById("booking-header-actions")||document.getElementById("booking-public-header-actions"))},[pathname])'
+old = '''  useEffect(() => {
+    const header = document.getElementById("booking-header-actions") ||
+      document.getElementById("booking-public-header-actions")
+    setTarget(header)
+  }, [pathname])'''
+new = '''  useEffect(() => {
+    const destination = pathname === "/agenda"
+      ? document.getElementById("booking-calendar-menu-controls")
+      : document.getElementById("booking-header-actions") || document.getElementById("booking-public-header-actions")
+    setTarget(destination)
+  }, [pathname])'''
 if old not in s:
     raise RuntimeError("Language/theme control mount point changed")
 s = s.replace(old, new, 1)
-s = s.replace('return mount?createPortal(ui,mount):ui', 'return mount?createPortal(ui,mount):pathname==="/agenda"?null:ui', 1)
+s = s.replace(
+    'return target ? createPortal(controls,target) : controls',
+    'return target ? createPortal(controls,target) : pathname === "/agenda" ? null : controls',
+    1,
+)
 p.write_text(s, encoding="utf-8")
+
 
 # Avoid accidental iOS input zoom; leave pinch zoom available to users.
 p = root / "src/app/globals.css"
