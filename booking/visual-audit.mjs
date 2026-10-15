@@ -111,6 +111,10 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
        errors.push({device:device.id,locale,name,type:"timezone-label-does-not-match-configured-timezone",detail:"Argentina (UTC−3)"})
      if(locale!=="en"&&name==="settings-business"&&/\bAnalytics\b/.test(metrics.visibleText))
        errors.push({device:device.id,locale,name,type:"untranslated-settings-analytics-link",detail:"Analytics"})
+     if(locale==="uk"&&/\b(?:30|45|60)\s+min\b/.test(metrics.visibleText))
+       errors.push({device:device.id,locale,name,type:"untranslated-settings-minute-unit",detail:"min"})
+     if(locale==="de"&&/\b(?:30|45|60)\s+min\b/.test(metrics.visibleText))
+       errors.push({device:device.id,locale,name,type:"untranslated-settings-minute-unit",detail:"min"})
    }
    if(locale!=="en" && name==="analytics" && /\b(?:Day|Week|Month|Year|Custom)\b/.test(metrics.visibleText))errors.push({device:device.id,locale,name,type:"analytics-period-not-localized",detail:metrics.visibleText.slice(0,220)})
    if(locale==="uk" && name==="analytics" && /Оплати in selected period/.test(metrics.visibleText))errors.push({device:device.id,locale,name,type:"analytics-payment-label-not-localized",detail:"Оплати in selected period"})

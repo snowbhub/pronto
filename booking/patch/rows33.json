@@ -1,7 +1,38 @@
 [
-  ["Para los clientes que vienen siempre el mismo día y hora. Ese horario deja de ofrecerse a los demás, por WhatsApp, Instagram y en la reserva web. Cuando el cliente llega, se anota con Turno rápido.", "Clients who always come on the same day and time can reserve a fixed slot. That slot is no longer offered to others through WhatsApp, Instagram or online booking. When the client arrives, create their appointment with Quick booking.", "Kunden, die immer am selben Tag und zur selben Zeit kommen, können einen festen Termin reservieren. Dieser Zeitraum wird anderen nicht über WhatsApp, Instagram oder die Online-Buchung angeboten. Wenn der Kunde ankommt, lege den Termin über „Schnellbuchung“ an.", "Клієнти, які приходять у той самий день і час, можуть забронювати постійний слот. Цей час не пропонується іншим через WhatsApp, Instagram або онлайн-запис. Коли клієнт прийде, створіть запис через «Швидкий запис»."],
-  ["Es lo que ven los clientes al reservar y lo que ofrece el agente. Los turnos ya cargados no cambian. Cuánto dura cada turno lo define el servicio, en la pestaña Servicios.", "This is what clients see when booking and what the AI Agent offers. Existing bookings do not change. Service duration is set on the Services tab.", "Das sehen Kunden bei der Buchung und das bietet der KI-Assistent an. Bestehende Termine bleiben unverändert. Die Dauer wird im Tab „Leistungen“ je Leistung festgelegt.", "Це бачать клієнти під час запису й це пропонує AI-асистент. Уже створені записи не змінюються. Тривалість послуги задається на вкладці «Послуги»."],
-  ["Cada servicio con corte suma un sello. Con 5 sellos, el siguiente corte sale 50% off — la misma regla de la tarjeta física que ya entregan. El descuento se aplica solo al cobrar.", "Each haircut earns one loyalty stamp. After 5 stamps, the next haircut is 50% off under the loyalty card rule. The discount is applied at checkout.", "Für jeden passenden Haarschnitt gibt es einen Treuestempel. Nach 5 Stempeln ist der nächste Haarschnitt 50 % günstiger. Der Rabatt wird gemäß der Treuekartenregel beim Bezahlen abgezogen.", "За кожну відповідну стрижку нараховується одна відмітка лояльності. Після 5 відміток наступна стрижка буде зі знижкою 50%. Знижка застосовується під час оплати."],
-  ["Falta ZERNIO_WEBHOOK_SECRET. Es el mismo valor que se registra en Zernio al dar de alta el webhook.", "ZERNIO_WEBHOOK_SECRET is missing. Add the same secret in Zernio's webhook settings and in this service's environment variables.", "ZERNIO_WEBHOOK_SECRET fehlt. Hinterlege dasselbe Geheimnis in den Webhook-Einstellungen von Zernio und in den Umgebungsvariablen dieses Dienstes.", "Відсутній ZERNIO_WEBHOOK_SECRET. Додайте той самий секрет у налаштуваннях вебхука Zernio та у змінних середовища цього сервісу."],
-  ["Analytics", "Analytics", "Analysen", "Аналітика"]
+  [
+    "Para los clientes que vienen siempre el mismo día y hora. Ese horario deja de ofrecerse a los demás, por WhatsApp, Instagram y en la reserva web. Cuando el cliente llega, se anota con Turno rápido.",
+    "Clients who always come on the same day and time can reserve a fixed slot. That slot is no longer offered to others through WhatsApp, Instagram or online booking. When the client arrives, create their appointment with Quick booking.",
+    "Kunden, die immer am selben Tag und zur selben Zeit kommen, können einen festen Termin reservieren. Dieser Zeitraum wird anderen nicht über WhatsApp, Instagram oder die Online-Buchung angeboten. Wenn der Kunde ankommt, lege den Termin über „Schnellbuchung“ an.",
+    "Клієнти, які приходять у той самий день і час, можуть забронювати постійний слот. Цей час не пропонується іншим через WhatsApp, Instagram або онлайн-запис. Коли клієнт прийде, створіть запис через «Швидкий запис»."
+  ],
+  [
+    "Es lo que ven los clientes al reservar y lo que ofrece el agente. Los turnos ya cargados no cambian. Cuánto dura cada turno lo define el servicio, en la pestaña Servicios.",
+    "This is what clients see when booking and what the AI Agent offers. Existing bookings do not change. Service duration is set on the Services tab.",
+    "Das sehen Kunden bei der Buchung und das bietet der KI-Assistent an. Bestehende Termine bleiben unverändert. Die Dauer wird im Tab „Leistungen“ je Leistung festgelegt.",
+    "Це бачать клієнти під час запису й це пропонує AI-асистент. Уже створені записи не змінюються. Тривалість послуги задається на вкладці «Послуги»."
+  ],
+  [
+    "Cada servicio con corte suma un sello. Con 5 sellos, el siguiente corte sale 50% off — la misma regla de la tarjeta física que ya entregan. El descuento se aplica solo al cobrar.",
+    "Each haircut earns one loyalty stamp. After 5 stamps, the next haircut is 50% off under the loyalty card rule. The discount is applied at checkout.",
+    "Für jeden passenden Haarschnitt gibt es einen Treuestempel. Nach 5 Stempeln ist der nächste Haarschnitt 50 % günstiger. Der Rabatt wird gemäß der Treuekartenregel beim Bezahlen abgezogen.",
+    "За кожну відповідну стрижку нараховується одна відмітка лояльності. Після 5 відміток наступна стрижка буде зі знижкою 50%. Знижка застосовується під час оплати."
+  ],
+  [
+    "Falta ZERNIO_WEBHOOK_SECRET. Es el mismo valor que se registra en Zernio al dar de alta el webhook.",
+    "ZERNIO_WEBHOOK_SECRET is missing. Add the same secret in Zernio's webhook settings and in this service's environment variables.",
+    "ZERNIO_WEBHOOK_SECRET fehlt. Hinterlege dasselbe Geheimnis in den Webhook-Einstellungen von Zernio und in den Umgebungsvariablen dieses Dienstes.",
+    "Відсутній ZERNIO_WEBHOOK_SECRET. Додайте той самий секрет у налаштуваннях вебхука Zernio та у змінних середовища цього сервісу."
+  ],
+  [
+    "Analytics",
+    "Analytics",
+    "Analysen",
+    "Аналітика"
+  ],
+  [
+    "min",
+    "min",
+    "Min.",
+    "хв"
+  ]
 ]
