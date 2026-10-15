@@ -23,10 +23,16 @@ replacement='''  // Only the OUTSIDE shell is safe to localize on the Clients ro
     return
   }'''
 s=s.replace(guard,replacement,1)
+s=s.replace('    let clientIdleTimer:number|undefined',
+            '    let clientIdleTimer:number|undefined\n    let clientReadyPoll:number|undefined',1)
+s=s.replace('    // Hydrate the React streaming tree first.',
+            '    // Client-only route may mount after the initial bridge effect: retry until ready.\n    clientReadyPoll=window.setInterval(()=>{if(!started&&active&&location.pathname==="/clientes"&&document.documentElement.dataset.bookingClientsHydrated==="true")start()},250)\n    // Hydrate the React streaming tree first.',1)
+s=s.replace('observer?.disconnect();window.removeEventListener("booking:locale",onLocale)',
+            'if(clientReadyPoll!==undefined)clearInterval(clientReadyPoll);observer?.disconnect();window.removeEventListener("booking:locale",onLocale)',1)
 p.write_text(s,encoding='utf-8')
 p=Path('/app/src/components/clients/clients-view.tsx')
 s=p.read_text(encoding='utf-8')
-s=s.replace('{timeAgo(r.lastVisit, n)}','{tr(timeAgo(r.lastVisit, n))}')
+s=s.replace('timeAgo(r.lastVisit, n)','tr(timeAgo(r.lastVisit, n))')
 s=s.replace('const tr=(value:string)=>translateText(value,locale)',
             'const tr=(value:string)=>value==="Last"?(locale==="uk"?"Останній візит":locale==="de"?"Letzter Besuch":"Last"):value==="now"?(locale==="uk"?"щойно":locale==="de"?"gerade eben":"now"):translateText(value,locale)',1)
 print('BOOKING_CLIENTS_SHELL_SAFE_LOCALE_ENABLED')
