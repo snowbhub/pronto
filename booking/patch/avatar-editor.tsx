@@ -9,6 +9,7 @@ export function StaffPhotoEditor({staffId}:{staffId:string}){
  const [pending,start]=useTransition()
  const [error,setError]=useState("")
  const [success,setSuccess]=useState("")
+ const [selectedName,setSelectedName]=useState("")
  async function handle(file:File){
   setError("");setSuccess("")
   try{
@@ -36,11 +37,21 @@ export function StaffPhotoEditor({staffId}:{staffId:string}){
   }catch(e){setError(e instanceof Error?e.message:"Could not process the image")}
  }
  return <div className="space-y-2">
-   <label className="block text-xs font-semibold text-ivory-2">Profile photo
-    <input ref={input} type="file" accept="image/*" disabled={pending} onChange={e=>{
-      const f=e.target.files?.[0];if(f)void handle(f)
-    }} className="mt-2 block w-full max-w-full text-sm text-ivory-2 file:mr-3 file:rounded-lg file:border-0 file:bg-surface-3 file:px-3 file:py-2 file:text-ivory"/>
-   </label>
+   <div className="text-xs font-semibold text-ivory-2">Profile photo</div>
+   <div className="flex min-w-0 items-center gap-2">
+     <button type="button" disabled={pending} onClick={()=>input.current?.click()}
+       className="min-h-10 shrink-0 rounded-lg border border-line-strong bg-surface-3 px-3 text-xs font-semibold text-ivory transition-opacity disabled:cursor-not-allowed disabled:opacity-50">
+       Choose photo
+     </button>
+     <span className="min-w-0 flex-1 truncate text-xs font-normal text-ivory-3" aria-live="polite">{selectedName||"No photo selected"}</span>
+   </div>
+   <input ref={input} type="file" accept="image/*" aria-label="Select profile photo" disabled={pending}
+     onChange={e=>{
+       const file=e.currentTarget.files?.[0]
+       if(file){setSelectedName(file.name);void handle(file)}
+       e.currentTarget.value=""
+     }}
+     className="sr-only"/>
    {error&&<p role="alert" className="text-xs text-danger">{error}</p>}
    {success&&<p role="status" className="text-xs text-ok">{success}</p>}
    {pending&&<p className="text-xs text-ivory-3">Uploading photo…</p>}
