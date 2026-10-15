@@ -1,0 +1,74 @@
+[
+  [
+    "Choose photo",
+    "Choose photo",
+    "Foto auswählen",
+    "Обрати фото"
+  ],
+  [
+    "No photo selected",
+    "No photo selected",
+    "Kein Foto ausgewählt",
+    "Фото не вибрано"
+  ],
+  [
+    "Select profile photo",
+    "Select profile photo",
+    "Profilfoto auswählen",
+    "Вибрати фото профілю"
+  ],
+  [
+    "Profile photo",
+    "Profile photo",
+    "Profilfoto",
+    "Фото профілю"
+  ],
+  [
+    "Photo saved",
+    "Photo saved",
+    "Foto gespeichert",
+    "Фото збережено"
+  ],
+  [
+    "Photo not saved",
+    "Photo not saved",
+    "Foto nicht gespeichert",
+    "Фото не збережено"
+  ],
+  [
+    "Uploading photo…",
+    "Uploading photo…",
+    "Foto wird hochgeladen…",
+    "Завантаження фото…"
+  ],
+  [
+    "Photo processing unavailable",
+    "Photo processing unavailable",
+    "Fotobearbeitung nicht verfügbar",
+    "Обробка фото недоступна"
+  ],
+  [
+    "Could not compress photo",
+    "Could not compress photo",
+    "Foto konnte nicht komprimiert werden",
+    "Не вдалося стиснути фото"
+  ],
+  [
+    "Compressed photo is too large",
+    "Compressed photo is too large",
+    "Komprimiertes Foto ist zu groß",
+    "Стиснуте фото завелике"
+  ],
+  [
+    "Could not process the image",
+    "Could not process the image",
+    "Bild konnte nicht verarbeitet werden",
+    "Не вдалося обробити зображення"
+  ],
+  [
+    "Select barber",
+    "Select barber",
+    "Barbier auswählen",
+    "Обрати барбера"
+  ]
+]
