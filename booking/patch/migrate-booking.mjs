@@ -51,6 +51,12 @@ try {
     });
     console.log("BOOKING_MIGRATION_OK",filename);
   }
+  const timezoneSql=readFileSync(new URL("../supabase/migrations/0015_timezone.sql",import.meta.url),"utf8");
+  await sql.begin(async tx=>{
+    await tx.unsafe(timezoneSql);
+    await tx`insert into booking_schema_migrations(version) values ('0015_timezone.sql') on conflict do nothing`;
+  });
+  console.log("BOOKING_TIMEZONE_MIGRATION_OK");
   const tables=await sql`select to_regclass('public.appointments') as appointments, to_regclass('public.staff') as staff`;
   if(!tables[0].appointments||!tables[0].staff)throw new Error("Core booking tables missing");
   console.log("BOOKING_DB_READY");
