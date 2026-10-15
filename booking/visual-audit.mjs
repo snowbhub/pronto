@@ -61,6 +61,10 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
    if(metrics.workspace==="calendar"&&metrics.fixedNavCount>0)errors.push({device:device.id,locale,name,type:"calendar-navigation-overlap",detail:"Legacy fixed nav remains"})
    if(device.id==="iphone"&&metrics.workspace==="admin"&&metrics.navs.some(n=>n.top<device.height*.40&&n.height>45))errors.push({device:device.id,locale,name,type:"admin-navigation-at-top",detail:JSON.stringify(metrics.navs)})
    if(metrics.spanish.length)errors.push({device:device.id,locale,name,type:"untranslated-spanish",detail:metrics.spanish.join(", ")})
+   const untranslatedMonth=metrics.visibleText.match(/\b(?:enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|setiembre|octubre|noviembre|diciembre)\b/i)
+   if(untranslatedMonth)errors.push({device:device.id,locale,name,type:"untranslated-date-month",detail:untranslatedMonth[0]})
+   const malformedDate=metrics.visibleText.match(/\b(?:Thursday|Donnerstag|Четвер|jueves)\s*,{2}\s*\d{1,2}\b/i)
+   if(malformedDate)errors.push({device:device.id,locale,name,type:"malformed-calendar-date",detail:malformedDate[0]})
    if(name==="clients"&&locale!=="en"){
      const expected=locale==="uk"?"Клієнти":"Kunden"
      if(metrics.headerTitle!==expected)
