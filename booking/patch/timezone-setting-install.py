@@ -185,9 +185,9 @@ p = ROOT / "src/app/(panel)/ajustes/page.tsx"
 s = p.read_text(encoding="utf-8")
 s = s.replace('import { ShopSettingsForm } from "@/components/settings/shop-settings-form"',
               'import { ShopSettingsForm, TimeZoneSettingsForm } from "@/components/settings/shop-settings-form"', 1)
-s = s.replace('<Item label="Zona horaria" value="Argentina (UTC−3)" />',
-              '<Item label="Zona horaria" value={s.shopSettings.timezone} />', 1)
-marker = '<Item label="Zona horaria" value={s.shopSettings.timezone} />'
+s = s.replace('<Item label="Time zone" value={TZ} />',
+              '<Item label="Time zone" value={s.shopSettings.timezone} />', 1)
+marker = '<Item label="Time zone" value={s.shopSettings.timezone} />'
 pos = s.find(marker)
 if pos < 0: raise RuntimeError("settings timezone display anchor missing")
 dl_end = s.find("</dl>", pos)
@@ -223,4 +223,14 @@ s = s.replace('<TooltipProvider>{children}</TooltipProvider>',
 p.write_text(s, encoding="utf-8")
 (ROOT / "src/lib/time.timezone.test.ts").write_text("import { afterEach, describe, expect, it } from \"vitest\"\nimport { at, dayKey, hm, setTimeZone, TZ } from \"@/lib/time\"\n\nconst originalTimezone = TZ\nafterEach(() => setTimeZone(originalTimezone))\n\ndescribe(\"configurable business timezone\", () => {\n  it(\"uses the selected IANA zone for wall-clock booking times\", () => {\n    setTimeZone(\"Europe/Kyiv\")\n    const start = at(\"2026-06-01\", \"09:30\")\n    expect(start.toISOString()).toBe(\"2026-06-01T06:30:00.000Z\")\n    expect(hm(start)).toBe(\"09:30\")\n  })\n\n  it(\"applies winter and summer offsets from the IANA timezone database\", () => {\n    setTimeZone(\"Europe/Kyiv\")\n    expect(at(\"2026-01-15\", \"09:00\").toISOString()).toBe(\"2026-01-15T07:00:00.000Z\")\n    expect(at(\"2026-07-15\", \"09:00\").toISOString()).toBe(\"2026-07-15T06:00:00.000Z\")\n  })\n\n  it(\"recalculates formatters when the saved timezone changes\", () => {\n    const instant = new Date(\"2026-01-01T23:30:00.000Z\")\n    setTimeZone(\"Europe/Berlin\")\n    expect(dayKey(instant)).toBe(\"2026-01-02\")\n    expect(hm(instant)).toBe(\"00:30\")\n    setTimeZone(\"America/New_York\")\n    expect(dayKey(instant)).toBe(\"2026-01-01\")\n    expect(hm(instant)).toBe(\"18:30\")\n  })\n})\n", encoding="utf-8")
 (ROOT / "src/lib/time.timezone.test.ts").write_text("import { afterEach, describe, expect, it } from \"vitest\"\nimport { at, dayKey, hm, setTimeZone, TZ } from \"@/lib/time\"\n\nconst originalTimezone = TZ\nafterEach(() => setTimeZone(originalTimezone))\n\ndescribe(\"configurable business timezone\", () => {\n  it(\"uses the selected IANA zone for wall-clock booking times\", () => {\n    setTimeZone(\"Europe/Kyiv\")\n    const start = at(\"2026-06-01\", \"09:30\")\n    expect(start.toISOString()).toBe(\"2026-06-01T06:30:00.000Z\")\n    expect(hm(start)).toBe(\"09:30\")\n  })\n\n  it(\"applies winter and summer offsets from the IANA timezone database\", () => {\n    setTimeZone(\"Europe/Kyiv\")\n    expect(at(\"2026-01-15\", \"09:00\").toISOString()).toBe(\"2026-01-15T07:00:00.000Z\")\n    expect(at(\"2026-07-15\", \"09:00\").toISOString()).toBe(\"2026-07-15T06:00:00.000Z\")\n  })\n\n  it(\"recalculates formatters when the saved timezone changes\", () => {\n    const instant = new Date(\"2026-01-01T23:30:00.000Z\")\n    setTimeZone(\"Europe/Berlin\")\n    expect(dayKey(instant)).toBe(\"2026-01-02\")\n    expect(hm(instant)).toBe(\"00:30\")\n    setTimeZone(\"America/New_York\")\n    expect(dayKey(instant)).toBe(\"2026-01-01\")\n    expect(hm(instant)).toBe(\"18:30\")\n  })\n})\n", encoding="utf-8")
+# Keep CRM's next-appointment date in the same saved business timezone.
+p = ROOT / "src/components/clients/clients-view.tsx"
+s = p.read_text(encoding="utf-8")
+import_anchor = 'import { translateText, type Locale } from "@/i18n/messages"'
+if import_anchor not in s: raise RuntimeError("client directory locale import missing")
+s = s.replace(import_anchor, import_anchor + '\nimport { TZ } from "@/lib/time"', 1)
+hardcoded_zone = 'timeZone:"Europe/Berlin"'
+if hardcoded_zone not in s: raise RuntimeError("client appointment timezone anchor missing")
+s = s.replace(hardcoded_zone, "timeZone:TZ", 1)
+p.write_text(s, encoding="utf-8")
 print("BOOKING_PERSISTENT_TIMEZONE_INSTALLED")
