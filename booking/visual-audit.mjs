@@ -217,7 +217,7 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
      if(await menu.count()){
       await menu.click();await logFrame("calendar-menu",route)
       const menuControls=page.locator('#booking-calendar-menu-controls')
-      if(!(await menuControls.isVisible().catch(()=>false))||!(await menuControls.locator('button[aria-label="Change language"]').count()))
+      if(!(await menuControls.isVisible().catch(()=>false))||!(await menuControls.locator('select[aria-label="Interface language"]').count())||!(await menuControls.locator('button[aria-label^="Use "]').count()))
         errors.push({device:device.id,locale,name,type:"calendar-language-controls-missing",detail:"Language and theme controls should live in the calendar menu"})
       if(await page.locator('[data-booking-workspace="calendar"] header #booking-header-actions').count())
         errors.push({device:device.id,locale,name,type:"calendar-header-controls-visible",detail:"Keep language and theme controls out of the calendar header"})
