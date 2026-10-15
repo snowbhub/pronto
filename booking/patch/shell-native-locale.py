@@ -66,9 +66,9 @@ state='''  const [locale,setLocale]=useState<Locale>(initialLocale)
 '''
 s=s.replace(anchor,anchor+'\n'+state,1)
 patterns=[
-(r'(href="/"\\s+label=)"[^"]+"',r'\\g<1>{labels.today}'),
-(r'(href="/agenda"\\s+label=)"[^"]+"',r'\\g<1>{labels.schedule}'),
-(r'(href="/bandeja"\\s+label=)"[^"]+"',r'\\g<1>{labels.inbox}'),
+(r'(href="/"\s+label=)"[^"]+"',r'\g<1>{labels.today}'),
+(r'(href="/agenda"\s+label=)"[^"]+"',r'\g<1>{labels.schedule}'),
+(r'(href="/bandeja"\s+label=)"[^"]+"',r'\g<1>{labels.inbox}'),
 ]
 for pattern,target in patterns:
     s,n=re.subn(pattern,target,s,count=1)
@@ -77,17 +77,16 @@ for pattern,target in patterns:
 s=s.replace('''        {label}
         {badge > 0''','''        <span data-i18n-skip="true">{label}</span>
         {badge > 0''',1)
-s,n=re.subn(r'(\\s*)(?:More|Más)(\\s*</button>)',r'\\1<span data-i18n-skip="true">{labels.more}</span>\\2',s,count=1)
+s,n=re.subn(r'(\s*)(?:More|Más)(\s*</button>)',r'\1<span data-i18n-skip="true">{labels.more}</span>\2',s,count=1)
 if n!=1:raise RuntimeError("More button title missing")
-s,n=re.subn(r'(<SheetTitle[^>]*>)(?:More sections|Más secciones)(</SheetTitle>)',r'\\1{labels.moreSections}\\2',s,count=1)
+s,n=re.subn(r'(<SheetTitle[^>]*>)(?:More sections|Más secciones)(</SheetTitle>)',r'\1{labels.moreSections}\2',s,count=1)
 if n!=1:raise RuntimeError("More sheet heading missing")
-s,n=re.subn(r'(</LogOut>|/>)(?:\\s*)(?:Sign out|Salir del panel|Log out)(\\s*</button>)',r'\\1 <span data-i18n-skip="true">{labels.signOut}</span>\\2',s,count=1)
+s,n=re.subn(r'(</LogOut>|/>)(?:\s*)(?:Sign out|Salir del panel|Log out)(\s*</button>)',r'\1 <span data-i18n-skip="true">{labels.signOut}</span>\2',s,count=1)
 if n!=1:raise RuntimeError("Log out footer title missing")
 nav.write_text(s,encoding="utf-8")
 
 page=root/"app/(panel)/clientes/page.tsx"
 s=page.read_text(encoding="utf-8")
-needle='''`\u0024{d.rows.length} клієнтів · \u0024{frequent} постійних'''
 # Unicode-safe, exact template replacement; do not alter customer names.
 old='${d.rows.length} клієнтів · ${frequent} постійних'
 new='${d.rows.length} ${d.rows.length%100>=11&&d.rows.length%100<=14?"клієнтів":d.rows.length%10===1?"клієнт":d.rows.length%10>=2&&d.rows.length%10<=4?"клієнти":"клієнтів"} · ${frequent} постійних'
