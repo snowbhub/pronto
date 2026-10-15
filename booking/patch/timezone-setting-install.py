@@ -215,17 +215,19 @@ export function TimeZoneRuntime({ timezone }: { timezone: string }) {
 ''', encoding="utf-8")
 p = ROOT / "src/app/layout.tsx"
 s = p.read_text(encoding="utf-8")
-if 'import { db } from "@/lib/data/repo"' not in s or 'import { TimeZoneRuntime }' not in s:
-    anchor = 'import type { Metadata, Viewport } from "next"'
-    if anchor not in s: raise RuntimeError("root layout import anchor missing")
-    s = s.replace(anchor, anchor + '\nimport { db } from "@/lib/data/repo"\nimport { TimeZoneRuntime } from "@/components/settings/timezone-runtime"', 1)
+if 'import { db } from "@/lib/data/repo"' not in s:
+    first_line = s.find("\n")
+    if first_line < 0: raise RuntimeError("root layout has no import boundary")
+    s = s[:first_line + 1] + 'import { db } from "@/lib/data/repo"\nimport { TimeZoneRuntime } from "@/components/settings/timezone-runtime"\n' + s[first_line + 1:]
+elif 'import { TimeZoneRuntime }' not in s:
+    s = s.replace('import { db } from "@/lib/data/repo"', 'import { db } from "@/lib/data/repo"\nimport { TimeZoneRuntime } from "@/components/settings/timezone-runtime"', 1)
 if "export default function RootLayout" in s:
     s = s.replace("export default function RootLayout", "export default async function RootLayout", 1)
 if "const snapshot = await db()" not in s:
     fn = s.find("export default async function RootLayout")
-    body = s.find(") {", fn)
-    if fn < 0 or body < 0: raise RuntimeError("root layout function signature missing")
-    s = s[:body + 3] + "\n  const snapshot = await db()" + s[body + 3:]
+    body = s.find("){", fn)
+    if fn < 0 or body < 0: raise RuntimeError("root layout function body missing")
+    s = s[:body + 2] + " const snapshot = await db();" + s[body + 2:]
 if "TimeZoneRuntime timezone={snapshot.shopSettings.timezone}" not in s:
     anchor = "<TooltipProvider>{children}</TooltipProvider>"
     if anchor not in s: raise RuntimeError("root layout tooltip provider anchor missing")
