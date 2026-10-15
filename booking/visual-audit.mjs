@@ -11,7 +11,9 @@ const captures = []
 const routes = [
  ["dashboard","/"],["calendar-day","/agenda"],["calendar-week","/agenda?view=week"],
  ["settings-team","/ajustes?tab=equipo"],["settings-services","/ajustes?tab=servicios"],
- ["settings-main","/ajustes"],["clients","/clientes"],["inbox","/bandeja"],
+ ["settings-fixed","/ajustes?tab=fijos"],["settings-business","/ajustes?tab=local"],
+ ["settings-connections","/ajustes?tab=conexiones"],["settings-main","/ajustes"],
+ ["clients","/clientes"],["inbox","/bandeja"],
  ["finance","/finanzas"],["cash","/caja"],["inventory","/inventory"],
  ["cash-management","/cash-management"],["payroll","/payroll"],
  ["ranks","/ranks"],["staff-accounts","/staff-accounts"],["analytics","/analytics"],
