@@ -215,11 +215,21 @@ export function TimeZoneRuntime({ timezone }: { timezone: string }) {
 ''', encoding="utf-8")
 p = ROOT / "src/app/layout.tsx"
 s = p.read_text(encoding="utf-8")
-s = s.replace('import { BRAND } from "@/config/brand"', 'import { BRAND } from "@/config/brand"\nimport { db } from "@/lib/data/repo"\nimport { TimeZoneRuntime } from "@/components/settings/timezone-runtime"', 1)
-s = s.replace('export default function RootLayout({ children }: LayoutProps<"/">) {\n  return (',
-              'export default async function RootLayout({ children }: LayoutProps<"/">) {\n  const snapshot = await db()\n  return (', 1)
-s = s.replace('<TooltipProvider>{children}</TooltipProvider>',
-              '<TooltipProvider><TimeZoneRuntime timezone={snapshot.shopSettings.timezone} />{children}</TooltipProvider>', 1)
+if 'import { db } from "@/lib/data/repo"' not in s or 'import { TimeZoneRuntime }' not in s:
+    anchor = 'import type { Metadata, Viewport } from "next"'
+    if anchor not in s: raise RuntimeError("root layout import anchor missing")
+    s = s.replace(anchor, anchor + '\nimport { db } from "@/lib/data/repo"\nimport { TimeZoneRuntime } from "@/components/settings/timezone-runtime"', 1)
+if "export default function RootLayout" in s:
+    s = s.replace("export default function RootLayout", "export default async function RootLayout", 1)
+if "const snapshot = await db()" not in s:
+    fn = s.find("export default async function RootLayout")
+    body = s.find(") {", fn)
+    if fn < 0 or body < 0: raise RuntimeError("root layout function signature missing")
+    s = s[:body + 3] + "\n  const snapshot = await db()" + s[body + 3:]
+if "TimeZoneRuntime timezone={snapshot.shopSettings.timezone}" not in s:
+    anchor = "<TooltipProvider>{children}</TooltipProvider>"
+    if anchor not in s: raise RuntimeError("root layout tooltip provider anchor missing")
+    s = s.replace(anchor, "<TooltipProvider><TimeZoneRuntime timezone={snapshot.shopSettings.timezone} />{children}</TooltipProvider>", 1)
 p.write_text(s, encoding="utf-8")
 (ROOT / "src/lib/time.timezone.test.ts").write_text("import { afterEach, describe, expect, it } from \"vitest\"\nimport { at, dayKey, hm, setTimeZone, TZ } from \"@/lib/time\"\n\nconst originalTimezone = TZ\nafterEach(() => setTimeZone(originalTimezone))\n\ndescribe(\"configurable business timezone\", () => {\n  it(\"uses the selected IANA zone for wall-clock booking times\", () => {\n    setTimeZone(\"Europe/Kyiv\")\n    const start = at(\"2026-06-01\", \"09:30\")\n    expect(start.toISOString()).toBe(\"2026-06-01T06:30:00.000Z\")\n    expect(hm(start)).toBe(\"09:30\")\n  })\n\n  it(\"applies winter and summer offsets from the IANA timezone database\", () => {\n    setTimeZone(\"Europe/Kyiv\")\n    expect(at(\"2026-01-15\", \"09:00\").toISOString()).toBe(\"2026-01-15T07:00:00.000Z\")\n    expect(at(\"2026-07-15\", \"09:00\").toISOString()).toBe(\"2026-07-15T06:00:00.000Z\")\n  })\n\n  it(\"recalculates formatters when the saved timezone changes\", () => {\n    const instant = new Date(\"2026-01-01T23:30:00.000Z\")\n    setTimeZone(\"Europe/Berlin\")\n    expect(dayKey(instant)).toBe(\"2026-01-02\")\n    expect(hm(instant)).toBe(\"00:30\")\n    setTimeZone(\"America/New_York\")\n    expect(dayKey(instant)).toBe(\"2026-01-01\")\n    expect(hm(instant)).toBe(\"18:30\")\n  })\n})\n", encoding="utf-8")
 (ROOT / "src/lib/time.timezone.test.ts").write_text("import { afterEach, describe, expect, it } from \"vitest\"\nimport { at, dayKey, hm, setTimeZone, TZ } from \"@/lib/time\"\n\nconst originalTimezone = TZ\nafterEach(() => setTimeZone(originalTimezone))\n\ndescribe(\"configurable business timezone\", () => {\n  it(\"uses the selected IANA zone for wall-clock booking times\", () => {\n    setTimeZone(\"Europe/Kyiv\")\n    const start = at(\"2026-06-01\", \"09:30\")\n    expect(start.toISOString()).toBe(\"2026-06-01T06:30:00.000Z\")\n    expect(hm(start)).toBe(\"09:30\")\n  })\n\n  it(\"applies winter and summer offsets from the IANA timezone database\", () => {\n    setTimeZone(\"Europe/Kyiv\")\n    expect(at(\"2026-01-15\", \"09:00\").toISOString()).toBe(\"2026-01-15T07:00:00.000Z\")\n    expect(at(\"2026-07-15\", \"09:00\").toISOString()).toBe(\"2026-07-15T06:00:00.000Z\")\n  })\n\n  it(\"recalculates formatters when the saved timezone changes\", () => {\n    const instant = new Date(\"2026-01-01T23:30:00.000Z\")\n    setTimeZone(\"Europe/Berlin\")\n    expect(dayKey(instant)).toBe(\"2026-01-02\")\n    expect(hm(instant)).toBe(\"00:30\")\n    setTimeZone(\"America/New_York\")\n    expect(dayKey(instant)).toBe(\"2026-01-01\")\n    expect(hm(instant)).toBe(\"18:30\")\n  })\n})\n", encoding="utf-8")
