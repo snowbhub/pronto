@@ -104,6 +104,14 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
      ["untranslated-finance-paragraph",/(?:comisión \+|vales −|pagos ya hechos|Los dueños no cobran)/],
      ["untranslated-ai-model-note",/(?:Modelo: sin configurar|Cada respuesta se arma|los precios, horarios y reglas)/],
    ]
+   if(["settings-fixed","settings-business","settings-connections"].includes(name)){
+     const mixedCopy=metrics.visibleText.match(/\b(?:Cuando|Es lo que ven|El descuento se aplica|Con 5 sellos|se registra en Zernio al dar|Los turnos ya cargados|Los bookings ya cargados)\b/i)
+     if(mixedCopy)errors.push({device:device.id,locale,name,type:"mixed-language-settings-copy",detail:mixedCopy[0]})
+     if(name==="settings-business"&&/Argentina \(UTC−3\)/.test(metrics.visibleText))
+       errors.push({device:device.id,locale,name,type:"timezone-label-does-not-match-configured-timezone",detail:"Argentina (UTC−3)"})
+     if(locale!=="en"&&name==="settings-business"&&/\bAnalytics\b/.test(metrics.visibleText))
+       errors.push({device:device.id,locale,name,type:"untranslated-settings-analytics-link",detail:"Analytics"})
+   }
    if(locale!=="en" && name==="analytics" && /\b(?:Day|Week|Month|Year|Custom)\b/.test(metrics.visibleText))errors.push({device:device.id,locale,name,type:"analytics-period-not-localized",detail:metrics.visibleText.slice(0,220)})
    if(locale==="uk" && name==="analytics" && /Оплати in selected period/.test(metrics.visibleText))errors.push({device:device.id,locale,name,type:"analytics-payment-label-not-localized",detail:"Оплати in selected period"})
    for(const [kind,pattern] of [...commonChecks,...localeChecks[locale]]){

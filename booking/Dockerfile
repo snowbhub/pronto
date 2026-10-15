@@ -16,6 +16,7 @@ RUN python3 /tmp/booking-patch/modern-ui.py
 RUN python3 /tmp/booking-patch/payroll-discovery.py
 RUN python3 /tmp/booking-patch/timezone-i18n.py
 RUN python3 /tmp/booking-patch/i18n-runtime.py
+RUN python3 /tmp/booking-patch/settings-copy-polish.py
 RUN python3 /tmp/booking-patch/mobile-polish.py
 RUN python3 /tmp/booking-patch/app-mobile-shell.py
 RUN python3 /tmp/booking-patch/inventory-install.py

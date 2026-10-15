@@ -5,7 +5,7 @@ import base64, json
 root=Path("booking/screenshots")
 out=Path("booking/qa-results")
 out.mkdir(parents=True, exist_ok=True)
-selected=["dashboard","calendar-day","calendar-week","calendar-menu","calendar-scrolled","settings-main","settings-team","employee-expanded","settings-services","cash-management","inventory","payroll","clients","inbox","agent","login"]
+selected=["dashboard","calendar-day","calendar-week","calendar-menu","calendar-scrolled","settings-main","settings-team","employee-expanded","settings-services","settings-fixed","settings-business","settings-connections","cash-management","inventory","payroll","clients","inbox","agent","login"]
 for device in ("iphone","desktop"):
   images=[]
   for page in selected:
