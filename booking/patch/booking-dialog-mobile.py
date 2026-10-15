@@ -13,7 +13,7 @@ for old,new in replacements:
 s,count_id=re.subn(r'(<DialogContent\s+)className="', r'\1id="booking-create-dialog" className="', s, count=1)
 if count_id!=1:raise RuntimeError("Appointment dialog id target missing")
 s,count=re.subn(r'(<DialogContent\b[^>]*\bclassName=")([^"]*)(")',
- lambda m:m.group(1)+("booking-create-dialog " if "booking-create-dialog" not in m.group(2) else "")+m.group(2)+m.group(3),
+ lambda m:m.group(1)+("booking-create-dialog max-[767px]:translate-x-0! max-[767px]:translate-y-0! " if "booking-create-dialog" not in m.group(2) else "")+m.group(2)+m.group(3),
  s,count=1)
 if count!=1:raise RuntimeError("Appointment dialog markup missing")
 p.write_text(s,encoding="utf-8")
