@@ -192,38 +192,35 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
     if(name==="calendar-day"&&device.id==="iphone"){
      const grid=page.locator('[data-calendar-scroll]').first()
      if(await grid.count()){
-       const mode=await grid.getAttribute("data-display-mode")
        const staffCount=Number(await grid.getAttribute("data-visible-staff"))
-       if(mode!=="single"||staffCount!==1)
-         errors.push({device:device.id,locale,name,type:"mobile-calendar-too-narrow",detail:"Expected one full-width barber on phone, got "+staffCount+" in "+mode+" mode"})
-       const chooser=page.locator('[data-testid="calendar-barber-select"]')
-       if(await chooser.count()){
-         const options=await chooser.locator("option").count()
-         if(options>1){
-           await chooser.selectOption({index:1})
-           await page.waitForTimeout(150)
-           await logFrame("calendar-next-barber",route)
-           if(Number(await grid.getAttribute("data-visible-staff"))!==1)
-             errors.push({device:device.id,locale,name,type:"barber-selector-broken",detail:"Selecting another barber changed calendar column count"})
+       if(staffCount<3)
+         errors.push({device:device.id,locale,name,type:"mobile-calendar-too-narrow",detail:"Expected three visible barber columns, got "+staffCount})
+       if(await page.locator('[data-testid="calendar-view-single"],[data-testid="calendar-barber-select"]').count())
+         errors.push({device:device.id,locale,name,type:"calendar-single-barber-toggle-visible",detail:"The mobile calendar should show the team without a barber picker"})
+       if(await page.locator('[aria-label="Calendar views"]').isVisible().catch(()=>false))
+         errors.push({device:device.id,locale,name,type:"calendar-view-switch-visible-on-mobile",detail:"Hide the day/week switch on phone"})
+       if(await page.locator('[aria-label="Select day"]').isVisible().catch(()=>false))
+         errors.push({device:device.id,locale,name,type:"calendar-week-strip-visible-on-mobile",detail:"Hide the week strip on phone"})
+       const wide=await grid.evaluate(el=>({page:document.documentElement.scrollWidth,viewport:innerWidth,scrollWidth:el.scrollWidth,clientWidth:el.clientWidth}))
+       if(wide.page>wide.viewport+3)errors.push({device:device.id,locale,name,type:"calendar-page-overflow",detail:JSON.stringify(wide)})
+       if(staffCount>3){
+         const next=page.locator('[data-testid="calendar-staff-next"]')
+         if(await next.count()===0)errors.push({device:device.id,locale,name,type:"calendar-staff-scroll-controls-missing",detail:"More than three staff must be horizontally reachable"})
+         else{
+           const before=await grid.evaluate(el=>el.scrollLeft)
+           await next.click();await page.waitForTimeout(250)
+           if(await grid.evaluate(el=>el.scrollLeft)<=before)errors.push({device:device.id,locale,name,type:"calendar-staff-scroll-controls-broken",detail:"Next staff button did not scroll the timeline"})
          }
-       }
-       const team=page.locator('[data-testid="calendar-view-team"]')
-       if(await team.count()){
-         await team.click()
-         await page.waitForTimeout(150)
-         const all=Number(await grid.getAttribute("data-visible-staff"))
-         if(all<2)errors.push({device:device.id,locale,name,type:"team-calendar-hidden",detail:"Team mode must show all workers; columns="+all})
-         const wide=await grid.evaluate(el=>({page:document.documentElement.scrollWidth,viewport:innerWidth,scrollWidth:el.scrollWidth,clientWidth:el.clientWidth}))
-         if(wide.page>wide.viewport+3)errors.push({device:device.id,locale,name,type:"team-calendar-body-overflow",detail:JSON.stringify(wide)})
-         await logFrame("calendar-all-barbers",route)
-         await page.locator('[data-testid="calendar-view-single"]').click()
-         await page.waitForTimeout(150)
-         await logFrame("calendar-focused-barber",route)
        }
      }
      const menu=page.locator('[data-booking-workspace="calendar"] [data-testid="calendar-mode-menu"]')
      if(await menu.count()){
       await menu.click();await logFrame("calendar-menu",route)
+      const menuControls=page.locator('#booking-calendar-menu-controls')
+      if(!(await menuControls.isVisible().catch(()=>false))||!(await menuControls.locator('button[aria-label="Change language"]').count()))
+        errors.push({device:device.id,locale,name,type:"calendar-language-controls-missing",detail:"Language and theme controls should live in the calendar menu"})
+      if(await page.locator('[data-booking-workspace="calendar"] header #booking-header-actions').count())
+        errors.push({device:device.id,locale,name,type:"calendar-header-controls-visible",detail:"Keep language and theme controls out of the calendar header"})
       const adminEntry=page.locator('[data-booking-workspace="calendar"] aside a[href="/"]').first()
       if(await adminEntry.count()){
         await adminEntry.click()

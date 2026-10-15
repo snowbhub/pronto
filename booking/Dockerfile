@@ -52,6 +52,7 @@ RUN python3 /tmp/booking-patch/cash-count-final.py
 RUN python3 /tmp/booking-patch/slot-warning-locales.py
 RUN python3 /tmp/booking-patch/calendar-staff-photos.py
 RUN python3 /tmp/booking-patch/shell-native-locale.py
+RUN python3 /tmp/booking-patch/calendar-compact-team.py
 RUN python3 /tmp/booking-patch/ui-source-audit.py
 RUN python3 /tmp/booking-patch/visible-coverage.py
 RUN python3 /tmp/booking-patch/verify_i18n.py
