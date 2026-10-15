@@ -104,7 +104,7 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
      const strictChecks=[
        ["customer-name-corrupted",/Test Клієнт/],
        ["mixed-language-payroll",/\d+%\s+commissi(?:on|у)(?![\p{L}])/u],
-       ["incorrect-ukrainian-plural",/\b1\s+(?:записів|відвідувань|послуг)(?![\p{L}])|\b0\s+(?:запис|відвідування|послуга)(?![\p{L}])/u],
+       ["incorrect-ukrainian-plural",/\b1\s+(?:записів|відвідувань|послуг|оплат|оплати)(?![\p{L}])|\b0\s+(?:запис|відвідування|послуга)(?![\p{L}])/u],
        ["untranslated-date",/\b\d{1,2}\s+(?:Sep|Oct|Nov|Dec)\b/],
        ["untranslated-booking-preposition",/\bcon\s+(?:Max|Olena|Danylo)\b/],
        ["untranslated-status",/\b(?:Atendido|Otra hora)\b/],
@@ -207,7 +207,12 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
     }
     if(name==="settings-team"){
       const details=page.locator('details').first()
-      if(await details.count()){await details.evaluate(el=>el.open=true);await logFrame("employee-expanded",route)}
+      if(await details.count()){
+        await details.evaluate(el=>el.open=true)
+        await logFrame("employee-expanded",route)
+        if(device.id==="iphone"&&locale==="uk"&&!(await page.getByRole("button",{name:"Обрати фото"}).count()))
+          errors.push({device:device.id,locale,name,type:"unlocalized-staff-photo-selector",detail:"Employee editor must show a translated custom photo selection button"})
+      }
     }
    }catch(e){errors.push({device:device.id,locale,name,type:"navigation",detail:String(e).slice(0,280)})}
   }
