@@ -42,7 +42,7 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
     const positionedNavs=[...document.querySelectorAll("nav.booking-app-nav")].filter(visible)
     const navs=positionedNavs.map(el=>{const r=el.getBoundingClientRect();return {top:Math.round(r.top),bottom:Math.round(r.bottom),height:Math.round(r.height)}})
     const visibleText=(document.body.innerText||"").trim()
-    return {visibleText:visibleText.slice(0,3500),screenWidth:innerWidth,pageWidth:document.documentElement.scrollWidth,
+    return {visibleText:visibleText.slice(0,3500),headerTitle:document.querySelector(".booking-app-header span[data-i18n-skip]")?.textContent?.trim()||"",screenWidth:innerWidth,pageWidth:document.documentElement.scrollWidth,
       bodyTextLength:visibleText.length,mainTextLength:(main?.innerText||"").trim().length,
       workspace:document.querySelector('[data-booking-workspace]')?.getAttribute('data-booking-workspace')||"none",
       fixedNavCount:fixedNavs.length,navs,mainTop:main?Math.round(main.getBoundingClientRect().top):null,
@@ -59,7 +59,7 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
    if(metrics.spanish.length)errors.push({device:device.id,locale,name,type:"untranslated-spanish",detail:metrics.spanish.join(", ")})
    if(name==="clients"&&locale!=="en"){
      const expected=locale==="uk"?"Клієнти":"Kunden"
-     if(!metrics.visibleText.startsWith(expected+"\n"))
+     if(metrics.headerTitle!==expected)
        errors.push({device:device.id,locale,name,type:"client-header-mixed-locale",detail:metrics.visibleText.slice(0,90)})
      if(device.id==="iphone"&&/\nToday\nSchedule\nInbox\nMore$/.test(metrics.visibleText))
        errors.push({device:device.id,locale,name,type:"client-footer-mixed-locale",detail:metrics.visibleText.slice(-100)})
