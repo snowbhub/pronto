@@ -42,6 +42,7 @@ RUN python3 /tmp/booking-patch/clients-hydration.py
 RUN python3 /tmp/booking-patch/clients-client-only.py
 RUN python3 /tmp/booking-patch/qa-ui-copy-repair.py
 RUN python3 /tmp/booking-patch/manual-ui-polish.py
+RUN python3 /tmp/booking-patch/client-route-native-i18n.py
 RUN python3 /tmp/booking-patch/finance-paragraph-final.py
 RUN python3 /tmp/booking-patch/analytics-ai-manual-final.py
 RUN python3 /tmp/booking-patch/date-cash-polish.py
