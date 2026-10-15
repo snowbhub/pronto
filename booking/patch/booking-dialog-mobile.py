@@ -23,8 +23,9 @@ s+="""
   width:calc(100vw - 12px)!important;
   max-width:calc(100vw - 12px)!important;
   max-height:calc(100dvh - env(safe-area-inset-top) - 12px)!important;
-  left:6px!important;right:6px!important;bottom:6px!important;
-  overflow-x:hidden!important;
+  left:6px!important;right:6px!important;top:6px!important;bottom:auto!important;
+  transform:none!important;translate:none!important;
+  overflow-x:hidden!important;overflow-y:auto!important;
   padding-bottom:env(safe-area-inset-bottom);
  }
  .booking-create-dialog > *, .booking-create-dialog form,
