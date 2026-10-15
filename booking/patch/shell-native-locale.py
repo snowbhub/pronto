@@ -20,7 +20,7 @@ layout.write_text(s,encoding="utf-8")
 
 top=root/"components/shell/topbar.tsx"
 s=top.read_text(encoding="utf-8")
-s='import { normalizeLocale, translateText, type Locale } from "@/i18n/messages"\n'+s
+s=s.replace('"use client"','"use client"\nimport { normalizeLocale, translateText, type Locale } from "@/i18n/messages"',1)
 old='export function Topbar({ info, now, simulated }: { info: ShellInfo; now: string; simulated: boolean }) {'
 new='export function Topbar({ info, now, simulated, initialLocale }: { info: ShellInfo; now: string; simulated: boolean; initialLocale: Locale }) {'
 assert old in s,"Topbar props changed"
@@ -45,7 +45,7 @@ nav=root/"components/shell/mobile-nav.tsx"
 s=nav.read_text(encoding="utf-8")
 assert 'import { useState } from "react"' in s
 s=s.replace('import { useState } from "react"','import { useEffect, useState } from "react"',1)
-s='import { normalizeLocale, type Locale } from "@/i18n/messages"\n'+s
+s=s.replace('"use client"','"use client"\nimport { normalizeLocale, type Locale } from "@/i18n/messages"',1)
 old='export function MobileNav({ info }: { info: ShellInfo }) {'
 new='export function MobileNav({ info, initialLocale }: { info: ShellInfo; initialLocale: Locale }) {'
 assert old in s,"MobileNav props changed"
