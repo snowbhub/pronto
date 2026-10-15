@@ -3,7 +3,7 @@ p=Path("/app/src/i18n/controls.tsx")
 p.write_text(r'''"use client"
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { Moon, Sun, ChevronDown } from "lucide-react"
 import { normalizeLocale, type Locale } from "./messages"
 
@@ -26,6 +26,7 @@ function readTheme(): Theme {
 
 export function LocaleThemeControls() {
   const pathname = usePathname()
+  const router = useRouter()
   const [target, setTarget] = useState<HTMLElement | null>(null)
   const [locale, setLocale] = useState<Locale>("en")
   const [theme, setTheme] = useState<Theme>("dark")
@@ -42,6 +43,8 @@ export function LocaleThemeControls() {
     document.documentElement.dataset.locale = next
     document.documentElement.lang = next
     window.dispatchEvent(new Event("booking:locale"))
+    // The client directory has server-provided React translations, not DOM replacements.
+    if (pathname === "/clientes") router.refresh()
   }
   function toggle() {
     const next: Theme = theme === "dark" ? "light" : "dark"
