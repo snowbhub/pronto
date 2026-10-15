@@ -45,6 +45,7 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
     return {visibleText:visibleText.slice(0,3500),headerTitle:document.querySelector(".booking-app-header span[data-i18n-skip]")?.textContent?.trim()||"",screenWidth:innerWidth,pageWidth:document.documentElement.scrollWidth,
       bodyTextLength:visibleText.length,mainTextLength:(main?.innerText||"").trim().length,
       workspace:document.querySelector('[data-booking-workspace]')?.getAttribute('data-booking-workspace')||"none",
+      dialogBounds:(()=>{const el=document.querySelector('[data-slot="dialog-content"]');if(!el)return null;const r=el.getBoundingClientRect();return {left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width)}})(),
       fixedNavCount:fixedNavs.length,navs,mainTop:main?Math.round(main.getBoundingClientRect().top):null,
       route:location.pathname,spanish:(visibleText.match(/\b(Empezar|Cobrar|Agendar|Entrando|Confirmado|No vino|Nadie por ahora|Configurar|Cancelar turno|Nuevo turno)\b/g)||[]).slice(0,12)}
    })
@@ -53,6 +54,7 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
    const item={device:device.id,locale,name,file:path,requestedRoute:route,finalRoute:page.url(),...metrics}
    captures.push(item)
    if(metrics.pageWidth>device.width+3)errors.push({device:device.id,locale,name,type:"horizontal-page-overflow",detail:`${metrics.pageWidth}px page > ${device.width}px viewport`})
+   if(name==="appointment-create"&&device.id==="iphone"&&metrics.dialogBounds&&(metrics.dialogBounds.left<0||metrics.dialogBounds.right>device.width+2||metrics.dialogBounds.width>device.width))errors.push({device:device.id,locale,name,type:"mobile-dialog-clipped",detail:JSON.stringify(metrics.dialogBounds)})
    if(name!=="login"&&name!=="staff-login"&&!name.includes("public") && metrics.route==="/login")errors.push({device:device.id,locale,name,type:"unavailable-route",detail:"Redirected to login (QA credentials missing)"})
    if(metrics.workspace==="calendar"&&metrics.fixedNavCount>0)errors.push({device:device.id,locale,name,type:"calendar-navigation-overlap",detail:"Legacy fixed nav remains"})
    if(device.id==="iphone"&&metrics.workspace==="admin"&&metrics.navs.some(n=>n.top<device.height*.40&&n.height>45))errors.push({device:device.id,locale,name,type:"admin-navigation-at-top",detail:JSON.stringify(metrics.navs)})
