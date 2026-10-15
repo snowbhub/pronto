@@ -123,6 +123,12 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
    try{
     const response=await page.goto(base+route,{waitUntil:"domcontentloaded",timeout:30000})
     await page.waitForTimeout(450)
+    if(name==="clients"){
+      // This private directory now mounts client-side to avoid hydrating
+      // a server-rendered localized list. Wait for both data and i18n settle.
+      await page.getByText("Test Client One").first().waitFor({state:"visible",timeout:12000})
+      await page.waitForTimeout(1250)
+    }
     if(!response||response.status()>=400)errors.push({device:device.id,locale,name,type:"http",detail:response?.status()})
     await logFrame(name,route)
     if(name==="calendar-day"&&device.id==="iphone"){
