@@ -10,6 +10,8 @@ replacements=[
 ]
 for old,new in replacements:
  if old in s:s=s.replace(old,new)
+s,count_id=re.subn(r'(<DialogContent\\s+)className="', r'\\1id="booking-create-dialog" className="', s, count=1)
+if count_id!=1:raise RuntimeError("Appointment dialog id target missing")
 s,count=re.subn(r'(<DialogContent\s+className=")([^"]*)(")',
  lambda m:m.group(1)+("booking-create-dialog " if "booking-create-dialog" not in m.group(2) else "")+m.group(2)+m.group(3),
  s,count=1)
@@ -19,7 +21,7 @@ p=Path("/app/src/app/globals.css")
 s=p.read_text(encoding="utf-8")
 s+="""
 @media(max-width:767px){
- html body [data-slot="dialog-content"][data-slot="dialog-content"][data-slot="dialog-content"]{
+ #booking-create-dialog{
   width:calc(100vw - 12px)!important;
   max-width:calc(100vw - 12px)!important;
   max-height:calc(100dvh - env(safe-area-inset-top) - 12px)!important;
