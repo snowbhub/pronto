@@ -126,7 +126,7 @@ function cleanCalendarPunctuation(text:string,locale:Locale){
 function dateWord(value:string){return value.toLocaleLowerCase("uk").replace(/\./g,"")}
 function calendarDateText(value:string,locale:Locale):string{
   let out=value
-  const datePattern=new RegExp("(?<![\\p{L}])("+DATE_DAYS+")(,?\\s+)(\\d{1,2})(?:\\s+(?:de|of))?\\s+("+DATE_MONTHS+")(?:\\s+(\\d{4}))?(?!\\d)","giu")
+  const datePattern=new RegExp("(?<![\\p{L}])("+DATE_DAYS+")(,\\s*,?\\s*|\\s+)(\\d{1,2})(?:\\s+(?:de|of|from|von|vom|з|із))?\\s+("+DATE_MONTHS+")(?:\\s+(\\d{4}))?(?!\\d)","giu")
   out=out.replace(datePattern,(_all,dayRaw,separator,dayNumber,monthRaw,year)=>{
     const dayKey=dateWord(dayRaw),monthKey=dateWord(monthRaw)
     const dayIndex=DAY_ALIASES[dayKey],monthIndex=MONTH_ALIASES[monthKey]
@@ -224,6 +224,12 @@ describe("localized calendar dates", () => {
   })
   it("normalizes a leftover Spanish full date in Ukrainian", () => {
     expect(translateText("JUEVES, 15 DE OCTUBRE", "uk")).toBe("четвер, 15 жовтня")
+  })
+  it("normalizes the mixed dashboard date in Ukrainian", () => {
+    expect(translateText("ЧЕТВЕР,, 15 З OCTUBRE", "uk")).toBe("четвер, 15 жовтня")
+  })
+  it("normalizes the mixed dashboard date in English", () => {
+    expect(translateText("Thursday,, 15 from octubre", "en")).toBe("Thursday, 15 October")
   })
   it("renders German date punctuation and month names", () => {
     expect(translateText("Thursday, 15 October", "de")).toBe("Donnerstag, 15. Oktober")
