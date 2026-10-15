@@ -57,6 +57,16 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
    if(metrics.workspace==="calendar"&&metrics.fixedNavCount>0)errors.push({device:device.id,locale,name,type:"calendar-navigation-overlap",detail:"Legacy fixed nav remains"})
    if(device.id==="iphone"&&metrics.workspace==="admin"&&metrics.navs.some(n=>n.top<device.height*.40&&n.height>45))errors.push({device:device.id,locale,name,type:"admin-navigation-at-top",detail:JSON.stringify(metrics.navs)})
    if(metrics.spanish.length)errors.push({device:device.id,locale,name,type:"untranslated-spanish",detail:metrics.spanish.join(", ")})
+   if(name==="clients"&&locale!=="en"){
+     const expected=locale==="uk"?"Клієнти":"Kunden"
+     if(!metrics.visibleText.startsWith(expected+"\n"))
+       errors.push({device:device.id,locale,name,type:"client-header-mixed-locale",detail:metrics.visibleText.slice(0,90)})
+     if(device.id==="iphone"&&/\nToday\nSchedule\nInbox\nMore$/.test(metrics.visibleText))
+       errors.push({device:device.id,locale,name,type:"client-footer-mixed-locale",detail:metrics.visibleText.slice(-100)})
+   }
+   if(name==="clients"&&locale==="uk"&&/\b(?:2|3|4|22|23|24) клієнтів\b/.test(metrics.visibleText))
+     errors.push({device:device.id,locale,name,type:"incorrect-uk-client-plural",detail:metrics.visibleText.slice(0,240)})
+
    if(name==="appointment-create"){
      const warnings={
        uk:"немає вільного часу для запису тривалістю",
