@@ -29,6 +29,7 @@ replacement='''        description={locale==="uk"
             : `${d.rows.length} clients · ${frequent} regular · ${atRisk} at risk. Profiles include service notes, visit history and loyalty status.`}'''
 s=s[:start]+replacement+s[end:]
 s=s.replace('actions={<NewAppointmentButton variant="outline" />}','actions={<NewAppointmentButton variant="outline" label={tr("New booking")} />}')
+s=s.replace('<ClientDirectory rows={d.rows} now={d.now} services={d.services} staff={d.staff} />','<ClientDirectory rows={d.rows} now={d.now} services={d.services} staff={d.staff} locale={locale} />')
 s=s.replace('<ClientsView rows={d.rows} now={d.now} services={d.services} staff={d.staff} />','<ClientsView rows={d.rows} now={d.now} services={d.services} staff={d.staff} locale={locale} />')
 p.write_text(s,encoding='utf-8')
 p=root/'components/clients/clients-view.tsx'
