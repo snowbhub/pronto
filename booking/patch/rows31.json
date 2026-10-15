@@ -70,5 +70,23 @@
     "Select barber",
     "Barbier auswählen",
     "Обрати барбера"
+  ],
+  [
+    "1 payment",
+    "1 payment",
+    "1 Zahlung",
+    "1 оплата"
+  ],
+  [
+    "payments",
+    "payments",
+    "Zahlungen",
+    "оплати"
+  ],
+  [
+    "Service revenue",
+    "Service revenue",
+    "Umsatz aus Dienstleistungen",
+    "Виручка від послуг"
   ]
 ]
