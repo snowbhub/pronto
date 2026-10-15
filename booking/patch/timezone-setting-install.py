@@ -129,8 +129,13 @@ export function TimeZoneSettingsForm({ value }: { value: string }) {
   const [pending, startTransition] = useTransition()
 
   useEffect(() => {
-    const language = document.documentElement.lang.slice(0, 2) as Locale
-    if (language in TIMEZONE_COPY) setLocale(language)
+    const syncLocale = () => {
+      const language = (localStorage.getItem("booking_locale") || document.documentElement.dataset.locale || document.documentElement.lang).slice(0, 2) as Locale
+      if (language in TIMEZONE_COPY) setLocale(language)
+    }
+    syncLocale()
+    window.addEventListener("booking:locale", syncLocale)
+    return () => window.removeEventListener("booking:locale", syncLocale)
   }, [])
 
   const copy = TIMEZONE_COPY[locale]
@@ -182,14 +187,13 @@ s = s.replace('import { ShopSettingsForm } from "@/components/settings/shop-sett
               'import { ShopSettingsForm, TimeZoneSettingsForm } from "@/components/settings/shop-settings-form"', 1)
 s = s.replace('<Item label="Zona horaria" value="Argentina (UTC−3)" />',
               '<Item label="Zona horaria" value={s.shopSettings.timezone} />', 1)
-anchor = '''              </dl>
-            </Panel>
-            <Panel title="Horarios que se ofrecen">'''
-if anchor not in s: raise RuntimeError("settings timezone control anchor missing")
-s = s.replace(anchor, '''              </dl>
-              <TimeZoneSettingsForm value={s.shopSettings.timezone} />
-            </Panel>
-            <Panel title="Horarios que se ofrecen">''', 1)
+marker = '<Item label="Zona horaria" value={s.shopSettings.timezone} />'
+pos = s.find(marker)
+if pos < 0: raise RuntimeError("settings timezone display anchor missing")
+dl_end = s.find("</dl>", pos)
+if dl_end < 0: raise RuntimeError("settings local details list is not closed")
+insert_at = dl_end + len("</dl>")
+s = s[:insert_at] + '\n              <TimeZoneSettingsForm value={s.shopSettings.timezone} />' + s[insert_at:]
 p.write_text(s, encoding="utf-8")
 
 # Initialize the client-side date helpers with the saved zone on every app route.
@@ -217,4 +221,6 @@ s = s.replace('export default function RootLayout({ children }: LayoutProps<"/">
 s = s.replace('<TooltipProvider>{children}</TooltipProvider>',
               '<TooltipProvider><TimeZoneRuntime timezone={snapshot.shopSettings.timezone} />{children}</TooltipProvider>', 1)
 p.write_text(s, encoding="utf-8")
+(ROOT / "src/lib/time.timezone.test.ts").write_text("import { afterEach, describe, expect, it } from \"vitest\"\nimport { at, dayKey, hm, setTimeZone, TZ } from \"@/lib/time\"\n\nconst originalTimezone = TZ\nafterEach(() => setTimeZone(originalTimezone))\n\ndescribe(\"configurable business timezone\", () => {\n  it(\"uses the selected IANA zone for wall-clock booking times\", () => {\n    setTimeZone(\"Europe/Kyiv\")\n    const start = at(\"2026-06-01\", \"09:30\")\n    expect(start.toISOString()).toBe(\"2026-06-01T06:30:00.000Z\")\n    expect(hm(start)).toBe(\"09:30\")\n  })\n\n  it(\"applies winter and summer offsets from the IANA timezone database\", () => {\n    setTimeZone(\"Europe/Kyiv\")\n    expect(at(\"2026-01-15\", \"09:00\").toISOString()).toBe(\"2026-01-15T07:00:00.000Z\")\n    expect(at(\"2026-07-15\", \"09:00\").toISOString()).toBe(\"2026-07-15T06:00:00.000Z\")\n  })\n\n  it(\"recalculates formatters when the saved timezone changes\", () => {\n    const instant = new Date(\"2026-01-01T23:30:00.000Z\")\n    setTimeZone(\"Europe/Berlin\")\n    expect(dayKey(instant)).toBe(\"2026-01-02\")\n    expect(hm(instant)).toBe(\"00:30\")\n    setTimeZone(\"America/New_York\")\n    expect(dayKey(instant)).toBe(\"2026-01-01\")\n    expect(hm(instant)).toBe(\"18:30\")\n  })\n})\n", encoding="utf-8")
+(ROOT / "src/lib/time.timezone.test.ts").write_text("import { afterEach, describe, expect, it } from \"vitest\"\nimport { at, dayKey, hm, setTimeZone, TZ } from \"@/lib/time\"\n\nconst originalTimezone = TZ\nafterEach(() => setTimeZone(originalTimezone))\n\ndescribe(\"configurable business timezone\", () => {\n  it(\"uses the selected IANA zone for wall-clock booking times\", () => {\n    setTimeZone(\"Europe/Kyiv\")\n    const start = at(\"2026-06-01\", \"09:30\")\n    expect(start.toISOString()).toBe(\"2026-06-01T06:30:00.000Z\")\n    expect(hm(start)).toBe(\"09:30\")\n  })\n\n  it(\"applies winter and summer offsets from the IANA timezone database\", () => {\n    setTimeZone(\"Europe/Kyiv\")\n    expect(at(\"2026-01-15\", \"09:00\").toISOString()).toBe(\"2026-01-15T07:00:00.000Z\")\n    expect(at(\"2026-07-15\", \"09:00\").toISOString()).toBe(\"2026-07-15T06:00:00.000Z\")\n  })\n\n  it(\"recalculates formatters when the saved timezone changes\", () => {\n    const instant = new Date(\"2026-01-01T23:30:00.000Z\")\n    setTimeZone(\"Europe/Berlin\")\n    expect(dayKey(instant)).toBe(\"2026-01-02\")\n    expect(hm(instant)).toBe(\"00:30\")\n    setTimeZone(\"America/New_York\")\n    expect(dayKey(instant)).toBe(\"2026-01-01\")\n    expect(hm(instant)).toBe(\"18:30\")\n  })\n})\n", encoding="utf-8")
 print("BOOKING_PERSISTENT_TIMEZONE_INSTALLED")
