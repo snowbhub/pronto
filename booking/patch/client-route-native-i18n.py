@@ -52,7 +52,7 @@ head=head.replace('staff={staff} onClose={() => setOpen(null)}','staff={staff} l
 head=head.replace('{formatDayShort(dayKey(r.next.startsAt))}','{new Intl.DateTimeFormat(locale==="uk"?"uk-UA":locale==="de"?"de-DE":"en-GB",{day:"numeric",month:"short",timeZone:"Europe/Berlin"}).format(new Date(r.next.startsAt))}')
 head,n=re.subn(r'\{`\$\{r.visits\} visits`\}', '{locale==="uk"?`${r.visits} ${r.visits%100>=11&&r.visits%100<=14?"візитів":r.visits%10===1?"візит":r.visits%10>=2&&r.visits%10<=4?"візити":"візитів"}`:locale==="de"?`${r.visits} ${r.visits===1?"Besuch":"Besuche"}`:`${r.visits} ${r.visits===1?"visit":"visits"}`}',head,count=1)
 if n!=1:raise RuntimeError('Client mobile visit markup changed')
-for raw in ['Client','Cliente','Visits','Visitas','Last visit','Última','Ticket','Loyalty','Fidelidad','Next booking','Próximo turno']:
+for raw in ['Client','Cliente','Visits','Visitas','Last visit','Last','Última','Ticket','Loyalty','Fidelidad','Next booking','Próximo turno']:
     head=head.replace('>'+raw+'<','>{tr('+repr(raw)+')}<')
 head=re.sub(r'placeholder="([^"]+)"',lambda m:'placeholder={tr('+repr(m.group(1))+')}',head)
 head,n=re.subn(r'(<p className="px-5 py-10 text-center text-\[13px\] text-ivory-3">)([^<]+)(</p>)',lambda m:m.group(1)+'{tr('+repr(m.group(2))+')}' +m.group(3),head,count=1)
