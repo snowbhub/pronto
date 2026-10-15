@@ -60,14 +60,32 @@ export function LocaleBridge(){
     let observer:MutationObserver|undefined
     let active=true
     let started=false
+    let clientStartTimer:number|undefined
+    let clientIdleTimer:number|undefined
+    const scheduleClientText=()=>{
+      if(clientIdleTimer!==undefined)window.clearTimeout(clientIdleTimer)
+      clientIdleTimer=window.setTimeout(()=>{
+        if(active&&location.pathname==="/clientes"&&document.documentElement.dataset.bookingClientsHydrated==="true"){
+          translateTree(document.body,locale)
+        }
+      },950)
+    }
     const start=()=>{
       if(!active||started)return
       if(location.pathname==="/clientes"&&document.documentElement.dataset.bookingClientsHydrated!=="true")return
       started=true
       locale=selectedLocale()
       document.documentElement.lang=locale
-      translateTree(document.body,locale)
+      if(location.pathname==="/clientes")scheduleClientText()
+      else translateTree(document.body,locale)
       observer=new MutationObserver(mutations=>{
+        // Next.js streamed client-directory segments can still hydrate after
+        // the first client component effect. Never rewrite their Text nodes
+        // in the same microtask as React's hydration.
+        if(location.pathname==="/clientes"){
+          scheduleClientText()
+          return
+        }
         const visited=new Set<Node>()
         for(const m of mutations){
           if(m.type==="characterData"){
@@ -87,8 +105,16 @@ export function LocaleBridge(){
     }
     // Hydrate the React streaming tree first. Changing server-rendered text while
     // its client components are hydrating produces React #418 mismatches.
-    const timer=window.setTimeout(start,450)
-    const onHydrated=()=>start()
+    const timer=window.setTimeout(()=>{
+      if(location.pathname==="/clientes")clientStartTimer=window.setTimeout(start,950)
+      else start()
+    },450)
+    const onHydrated=()=>{
+      if(location.pathname==="/clientes"){
+        if(clientStartTimer!==undefined)window.clearTimeout(clientStartTimer)
+        clientStartTimer=window.setTimeout(start,950)
+      }else start()
+    }
     window.addEventListener("booking:content-hydrated",onHydrated)
     const onLocale=()=>{
       locale=selectedLocale()
@@ -96,7 +122,7 @@ export function LocaleBridge(){
       if(observer)translateTree(document.body,locale)
     }
     window.addEventListener("booking:locale",onLocale)
-    return ()=>{active=false;clearTimeout(timer);observer?.disconnect();window.removeEventListener("booking:locale",onLocale);window.removeEventListener("booking:content-hydrated",onHydrated)}
+    return ()=>{active=false;clearTimeout(timer);if(clientStartTimer!==undefined)clearTimeout(clientStartTimer);if(clientIdleTimer!==undefined)clearTimeout(clientIdleTimer);observer?.disconnect();window.removeEventListener("booking:locale",onLocale);window.removeEventListener("booking:content-hydrated",onHydrated)}
   },[])
   return null
 }
