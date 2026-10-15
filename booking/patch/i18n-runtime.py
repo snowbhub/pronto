@@ -106,7 +106,7 @@ const MONTH_GROUPS=[
 ]
 const MONTH_ALIASES:Record<string,number>={}
 for(let i=0;i<MONTH_GROUPS.length;i++)for(const alias of MONTH_GROUPS[i].aliases)MONTH_ALIASES[alias]=i
-const SHORT_MONTH_ALIASES=new Set(MONTH_GROUPS.flatMap(m=>m.aliases.filter(a=>a.length<=4)))
+const SHORT_MONTH_ALIASES=new Set(["jan","ene","feb","mar","abr","apr","jun","jul","ago","aug","sep","sept","oct","okt","nov","dez","dec","січ","лют","бер","квіт","трав","черв","лип","серп","вер","жовт","лист","груд"])
 const DAY_FORMS=[
   {en:["Sunday","Sun"],de:["Sonntag","So."],uk:["неділя","нд"]},
   {en:["Monday","Mon"],de:["Montag","Mo."],uk:["понеділок","пн"]},
@@ -120,6 +120,9 @@ const escapeRegex=(value:string)=>value.replace(/[.*+?^$(){}|[\]\\]/g,"\\const c
 const tokenPattern=(tokens:string[])=>tokens.sort((a,b)=>b.length-a.length).map(escapeRegex).join("|")
 const DATE_DAYS=tokenPattern(Object.keys(DAY_ALIASES))+"\\.?"
 const DATE_MONTHS=tokenPattern(Object.keys(MONTH_ALIASES))+"\\.?"
+function cleanCalendarPunctuation(text:string,locale:Locale){
+  return locale==="uk"?text.replace(/(\d{1,2}\s+(?:січ|лют|бер|квіт|трав|черв|лип|серп|вер|жовт|лист|груд)\.)\./gu,"$1"):text
+}
 function dateWord(value:string){return value.toLocaleLowerCase("uk").replace(/\./g,"")}
 function calendarDateText(value:string,locale:Locale):string{
   let out=value
@@ -187,13 +190,13 @@ export function translateText(value:string,locale:Locale):string{
     const translated=locale==="en"?exact.en:locale==="de"?exact.de:exact.uk
     const first=value.indexOf(middle)
     const final=value.slice(0,first)+translated+value.slice(first+middle.length)
-    const answer=grammar(final,locale)
+    const answer=cleanCalendarPunctuation(grammar(final,locale),locale)
     if(cache.size>2400)cache.clear()
     cache.set(key,answer)
     return answer
   }
   const canonical=replaceOnce(value,spanishEntries)
-  const output=grammar(locale==="en"?canonical:replaceOnce(canonical,localeEntries[locale]),locale)
+  const output=cleanCalendarPunctuation(grammar(locale==="en"?canonical:replaceOnce(canonical,localeEntries[locale]),locale),locale)
   if(cache.size>2400)cache.clear()
   cache.set(key,output)
   return output
