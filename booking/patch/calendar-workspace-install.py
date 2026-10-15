@@ -6,28 +6,30 @@ p=root/"src/components/agenda/day-grid.tsx"
 s=p.read_text(encoding="utf-8")
 needle='  const visibleStaff=mobileMode?staff.filter(s=>s.id===selectedStaffId):staff'
 if needle not in s:raise RuntimeError("Expected responsive timeline patch missing")
-s=s.replace(needle,'''  const [displayMode,setDisplayMode]=useState<"team"|"single">("team")
+s=s.replace(needle,'''  const [displayMode,setDisplayMode]=useState<"team"|"single">("single")
   const visibleStaff=mobileMode&&displayMode==="single"?staff.filter(s=>s.id===selectedStaffId):staff''')
 start=s.index('        {mobileMode && staff.length>0 && <div className="grid grid-cols-2')
 end=s.index('        <div className={mobileMode?',start)
 s=s[:start]+'''        {mobileMode && staff.length>0 && <div className="border-b border-line p-2.5">
           <div className="grid grid-cols-2 gap-2 rounded-xl border border-line-strong bg-surface-1 p-1">
-            <button type="button" aria-pressed={displayMode==="team"} onClick={()=>setDisplayMode("team")}
+            <button type="button" data-testid="calendar-view-team" aria-pressed={displayMode==="team"} onClick={()=>setDisplayMode("team")}
               className={cn("rounded-lg px-3 py-2.5 text-xs font-semibold transition-colors",displayMode==="team"?"bg-surface-3 text-ivory":"text-ivory-3")}>Team · all barbers</button>
-            <button type="button" aria-pressed={displayMode==="single"} onClick={()=>setDisplayMode("single")}
+            <button type="button" data-testid="calendar-view-single" aria-pressed={displayMode==="single"} onClick={()=>setDisplayMode("single")}
               className={cn("rounded-lg px-3 py-2.5 text-xs font-semibold transition-colors",displayMode==="single"?"bg-surface-3 text-ivory":"text-ivory-3")}>One barber</button>
           </div>
-          {displayMode==="single" && <div className="mt-2 flex gap-1.5 overflow-x-auto">
-            {staff.map(member=><button key={member.id} type="button" onClick={()=>setSelectedStaffId(member.id)}
-              className={cn("shrink-0 rounded-lg border px-3 py-2 text-xs",selectedStaffId===member.id?"border-ivory-2 bg-surface-3":"border-line bg-surface-1")}>
-              {member.name}
-            </button>)}
-          </div>}
+          {displayMode==="single" && <label className="mt-2 flex min-w-0 items-center gap-2">
+            <span className="shrink-0 text-xs font-medium text-ivory-3">Barber</span>
+            <select data-testid="calendar-barber-select" aria-label="Select barber" value={selectedStaffId}
+              onChange={e=>setSelectedStaffId(e.target.value)}
+              className="min-h-11 min-w-0 flex-1 rounded-lg border border-line-strong bg-surface-2 px-3 text-sm font-semibold text-ivory outline-none focus-visible:ring-2 focus-visible:ring-ivory-2">
+              {staff.map(member=><option key={member.id} value={member.id}>{member.name}</option>)}
+            </select>
+          </label>}
         </div>}
 ''' + s[end:]
 s=s.replace('''<div className={mobileMode?"overflow-x-hidden":"overflow-x-auto scroll-thin"}>
           <div className={mobileMode?"w-full min-w-0":"min-w-[620px]"}>''',
-'''<div data-calendar-scroll className={mobileMode&&displayMode==="single"?"overflow-x-hidden":"overflow-x-auto scroll-thin"}>
+'''<div data-calendar-scroll data-visible-staff={visibleStaff.length} data-display-mode={displayMode} className={mobileMode&&displayMode==="single"?"overflow-x-hidden":"overflow-x-auto scroll-thin"}>
           <div style={mobileMode&&displayMode==="team"?{minWidth:56+Math.max(1,visibleStaff.length)*150}:undefined}
             className={mobileMode&&displayMode==="single"?"w-full min-w-0":!mobileMode?"min-w-[620px]":"w-full"}>''')
 s=s.replace('''<span className="truncate">{service.name}</span>''','''<span className="truncate">{service.name}</span>
