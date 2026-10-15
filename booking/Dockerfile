@@ -39,6 +39,7 @@ RUN python3 /tmp/booking-patch/booking-dialog-mobile.py
 RUN python3 /tmp/booking-patch/calendar-card-polish.py
 RUN python3 /tmp/booking-patch/settings-organization.py
 RUN python3 /tmp/booking-patch/clients-hydration.py
+RUN python3 /tmp/booking-patch/clients-client-only.py
 RUN python3 /tmp/booking-patch/qa-ui-copy-repair.py
 RUN python3 /tmp/booking-patch/manual-ui-polish.py
 RUN python3 /tmp/booking-patch/finance-paragraph-final.py
