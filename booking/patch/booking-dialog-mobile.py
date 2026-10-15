@@ -6,6 +6,7 @@ replacements=[
  ("className=\"num ml-auto h-8 w-40 rounded-md","className=\"num ml-auto h-10 min-w-0 w-full sm:w-40 rounded-md"),
  ("className=\"grid grid-cols-2 gap-2 sm:grid-cols-3\"","className=\"grid min-w-0 grid-cols-2 gap-2 sm:grid-cols-3\""),
  ("className=\"grid grid-cols-4 gap-1.5 sm:grid-cols-6\"","className=\"grid min-w-0 grid-cols-3 gap-2 sm:grid-cols-6\""),
+ ("className=\"min-w-[68px] px-2 py-2 text-center\"","className=\"h-auto w-[68px] min-w-[68px] shrink-0 px-2 py-2 text-center\""),
  ("<div className=\"space-y-6 px-6 py-5\">","<div className=\"min-w-0 space-y-6 px-4 py-5 sm:px-6\">"),
 ]
 for old,new in replacements:
