@@ -152,7 +152,7 @@ export function TimeZoneSettingsForm({ value }: { value: string }) {
         >
           {!TIMEZONE_OPTIONS.includes(timezone as typeof TIMEZONE_OPTIONS[number]) && <option value={timezone}>{timezone}</option>}
           {TIMEZONE_OPTIONS.map((zone) => (
-            <option key={zone} value={zone}>{names[zone]} · {zone}</option>
+            <option key={zone} value={zone} data-i18n-skip="true">{names[zone]} · {zone}</option>
           ))}
         </select>
         <span className="mt-1.5 block text-[12px] text-ivory-3">{copy.help}</span>

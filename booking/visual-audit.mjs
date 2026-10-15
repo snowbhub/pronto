@@ -109,6 +109,8 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
      if(mixedCopy)errors.push({device:device.id,locale,name,type:"mixed-language-settings-copy",detail:mixedCopy[0]})
      if(name==="settings-business"&&/Argentina \(UTC−3\)/.test(metrics.visibleText))
        errors.push({device:device.id,locale,name,type:"timezone-label-does-not-match-configured-timezone",detail:"Argentina (UTC−3)"})
+     if(name==="settings-business"&&locale!=="en"&&(metrics.visibleText.includes("America/Новий_York")||metrics.visibleText.includes("America/Neu_York")))
+       errors.push({device:device.id,locale,name,type:"timezone-identifier-was-translated",detail:"IANA identifiers must stay unchanged"})
      if(locale!=="en"&&name==="settings-business"&&/\bAnalytics\b/.test(metrics.visibleText))
        errors.push({device:device.id,locale,name,type:"untranslated-settings-analytics-link",detail:"Analytics"})
      if(locale==="uk"&&/\b(?:30|45|60)\s+min\b/.test(metrics.visibleText))
@@ -261,6 +263,29 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
         await logFrame("switch-to-english",route)
         await switcher.selectOption("uk");await page.waitForTimeout(150)
         await logFrame("switch-back-to-ukrainian",route)
+      }
+    }
+    if(name==="settings-business"&&device.id==="desktop"&&locale==="en"){
+      try{
+        for(const expected of ["Europe/Kyiv","Europe/Berlin"]){
+          const zone=page.getByLabel("Business time zone")
+          if(await zone.inputValue()!==expected){
+            await zone.selectOption(expected)
+            const save=page.getByRole("button",{name:"Save",exact:true})
+            await Promise.all([
+              page.waitForNavigation({waitUntil:"domcontentloaded",timeout:15000}),
+              save.click()
+            ])
+            await page.waitForTimeout(450)
+          }
+          const persisted=await page.getByLabel("Business time zone").inputValue()
+          if(persisted!==expected){
+            errors.push({device:device.id,locale,name,type:"timezone-setting-not-persistent",detail:"Expected "+expected+" after reload; got "+persisted})
+            break
+          }
+        }
+      }catch(e){
+        errors.push({device:device.id,locale,name,type:"timezone-setting-save-failed",detail:String(e).slice(0,280)})
       }
     }
     if(name==="settings-team"){
