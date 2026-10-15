@@ -44,6 +44,7 @@ RUN python3 /tmp/booking-patch/manual-ui-polish.py
 RUN python3 /tmp/booking-patch/finance-paragraph-final.py
 RUN python3 /tmp/booking-patch/analytics-ai-manual-final.py
 RUN python3 /tmp/booking-patch/date-cash-polish.py
+RUN python3 /tmp/booking-patch/cash-count-final.py
 RUN python3 /tmp/booking-patch/slot-warning-locales.py
 RUN python3 /tmp/booking-patch/calendar-staff-photos.py
 RUN python3 /tmp/booking-patch/ui-source-audit.py
