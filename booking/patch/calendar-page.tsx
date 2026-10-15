@@ -4,7 +4,7 @@ import { DayGrid } from "@/components/agenda/day-grid"
 import { NewAppointmentButton } from "@/components/agenda/new-appointment-button"
 import { getAgenda } from "@/lib/data/queries"
 import { now, db } from "@/lib/data/repo"
-import { addDays,dayKey,formatDayLong,WEEKDAY_SHORT,weekday,hm } from "@/lib/time"
+import { addDays,dayKey,formatDayLong,formatDayShort,WEEKDAY_SHORT,weekday,hm } from "@/lib/time"
 import { cn } from "@/lib/utils"
 
 export const metadata={title:"Calendar | Booking"}
@@ -24,7 +24,7 @@ export default async function AgendaPage({searchParams}:PageProps<"/agenda">){
        <div className="flex min-w-0 items-center gap-0.5">
          <Link href={link(addDays(d.day,mode==="week"?-7:-1))} aria-label="Previous date" className="grid size-9 shrink-0 place-items-center rounded-lg border border-line-strong"><ChevronLeft className="size-4"/></Link>
          <div className="min-w-0 px-2 text-center">
-           <h1 className="max-w-[175px] truncate text-sm font-semibold capitalize text-ivory sm:max-w-none sm:text-base">{formatDayLong(d.day)}</h1>
+           <h1 className="min-w-0 truncate text-sm font-semibold capitalize text-ivory sm:text-base"><span className="sm:hidden">{formatDayShort(d.day)}</span><span className="hidden sm:inline">{formatDayLong(d.day)}</span></h1>
          </div>
          <Link href={link(addDays(d.day,mode==="week"?7:1))} aria-label="Next date" className="grid size-9 shrink-0 place-items-center rounded-lg border border-line-strong"><ChevronRight className="size-4"/></Link>
        </div>
