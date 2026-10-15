@@ -150,6 +150,23 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
         errors.push({device:device.id,locale,name,type:"untranslated-navigation-shell",detail:shellText.slice(0,350)})
       }
     }
+    if(name==="clients"&&locale==="uk"){
+      const language=page.locator('select[aria-label="Interface language"]').first()
+      await language.selectOption("de")
+      await page.waitForFunction(()=>{
+        const header=document.querySelector(".booking-app-header span[data-i18n-skip]")?.textContent?.trim()
+        return header==="Kunden"&&document.body.innerText.includes("KUNDENSTAMM")
+      },null,{timeout:15000})
+      await page.waitForTimeout(1000)
+      await logFrame("clients-switch-de",route)
+      await language.selectOption("uk")
+      await page.waitForFunction(()=>{
+        const header=document.querySelector(".booking-app-header span[data-i18n-skip]")?.textContent?.trim()
+        return header==="Клієнти"&&document.body.innerText.includes("КЛІЄНТСЬКА БАЗА")
+      },null,{timeout:15000})
+      await page.waitForTimeout(1000)
+      await logFrame("clients-switch-uk",route)
+    }
     if(name==="calendar-day"&&device.id==="iphone"){
      const grid=page.locator('[data-calendar-scroll]').first()
      if(await grid.count()){
