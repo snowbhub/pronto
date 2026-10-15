@@ -27,4 +27,6 @@ p.write_text(s,encoding='utf-8')
 p=Path('/app/src/components/clients/clients-view.tsx')
 s=p.read_text(encoding='utf-8')
 s=s.replace('{timeAgo(r.lastVisit, n)}','{tr(timeAgo(r.lastVisit, n))}')
+s=s.replace('const tr=(value:string)=>translateText(value,locale)',
+            'const tr=(value:string)=>value==="Last"?(locale==="uk"?"Останній візит":locale==="de"?"Letzter Besuch":"Last"):value==="now"?(locale==="uk"?"щойно":locale==="de"?"gerade eben":"now"):translateText(value,locale)',1)
 print('BOOKING_CLIENTS_SHELL_SAFE_LOCALE_ENABLED')
