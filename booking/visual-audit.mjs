@@ -131,6 +131,15 @@ for(const device of [{id:"iphone",width:390,height:844,isMobile:true},{id:"deskt
     }
     if(!response||response.status()>=400)errors.push({device:device.id,locale,name,type:"http",detail:response?.status()})
     await logFrame(name,route)
+    if(name==="clients"&&locale!=="en"){
+      const shellText=await page.evaluate(()=>{
+        const roots=[...document.querySelectorAll("aside,nav,.booking-app-header")].filter(el=>!el.closest("main"))
+        return roots.map(el=>el.textContent||"").join(" | ")
+      })
+      if(/\b(Today|Schedule|Inbox|More|Settings|Clients|Finance|Cash|Administrator)\b/.test(shellText)){
+        errors.push({device:device.id,locale,name,type:"untranslated-navigation-shell",detail:shellText.slice(0,350)})
+      }
+    }
     if(name==="calendar-day"&&device.id==="iphone"){
      const grid=page.locator('[data-calendar-scroll]').first()
      if(await grid.count()){
