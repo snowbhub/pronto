@@ -633,3 +633,66 @@ css += '''
 '''
 css_path.write_text(css, encoding='utf-8')
 print('CALENDAR_BARBER_HEADER_COMPACT_AND_ALIGNED')
+
+
+# Pin the hour rail to the left and keep its labels below the date toolbar;
+# make the calendar utility drawer consistently enter from the right.
+p = root / 'src/components/shell/booking-workspace-shell.tsx'
+s = p.read_text(encoding='utf-8')
+s, n = re.subn(
+    r'(<aside className=\{"fixed inset-y-0 )left-0(.*?\+\(open\?"visible translate-x-0":"invisible )-translate-x-full',
+    r'\1right-0\2translate-x-full',
+    s,
+    count=1,
+    flags=re.S,
+)
+# It may already be right-aligned from the earlier device pass; in either case,
+# keep the drawer on the right and close it with a rightward swipe.
+if n == 0 and 'fixed inset-y-0 right-0' not in s:
+    raise RuntimeError("Calendar drawer could not be anchored to the right")
+s = s.replace('border-r border-line bg-obsidian p-4', 'border-l border-line bg-obsidian p-4', 1)
+if 'onTouchEnd={(event)=>' not in s:
+    needle = 'aria-label="Calendar menu" aria-hidden={!open} inert={!open}>'
+    if needle not in s:
+        raise RuntimeError("Calendar drawer touch handler insertion point missing")
+    s = s.replace(needle, '''aria-label="Calendar menu" aria-hidden={!open} inert={!open}
+       onTouchStart={(event)=>{const t=event.touches[0];menuTouch.current={x:t.clientX,y:t.clientY}}}
+       onTouchEnd={(event)=>{const start=menuTouch.current;menuTouch.current=null;if(!start)return;const t=event.changedTouches[0];const dx=t.clientX-start.x;const dy=t.clientY-start.y;if(dx>56&&Math.abs(dx)>Math.abs(dy))setOpen(false)}}>''',1)
+if 'menuTouch=useRef' not in s:
+    s = s.replace(' const [open,setOpen]=useState(false)', ' const [open,setOpen]=useState(false)\n const menuTouch=useRef<{x:number;y:number}|null>(null)',1)
+    s = s.replace('import { useState } from "react"', 'import { useRef, useState } from "react"',1)
+p.write_text(s, encoding='utf-8')
+
+css_path = root / 'src/app/globals.css'
+css = css_path.read_text(encoding='utf-8')
+css += '''
+@media(max-width:767px){
+ [data-booking-workspace="calendar"] [data-time-rail]{
+   position:sticky!important;
+   left:0!important;
+   z-index:8!important;
+   background:#090909!important;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header]{
+   z-index:45!important;
+   background:#151515!important;
+ }
+ [data-booking-workspace="calendar"] [data-calendar-toolbar]{
+   position:sticky!important;
+   top:0!important;
+   z-index:80!important;
+   background:#090909!important;
+ }
+}
+'''
+css_path.write_text(css, encoding='utf-8')
+
+# Mark the date row explicitly so the time gutter cannot float over its content.
+p = root / 'src/app/(panel)/agenda/page.tsx'
+s = p.read_text(encoding='utf-8')
+if 'data-calendar-toolbar' not in s:
+    s, n = re.subn(r'(<div className="sticky top-0 z-50 -mx-2 border-b border-line bg-obsidian[^"]*")', r'\1 data-calendar-toolbar', s, count=1)
+    if n != 1:
+        raise RuntimeError("Calendar sticky date toolbar not found")
+    p.write_text(s, encoding='utf-8')
+print('CALENDAR_TIME_RAIL_LEFT_AND_RIGHT_DRAWER_ENFORCED')
