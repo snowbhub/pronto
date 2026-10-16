@@ -1015,3 +1015,10 @@ s = s.replace('appointmentLayoutByKey.get(`${start}:${end}:${client?.id}:${servi
 s = s.replace('appointmentLayoutByKey.get(start + ":" + end + ":" + client?.id + ":" + service.id)', 'appointmentLayoutByKey.get(start + ":" + end)')
 p.write_text(s, encoding='utf-8')
 print('CALENDAR_OVERLAP_LANES_KEYED_BY_INTERVAL')
+
+
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+s = re.sub(r'^\s*const cardLayout = appointmentLayoutByKey\.get\(.*?\) \?\? \{ lane: 0, count: 1 \}\n', '', s, count=1, flags=re.M)
+p.write_text(s, encoding='utf-8')
+print('CALENDAR_UNUSED_CARD_LAYOUT_BINDING_REMOVED')
