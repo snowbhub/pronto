@@ -179,12 +179,11 @@ s = s.replace('''        <div ref={staffScrollRef} data-calendar-scroll aria-lab
           <div data-calendar-grid className={mobileMode?"min-w-full":"min-w-[620px]"} style={{minWidth:mobileMode&&workingStaff.length>3?44+staff.length*112:undefined}}>'''.replace('+',''), '''        <div data-calendar-scroll aria-label="Barber timeline" data-visible-staff={visibleStaff.length} data-total-staff={workingStaff.length} className="min-w-0 overflow-x-hidden overflow-y-hidden overscroll-x-none">
           <div data-calendar-grid className={mobileMode?"w-full min-w-0":"min-w-[620px]"}>'''.replace('+',''), 1)
 s = s.replace('gridTemplateColumns: "44px repeat("+staff.length+", minmax("+(mobileMode&&workingStaff.length>3?"112px":"0px")+",1fr))"', 'gridTemplateColumns: "44px repeat("+visibleStaff.length+", minmax(0,1fr))"', 2)
-s = s.replace('<div className="sticky left-0 z-30 bg-obsidian" />', '''<div className="sticky left-0 z-30 flex items-center justify-center gap-0.5 bg-obsidian">
-                {mobileMode && workingStaff.length>3 && <>
-                  <button type="button" aria-label="←" disabled={staffPage===0} onClick={()=>setStaffPage((page)=>Math.max(0,page-1))} className="grid size-[19px] place-items-center rounded border border-line text-ivory-2 disabled:opacity-30"><ChevronLeft className="size-3.5"/></button>
-                  <button type="button" aria-label="→" disabled={staffPage>=workingStaff.length-3} onClick={()=>setStaffPage((page)=>Math.min(workingStaff.length-3,page+1))} className="grid size-[19px] place-items-center rounded border border-line text-ivory-2 disabled:opacity-30"><ChevronRight className="size-3.5"/></button>
-                </>}
-              </div>'''.replace('+',''), 1)
+# Put the paging controls beside the barber names and subtly pin the header.
+s = s.replace('<div data-staff-header className="grid border-b border-line"', '<div data-staff-header className="relative grid border-b border-line bg-surface-1 shadow-sm"', 1)
+s = s.replace('<div className="sticky left-0 z-30 bg-obsidian" />', '''<div className="sticky left-0 z-30 bg-obsidian" />
+              {mobileMode && workingStaff.length>3 && staffPage>0 && <button type="button" aria-label="Попередні барбери" onClick={()=>setStaffPage((page)=>Math.max(0,page-1))} className="absolute left-1 top-1/2 z-50 grid size-7 -translate-y-1/2 place-items-center rounded-full border border-line-strong bg-surface-2 shadow"><ChevronLeft className="size-4"/></button>}
+              {mobileMode && workingStaff.length>3 && staffPage<workingStaff.length-3 && <button type="button" aria-label="Наступні барбери" onClick={()=>setStaffPage((page)=>Math.min(workingStaff.length-3,page+1))} className="absolute right-1 top-1/2 z-50 grid size-7 -translate-y-1/2 place-items-center rounded-full border border-line-strong bg-surface-2 shadow"><ChevronRight className="size-4"/></button>}''', 1)
 s = s.replace('border-l-amber-500 bg-amber-400/15 ring-1 ring-amber-400/25 ring-inset', 'border-l-amber-500 bg-amber-300/20 ring-1 ring-amber-300/30 ring-inset', 1)
 s = s.replace('border-l-orange-500 bg-orange-400/15 ring-1 ring-orange-400/25 ring-inset', 'border-l-emerald-500 bg-emerald-400/15 ring-1 ring-emerald-400/30 ring-inset', 1)
 s = s.replace('a.status === "confirmado" && "border-l-orange-500 bg-orange-400/15 ring-1 ring-orange-400/25 ring-inset"', 'a.status === "confirmado" && "border-l-sky-400 bg-sky-300/15 ring-1 ring-sky-300/30 ring-inset"', 1)
@@ -193,6 +192,14 @@ s = s.replace('a.status === "pendiente" && "border-l-orange-500 bg-orange-400/15
 s = s.replace('bg-amber-400/10 bg-[repeating-linear-gradient(135deg,transparent_0_6px,rgb(180_120_20/0.035)_6px_12px)]', 'bg-surface-2/70', 1)
 s = s.replace('const minutes = openMin + Math.floor((e.clientY - rect.top) / PX_PER_MIN / 15) * 15', 'const gridStep = 15\n    const minutes = openMin + Math.floor((e.clientY - rect.top) / PX_PER_MIN / gridStep) * gridStep', 1)
 s = s.replace("staff.length>3", "workingStaff.length>3").replace("staff.length-3", "workingStaff.length-3")
+# Render the existing professional level under each staff name.
+staff_header = s.index('data-staff-header')
+rank_anchor = '{s.name}</span>'
+rank_at = s.find(rank_anchor, staff_header)
+if rank_at < 0: raise RuntimeError('Staff name in calendar header is missing')
+rank_at += len(rank_anchor)
+s = s[:rank_at] + '\n                      <span className="block truncate text-[10px] font-medium text-ivory-3">{{trainee:"Стажер",junior:"Молодший барбер",barber:"Барбер",senior:"Старший барбер"}[s.professionalLevel ?? "barber"]}</span>' + s[rank_at:]
+s = s.replace('top: (m - openMin) * PX_PER_MIN', 'top: (m - openMin) * PX_PER_MIN + 8', 1)
 p.write_text(s, encoding='utf-8')
 
 # Calendar settings action and date-specific staff-schedule action.
@@ -326,6 +333,7 @@ s = s.replace('Math.floor((e.clientY - rect.top) / PX_PER_MIN / gridStep) * grid
 s = s.replace('const gridStep = 15\n    ', '',1)
 s = s.replace('{hours.slice(0, -1).map((m) => (', '{Array.from({length:Math.ceil((closeMin-openMin)/shopSettings.calendarStepMin)},(_,i)=>openMin+(i+1)*shopSettings.calendarStepMin).filter(m=>m<closeMin).map((m) => (',1)
 s = s.replace('top: (m + 30 - openMin) * PX_PER_MIN', 'top: (m - openMin) * PX_PER_MIN',1)
+s = s.replace('top: (m - openMin) * PX_PER_MIN', 'top: (m - openMin) * PX_PER_MIN + 8',1)
 p.write_text(s,encoding='utf-8')
 
 # Migration adds specific-date schedules, shop operating hours, calendar step,
@@ -359,4 +367,15 @@ s = s.replace('async createAppointment({ appointment, newClient, linkConversatio
 p.write_text(s,encoding='utf-8')
 
 # Copy/apply migration and this source transformation as the final build patch.
+css_path = root / 'src/app/globals.css'
+css = css_path.read_text(encoding='utf-8')
+css += '''
+@media(max-width:767px){
+ [data-booking-workspace="calendar"] [data-calendar-scroll]{overflow-x:clip!important;overflow-y:visible!important;}
+ [data-booking-workspace="calendar"] [data-staff-header]{position:sticky;top:calc(env(safe-area-inset-top) + 48px);z-index:40;background-color:#151515;backdrop-filter:blur(10px);}
+ [data-booking-workspace="calendar"] [data-calendar-grid]{padding-bottom:calc(88px + env(safe-area-inset-bottom));}
+ [data-booking-workspace="calendar"] [data-time-rail]{z-index:20;}
+}
+'''
+css_path.write_text(css, encoding='utf-8')
 print('CALENDAR_RIGHT_DRAWER_SCHEDULES_SETTINGS_INSTALLED')
