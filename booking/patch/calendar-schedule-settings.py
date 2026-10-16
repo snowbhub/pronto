@@ -992,3 +992,15 @@ s = re.sub(r'left: `calc\(\$\{.*?\}% \+ 4px\)`', 'left: `calc(${cardLayout.lane 
 s = re.sub(r'width: `calc\(\$\{.*?\}% - 8px\)`', 'width: `calc(${100 / cardLayout.count}% - 8px)`', s, count=1)
 p.write_text(s, encoding='utf-8')
 print('CALENDAR_CARD_LANES_RESOLVED_WITH_SCOPED_LAYOUT')
+
+
+# Inline the composite lane lookup at the card position (no alias-dependent binding).
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+lane_expr = 'appointmentLayoutByKey.get(start + ":" + end + ":" + client?.id + ":" + service.id)'
+s = s.replace('left: `calc(${cardLayout.lane * 100 / cardLayout.count}% + 4px)`',
+              'left: `calc(${((' + lane_expr + '?.lane ?? 0) * 100) / (' + lane_expr + '?.count ?? 1)}% + 4px)`')
+s = s.replace('width: `calc(${100 / cardLayout.count}% - 8px)`',
+              'width: `calc(${100 / (' + lane_expr + '?.count ?? 1)}% - 8px)`')
+p.write_text(s, encoding='utf-8')
+print('CALENDAR_CARD_LANES_INLINE_LOOKUP')
