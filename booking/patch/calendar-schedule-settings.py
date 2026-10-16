@@ -698,8 +698,7 @@ if 'data-calendar-toolbar' not in s:
 print('CALENDAR_TIME_RAIL_LEFT_AND_RIGHT_DRAWER_ENFORCED')
 
 
-# Current-time marker: put the digital clock in the sticky hour rail itself so it
-# cannot be covered by the barber columns, while the rule spans the full grid.
+# Current-time marker: keep one live line aligned with the sticky hour rail.
 p = root / 'src/components/agenda/day-grid.tsx'
 s = p.read_text(encoding='utf-8')
 if 'const [currentClock,setCurrentClock]' not in s:
@@ -711,29 +710,37 @@ if 'const [currentClock,setCurrentClock]' not in s:
   useEffect(()=>{const tick=()=>setCurrentClock(new Date());tick();const timer=window.setInterval(tick,15000);return()=>window.clearInterval(timer)},[])
 ''', 1)
 
-grid_open = '<div data-calendar-grid className="w-full min-w-0">'
-if grid_open not in s:
-    raise RuntimeError("Compact calendar grid insertion point missing")
-s=s.replace(grid_open, '<div data-calendar-grid className="relative w-full min-w-0">', 1)
-marker = '''            {isToday && currentClock.getHours()*60+currentClock.getMinutes()>=openMin && currentClock.getHours()*60+currentClock.getMinutes()<=closeMin && <div aria-hidden data-current-time-indicator className="pointer-events-none absolute inset-x-0 z-40" style={{top:112+(currentClock.getHours()*60+currentClock.getMinutes()-openMin)*PX_PER_MIN}}>
-              <span className="absolute left-0 top-0 z-10 -translate-y-1/2 rounded-md bg-[#202020] px-1.5 py-0.5 font-mono text-[12px] font-semibold leading-5 text-amber-300 shadow-md">{String(currentClock.getHours()).padStart(2,"0")}:{String(currentClock.getMinutes()).padStart(2,"0")}</span>
-              <span className="absolute left-[40px] right-[32px] top-0 h-[2px] -translate-y-1/2 bg-[#f4f4f4] shadow-[0_0_3px_rgba(255,255,255,.28)]"/>
-            </div>}
+# Use one clock source for both the badge and rule, and anchor the badge to the
+# actual hour rail instead of estimating the barber-header height.
+s = s.replace('const nowMin = minutesOfDay(now)', 'const nowMin = currentClock.getHours()*60+currentClock.getMinutes()', 1)
+rail_anchor = 'data-time-rail className="sticky left-0 z-20 bg-obsidian">'
+if rail_anchor not in s:
+    raise RuntimeError("Calendar time rail not found")
+rail_anchor = 'data-time-rail className="sticky left-0 z-20 bg-obsidian relative">'
+s = s.replace('data-time-rail className="sticky left-0 z-20 bg-obsidian">', rail_anchor, 1)
+
+# The existing timeline marker is the only line. Keep it one pixel, aligned
+# to the first barber column, and remove its old decorative dot.
+s = s.replace(
+    'className="pointer-events-none absolute right-0 left-[50px] z-20 flex items-center"',
+    'className="pointer-events-none absolute left-[40px] right-[32px] z-30"',
+    1,
+)
+s = s.replace(
+    '<span className="size-[7px] rounded-full bg-gold shadow-[0_0_10px_2px_rgb(214_179_106/0.5)]" />',
+    '',
+    1,
+)
+s = s.replace(
+    '<span className="h-px flex-1 bg-gold" />',
+    '<span className="block h-px w-full bg-white/65" />',
+    1,
+)
+
+badge = '''
+                {isToday && nowMin >= openMin && nowMin < closeMin && <span aria-hidden data-current-time-badge className="pointer-events-none absolute left-0 z-[100] -translate-y-1/2 whitespace-nowrap rounded-md border border-line-strong bg-[#202020] px-1.5 py-0.5 font-mono text-[12px] font-semibold leading-5 text-amber-300 shadow-md" style={{top:(nowMin-openMin)*PX_PER_MIN}}>{String(currentClock.getHours()).padStart(2,"0")}:{String(currentClock.getMinutes()).padStart(2,"0")}</span>}
 '''
-s=s.replace('<div data-calendar-grid className="relative w-full min-w-0">', '<div data-calendar-grid className="relative w-full min-w-0">\n'+marker, 1)
-# The clock badge belongs to the sticky rail, above its hour labels. The line
-# stays on the grid layer and starts exactly at the rail's right edge.
-s, badge_removed = re.subn(r'<span className="absolute left-0 top-0 z-10 .*?</span>', '', s, count=1)
-if badge_removed != 1:
-    raise RuntimeError("Current-time label markup was not found")
-rail_start = s.index('data-time-rail')
-rail_close_match = re.search(r'\n\s*</div>', s[rail_start:])
-if not rail_close_match:
-    raise RuntimeError("Calendar sticky hour rail end not found")
-rail_close = rail_start + rail_close_match.start()
-badge = '''                {isToday && currentClock.getHours()*60+currentClock.getMinutes()>=openMin && currentClock.getHours()*60+currentClock.getMinutes()<=closeMin && <span aria-hidden data-current-time-badge className="absolute left-0 z-[100] inline-flex -translate-y-1/2 items-center justify-center whitespace-nowrap rounded-md border border-line-strong bg-[#202020] px-1.5 py-0.5 font-mono text-[12px] font-bold leading-5 text-amber-300 shadow-md" style={{top:(currentClock.getHours()*60+currentClock.getMinutes()-openMin)*PX_PER_MIN}}>{String(currentClock.getHours()).padStart(2,"0")}:{String(currentClock.getMinutes()).padStart(2,"0")}</span>}
-'''
-s=s[:rail_close]+badge+s[rail_close:]
+s = s.replace(rail_anchor, rail_anchor + badge, 1)
 p.write_text(s, encoding='utf-8')
 
 # Render the drawer through a body portal. This escapes the calendar page's
@@ -766,7 +773,7 @@ if slide_count != 1 or 'translate-x-full pointer-events-none' not in aside:
     raise RuntimeError("Calendar drawer right-slide state is missing")
 aside=aside.replace('absolute inset-y-0 right-0 z-10', 'absolute inset-y-0 right-0 z-10 transition-transform duration-300 ease-out', 1)
 portal='''{portalReady && createPortal(
-       <div data-calendar-menu-layer className="fixed inset-0 z-[9999]">
+       <div data-calendar-menu-layer className={"fixed inset-0 z-[9999] "+(open?"pointer-events-auto":"pointer-events-none")}>
          <button type="button" aria-label="Close calendar menu" onClick={()=>setOpen(false)} aria-hidden={!open} className={"absolute inset-0 z-0 bg-black/60 transition-opacity duration-300 "+(open?"opacity-100 pointer-events-auto":"opacity-0 pointer-events-none")}/>
          '''+aside+'''
        </div>,
