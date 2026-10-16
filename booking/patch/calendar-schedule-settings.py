@@ -727,7 +727,7 @@ s, badge_removed = re.subn(r'<span className="absolute left-0 top-0 z-10 .*?</sp
 if badge_removed != 1:
     raise RuntimeError("Current-time label markup was not found")
 rail_start = s.index('data-time-rail')
-rail_close_match = re.search(r'\\n\\s*</div>', s[rail_start:])
+rail_close_match = re.search(r'\n\s*</div>', s[rail_start:])
 if not rail_close_match:
     raise RuntimeError("Calendar sticky hour rail end not found")
 rail_close = rail_start + rail_close_match.start()
