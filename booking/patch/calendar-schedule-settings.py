@@ -1022,3 +1022,71 @@ s = p.read_text(encoding='utf-8')
 s = re.sub(r'^\s*const cardLayout = appointmentLayoutByKey\.get\(.*?\) \?\? \{ lane: 0, count: 1 \}\n', '', s, count=1, flags=re.M)
 p.write_text(s, encoding='utf-8')
 print('CALENDAR_UNUSED_CARD_LAYOUT_BINDING_REMOVED')
+
+
+# Repair the mobile calendar layout from the latest user screenshot:
+# remove the leftover legacy service row (it duplicated the new card body),
+# make short bookings render only content that fits, and compact the staff strip.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+legacy_service = re.compile(
+    r'\\s*\\{!short && \\(\\s*<span className="flex items-center gap-1\\.5 text-\\[11\\.5px\\] text-ivory-3">[\\s\\S]*?</span>\\s*\\)\\}',
+)
+s, legacy_count = legacy_service.subn('', s, count=1)
+if legacy_count != 1:
+    raise RuntimeError('Legacy duplicate appointment service row was not found')
+# A 30-minute card keeps its time/status band and client name; services only
+# appear when there is enough vertical room for the extra line.
+s = s.replace('(end - start) * PX_PER_MIN >= 42', '(end - start) * PX_PER_MIN >= 48', 1)
+# Ensure appointment interiors never push text outside their rounded card.
+s = s.replace('"absolute overflow-hidden rounded-md border-l-[3px] text-left shadow-sm transition-[background-color,transform] hover:z-10 hover:-translate-y-px"',
+              '"absolute box-border flex flex-col overflow-hidden rounded-md border-l-[3px] text-left shadow-sm transition-[background-color,transform] hover:z-10 hover:-translate-y-px"', 1)
+p.write_text(s, encoding='utf-8')
+
+# Reduce the barber strip by 20% (112px -> 90px), move the avatar to the
+# upper-left, and keep avatar, name, and rank consistently left-aligned.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+s = s.replace('min-h-[112px] flex-col items-start justify-center gap-1 border-l border-line bg-[#151515] px-2 py-2',
+              'h-[90px] min-h-[90px] flex-col items-start justify-start gap-1 border-l border-line bg-[#151515] px-2 py-1', 1)
+s = s.replace('grid size-7 shrink-0 place-items-center overflow-hidden rounded-md',
+              'grid size-6 shrink-0 place-items-center overflow-hidden rounded-md', 1)
+s = s.replace('width={28} height={28}', 'width={24} height={24}', 1)
+s = s.replace('block h-[30px] w-full overflow-hidden break-words text-[13px] leading-[15px] font-medium text-ivory',
+              'block h-[30px] w-full overflow-hidden break-words text-left text-[12px] leading-[15px] font-medium text-ivory', 1)
+s = s.replace('block h-[14px] w-full truncate text-[11px] leading-[14px] font-medium text-ivory-3',
+              'block h-[14px] w-full truncate text-left text-[10px] leading-[14px] font-medium text-ivory-3', 1)
+p.write_text(s, encoding='utf-8')
+
+css_path = root / 'src/app/globals.css'
+css = css_path.read_text(encoding='utf-8')
+css += '''
+@media(max-width:767px){
+ [data-booking-workspace="calendar"] [data-staff-header] > div:not(:first-child):not([aria-hidden]){
+   box-sizing:border-box!important;
+   height:90px!important;
+   min-height:90px!important;
+   padding:4px 8px!important;
+   align-items:flex-start!important;
+   justify-content:flex-start!important;
+   text-align:left!important;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header] > div:not(:first-child):not([aria-hidden]) > span{
+   align-self:flex-start!important;
+   text-align:left!important;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header] > div:not(:first-child):not([aria-hidden]) img{
+   display:block!important;
+   width:24px!important;
+   height:24px!important;
+   object-fit:cover!important;
+   border-radius:6px!important;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header] > div:not(:first-child):not([aria-hidden]) button,
+ [data-booking-workspace="calendar"] [data-staff-header] > div:not(:first-child):not([aria-hidden]) a{
+   text-align:left!important;
+ }
+}
+'''
+css_path.write_text(css, encoding='utf-8')
+print('CALENDAR_CARD_OVERFLOW_AND_STAFF_HEADER_REPAIRED')
