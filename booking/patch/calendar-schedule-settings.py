@@ -355,9 +355,9 @@ ALTER TABLE appointments DROP CONSTRAINT IF EXISTS appointments_no_overlap;
 CREATE INDEX IF NOT EXISTS staff_schedule_overrides_day_idx ON staff_schedule_overrides(business_day);
 '''
 (Path('/tmp/booking-patch/0016_calendar_schedules.sql')).write_text(sql,encoding='utf-8')
-p = root/'scripts/migrate-booking.mjs'
+p = Path('/tmp/booking-patch/migrate-booking.mjs')
 s = p.read_text(encoding='utf-8')
-s = s.replace('\"0013_staff_avatars.sql\",\"0014_booking_checkins.sql\"', '\"0013_staff_avatars.sql\",\"0014_booking_checkins.sql\",\"0016_calendar_schedules.sql\"', 1)
+s = s.replace('\"0013_staff_avatars.sql\",\"0014_booking_checkins.sql\"', '\"0013_staff_avatars.sql\",\"0014_booking_checkins.sql\",\"0015_timezone.sql\",\"0016_calendar_schedules.sql\"', 1)
 p.write_text(s,encoding='utf-8')
 
 # Enforce collision rules under a per-staff/day transaction lock. Only manual
