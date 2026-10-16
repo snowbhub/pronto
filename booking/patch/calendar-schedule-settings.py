@@ -929,3 +929,21 @@ s = s.replace('''(a.status === "cancelado" || a.status === "no_show") && "border
 
 p.write_text(s, encoding='utf-8')
 print('CALENDAR_SCALE_STATUS_BANDS_OVERLAP_LANES_ACTIVE_GLOW_INSTALLED')
+
+
+# Make the new card layout resilient to upstream import and whitespace variants.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+def ensure_calendar_icons(match):
+    names = [name.strip() for name in match.group(1).split(',') if name.strip()]
+    for name in ('Check', 'Clock3', 'X'):
+        if name not in names: names.append(name)
+    return 'import { ' + ', '.join(names) + ' } from "lucide-react"'
+s, import_count = re.subn(r'import\s*\{([^}]+)\}\s*from\s*"lucide-react"', ensure_calendar_icons, s, count=1)
+if import_count != 1: raise RuntimeError('Lucide icon import not found for appointment status header')
+if 'const layout = appointmentLayout.get(a.id)' not in s:
+    marker = 'const timeIcon = a.status === "completado"'
+    if marker not in s: raise RuntimeError('Appointment status icon insertion point missing')
+    s = s.replace(marker, 'const layout = appointmentLayout.get(a.id) ?? { lane: 0, count: 1 }\n                      ' + marker, 1)
+p.write_text(s, encoding='utf-8')
+print('CALENDAR_CARD_LAYOUT_IMPORTS_FIXED')
