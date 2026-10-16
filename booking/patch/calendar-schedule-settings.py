@@ -969,3 +969,26 @@ card = match.group(0).replace('.map((a) => {', '.map((appointment) => {', 1).rep
 s = s[:match.start()] + card + s[match.end():]
 p.write_text(s, encoding='utf-8')
 print('CALENDAR_APPOINTMENT_RENDERER_BINDING_EXPLICIT')
+
+
+# Resolve the card layout using stable visible fields, avoiding JSX alias capture.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+key_block = '''  const appointmentLayoutByKey = new Map<string, { lane: number; count: number }>()
+  for (const item of appointments) {
+    const layout = appointmentLayout.get(item.id)
+    if (layout) appointmentLayoutByKey.set(`${minutesOfDay(item.startsAt)}:${minutesOfDay(item.endsAt)}:${item.clientId}:${item.serviceId}`, layout)
+  }
+'''
+if 'const appointmentLayoutByKey' not in s:
+    anchor = '  const serviceOf = (id: string) => services.find((s) => s.id === id)!\n'
+    if anchor not in s: raise RuntimeError('Calendar appointment helper insertion point missing')
+    s = s.replace(anchor, key_block + anchor, 1)
+layout_marker = 'const timeIcon = a.status === "completado"'
+if 'const cardLayout = appointmentLayoutByKey.get' not in s:
+    if layout_marker not in s: raise RuntimeError('Calendar appointment status icon not found')
+    s = s.replace(layout_marker, 'const cardLayout = appointmentLayoutByKey.get(`${start}:${end}:${client?.id}:${service.id}`) ?? { lane: 0, count: 1 }\n                      ' + layout_marker, 1)
+s = re.sub(r'left: `calc\(\$\{.*?\}% \+ 4px\)`', 'left: `calc(${cardLayout.lane * 100 / cardLayout.count}% + 4px)`', s, count=1)
+s = re.sub(r'width: `calc\(\$\{.*?\}% - 8px\)`', 'width: `calc(${100 / cardLayout.count}% - 8px)`', s, count=1)
+p.write_text(s, encoding='utf-8')
+print('CALENDAR_CARD_LANES_RESOLVED_WITH_SCOPED_LAYOUT')
