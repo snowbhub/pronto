@@ -537,3 +537,43 @@ css += '''
 '''
 css_path.write_text(css, encoding='utf-8')
 print('CALENDAR_STAFF_HEADER_MATCHES_REFERENCE_LAYOUT')
+
+
+# Keep the previous-page arrow inside the sticky left header gutter so it
+# stays attached to the pinned barber strip instead of scrolling as an overlay.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+s, n = re.subn(
+    r'\s*\{mobileMode && workingStaff\.length>3 && staffPage>0 && <button type="button" aria-label="Попередні барбери".*?</button>\}',
+    '',
+    s,
+    count=1,
+    flags=re.S,
+)
+if n != 1:
+    raise RuntimeError("Previous-staff arrow overlay was not found")
+old_gutter = '<div className="sticky left-0 z-30 bg-obsidian" />'
+new_gutter = '''<div data-staff-prev-gutter style={{top:"calc(env(safe-area-inset-top) + 48px)"}} className="sticky left-0 z-[60] flex items-center justify-center bg-obsidian">
+                {mobileMode && workingStaff.length>3 && staffPage>0 && <button type="button" aria-label="Попередні барбери" onClick={()=>setStaffPage((page)=>Math.max(0,page-1))} className="grid size-7 place-items-center rounded-full border border-line-strong bg-surface-2 shadow"><ChevronLeft className="size-4"/></button>}
+              </div>'''
+if old_gutter not in s:
+    raise RuntimeError("Sticky left header gutter was not found")
+s = s.replace(old_gutter, new_gutter, 1)
+p.write_text(s, encoding='utf-8')
+
+css_path = root / 'src/app/globals.css'
+css = css_path.read_text(encoding='utf-8')
+css += '''
+@media(max-width:767px){
+ [data-booking-workspace="calendar"] [data-staff-prev-gutter]{
+   position:sticky!important;
+   top:calc(env(safe-area-inset-top) + 48px)!important;
+   left:0!important;
+   z-index:60!important;
+   align-self:stretch;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header]{isolation:isolate;}
+}
+'''
+css_path.write_text(css, encoding='utf-8')
+print('CALENDAR_PREVIOUS_BARBER_ARROW_PINNED_TO_STICKY_HEADER')
