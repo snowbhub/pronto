@@ -1029,12 +1029,12 @@ print('CALENDAR_UNUSED_CARD_LAYOUT_BINDING_REMOVED')
 # make short bookings render only content that fits, and compact the staff strip.
 p = root / 'src/components/agenda/day-grid.tsx'
 s = p.read_text(encoding='utf-8')
-legacy_service = re.compile(
-    r'\{!short\s*&&\s*\([\s\S]*?service\.name[\s\S]*?\)\}',
-)
-s, legacy_count = legacy_service.subn('', s, count=1)
-if legacy_count != 1:
+legacy_start = s.find('{!short &&')
+legacy_service_at = s.find('service.name', legacy_start, legacy_start + 1800) if legacy_start >= 0 else -1
+legacy_end = s.find(')}', legacy_service_at) if legacy_service_at >= 0 else -1
+if legacy_start < 0 or legacy_service_at < 0 or legacy_end < 0:
     raise RuntimeError('Legacy duplicate appointment service row was not found')
+s = s[:legacy_start] + s[legacy_end + 2:]
 # A 30-minute card keeps its time/status band and client name; services only
 # appear when there is enough vertical room for the extra line.
 s = s.replace('(end - start) * PX_PER_MIN >= 42', '(end - start) * PX_PER_MIN >= 48', 1)
