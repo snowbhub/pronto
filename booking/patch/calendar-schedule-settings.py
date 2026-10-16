@@ -728,13 +728,11 @@ p = root / 'src/components/shell/booking-workspace-shell.tsx'
 s = p.read_text(encoding='utf-8')
 s = s.replace('fixed inset-0 z-40 bg-black/60', 'fixed inset-0 z-[90] bg-black/60 transition-opacity duration-300', 1)
 s = s.replace('fixed inset-y-0 right-0 z-50 flex w-[min(88vw,360px)]', 'fixed inset-y-0 right-0 z-[100] flex w-[min(88vw,360px)]', 1)
-aside_at = s.find('<aside className={')
-if aside_at < 0:
-    raise RuntimeError("Calendar drawer element not found")
-aside_end = s.find('>', aside_at)
-aside_open = s[aside_at:aside_end+1]
-if 'style={{' not in aside_open:
-    s = s[:aside_end] + ' style={{transform:open?"translateX(0)":"translateX(100%)",transition:"transform 280ms cubic-bezier(.22,1,.36,1)",willChange:"transform"}}' + s[aside_end:]
+drawer_attrs = 'aria-label="Calendar menu" aria-hidden={!open} inert={!open}'
+if drawer_attrs not in s:
+    raise RuntimeError("Calendar drawer attributes not found")
+if 'style={{transform:open?' not in s:
+    s = s.replace(drawer_attrs, drawer_attrs + ' style={{transform:open?"translateX(0)":"translateX(100%)",transition:"transform 280ms cubic-bezier(.22,1,.36,1)",willChange:"transform"}}', 1)
 # Ensure closed panel remains mounted off-canvas; don't let visibility snap cancel its transition.
 s = s.replace('(open?"visible translate-x-0":"invisible translate-x-full pointer-events-none")', '(open?"visible translate-x-0 pointer-events-auto":"invisible translate-x-full pointer-events-none")', 1)
 p.write_text(s, encoding='utf-8')
