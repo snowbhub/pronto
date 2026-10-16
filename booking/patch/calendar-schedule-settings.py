@@ -757,7 +757,7 @@ aside_end += len('</aside>')
 aside=s[aside_at:aside_end]
 aside=aside.replace('fixed inset-y-0 right-0 z-[100]', 'absolute inset-y-0 right-0 z-10',1)
 aside=re.sub(r'\(open\?"visible translate-x-0(?: pointer-events-auto)?":"invisible translate-x-full pointer-events-none"\)', '(open?"pointer-events-auto":"pointer-events-none")', aside, count=1)
-if 'transform:open?' not in aside:
+if not re.search(r'transform\s*:\s*open\s*\?', aside):
     raise RuntimeError("Calendar drawer transform animation is missing")
 portal='''{portalReady && createPortal(
        <div data-calendar-menu-layer className="fixed inset-0 z-[9999]">
