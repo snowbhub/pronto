@@ -756,9 +756,15 @@ if aside_at<0 or aside_end<0:
 aside_end += len('</aside>')
 aside=s[aside_at:aside_end]
 aside=aside.replace('fixed inset-y-0 right-0 z-[100]', 'absolute inset-y-0 right-0 z-10',1)
-aside=re.sub(r'\(open\?"visible translate-x-0(?: pointer-events-auto)?":"invisible translate-x-full pointer-events-none"\)', '(open?"pointer-events-auto":"pointer-events-none")', aside, count=1)
-if not re.search(r'transform\s*:\s*open\s*\?', aside):
-    raise RuntimeError("Calendar drawer transform animation is missing")
+aside, slide_count = re.subn(
+    r'\(open\?"visible translate-x-0(?: pointer-events-auto)?":"invisible translate-x-full pointer-events-none"\)',
+    '(open?"translate-x-0 pointer-events-auto":"translate-x-full pointer-events-none")',
+    aside,
+    count=1,
+)
+if slide_count != 1 or 'translate-x-full pointer-events-none' not in aside:
+    raise RuntimeError("Calendar drawer right-slide state is missing")
+aside=aside.replace('absolute inset-y-0 right-0 z-10', 'absolute inset-y-0 right-0 z-10 transition-transform duration-300 ease-out', 1)
 portal='''{portalReady && createPortal(
        <div data-calendar-menu-layer className="fixed inset-0 z-[9999]">
          <button type="button" aria-label="Close calendar menu" onClick={()=>setOpen(false)} aria-hidden={!open} className={"absolute inset-0 z-0 bg-black/60 transition-opacity duration-300 "+(open?"opacity-100 pointer-events-auto":"opacity-0 pointer-events-none")}/>
