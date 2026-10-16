@@ -698,8 +698,8 @@ if 'data-calendar-toolbar' not in s:
 print('CALENDAR_TIME_RAIL_LEFT_AND_RIGHT_DRAWER_ENFORCED')
 
 
-# Current-time marker: keep a live digital clock badge in the left rail and draw
-# one horizontal line across the calendar body at that exact minute.
+# Current-time marker: put the digital clock in the sticky hour rail itself so it
+# cannot be covered by the barber columns, while the rule spans the full grid.
 p = root / 'src/components/agenda/day-grid.tsx'
 s = p.read_text(encoding='utf-8')
 if 'const [currentClock,setCurrentClock]' not in s:
@@ -720,21 +720,52 @@ marker = '''            {isToday && currentClock.getHours()*60+currentClock.getM
               <span className="absolute left-[40px] right-[32px] top-0 h-[2px] -translate-y-1/2 bg-[#f4f4f4] shadow-[0_0_3px_rgba(255,255,255,.28)]"/>
             </div>}
 '''
-s=s.replace(grid_open if False else '<div data-calendar-grid className="relative w-full min-w-0">', '<div data-calendar-grid className="relative w-full min-w-0">\n'+marker, 1)
+s=s.replace('<div data-calendar-grid className="relative w-full min-w-0">', '<div data-calendar-grid className="relative w-full min-w-0">\n'+marker, 1)
+# The clock badge belongs to the sticky rail, above its hour labels. The line
+# stays on the grid layer and starts exactly at the rail's right edge.
+s, badge_removed = re.subn(r'<span className="absolute left-0 top-0 z-10 .*?</span>', '', s, count=1)
+if badge_removed != 1:
+    raise RuntimeError("Current-time label markup was not found")
+rail_start = s.index('data-time-rail')
+rail_close = s.find('              </div>\n\n              {visibleStaff.map((s) => (', rail_start)
+if rail_close < 0:
+    raise RuntimeError("Calendar sticky hour rail end not found")
+badge = '''                {isToday && currentClock.getHours()*60+currentClock.getMinutes()>=openMin && currentClock.getHours()*60+currentClock.getMinutes()<=closeMin && <span aria-hidden data-current-time-badge className="absolute left-0 z-[100] inline-flex -translate-y-1/2 items-center justify-center whitespace-nowrap rounded-md border border-line-strong bg-[#202020] px-1.5 py-0.5 font-mono text-[12px] font-bold leading-5 text-amber-300 shadow-md" style={{top:(currentClock.getHours()*60+currentClock.getMinutes()-openMin)*PX_PER_MIN}}>{String(currentClock.getHours()).padStart(2,"0")}:{String(currentClock.getMinutes()).padStart(2,"0")}</span>}
+'''
+s=s[:rail_close]+badge+s[rail_close:]
+p.write_text(s, encoding='utf-8')
 
-# Animate the always-mounted drawer with an explicit transform so the transition
-# remains reliable on mobile Safari, and put both panel and scrim above all UI.
+# Render the drawer through a body portal. This escapes the calendar page's
+# overflow/stacking contexts so the overlay covers even the date and app bars.
 p = root / 'src/components/shell/booking-workspace-shell.tsx'
 s = p.read_text(encoding='utf-8')
-s = s.replace('fixed inset-0 z-40 bg-black/60', 'fixed inset-0 z-[90] bg-black/60 transition-opacity duration-300', 1)
-s = s.replace('fixed inset-y-0 right-0 z-50 flex w-[min(88vw,360px)]', 'fixed inset-y-0 right-0 z-[100] flex w-[min(88vw,360px)]', 1)
-drawer_attrs = 'aria-label="Calendar menu" aria-hidden={!open} inert={!open}'
-if drawer_attrs not in s:
-    raise RuntimeError("Calendar drawer attributes not found")
-if 'style={{transform:open?' not in s:
-    s = s.replace(drawer_attrs, drawer_attrs + ' style={{transform:open?"translateX(0)":"translateX(100%)",transition:"transform 280ms cubic-bezier(.22,1,.36,1)",willChange:"transform"}}', 1)
-# Ensure closed panel remains mounted off-canvas; don't let visibility snap cancel its transition.
-s = s.replace('(open?"visible translate-x-0":"invisible translate-x-full pointer-events-none")', '(open?"visible translate-x-0 pointer-events-auto":"invisible translate-x-full pointer-events-none")', 1)
+if 'from "react-dom"' not in s:
+    s=s.replace('import { useRef, useState } from "react"', 'import { useEffect, useRef, useState } from "react"\nimport { createPortal } from "react-dom"', 1)
+if 'const [portalReady,setPortalReady]' not in s:
+    s=s.replace(' const {open:openBooking}=useNewAppointment()', ' const [portalReady,setPortalReady]=useState(false)\n useEffect(()=>setPortalReady(true),[])\n const {open:openBooking}=useNewAppointment()',1)
+
+# Strip the old in-tree backdrop; the portal owns a full-viewport scrim.
+s, scrim_removed = re.subn(r'\s*\{open&&<button type="button" aria-label="Close calendar menu" onClick=\{\(\)=>setOpen\(false\)\} className="fixed inset-0 z-\[90\] bg-black/60 transition-opacity duration-300"/>\}', '', s, count=1)
+if scrim_removed != 1:
+    raise RuntimeError("Old in-tree calendar scrim not found")
+aside_at=s.find('<aside className={')
+aside_end=s.find('</aside>',aside_at)
+if aside_at<0 or aside_end<0:
+    raise RuntimeError("Calendar drawer element not found")
+aside_end += len('</aside>')
+aside=s[aside_at:aside_end]
+aside=aside.replace('fixed inset-y-0 right-0 z-[100]', 'absolute inset-y-0 right-0 z-10',1)
+aside=re.sub(r'\(open\?"visible translate-x-0(?: pointer-events-auto)?":"invisible translate-x-full pointer-events-none"\)', '(open?"pointer-events-auto":"pointer-events-none")', aside, count=1)
+if 'transform:open?' not in aside:
+    raise RuntimeError("Calendar drawer transform animation is missing")
+portal='''{portalReady && createPortal(
+       <div data-calendar-menu-layer className="fixed inset-0 z-[9999]">
+         <button type="button" aria-label="Close calendar menu" onClick={()=>setOpen(false)} aria-hidden={!open} className={"absolute inset-0 z-0 bg-black/60 transition-opacity duration-300 "+(open?"opacity-100 pointer-events-auto":"opacity-0 pointer-events-none")}/>
+         '''+aside+'''
+       </div>,
+       document.body
+     )}'''
+s=s[:aside_at]+portal+s[aside_end:]
 p.write_text(s, encoding='utf-8')
 
 css_path = root / 'src/app/globals.css'
@@ -745,15 +776,34 @@ css += '''
    display:block!important;
    z-index:55!important;
  }
- [data-booking-workspace="calendar"] [data-calendar-toolbar]{z-index:80!important;}
- [data-booking-workspace="calendar"] aside[aria-label="Calendar menu"]{
+ [data-booking-workspace="calendar"] [data-current-time-badge]{
+   display:inline-flex!important;
    z-index:100!important;
+   min-width:48px;
+ }
+ [data-calendar-menu-layer]{
+   position:fixed!important;
+   inset:0!important;
+   z-index:9999!important;
+   isolation:isolate;
+ }
+ [data-calendar-menu-layer] aside[aria-label="Calendar menu"]{
+   position:absolute!important;
+   top:0!important;
+   right:0!important;
+   bottom:0!important;
+   z-index:10!important;
+   width:min(88vw,360px)!important;
    max-height:100dvh;
    padding-bottom:calc(12px + env(safe-area-inset-bottom));
+   overflow-y:auto;
+   background:#090909;
+   box-shadow:-12px 0 40px rgb(0 0 0/.42);
  }
- [data-booking-workspace="calendar"] aside[aria-label="Calendar menu"] button,
- [data-booking-workspace="calendar"] aside[aria-label="Calendar menu"] a{touch-action:manipulation;}
+ [data-calendar-menu-layer] aside[aria-label="Calendar menu"] button,
+ [data-calendar-menu-layer] aside[aria-label="Calendar menu"] a{touch-action:manipulation;}
 }
 '''
 css_path.write_text(css, encoding='utf-8')
-print('CALENDAR_LIVE_TIME_LINE_AND_DRAWER_ANIMATION_INSTALLED')
+print('CALENDAR_LIVE_TIME_BADGE_IN_STICKY_RAIL_AND_BODY_PORTAL_DRAWER_INSTALLED')
+
