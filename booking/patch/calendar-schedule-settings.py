@@ -727,9 +727,10 @@ s, badge_removed = re.subn(r'<span className="absolute left-0 top-0 z-10 .*?</sp
 if badge_removed != 1:
     raise RuntimeError("Current-time label markup was not found")
 rail_start = s.index('data-time-rail')
-rail_close = s.find('              </div>\n\n              {visibleStaff.map((s) => (', rail_start)
-if rail_close < 0:
+rail_close_match = re.search(r'\\n\\s*</div>', s[rail_start:])
+if not rail_close_match:
     raise RuntimeError("Calendar sticky hour rail end not found")
+rail_close = rail_start + rail_close_match.start()
 badge = '''                {isToday && currentClock.getHours()*60+currentClock.getMinutes()>=openMin && currentClock.getHours()*60+currentClock.getMinutes()<=closeMin && <span aria-hidden data-current-time-badge className="absolute left-0 z-[100] inline-flex -translate-y-1/2 items-center justify-center whitespace-nowrap rounded-md border border-line-strong bg-[#202020] px-1.5 py-0.5 font-mono text-[12px] font-bold leading-5 text-amber-300 shadow-md" style={{top:(currentClock.getHours()*60+currentClock.getMinutes()-openMin)*PX_PER_MIN}}>{String(currentClock.getHours()).padStart(2,"0")}:{String(currentClock.getMinutes()).padStart(2,"0")}</span>}
 '''
 s=s[:rail_close]+badge+s[rail_close:]
