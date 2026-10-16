@@ -194,19 +194,6 @@ s = s.replace('const minutes = openMin + Math.floor((e.clientY - rect.top) / PX_
 s = s.replace("staff.length>3", "workingStaff.length>3").replace("staff.length-3", "workingStaff.length-3")
 p.write_text(s, encoding='utf-8')
 
-# Right-side drawer, close via rightward swipe, no redundant top bar.
-p = root / 'src/components/shell/booking-workspace-shell.tsx'
-s = p.read_text(encoding='utf-8')
-s = s.replace('import { useState } from "react"', 'import { useRef, useState } from "react"', 1)
-s = s.replace(' const [open,setOpen]=useState(false)', ' const [open,setOpen]=useState(false)\n const menuTouch=useRef<{x:number;y:number}|null>(null)', 1)
-s, n = re.subn(r'   <header className="z-30 flex h-14.*?</header>\n', '', s, count=1, flags=re.S)
-s = s.replace('''     <aside className={"fixed inset-y-0 left-0 z-50 flex w-[min(84vw,340px)] flex-col overflow-y-auto overscroll-contain border-r border-line bg-obsidian p-4 shadow-2xl transition-transform duration-200 "+(open?"visible translate-x-0":"invisible -translate-x-full pointer-events-none")} aria-label="Calendar menu" aria-hidden={!open} inert={!open}>''', '''     <aside className={"fixed inset-y-0 right-0 z-50 flex w-[min(88vw,360px)] flex-col overflow-x-hidden overflow-y-auto overscroll-contain border-l border-line bg-obsidian p-3 shadow-2xl transition-transform duration-200 touch-pan-y "+(open?"visible translate-x-0":"invisible translate-x-full pointer-events-none")} aria-label="Calendar menu" aria-hidden={!open} inert={!open}
-      onTouchStart={(e)=>{const t=e.touches[0];menuTouch.current={x:t.clientX,y:t.clientY}}}
-      onTouchEnd={(e)=>{const start=menuTouch.current;menuTouch.current=null;if(!start)return;const t=e.changedTouches[0];const dx=t.clientX-start.x;const dy=t.clientY-start.y;if(dx>56&&Math.abs(dx)>Math.abs(dy))setOpen(false)}}>'''.replace('+',''), 1)
-s = s.replace('''       <div className="flex items-center justify-between gap-3 pb-6"><div className="font-semibold">Booking · Calendar</div><button aria-label="Close menu" onClick={()=>setOpen(false)} className="grid size-10 place-items-center"><X/></button></div>
-       <div className="mb-4 rounded-xl border border-line bg-surface-1 p-3"><div id="booking-calendar-menu-controls"/></div>'''.replace('+',''), '''       <div className="mb-3 flex min-h-10 items-center gap-2 border-b border-line pb-2"><div className="min-w-0 flex-1 truncate text-[13px] font-semibold">Запис · Календар</div><div id="booking-calendar-menu-controls" className="shrink-0 origin-right scale-[0.82]"/><button aria-label="Close menu" onClick={()=>setOpen(false)} className="grid size-8 shrink-0 place-items-center rounded-lg border border-line"><X className="size-4"/></button></div>''', 1)
-p.write_text(s, encoding='utf-8')
-
 # Calendar settings action and date-specific staff-schedule action.
 p = root / 'src/lib/data/settings-actions.ts'
 s = p.read_text(encoding='utf-8')
