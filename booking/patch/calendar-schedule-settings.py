@@ -387,3 +387,55 @@ css += '''
 '''
 css_path.write_text(css, encoding='utf-8')
 print('CALENDAR_RIGHT_DRAWER_SCHEDULES_SETTINGS_INSTALLED')
+
+
+# Calendar readability pass from the latest mobile screenshots.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+s = re.sub(r'const PX_PER_MIN = [0-9.]+', 'const PX_PER_MIN = 1.35', s, count=1)
+s = s.replace('gridTemplateColumns: "44px repeat(', 'gridTemplateColumns: "40px repeat(')
+# Keep the closing-hour label just inside the rounded lower edge and add half-hour labels.
+rail_start = s.index('data-time-rail')
+rail_end = s.index('</div>', s.index('{hours.map', rail_start))
+rail = s[rail_start:rail_end]
+rail, n = re.subn(r'style=\{\{\s*top:\s*\(m - openMin\) \* PX_PER_MIN[^}]*\}\}', 'style={{ top: (m - openMin) * PX_PER_MIN + (m === closeMin ? -9 : 8) }}', rail, count=1)
+if n != 1: raise RuntimeError('Could not align the calendar hour labels')
+if 'half-' not in rail:
+    rail += '''
+                {Array.from({length:Math.ceil((closeMin-openMin)/60)},(_,i)=>openMin+i*60+30).filter(m=>m<closeMin).map((m)=>(
+                  <span key={`half-${m}`} aria-hidden className="num absolute right-2 -translate-y-1/2 text-[10px] text-ivory-3/80" style={{top:(m-openMin)*PX_PER_MIN}}>30</span>
+                ))}
+'''
+s = s[:rail_start] + rail + s[rail_end:]
+# Move the left arrow into the first barber-header cell and reserve the right edge too.
+s = s.replace('className="absolute left-1 top-1/2 z-50 grid size-7', 'className="absolute left-[41px] top-1/2 z-50 grid size-7', 1)
+old_staff_cell = '<div key={s.id} className="flex items-center gap-1.5 border-l border-line px-1.5 py-2">'
+new_staff_cell = '<div key={s.id} style={{paddingLeft:mobileMode&&staffPage>0&&s.id===visibleStaff[0]?.id?38:undefined,paddingRight:mobileMode&&staffPage<workingStaff.length-3&&s.id===visibleStaff[visibleStaff.length-1]?.id?38:undefined}} className="flex min-w-0 items-center gap-1.5 border-l border-line px-1.5 py-2">'
+if old_staff_cell not in s: raise RuntimeError('Could not reserve space in the barber header')
+s = s.replace(old_staff_cell, new_staff_cell, 1)
+# Slightly smaller photos leave room for names and controls.
+s = s.replace('className="grid size-9 shrink-0 place-items-center overflow-hidden rounded-full', 'className="grid size-8 shrink-0 place-items-center overflow-hidden rounded-full', 1)
+s = s.replace('width={36} height={36}', 'width={32} height={32}', 1)
+# Match appointment time text to its status color for faster scanning.
+s = s.replace('<span className="num block truncate text-[10px] font-semibold text-ivory-2">{hm(a.startsAt)}–{hm(a.endsAt)}</span>', '<span className={cn("num block truncate text-[10px] font-bold",a.status==="en_curso"&&"text-emerald-300",a.status==="completado"&&"text-amber-300",a.status==="pendiente"&&"text-sky-300",a.status==="confirmado"&&"text-sky-300",(a.status==="cancelado"||a.status==="no_show")&&"text-rose-300")}>{hm(a.startsAt)}–{hm(a.endsAt)}</span>',1)
+p.write_text(s, encoding='utf-8')
+
+css_path = root / 'src/app/globals.css'
+css = css_path.read_text(encoding='utf-8')
+css = css.replace('[data-booking-workspace="calendar"] [data-time-rail]{z-index:20;}', '[data-booking-workspace="calendar"] [data-time-rail]{z-index:20;width:40px;}')
+css += '''
+@media(max-width:767px){
+ [data-booking-workspace="calendar"] [data-staff-header] > div:not(:first-child) {min-width:0;}
+ [data-booking-workspace="calendar"] [data-time-rail] > span:first-child {font-weight:700;color:#e5e7eb;}
+ [data-booking-workspace="calendar"] [data-calendar-grid]{padding-bottom:8px!important;}
+}
+'''
+css_path.write_text(css, encoding='utf-8')
+
+# Keep the date toolbar above time labels as the page scrolls.
+p = root / 'src/app/(panel)/agenda/page.tsx'
+s = p.read_text(encoding='utf-8')
+s, n = re.subn(r'className="sticky top-0 z-20 -mx-2 border-b border-line bg-obsidian/95', 'className="sticky top-0 z-50 -mx-2 border-b border-line bg-obsidian', s, count=1)
+if n != 1: raise RuntimeError('Could not raise the sticky date toolbar above the timeline')
+p.write_text(s, encoding='utf-8')
+print('CALENDAR_TIMELINE_LABELS_AND_HEADER_SPACING_UPDATED')
