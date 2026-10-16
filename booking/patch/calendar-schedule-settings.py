@@ -250,26 +250,6 @@ s = s.replace('''      newClient: input.clientId
         : { name: name!, phone: input.newClient?.phone?.trim() || null, channel: "whatsapp", notes: null, preferredStaffId: staff.id },'''.replace('+',''), 1)
 p.write_text(s, encoding='utf-8')
 
-# Adapt store transaction lock/guard for the explicit staff override.
-p = root / 'src/lib/data/store/postgres.ts'
-s = p.read_text(encoding='utf-8')
-if 'async createAppointment({ appointment, newClient, linkConversationId, allowOverlap = false })' not in s:
-    s = s.replace('async createAppointment({ appointment, newClient, linkConversationId }) {', 'async createAppointment({ appointment, newClient, linkConversationId, allowOverlap = false }) {', 1)
-if 'pg_advisory_xact_lock(hashtext' not in s:
-    marker='''    return sql.begin(async (tx) => {
-      let clientId = appointment.clientId'''.replace('+','')
-    guard='''    return sql.begin(async (tx) => {
-      const day = String(appointment.startsAt).slice(0, 10)
-      await tx`select pg_advisory_xact_lock(hashtext(${appointment.staffId + ':' + day}))`
-      if (!allowOverlap || appointment.source === 'web' || appointment.source === 'agente') {
-        const collision = await tx`select 1 from appointments where staff_id=${appointment.staffId} and status not in ('cancelado','no_show') and starts_at < ${appointment.endsAt} and ends_at > ${appointment.startsAt} limit 1`
-        if (collision.length) throw new SlotTakenError()
-      }
-      let clientId = appointment.clientId'''
-    if marker not in s: raise RuntimeError('Appointment transaction insertion point missing')
-    s=s.replace(marker,guard,1)
-p.write_text(s,encoding='utf-8')
-
 # Calendar configuration screen.
 component = '''"use client"
 import { useState, useTransition } from "react"
