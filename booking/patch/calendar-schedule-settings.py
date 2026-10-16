@@ -696,3 +696,66 @@ if 'data-calendar-toolbar' not in s:
         raise RuntimeError("Calendar sticky date toolbar not found")
     p.write_text(s, encoding='utf-8')
 print('CALENDAR_TIME_RAIL_LEFT_AND_RIGHT_DRAWER_ENFORCED')
+
+
+# Current-time marker: keep a live digital clock badge in the left rail and draw
+# one horizontal line across the calendar body at that exact minute.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+if 'const [currentClock,setCurrentClock]' not in s:
+    anchor = '  const [mobileMode,setMobileMode] = useState(false)'
+    if anchor not in s:
+        raise RuntimeError("Calendar mobile mode state not found for live clock")
+    s = s.replace(anchor, anchor + '''
+  const [currentClock,setCurrentClock] = useState(()=>new Date())
+  useEffect(()=>{const tick=()=>setCurrentClock(new Date());tick();const timer=window.setInterval(tick,15000);return()=>window.clearInterval(timer)},[])
+''', 1)
+
+grid_open = '<div data-calendar-grid className="w-full min-w-0">'
+if grid_open not in s:
+    raise RuntimeError("Compact calendar grid insertion point missing")
+s=s.replace(grid_open, '<div data-calendar-grid className="relative w-full min-w-0">', 1)
+marker = '''            {isToday && currentClock.getHours()*60+currentClock.getMinutes()>=openMin && currentClock.getHours()*60+currentClock.getMinutes()<=closeMin && <div aria-hidden data-current-time-indicator className="pointer-events-none absolute inset-x-0 z-40" style={{top:112+(currentClock.getHours()*60+currentClock.getMinutes()-openMin)*PX_PER_MIN}}>
+              <span className="absolute left-0 top-0 z-10 -translate-y-1/2 rounded-md bg-[#202020] px-1.5 py-0.5 font-mono text-[12px] font-semibold leading-5 text-amber-300 shadow-md">{String(currentClock.getHours()).padStart(2,"0")}:{String(currentClock.getMinutes()).padStart(2,"0")}</span>
+              <span className="absolute left-[40px] right-[32px] top-0 h-[2px] -translate-y-1/2 bg-[#f4f4f4] shadow-[0_0_3px_rgba(255,255,255,.28)]"/>
+            </div>}
+'''
+s=s.replace(grid_open if False else '<div data-calendar-grid className="relative w-full min-w-0">', '<div data-calendar-grid className="relative w-full min-w-0">\n'+marker, 1)
+
+# Animate the always-mounted drawer with an explicit transform so the transition
+# remains reliable on mobile Safari, and put both panel and scrim above all UI.
+p = root / 'src/components/shell/booking-workspace-shell.tsx'
+s = p.read_text(encoding='utf-8')
+s = s.replace('fixed inset-0 z-40 bg-black/60', 'fixed inset-0 z-[90] bg-black/60 transition-opacity duration-300', 1)
+s = s.replace('fixed inset-y-0 right-0 z-50 flex w-[min(88vw,360px)]', 'fixed inset-y-0 right-0 z-[100] flex w-[min(88vw,360px)]', 1)
+aside_at = s.find('<aside className={')
+if aside_at < 0:
+    raise RuntimeError("Calendar drawer element not found")
+aside_end = s.find('>', aside_at)
+aside_open = s[aside_at:aside_end+1]
+if 'style={{' not in aside_open:
+    s = s[:aside_end] + ' style={{transform:open?"translateX(0)":"translateX(100%)",transition:"transform 280ms cubic-bezier(.22,1,.36,1)",willChange:"transform"}}' + s[aside_end:]
+# Ensure closed panel remains mounted off-canvas; don't let visibility snap cancel its transition.
+s = s.replace('(open?"visible translate-x-0":"invisible translate-x-full pointer-events-none")', '(open?"visible translate-x-0 pointer-events-auto":"invisible translate-x-full pointer-events-none")', 1)
+p.write_text(s, encoding='utf-8')
+
+css_path = root / 'src/app/globals.css'
+css = css_path.read_text(encoding='utf-8')
+css += '''
+@media(max-width:767px){
+ [data-booking-workspace="calendar"] [data-current-time-indicator]{
+   display:block!important;
+   z-index:55!important;
+ }
+ [data-booking-workspace="calendar"] [data-calendar-toolbar]{z-index:80!important;}
+ [data-booking-workspace="calendar"] aside[aria-label="Calendar menu"]{
+   z-index:100!important;
+   max-height:100dvh;
+   padding-bottom:calc(12px + env(safe-area-inset-bottom));
+ }
+ [data-booking-workspace="calendar"] aside[aria-label="Calendar menu"] button,
+ [data-booking-workspace="calendar"] aside[aria-label="Calendar menu"] a{touch-action:manipulation;}
+}
+'''
+css_path.write_text(css, encoding='utf-8')
+print('CALENDAR_LIVE_TIME_LINE_AND_DRAWER_ANIMATION_INSTALLED')
