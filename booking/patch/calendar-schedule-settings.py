@@ -181,7 +181,8 @@ s = s.replace('''        <div ref={staffScrollRef} data-calendar-scroll aria-lab
 s = s.replace('gridTemplateColumns: "44px repeat("+staff.length+", minmax("+(mobileMode&&workingStaff.length>3?"112px":"0px")+",1fr))"', 'gridTemplateColumns: "44px repeat("+visibleStaff.length+", minmax(0,1fr))"', 2)
 # Put the paging controls beside the barber names and subtly pin the header.
 s = s.replace('<div data-staff-header className="grid border-b border-line"', '<div data-staff-header className="relative grid border-b border-line bg-surface-1 shadow-sm"', 1)
-s = re.sub(r'<div className="sticky left-0 z-30 flex items-center justify-center gap-0\.5 bg-obsidian">\s*\{mobileMode && workingStaff\.length>3 && <>.*?</>\}\s*</div>', '<div className="sticky left-0 z-30 bg-obsidian" />', s, count=1, flags=re.S)
+s, arrows_removed = re.subn(r'<div className="sticky left-0 z-30 flex items-center justify-center gap-0\.5 bg-obsidian">\s*\{mobileMode && (?:workingStaff|staff)\.length>3 && <>.*?</>\}\s*</div>', '<div className="sticky left-0 z-30 bg-obsidian" />', s, count=1, flags=re.S)
+if arrows_removed != 1: raise RuntimeError('Calendar hour-rail arrows not found')
 header = '''              <div className="sticky left-0 z-30 bg-obsidian" />
               {visibleStaff.map((s) => {'''
 header_with_controls = '''              <div className="sticky left-0 z-30 bg-obsidian" />
