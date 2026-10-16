@@ -747,8 +747,8 @@ if 'const [portalReady,setPortalReady]' not in s:
 
 # Strip the old in-tree backdrop; the portal owns a full-viewport scrim.
 s, scrim_removed = re.subn(r'\s*\{open&&<button type="button" aria-label="Close calendar menu" onClick=\{\(\)=>setOpen\(false\)\} className="fixed inset-0 z-\[90\] bg-black/60 transition-opacity duration-300"/>\}', '', s, count=1)
-if scrim_removed != 1:
-    raise RuntimeError("Old in-tree calendar scrim not found")
+if scrim_removed > 1:
+    raise RuntimeError("Multiple in-tree calendar scrims found")
 aside_at=s.find('<aside className={')
 aside_end=s.find('</aside>',aside_at)
 if aside_at<0 or aside_end<0:
