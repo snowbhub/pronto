@@ -54,12 +54,13 @@ RUN python3 /tmp/booking-patch/calendar-staff-photos.py
 RUN python3 /tmp/booking-patch/shell-native-locale.py
 RUN python3 /tmp/booking-patch/calendar-compact-team.py
 RUN python3 /tmp/booking-patch/calendar-device-polish.py
+RUN python3 /tmp/booking-patch/calendar-schedule-settings.py
 RUN python3 /tmp/booking-patch/ui-source-audit.py
 RUN python3 /tmp/booking-patch/visible-coverage.py
 RUN python3 /tmp/booking-patch/verify_i18n.py
 RUN python3 /tmp/booking-patch/i18n-qa.py
 RUN python3 /tmp/booking-patch/timezone-setting-install.py
-RUN cp /tmp/booking-patch/0009_staff_levels.sql /tmp/booking-patch/0010_inventory.sql /tmp/booking-patch/0011_staff_accounts.sql /tmp/booking-patch/0012_cash_management.sql /tmp/booking-patch/0013_staff_avatars.sql /tmp/booking-patch/0014_booking_checkins.sql /tmp/booking-patch/0015_timezone.sql /app/supabase/migrations/
+RUN cp /tmp/booking-patch/0009_staff_levels.sql /tmp/booking-patch/0010_inventory.sql /tmp/booking-patch/0011_staff_accounts.sql /tmp/booking-patch/0012_cash_management.sql /tmp/booking-patch/0013_staff_avatars.sql /tmp/booking-patch/0014_booking_checkins.sql /tmp/booking-patch/0015_timezone.sql /tmp/booking-patch/0016_calendar_schedules.sql /app/supabase/migrations/
 RUN cp /tmp/booking-patch/migrate-booking.mjs /app/scripts/migrate-booking.mjs
 RUN npm ci
 RUN python3 /tmp/booking-patch/test-compat.py
