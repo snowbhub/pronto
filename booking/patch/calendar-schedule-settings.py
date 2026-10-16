@@ -296,7 +296,7 @@ export function StaffSchedulePlanner({staff,today}:{staff:Staff[];today:string})
 (root/'src/components/settings/staff-schedule-planner.tsx').write_text(component,encoding='utf-8')
 
 # Keep the in-memory/demo snapshot aligned with persistent settings.
-edit('src/lib/data/seed.ts', 'slotStepMin: 60 },', 'slotStepMin: 60, calendarOpen: \"11:00\", calendarClose: \"20:00\", calendarStepMin: 15, allowStaffOverlaps: false },', 1)
+edit('src/lib/data/seed.ts', 'slotStepMin: 60, timezone: \"Europe/Berlin\" },', 'slotStepMin: 60, timezone: \"Europe/Berlin\", calendarOpen: \"11:00\", calendarClose: \"20:00\", calendarStepMin: 15, allowStaffOverlaps: false },', 1)
 
 # Add separate calendar and staff schedule settings tabs.
 p = root/'src/app/(panel)/ajustes/page.tsx'
