@@ -984,7 +984,7 @@ if 'const appointmentLayoutByKey' not in s:
     anchor = '  const serviceOf = (id: string) => services.find((s) => s.id === id)!\n'
     if anchor not in s: raise RuntimeError('Calendar appointment helper insertion point missing')
     s = s.replace(anchor, key_block + anchor, 1)
-layout_marker = 'const timeIcon = a.status === "completado"'
+layout_marker = 'const timeIcon = appointment.status === "completado"'
 if 'const cardLayout = appointmentLayoutByKey.get' not in s:
     if layout_marker not in s: raise RuntimeError('Calendar appointment status icon not found')
     s = s.replace(layout_marker, 'const cardLayout = appointmentLayoutByKey.get(`${start}:${end}:${client?.id}:${service.id}`) ?? { lane: 0, count: 1 }\n                      ' + layout_marker, 1)
