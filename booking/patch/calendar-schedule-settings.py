@@ -439,3 +439,101 @@ s, n = re.subn(r'className="sticky top-0 z-20 -mx-2 border-b border-line bg-obsi
 if n != 1: raise RuntimeError('Could not raise the sticky date toolbar above the timeline')
 p.write_text(s, encoding='utf-8')
 print('CALENDAR_TIMELINE_LABELS_AND_HEADER_SPACING_UPDATED')
+
+
+# Match the staff header to the supplied calendar references: names/roles only,
+# compact portrait above the text, balanced side gutters, and one paging control
+# in the currently available side gutter.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+s = s.replace(
+    'gridTemplateColumns: "40px repeat("+visibleStaff.length+", minmax(0,1fr))"',
+    'gridTemplateColumns: "40px repeat("+visibleStaff.length+", minmax(0,1fr)) 40px"',
+)
+# The header and grid share 40px side gutters, matching the hour rail.
+if s.count('gridTemplateColumns: "40px repeat("+visibleStaff.length+", minmax(0,1fr)) 40px"') < 2:
+    raise RuntimeError("Calendar side gutters were not added to both header and timeline")
+
+# Drop appointment counts and earnings from each staff header.
+header_start = s.index('data-staff-header')
+header_end = s.index('{/* Grilla */}', header_start)
+header = s[header_start:header_end]
+header, removed = re.subn(r'\n\s*<span className="num block text-\[11\.5px\] text-ivory-3">[\s\S]*?</span>', '', header, count=1)
+if removed != 1:
+    # Some builds use a slightly different font size; remove the header-only
+    # statistics span by its class and its appointment count expression.
+    header, removed = re.subn(r'\n\s*<span className="[^"]*num[^"]*">(?:(?!</span>)[\s\S])*?(?:mine\.length|turnos|appointments)[\s\S]*?</span>', '', header, count=1)
+if removed != 1:
+    raise RuntimeError("Staff appointment-count markup was not found")
+header = header.replace(
+    'const mine = appointments.filter((a) => a.staffId === s.id && a.status !== "cancelado" && a.status !== "no_show")\n                ',
+    '',
+    1,
+)
+# Reference layout: small photo first, then name and role below.
+header = header.replace(
+    'className="flex min-w-0 items-center gap-1.5 border-l border-line px-1.5 py-2"',
+    'className="flex min-w-0 min-h-[112px] flex-col items-start justify-center gap-1 border-l border-line px-2 py-2"',
+    1,
+)
+# Remove the old per-cell padding that reserved arrow space inside barber columns.
+header = re.sub(r' style=\{\{paddingLeft:mobileMode&&staffPage>0&&s\.id===visibleStaff\[0\]\?38:undefined,paddingRight:mobileMode&&staffPage<workingStaff\.length-3&&s\.id===visibleStaff\[visibleStaff\.length-1\]\?38:undefined\}\}', '', header, count=1)
+# The hour rail and right edge are dedicated arrow gutters. Only the valid
+# direction appears at any one time.
+header = header.replace(
+    'className="absolute left-[41px] top-1/2 z-50',
+    'className="absolute left-1 top-1/2 z-50',
+    1,
+)
+header = header.replace(
+    'className="absolute right-1 top-1/2 z-50',
+    'className="absolute right-1 top-1/2 z-50',
+    1,
+)
+# A quiet darker panel at the far edge visually completes the right inset;
+# the arrow remains above it.
+header = header.replace(
+    '              {visibleStaff.map((s) => {',
+    '              <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 z-30 w-10 border-l border-line bg-obsidian/95" />\n              {visibleStaff.map((s) => {',
+    1,
+)
+s = s[:header_start] + header + s[header_end:]
+
+# Keep a matching right gutter visible for the full calendar grid and stop the
+# rightmost barber column before it.
+grid_anchor = '              {visibleStaff.map((s) => (\n                <div\n                  key={s.id}\n                  onClick={(e) => clickEmpty(s.id, e)}'
+if grid_anchor not in s:
+    raise RuntimeError("Calendar barber grid columns were not found")
+s = s.replace(
+    grid_anchor,
+    '              <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 border-l border-line bg-obsidian/95" />\n' + grid_anchor,
+    1,
+)
+# Keep the smaller portrait size and align its text to the same left edge.
+s = s.replace('className="grid size-9 shrink-0 place-items-center overflow-hidden rounded-full', 'className="grid size-8 shrink-0 place-items-center overflow-hidden rounded-md', 1)
+s = s.replace('width={36} height={36}', 'width={32} height={32}', 1)
+p.write_text(s, encoding='utf-8')
+
+# A compact, raised sticky staff strip stays visible as the timeline scrolls.
+css_path = root / 'src/app/globals.css'
+css = css_path.read_text(encoding='utf-8')
+css += '''
+@media(max-width:767px){
+ [data-booking-workspace="calendar"] [data-staff-header]{
+   position:sticky!important;
+   top:calc(env(safe-area-inset-top) + 48px)!important;
+   z-index:45!important;
+   background:#151515!important;
+   box-shadow:0 4px 10px rgb(0 0 0/.24);
+ }
+ [data-booking-workspace="calendar"] [data-staff-header] > div:not(:first-child){
+   min-height:112px;
+   padding:8px 8px;
+   align-items:flex-start;
+   justify-content:center;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header] .num{display:none!important;}
+}
+'''
+css_path.write_text(css, encoding='utf-8')
+print('CALENDAR_STAFF_HEADER_MATCHES_REFERENCE_LAYOUT')
