@@ -830,3 +830,102 @@ css += '''
 css_path.write_text(css, encoding='utf-8')
 print('CALENDAR_LIVE_TIME_BADGE_IN_STICKY_RAIL_AND_BODY_PORTAL_DRAWER_INSTALLED')
 
+
+
+# Dense, readable day grid: fit 09:00 of schedule on mobile, display
+# appointment status/time in a compact colored header, and lane overlaps.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+s = s.replace('const PX_PER_MIN = 1.25', 'const PX_PER_MIN = 1.0', 1)
+if 'Clock3' not in s.split('from "lucide-react"')[0]:
+    s = s.replace('{ Bot, Footprints, MessageCircle, Phone, Pin, Scissors, Sparkles, StickyNote }', '{ Bot, Check, Clock3, Footprints, MessageCircle, Phone, Pin, Scissors, Sparkles, StickyNote, X }', 1)
+# Give every intersecting appointment its own lane, but let isolated cards
+# use the full barber column.
+layout_anchor = '  const paid = new Set(paidIds)\n'
+layout_code = '''  const paid = new Set(paidIds)
+  const appointmentLayout = new Map<string, { lane: number; count: number }>()
+  for (const member of staff) {
+    const items = appointments.filter((a) => a.staffId === member.id)
+      .map((a) => ({ a, start: minutesOfDay(a.startsAt), end: minutesOfDay(a.endsAt) }))
+      .sort((x, y) => x.start - y.start || x.end - y.end)
+    let cluster: typeof items = []
+    let clusterEnd = -1
+    const placeCluster = () => {
+      if (!cluster.length) return
+      const laneEnds: number[] = []
+      const assigned: { id: string; lane: number }[] = []
+      for (const item of cluster) {
+        let lane = laneEnds.findIndex((end) => end <= item.start)
+        if (lane < 0) lane = laneEnds.length
+        laneEnds[lane] = item.end
+        assigned.push({ id: item.a.id, lane })
+      }
+      assigned.forEach(({ id, lane }) => appointmentLayout.set(id, { lane, count: laneEnds.length }))
+      cluster = []
+      clusterEnd = -1
+    }
+    for (const item of items) {
+      if (cluster.length && item.start >= clusterEnd) placeCluster()
+      cluster.push(item)
+      clusterEnd = Math.max(clusterEnd, item.end)
+    }
+    placeCluster()
+  }
+'''
+if 'const appointmentLayout = new Map' not in s:
+    if layout_anchor not in s: raise RuntimeError('Appointment layout anchor missing')
+    s = s.replace(layout_anchor, layout_code, 1)
+
+s = s.replace('const short = (end - start) * PX_PER_MIN < 38', 'const short = (end - start) * PX_PER_MIN < 20', 1)
+s = s.replace('''                      const short = (end - start) * PX_PER_MIN < 20
+                      return (''', '''                      const short = (end - start) * PX_PER_MIN < 20
+                      const layout = appointmentLayout.get(a.id) ?? { lane: 0, count: 1 }
+                      const timeIcon = a.status === "completado"
+                        ? <Check className="size-3 shrink-0" aria-label="Завершено" />
+                        : (a.status === "cancelado" || a.status === "no_show")
+                          ? <X className="size-3 shrink-0" aria-label="Скасовано" />
+                          : <Clock3 className="size-3 shrink-0" aria-label={a.status === "en_curso" ? "Триває" : "Ще не розпочато"} />
+                      return (''', 1)
+
+s = s.replace('"absolute inset-x-0.5 overflow-hidden rounded-md border-l-[3px] px-2 text-left shadow-sm transition-[background-color,transform] hover:z-10 hover:-translate-y-px"',
+              '"absolute overflow-hidden rounded-md border-l-[3px] text-left shadow-sm transition-[background-color,transform] hover:z-10 hover:-translate-y-px"', 1)
+s = s.replace('short ? "flex items-center py-0" : "py-1.5"', '"flex flex-col p-0"', 1)
+# A compact status band, with a clear start–end range and matching icon.
+old = '''<span className="block min-w-0">
+                            <span className={cn("num block truncate text-[10px] font-bold",a.status==="en_curso"&&"text-emerald-300",a.status==="completado"&&"text-amber-300",a.status==="pendiente"&&"text-sky-300",a.status==="confirmado"&&"text-sky-300",(a.status==="cancelado"||a.status==="no_show")&&"text-rose-300")}>{hm(a.startsAt)}–{hm(a.endsAt)}</span>
+                            <span className="block truncate text-[12px] font-semibold leading-4 text-ivory">{client?.name||"Client"}</span>
+                          </span>'''
+new = '''<span className={cn("flex h-[16px] min-w-0 shrink-0 items-center justify-between gap-1 px-1.5 text-[10px] leading-none",
+                            a.status === "en_curso" && "bg-emerald-600 text-white",
+                            a.status === "completado" && "bg-amber-600 text-white",
+                            a.status === "confirmado" && "bg-sky-600 text-white",
+                            a.status === "pendiente" && "bg-sky-700 text-white",
+                            (a.status === "cancelado" || a.status === "no_show") && "bg-rose-700 text-white"
+                          )}>
+                            <span className="num min-w-0 truncate font-bold">{hm(a.startsAt)}–{hm(a.endsAt)}</span>
+                            {timeIcon}
+                          </span>
+                          {!short && <span className="min-h-0 min-w-0 flex-1 overflow-hidden px-1.5 py-0.5">
+                            <span className="block truncate text-[11px] font-semibold leading-[13px] text-ivory">{client?.name || "Client"}</span>
+                            {(end - start) * PX_PER_MIN >= 42 && <span className="block truncate text-[10px] leading-3 text-ivory-3">{service.name}</span>}
+                            {reward && <Sparkles className="absolute bottom-1 right-1 size-3 text-gold" aria-label="Le toca el 50%" />}
+                          </span>}'''
+if old not in s:
+    raise RuntimeError('Expected compact appointment content missing')
+s = s.replace(old, new, 1)
+s = s.replace('''style={{ top: (start - openMin) * PX_PER_MIN + 1, height: (end - start) * PX_PER_MIN - 2 }}''',
+'''style={{
+                            top: (start - openMin) * PX_PER_MIN + 1,
+                            height: Math.max((end - start) * PX_PER_MIN - 2, 14),
+                            left: `calc(${layout.lane * 100 / layout.count}% + 4px)`,
+                            width: `calc(${100 / layout.count}% - 8px)`,
+                          }}''',1)
+# Soft amber glow only on the active booking crossed by the current-time line.
+s = s.replace('''(a.status === "cancelado" || a.status === "no_show") && "border-l-rose-500 bg-rose-500/10 opacity-70 ring-1 ring-rose-500/20 ring-inset"
+                          )}''',
+'''(a.status === "cancelado" || a.status === "no_show") && "border-l-rose-500 bg-rose-500/10 opacity-70 ring-1 ring-rose-500/20 ring-inset",
+                            isToday && start <= nowMin && end > nowMin && "z-[25] outline outline-1 outline-amber-300/70 shadow-[0_0_12px_2px_rgba(245,158,11,0.28)]"
+                          )}''',1)
+
+p.write_text(s, encoding='utf-8')
+print('CALENDAR_SCALE_STATUS_BANDS_OVERLAP_LANES_ACTIVE_GLOW_INSTALLED')
