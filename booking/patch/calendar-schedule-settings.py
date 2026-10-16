@@ -42,8 +42,8 @@ s = s.replace('''        schedule: shifts.filter((x) => x.staff_id === r.id).map
         timeOff:'''.replace('+',''), '''        schedule: shifts.filter((x) => x.staff_id === r.id).map((x) => ({ weekday: Number(x.weekday), start: x.start as string, end: x.end as string })),
         dateSchedule: dateSchedules.filter((x) => x.staff_id === r.id).map((x) => ({ day: String(x.day), works: Boolean(x.works), shifts: (x.shifts as {start:string;end:string}[]) ?? [] })),
         timeOff:'''.replace('+',''), 1)
-s = s.replace('''        slotStepMin: Number(shop[0].slot_step_min ?? 60),
-      },'''.replace('+',''), '''        slotStepMin: Number(shop[0].slot_step_min ?? 60),
+s = s.replace('''        timezone: String(shop[0].timezone ?? \"Europe/Berlin\"),
+      },'''.replace('+',''), '''        timezone: String(shop[0].timezone ?? \"Europe/Berlin\"),
         calendarOpen: String(shop[0].calendar_open ?? '11:00'),
         calendarClose: String(shop[0].calendar_close ?? '20:00'),
         calendarStepMin: Number(shop[0].calendar_step_min ?? 15),
@@ -109,7 +109,8 @@ edit('src/lib/data/repo.ts', '  return {\n    ...s,\n    staff: s.staff.map((m) 
 # open an exceptional day even when the normal weekday is closed.
 p = root / 'src/lib/domain/slots.ts'
 s = p.read_text(encoding='utf-8')
-s = s.replace('staff: Pick<Staff, "id" | "skipsServiceIds" | "schedule" | "timeOff">', 'staff: Pick<Staff, "id" | "skipsServiceIds" | "schedule" | "dateSchedule" | "timeOff" | "calendarOpen" | "calendarClose">', 1)
+s = s.replace('Pick<Staff, \"schedule\">', 'Pick<Staff, \"schedule\" | \"dateSchedule\" | \"calendarOpen\" | \"calendarClose\">')
+s = s.replace('staff: Pick<Staff, \"id\" | \"skipsServiceIds\" | \"schedule\" | \"timeOff\">', 'staff: Pick<Staff, \"id\" | \"skipsServiceIds\" | \"schedule\" | \"dateSchedule\" | \"timeOff\" | \"calendarOpen\" | \"calendarClose\">', 1)
 s = s.replace('''  const shopOpen = hmToMinutes(BRAND.openingHours.open)
   const shopClose = hmToMinutes(BRAND.openingHours.close)
   if (!staff.schedule) return [[shopOpen, shopClose]]
@@ -288,8 +289,11 @@ edit('src/lib/data/seed.ts', 'slotStepMin: 60, timezone: \"Europe/Berlin\" },', 
 # Add separate calendar and staff schedule settings tabs.
 p = root/'src/app/(panel)/ajustes/page.tsx'
 s = p.read_text(encoding='utf-8')
+if 'id: \"horarios\"' not in s:
+    s, n = re.subn(r'(const TABS = \[.*?)(\] as const)', r'\1  { id: "horarios", label: "Графік працівників" },\n  { id: "calendario", label: "Календар" },\2', s, count=1, flags=re.S)
+    if n != 1: raise RuntimeError('Settings tabs insertion point missing')
+s = s.replace('] as const', ']', 1)
 s = s.replace('import { ServicesEditor } from "@/components/settings/services-editor"', 'import { ServicesEditor } from "@/components/settings/services-editor"\nimport { CalendarSettings } from "@/components/settings/calendar-settings"\nimport { StaffSchedulePlanner } from "@/components/settings/staff-schedule-planner"',1)
-s = s.replace('  { id: "fijos", label: "Turnos fijos" },', '  { id: "fijos", label: "Turnos fijos" },\n  { id: "horarios", label: "Графік працівників" },\n  { id: "calendario", label: "Календар" },',1)
 s = s.replace('{tab === "fijos" && <FixedSlotsEditor', '{tab === "horarios" && <StaffSchedulePlanner staff={s.staff} today={dayKey(await now())} />}\n\n        {tab === "calendario" && <div className="space-y-5"><Panel title="Години роботи та сітка календаря"><CalendarSettings settings={s.shopSettings} /></Panel></div>}\n\n        {tab === "fijos" && <FixedSlotsEditor',1)
 p.write_text(s,encoding='utf-8')
 
