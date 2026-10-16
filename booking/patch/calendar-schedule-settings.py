@@ -947,3 +947,14 @@ if 'const layout = appointmentLayout.get(a.id)' not in s:
     s = s.replace(marker, 'const layout = appointmentLayout.get(a.id) ?? { lane: 0, count: 1 }\n                      ' + marker, 1)
 p.write_text(s, encoding='utf-8')
 print('CALENDAR_CARD_LAYOUT_IMPORTS_FIXED')
+
+
+# Avoid a stale intermediate JSX binding and read each appointment lane directly.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+s = s.replace('left: `calc(${layout.lane * 100 / layout.count}% + 4px)`',
+              'left: `calc(${((appointmentLayout.get(a.id)?.lane ?? 0) * 100) / (appointmentLayout.get(a.id)?.count ?? 1)}% + 4px)`')
+s = s.replace('width: `calc(${100 / layout.count}% - 8px)`',
+              'width: `calc(${100 / (appointmentLayout.get(a.id)?.count ?? 1)}% - 8px)`')
+p.write_text(s, encoding='utf-8')
+print('CALENDAR_OVERLAP_LANES_BOUND_PER_CARD')
