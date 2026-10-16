@@ -1030,7 +1030,7 @@ print('CALENDAR_UNUSED_CARD_LAYOUT_BINDING_REMOVED')
 p = root / 'src/components/agenda/day-grid.tsx'
 s = p.read_text(encoding='utf-8')
 legacy_service = re.compile(
-    r'\\s*\\{!short && \\(\\s*<span className="flex items-center gap-1\\.5 text-\\[11\\.5px\\] text-ivory-3">[\\s\\S]*?</span>\\s*\\)\\}',
+    r'\s*\{!short && \(\s*<span className="flex items-center gap-1\.5 text-\[11\.5px\] text-ivory-3">[\s\S]*?</span>\s*\)\}',
 )
 s, legacy_count = legacy_service.subn('', s, count=1)
 if legacy_count != 1:
