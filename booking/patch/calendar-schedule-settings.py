@@ -791,9 +791,18 @@ css += '''
    z-index:55!important;
  }
  [data-booking-workspace="calendar"] [data-current-time-badge]{
-   display:inline-flex!important;
+   display:flex!important;
    z-index:100!important;
-   min-width:48px;
+   box-sizing:border-box!important;
+   width:100%!important;
+   min-width:0!important;
+   max-width:100%!important;
+   padding-left:2px!important;
+   padding-right:2px!important;
+   font-size:10px!important;
+   line-height:14px!important;
+   overflow:hidden!important;
+   white-space:nowrap!important;
  }
  [data-calendar-menu-layer]{
    position:fixed!important;
