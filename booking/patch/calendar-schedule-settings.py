@@ -577,3 +577,59 @@ css += '''
 '''
 css_path.write_text(css, encoding='utf-8')
 print('CALENDAR_PREVIOUS_BARBER_ARROW_PINNED_TO_STICKY_HEADER')
+
+
+# Final mobile barber-header polish: balanced compact gutters, one header surface,
+# aligned two-line names/roles, small portraits, and slim full-height arrows.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+
+old_track = 'gridTemplateColumns: "40px repeat("+visibleStaff.length+", minmax(0,1fr)) 40px"'
+if s.count(old_track) < 2:
+    raise RuntimeError("Expected both calendar header and timeline side gutters")
+s = s.replace(old_track, 'gridTemplateColumns: "40px repeat("+visibleStaff.length+", minmax(0,1fr)) 32px"')
+
+# Apply the same dark surface to every header cell, including the arrow gutters.
+s = s.replace('className="relative grid border-b border-line bg-surface-1 shadow-sm"', 'className="relative grid border-b border-line bg-[#151515] shadow-sm"', 1)
+s = s.replace('className="sticky left-0 z-[60] flex items-center justify-center bg-obsidian"', 'className="sticky left-0 z-[60] flex items-center justify-center bg-[#151515]"', 1)
+s = s.replace('className="flex min-w-0 min-h-[112px] flex-col items-start justify-center gap-1 border-l border-line px-2 py-2"', 'className="flex min-w-0 min-h-[112px] flex-col items-start justify-center gap-1 border-l border-line bg-[#151515] px-2 py-2"', 1)
+
+# Make each portrait/name/role stack use the same compact dimensions and baseline.
+s = s.replace('grid size-8 shrink-0 place-items-center overflow-hidden rounded-md', 'grid size-7 shrink-0 place-items-center overflow-hidden rounded-md', 1)
+s = s.replace('width={32} height={32}', 'width={28} height={28}', 1)
+s = s.replace('block truncate text-[14px] font-medium text-ivory', 'block h-[30px] w-full overflow-hidden break-words text-[13px] leading-[15px] font-medium text-ivory', 1)
+s = s.replace('block truncate text-[10px] font-medium text-ivory-3', 'block h-[14px] w-full truncate text-[11px] leading-[14px] font-medium text-ivory-3', 1)
+
+# Previous/next controls are narrow arrow-only strips, visible only when movement exists.
+s = s.replace('className="grid size-7 place-items-center rounded-full border border-line-strong bg-surface-2 shadow"', 'className="flex h-full w-full items-center justify-center bg-[#151515] text-ivory-2"', 1)
+s = s.replace('<ChevronLeft className="size-4"/>', '<ChevronLeft className="size-5"/>', 1)
+s = s.replace('className="absolute right-1 top-1/2 z-50 grid size-7 -translate-y-1/2 place-items-center rounded-full border border-line-strong bg-surface-2 shadow"', 'className="absolute inset-y-0 right-0 z-50 flex w-8 items-center justify-center bg-[#151515] text-ivory-2"', 1)
+s = s.replace('<ChevronRight className="size-4"/>', '<ChevronRight className="size-5"/>', 1)
+
+# Both right-hand spacers match the new 32px grid track and header background.
+s = s.replace('z-30 w-10 border-l border-line bg-obsidian/95', 'z-30 w-8 border-l border-line bg-[#151515]', 1)
+s = s.replace('z-10 w-10 border-l border-line bg-obsidian/95', 'z-10 w-8 border-l border-line bg-obsidian/95', 1)
+
+p.write_text(s, encoding='utf-8')
+
+css_path = root / 'src/app/globals.css'
+css = css_path.read_text(encoding='utf-8')
+css += '''
+@media(max-width:767px){
+ [data-booking-workspace="calendar"] [data-staff-header]{
+   background:#151515!important;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header] > [data-staff-prev-gutter],
+ [data-booking-workspace="calendar"] [data-staff-header] > div[aria-hidden]{
+   background:#151515!important;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header] > div[aria-hidden]{
+   width:32px!important;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header] > div:not(:first-child){
+   background:#151515!important;
+ }
+}
+'''
+css_path.write_text(css, encoding='utf-8')
+print('CALENDAR_BARBER_HEADER_COMPACT_AND_ALIGNED')
