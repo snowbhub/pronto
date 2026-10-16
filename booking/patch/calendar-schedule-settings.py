@@ -1004,3 +1004,14 @@ s = s.replace('width: `calc(${100 / cardLayout.count}% - 8px)`',
               'width: `calc(${100 / (' + lane_expr + '?.count ?? 1)}% - 8px)`')
 p.write_text(s, encoding='utf-8')
 print('CALENDAR_CARD_LANES_INLINE_LOOKUP')
+
+
+# Key lanes by the start/end times available in the timeline cell renderer.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+s = s.replace('appointmentLayoutByKey.set(`${minutesOfDay(item.startsAt)}:${minutesOfDay(item.endsAt)}:${item.clientId}:${item.serviceId}`, layout)',
+              'appointmentLayoutByKey.set(`${minutesOfDay(item.startsAt)}:${minutesOfDay(item.endsAt)}`, layout)')
+s = s.replace('appointmentLayoutByKey.get(`${start}:${end}:${client?.id}:${service.id}`)', 'appointmentLayoutByKey.get(start + ":" + end)')
+s = s.replace('appointmentLayoutByKey.get(start + ":" + end + ":" + client?.id + ":" + service.id)', 'appointmentLayoutByKey.get(start + ":" + end)')
+p.write_text(s, encoding='utf-8')
+print('CALENDAR_OVERLAP_LANES_KEYED_BY_INTERVAL')
