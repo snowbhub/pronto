@@ -181,9 +181,15 @@ s = s.replace('''        <div ref={staffScrollRef} data-calendar-scroll aria-lab
 s = s.replace('gridTemplateColumns: "44px repeat("+staff.length+", minmax("+(mobileMode&&workingStaff.length>3?"112px":"0px")+",1fr))"', 'gridTemplateColumns: "44px repeat("+visibleStaff.length+", minmax(0,1fr))"', 2)
 # Put the paging controls beside the barber names and subtly pin the header.
 s = s.replace('<div data-staff-header className="grid border-b border-line"', '<div data-staff-header className="relative grid border-b border-line bg-surface-1 shadow-sm"', 1)
-s = s.replace('<div className="sticky left-0 z-30 bg-obsidian" />', '''<div className="sticky left-0 z-30 bg-obsidian" />
+s = re.sub(r'<div className="sticky left-0 z-30 flex items-center justify-center gap-0\.5 bg-obsidian">\s*\{mobileMode && workingStaff\.length>3 && <>.*?</>\}\s*</div>', '<div className="sticky left-0 z-30 bg-obsidian" />', s, count=1, flags=re.S)
+header = '''              <div className="sticky left-0 z-30 bg-obsidian" />
+              {visibleStaff.map((s) => {'''
+header_with_controls = '''              <div className="sticky left-0 z-30 bg-obsidian" />
               {mobileMode && workingStaff.length>3 && staffPage>0 && <button type="button" aria-label="Попередні барбери" onClick={()=>setStaffPage((page)=>Math.max(0,page-1))} className="absolute left-1 top-1/2 z-50 grid size-7 -translate-y-1/2 place-items-center rounded-full border border-line-strong bg-surface-2 shadow"><ChevronLeft className="size-4"/></button>}
-              {mobileMode && workingStaff.length>3 && staffPage<workingStaff.length-3 && <button type="button" aria-label="Наступні барбери" onClick={()=>setStaffPage((page)=>Math.min(workingStaff.length-3,page+1))} className="absolute right-1 top-1/2 z-50 grid size-7 -translate-y-1/2 place-items-center rounded-full border border-line-strong bg-surface-2 shadow"><ChevronRight className="size-4"/></button>}''', 1)
+              {mobileMode && workingStaff.length>3 && staffPage<workingStaff.length-3 && <button type="button" aria-label="Наступні барбери" onClick={()=>setStaffPage((page)=>Math.min(workingStaff.length-3,page+1))} className="absolute right-1 top-1/2 z-50 grid size-7 -translate-y-1/2 place-items-center rounded-full border border-line-strong bg-surface-2 shadow"><ChevronRight className="size-4"/></button>}
+              {visibleStaff.map((s) => {'''
+if header not in s: raise RuntimeError('Calendar staff header insertion point missing')
+s = s.replace(header, header_with_controls, 1)
 s = s.replace('border-l-amber-500 bg-amber-400/15 ring-1 ring-amber-400/25 ring-inset', 'border-l-amber-500 bg-amber-300/20 ring-1 ring-amber-300/30 ring-inset', 1)
 s = s.replace('border-l-orange-500 bg-orange-400/15 ring-1 ring-orange-400/25 ring-inset', 'border-l-emerald-500 bg-emerald-400/15 ring-1 ring-emerald-400/30 ring-inset', 1)
 s = s.replace('a.status === "confirmado" && "border-l-orange-500 bg-orange-400/15 ring-1 ring-orange-400/25 ring-inset"', 'a.status === "confirmado" && "border-l-sky-400 bg-sky-300/15 ring-1 ring-sky-300/30 ring-inset"', 1)
@@ -199,7 +205,7 @@ rank_at = s.find(rank_anchor, staff_header)
 if rank_at < 0: raise RuntimeError('Staff name in calendar header is missing')
 rank_at += len(rank_anchor)
 s = s[:rank_at] + '\n                      <span className="block truncate text-[10px] font-medium text-ivory-3">{{trainee:"Стажер",junior:"Молодший барбер",barber:"Барбер",senior:"Старший барбер"}[s.professionalLevel ?? "barber"]}</span>' + s[rank_at:]
-s = s.replace('top: (m - openMin) * PX_PER_MIN', 'top: (m - openMin) * PX_PER_MIN + 8', 1)
+s = s.replace('top: (m - openMin) * PX_PER_MIN', 'top: (m - openMin) * PX_PER_MIN - (m === closeMin ? 3 : 0)', 1)
 p.write_text(s, encoding='utf-8')
 
 # Calendar settings action and date-specific staff-schedule action.
@@ -371,9 +377,10 @@ css_path = root / 'src/app/globals.css'
 css = css_path.read_text(encoding='utf-8')
 css += '''
 @media(max-width:767px){
+ [data-booking-workspace="calendar"] .panel{overflow-x:clip!important;overflow-y:visible!important;}
  [data-booking-workspace="calendar"] [data-calendar-scroll]{overflow-x:clip!important;overflow-y:visible!important;}
  [data-booking-workspace="calendar"] [data-staff-header]{position:sticky;top:calc(env(safe-area-inset-top) + 48px);z-index:40;background-color:#151515;backdrop-filter:blur(10px);}
- [data-booking-workspace="calendar"] [data-calendar-grid]{padding-bottom:calc(88px + env(safe-area-inset-bottom));}
+ [data-booking-workspace="calendar"] [data-calendar-grid]{padding-bottom:2px;}
  [data-booking-workspace="calendar"] [data-time-rail]{z-index:20;}
 }
 '''
