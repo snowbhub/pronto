@@ -738,7 +738,7 @@ s = s.replace(
 )
 
 badge = '''
-                {isToday && nowMin >= openMin && nowMin < closeMin && <span aria-hidden data-current-time-badge className="pointer-events-none absolute left-0 z-[100] -translate-y-1/2 whitespace-nowrap rounded-md border border-line-strong bg-[#202020] px-1.5 py-0.5 font-mono text-[12px] font-semibold leading-5 text-amber-300 shadow-md" style={{top:(nowMin-openMin)*PX_PER_MIN}}>{String(currentClock.getHours()).padStart(2,"0")}:{String(currentClock.getMinutes()).padStart(2,"0")}</span>}
+                {isToday && nowMin >= openMin && nowMin < closeMin && <span aria-hidden data-current-time-badge className="pointer-events-none absolute left-0 z-[100] box-border flex w-full max-w-full -translate-y-1/2 justify-center overflow-hidden rounded-sm border border-line-strong bg-[#202020] px-0.5 py-0.5 font-mono text-[10px] font-semibold leading-[14px] text-amber-300 shadow-md" style={{top:(nowMin-openMin)*PX_PER_MIN}}>{String(currentClock.getHours()).padStart(2,"0")}:{String(currentClock.getMinutes()).padStart(2,"0")}</span>}
 '''
 s = s.replace(rail_anchor, rail_anchor + badge, 1)
 p.write_text(s, encoding='utf-8')
