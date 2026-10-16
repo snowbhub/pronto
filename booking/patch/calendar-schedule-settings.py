@@ -958,3 +958,14 @@ s = s.replace('width: `calc(${100 / layout.count}% - 8px)`',
               'width: `calc(${100 / (appointmentLayout.get(a.id)?.count ?? 1)}% - 8px)`')
 p.write_text(s, encoding='utf-8')
 print('CALENDAR_OVERLAP_LANES_BOUND_PER_CARD')
+
+
+# Give the per-card renderer an explicit binding for lane calculations.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+match = re.search(r'\.map\(\(a\) => \{\s*const start = minutesOfDay\(a\.startsAt\).*?\n\s{20}\}\)', s, flags=re.S)
+if not match: raise RuntimeError('Appointment card map not found for explicit binding')
+card = match.group(0).replace('.map((a) => {', '.map((appointment) => {', 1).replace('a.', 'appointment.')
+s = s[:match.start()] + card + s[match.end():]
+p.write_text(s, encoding='utf-8')
+print('CALENDAR_APPOINTMENT_RENDERER_BINDING_EXPLICIT')
