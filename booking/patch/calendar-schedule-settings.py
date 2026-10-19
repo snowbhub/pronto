@@ -1343,3 +1343,104 @@ css += '''
 '''
 css_path.write_text(css, encoding='utf-8')
 print('CALENDAR_LAST_BARBER_CLEAR_OF_PAGER_AND_BODY_EDGE_BLACK')
+
+# Final visual and locale pass: keep legacy CSS patches from reintroducing a gutter,
+# make the barber pager a compact reserved control, and localize late-injected settings.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+s = s.replace('className="absolute right-1 top-1/2 z-50 grid size-7 -translate-y-1/2', 'className="absolute right-1 top-1/2 z-50 grid size-5 -translate-y-1/2')
+p.write_text(s, encoding='utf-8')
+
+css_path = root / 'src/app/globals.css'
+css = css_path.read_text(encoding='utf-8')
+css += '''
+@media(max-width:767px){
+ [data-booking-workspace="calendar"] [data-calendar-grid] [aria-hidden][class*="absolute"][class*="inset-y-0"][class*="right-0"]{display:none!important;}
+ [data-booking-workspace="calendar"] [data-calendar-grid]{width:100%!important;min-width:0!important;background:var(--obsidian)!important;}
+ [data-booking-workspace="calendar"] [data-calendar-scroll]{width:100%!important;background:var(--obsidian)!important;}
+ [data-booking-workspace="calendar"] [data-staff-header]{width:100%!important;background:var(--surface-1)!important;background-color:var(--surface-1)!important;}
+ [data-booking-workspace="calendar"] [data-staff-header] > div:not(:first-child){min-width:0!important;box-sizing:border-box!important;gap:4px!important;padding-left:4px!important;padding-right:4px!important;}
+ [data-booking-workspace="calendar"] [data-staff-header] > div:last-child{padding-right:25px!important;}
+ [data-booking-workspace="calendar"] [data-staff-header] > div:not(:first-child) > span:first-child{width:28px!important;height:28px!important;flex:0 0 28px!important;}
+ [data-booking-workspace="calendar"] [data-staff-header] > div:not(:first-child) > span:nth-child(2){min-width:0!important;flex:1 1 0%!important;}
+ [data-booking-workspace="calendar"] [data-staff-header] > div:not(:first-child) > span:nth-child(2) > span:first-child{font-size:13px!important;line-height:1.15!important;white-space:normal!important;overflow-wrap:anywhere!important;}
+ [data-booking-workspace="calendar"] [data-staff-header] [data-calendar-next-staff]{right:3px!important;width:20px!important;min-width:20px!important;height:20px!important;padding:0!important;background:var(--surface-1)!important;}
+ [data-booking-workspace="calendar"] [data-staff-header] [data-calendar-next-staff] svg{width:12px!important;height:12px!important;}
+ [data-booking-workspace="calendar"] [data-staff-header] [aria-label="Попередні барбери"]{left:3px!important;width:20px!important;height:20px!important;}
+}
+html[data-theme="light"] [data-booking-workspace="calendar"] [data-calendar-scroll],
+html[data-theme="light"] [data-booking-workspace="calendar"] [data-calendar-grid],
+html[data-theme="light"] [data-booking-workspace="calendar"] [data-calendar-grid"] > div[aria-hidden]{background:var(--obsidian)!important;background-color:var(--obsidian)!important;background-image:none!important;}
+html[data-theme="light"] [data-booking-workspace="calendar"] [data-staff-header],
+html[data-theme="light"] [data-booking-workspace="calendar"] [data-staff-header"] > div{background:var(--surface-1)!important;background-color:var(--surface-1)!important;}
+'''.replace('+','')
+css_path.write_text(css, encoding='utf-8')
+
+# Inject translations for strings added after the normal source localization pass.
+p = root / 'src/i18n/messages.ts'
+s = p.read_text(encoding='utf-8')
+match = re.search(r'(export const ROWS=)(\[.*?\])( as const)', s, re.S)
+if not match:
+    raise RuntimeError('Could not extend the generated locale dictionary')
+rows = json.loads(match.group(2))
+extras = [
+  ['El local abre','Business opens','Öffnet um','Заклад відкривається'],
+  ['El local cierra','Business closes','Schließt um','Заклад зачиняється'],
+  ['Paso de la cuadrícula del calendario','Calendar grid interval','Kalenderintervall','Крок сітки календаря'],
+  ['Cada 15 minutos','Every 15 minutes','Alle 15 Minuten','Кожні 15 хвилин'],
+  ['Cada 30 minutos','Every 30 minutes','Alle 30 Minuten','Кожні 30 хвилин'],
+  ['Permitir turnos superpuestos para el equipo','Allow overlapping appointments for staff','Überlappende Termine für das Team erlauben','Дозволити накладання записів для команди'],
+  ['Sólo el personal del panel puede usarlos. La reserva pública sigue bloqueando las horas ya ocupadas.','Only panel staff can use this option. Public booking still blocks occupied times.','Nur das Team im Verwaltungsbereich kann diese Option nutzen. Öffentliche Buchungen bleiben für belegte Zeiten gesperrt.','Цю опцію може використовувати лише команда панелі. Публічний запис і далі блокує зайнятий час.'],
+  ['Configuración del calendario guardada','Calendar settings saved','Kalendereinstellungen gespeichert','Налаштування календаря збережено'],
+  ['Guardar configuración','Save settings','Einstellungen speichern','Зберегти налаштування'],
+  ['Guardando…','Saving…','Wird gespeichert…','Збереження…'],
+  ['Staff schedule','Staff schedule','Mitarbeiterplan','Графік працівників'],
+  ['Opening hours and calendar grid','Opening hours and calendar grid','Öffnungszeiten und Kalender-Raster','Години роботи та сітка календаря'],
+  ['Calendar','Calendar','Kalender','Календар'],
+  ['Revisá la persona y la fecha.','Check the staff member and date.','Prüfe die Person und das Datum.','Перевірте працівника й дату.'],
+  ['Elegí hasta tres franjas dentro del horario del local','Choose up to three shifts within the business hours','Wähle bis zu drei Schichten innerhalb der Öffnungszeiten','Оберіть до трьох змін у межах годин роботи закладу'],
+  ['Las franjas de una misma fecha no pueden pisarse.','Shifts on the same date cannot overlap.','Schichten am selben Tag dürfen sich nicht überschneiden.','Зміни в один день не можуть перетинатися.'],
+  ['Revisá el horario del local.','Check the business hours.','Prüfe die Öffnungszeiten.','Перевірте години роботи закладу.'],
+  ['El paso de la cuadrícula debe ser de 15 o 30 minutos.','The calendar interval must be 15 or 30 minutes.','Das Kalenderintervall muss 15 oder 30 Minuten betragen.','Крок сітки має бути 15 або 30 хвилин.'],
+]
+known_source = {row['es'] for row in rows}
+for entry in extras:
+    if entry[0] not in known_source:
+        rows.append(dict(zip(('es','en','de','uk'), entry)))
+        known_source.add(entry[0])
+s = s[:match.start()] + match.group(1) + json.dumps(rows, ensure_ascii=False, indent=2) + match.group(3) + s[match.end():]
+p.write_text(s, encoding='utf-8')
+
+# Translate the date-specific staff planner live and use the selected locale for dates.
+p = root / 'src/components/settings/staff-schedule-planner.tsx'
+s = p.read_text(encoding='utf-8')
+s = s.replace('import type { Staff } from "@/lib/domain/types"', 'import type { Staff } from "@/lib/domain/types"\nimport { normalizeLocale, type Locale } from "@/i18n/messages"')
+s = s.replace('const names=["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"]', '''const localeTags:Record<Locale,string>={en:"en-GB",de:"de-DE",uk:"uk-UA"}
+const words:Record<Locale,{staff:string;previous:string;next:string;works:string;start:string;end:string;saved:string;saving:string;save:string}>={
+ en:{staff:"Staff member",previous:"Previous month",next:"Next month",works:"Works on this day",start:"Start",end:"End",saved:"Schedule saved",saving:"Saving…",save:"Save schedule"},
+ de:{staff:"Mitarbeiter",previous:"Voriger Monat",next:"Nächster Monat",works:"Arbeitet an diesem Tag",start:"Beginn",end:"Ende",saved:"Arbeitszeit gespeichert",saving:"Wird gespeichert…",save:"Arbeitszeit speichern"},
+ uk:{staff:"Працівник",previous:"Попередній місяць",next:"Наступний місяць",works:"Працює цього дня",start:"Початок",end:"Кінець",saved:"Графік на дату збережено",saving:"Зберігаємо…",save:"Зберегти графік на дату"}
+}''')
+s = s.replace('const [month,setMonth]=useState(()=>new Date(today+"T12:00:00"))', '''const [locale,setLocale]=useState<Locale>("en")
+  useEffect(()=>{const read=()=>setLocale(normalizeLocale(localStorage.getItem("booking_locale")));read();window.addEventListener("booking:locale",read);return()=>window.removeEventListener("booking:locale",read)},[])
+  const copy=words[locale], localeTag=localeTags[locale]
+  const [month,setMonth]=useState(()=>new Date(today+"T12:00:00"))''')
+s = s.replace('new Intl.DateTimeFormat("uk-UA"', 'new Intl.DateTimeFormat(localeTag')
+s = s.replace('>Працівник<select', '>{copy.staff}<select')
+s = s.replace('aria-label="Попередній місяць"', 'aria-label={copy.previous}')
+s = s.replace('aria-label="Наступний місяць"', 'aria-label={copy.next}')
+s = s.replace('{["Пн","Вт","Ср","Чт","Пт","Сб","Нд"].map(n=><span key={n} className="py-1 text-xs text-ivory-3">{n}</span>)}', '{Array.from({length:7},(_,i)=>new Intl.DateTimeFormat(localeTag,{weekday:"short"}).format(new Date(2024,0,1+i))).map(n=><span key={n} className="py-1 text-xs text-ivory-3">{n}</span>)}')
+s = s.replace('>Працює цього дня</label>', '>{copy.works}</label>')
+s = s.replace('>Початок<input', '>{copy.start}<input')
+s = s.replace('>Кінець<input', '>{copy.end}<input')
+s = s.replace('toast.success("Графік на дату збережено")', 'toast.success(copy.saved)')
+s = s.replace('>{pending?"Зберігаємо…":"Зберегти графік на дату"}</button>', '>{pending?copy.saving:copy.save}</button>')
+p.write_text(s, encoding='utf-8')
+
+# Keep newly added tabs in the same translation pipeline as the rest of settings.
+p = root / 'src/app/(panel)/ajustes/page.tsx'
+s = p.read_text(encoding='utf-8')
+s = s.replace('label: "Графік працівників"', 'label: "Staff schedule"').replace('label: "Календар"', 'label: "Calendar"')
+s = s.replace('<Panel title="Години роботи та сітка календаря">', '<Panel title="Opening hours and calendar grid">')
+p.write_text(s, encoding='utf-8')
+print('BOOKING_CALENDAR_THEME_LAYOUT_SETTINGS_LOCALES_FIXED')
