@@ -1302,10 +1302,11 @@ if removed_body_spacers:
     print('CALENDAR_BODY_SPACERS_REMOVED', removed_body_spacers)
 # The body spacer is a JSX child of a time row, which is why its gray fill
 # appeared for exactly one hour. The header paging strip remains independent.
-track_re = r'(gridTemplateColumns: "40px repeat\("\+visibleStaff\.length\+", minmax\(0,1fr\)) (?:16|24|32|40)px")'
-s, removed_tracks = re.subn(track_re, r'\1', s)
-# Remove a trailing fixed track without changing the equal 1fr staff columns.
-s = re.sub(r'(gridTemplateColumns: "40px repeat\("\+visibleStaff\.length\+", minmax\(0,1fr\)) (?:16|24|32|40)px"', r'\1', s)
+# Strip any legacy fixed-width right track; both templates keep equal 1fr staff columns.
+for gutter_width in ("16px", "24px", "32px", "40px"):
+    old_track = 'gridTemplateColumns: "40px repeat("+visibleStaff.length+", minmax(0,1fr)) ' + gutter_width + '"'
+    new_track = 'gridTemplateColumns: "40px repeat("+visibleStaff.length+", minmax(0,1fr))"'
+    s = s.replace(old_track, new_track)
 s = s.replace('right-[16px] z-30', 'right-0 z-30')
 p.write_text(s, encoding='utf-8')
 
