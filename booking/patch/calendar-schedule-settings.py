@@ -1187,3 +1187,57 @@ if scale_count != 1:
     raise RuntimeError('Calendar scale declaration not found')
 p.write_text(s, encoding='utf-8')
 print('CALENDAR_RIGHT_GUTTER_BLACK_AND_9_HOUR_MOBILE_SCALE')
+
+# Final screenshot fix: the rightmost decorative grid gutter is a separate,
+# aria-hidden overlay. Style that exact node (the previous broad selectors
+# only covered its parent), and reserve a slim independent track for paging.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+old_track = 'gridTemplateColumns: "40px repeat("+visibleStaff.length+", minmax(0,1fr)) 24px"'
+if s.count(old_track) != 2:
+    raise RuntimeError("Expected two 24px right gutter tracks (header and grid)")
+s = s.replace(old_track, 'gridTemplateColumns: "40px repeat("+visibleStaff.length+", minmax(0,1fr)) 16px"')
+
+gutter_re = r'<div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 z-10 w-\\d+ border-l border-line [^"]+" />'
+gutter, gutter_count = re.subn(
+    gutter_re,
+    '<div aria-hidden data-calendar-right-gutter className="pointer-events-none absolute inset-y-0 right-0 z-10 w-4 border-l border-line bg-[#090909]" />',
+    s,
+    count=1,
+)
+if gutter_count != 1:
+    raise RuntimeError("Calendar right-side grid overlay was not found")
+s = gutter
+
+next_button = 'aria-label="Наступні барбери"'
+if s.count(next_button) != 1:
+    raise RuntimeError("Calendar next-barber arrow was not found")
+s = s.replace(next_button, next_button + ' data-calendar-next-staff', 1)
+s = s.replace('right-[32px] z-30', 'right-[16px] z-30', 1)
+p.write_text(s, encoding='utf-8')
+
+css_path = root / 'src/app/globals.css'
+css = css_path.read_text(encoding='utf-8')
+css += '''
+@media(max-width:767px){
+ [data-booking-workspace="calendar"] [data-calendar-grid] [data-calendar-right-gutter]{
+   background:#090909!important;
+   background-color:#090909!important;
+   border-left-color:#202020!important;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header] [data-calendar-next-staff]{
+   box-sizing:border-box!important;
+   width:16px!important;
+   min-width:16px!important;
+   padding:0!important;
+   background:#151515!important;
+   justify-content:center!important;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header] [data-calendar-next-staff] svg{
+   width:12px!important;
+   height:12px!important;
+ }
+}
+'''
+css_path.write_text(css, encoding='utf-8')
+print('CALENDAR_RIGHT_GUTTER_BLACK_ARROW_GUTTER_16PX')
