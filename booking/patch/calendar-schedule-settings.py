@@ -1198,7 +1198,7 @@ if s.count(old_track) != 2:
     raise RuntimeError("Expected two 24px right gutter tracks (header and grid)")
 s = s.replace(old_track, 'gridTemplateColumns: "40px repeat("+visibleStaff.length+", minmax(0,1fr)) 16px"')
 
-gutter_re = r'<div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 z-10 w-\\d+ border-l border-line [^"]+" />'
+gutter_re = r'<div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 z-10 w-[0-9]+ border-l border-line [^"]+" />'
 gutter, gutter_count = re.subn(
     gutter_re,
     '<div aria-hidden data-calendar-right-gutter className="pointer-events-none absolute inset-y-0 right-0 z-10 w-4 border-l border-line bg-[#090909]" />',
