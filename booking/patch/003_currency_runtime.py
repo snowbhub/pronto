@@ -23,17 +23,31 @@ edit("src/lib/data/store/postgres.ts", 'timezone:String(shop.timezone??"Europe/B
 edit("src/lib/data/store/postgres.ts", '        timezone: String(shop[0].timezone ?? "Europe/Berlin"),', '        timezone: String(shop[0].timezone ?? "Europe/Berlin"),\n        currency: String(shop[0].currency_code ?? "ARS") as import("@/lib/domain/types").CurrencyCode,', "snapshot currency map")
 edit("src/lib/data/store/postgres.ts", '    if (patch.timezone !== undefined) row.timezone = patch.timezone', '    if (patch.timezone !== undefined) row.timezone = patch.timezone\n    if (patch.currency !== undefined) row.currency_code = patch.currency', "currency write")
 
-edit("src/lib/data/repo.ts", 'export async function now(): Promise<Date> {', '''export async function runtimeSettings() {
+edit("src/lib/data/repo.ts", 'export async function now(): Promise<Date> {', '''let runtimeSettingsCache: { value: { timezone: string; currency: import("@/lib/domain/types").CurrencyCode; depositEnabled: boolean }; expiresAt: number } | null = null
+
+export function clearRuntimeSettingsCache() {
+  runtimeSettingsCache = null
+}
+
+export async function runtimeSettings() {
+  if (runtimeSettingsCache && runtimeSettingsCache.expiresAt > Date.now()) {
+    setTimeZone(runtimeSettingsCache.value.timezone || "Europe/Berlin")
+    return runtimeSettingsCache.value
+  }
   await connection()
   const repository = store()
   const settings = repository.runtimeSettings
     ? await repository.runtimeSettings()
     : (await db()).shopSettings
   setTimeZone(settings.timezone || "Europe/Berlin")
+  runtimeSettingsCache = { value: settings, expiresAt: Date.now() + 5 * 60 * 1000 }
   return settings
 }
 
 export async function now(): Promise<Date> {'''.replace("+", ""), "fast runtime settings helper")
+
+edit("src/lib/data/settings-actions.ts", 'import { db, now, store } from "./repo"', 'import { clearRuntimeSettingsCache, db, now, store } from "./repo"', "runtime cache invalidation import")
+edit("src/lib/data/settings-actions.ts", 'const refresh = () => revalidatePath("/", "layout")', 'const refresh = () => { clearRuntimeSettingsCache(); revalidatePath("/", "layout") }', "runtime cache invalidation on settings save")
 
 # Carry the persisted currency and current language into both server and client
 # formatting. The function name stays as a compatibility alias for upstream UI.
