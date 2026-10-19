@@ -1,0 +1,19 @@
+[
+  ["Generate invite link", "Generate invite link", "Einladungslink erstellen", "Створити посилання-запрошення"],
+  ["Creating…", "Creating…", "Wird erstellt…", "Створення…"],
+  ["Registration link", "Registration link", "Registrierungslink", "Посилання для реєстрації"],
+  ["Copy link", "Copy link", "Link kopieren", "Скопіювати посилання"],
+  ["Copied", "Copied", "Kopiert", "Скопійовано"],
+  ["Invite expires", "Invite expires", "Einladung läuft ab", "Запрошення дійсне до"],
+  ["Registered through invite", "Registered through invite", "Über Einladung registriert", "Зареєстровано за запрошенням"],
+  ["Create your staff account", "Create your staff account", "Mitarbeiterkonto erstellen", "Створити обліковий запис працівника"],
+  ["Enter the one-time invite key from your manager.", "Enter the one-time invite key from your manager.", "Gib den einmaligen Einladungscode deiner Leitung ein.", "Введіть одноразовий ключ-запрошення від керівника."],
+  ["Invite key", "Invite key", "Einladungscode", "Ключ-запрошення"],
+  ["Create account", "Create account", "Konto erstellen", "Створити обліковий запис"],
+  ["Registration complete. Sign in with your new credentials.", "Registration complete. Sign in with your new credentials.", "Registrierung abgeschlossen. Melde dich mit deinen neuen Zugangsdaten an.", "Реєстрацію завершено. Увійдіть із новими даними."],
+  ["This invite is invalid, expired or already used.", "This invite is invalid, expired or already used.", "Diese Einladung ist ungültig, abgelaufen oder bereits verwendet.", "Запрошення недійсне, прострочене або вже використане."],
+  ["That username is already in use.", "That username is already in use.", "Dieser Benutzername wird bereits verwendet.", "Це ім’я користувача вже зайняте."],
+  ["The invite is no longer valid for an active employee.", "The invite is no longer valid for an active employee.", "Die Einladung gilt nicht mehr für einen aktiven Mitarbeiter.", "Запрошення більше не дійсне для активного працівника."],
+  ["Use at least 12 characters for your password.", "Use at least 12 characters for your password.", "Verwende mindestens 12 Zeichen für dein Passwort.", "Пароль має містити щонайменше 12 символів."],
+  ["Disable online deposits before changing currency from ARS.", "Disable online deposits before changing currency from ARS.", "Deaktiviere Online-Anzahlungen, bevor du die Währung von ARS änderst.", "Вимкніть онлайн-передоплату, перш ніж змінювати ARS на іншу валюту."]
+]

@@ -1,0 +1,8 @@
+[
+  ["Add Face ID / passkey", "Add Face ID / passkey", "Face ID / Passkey hinzufügen", "Додати Face ID / ключ доступу"],
+  ["Sign in with Face ID / passkey", "Sign in with Face ID / passkey", "Mit Face ID / Passkey anmelden", "Увійти через Face ID / ключ доступу"],
+  ["Waiting for device…", "Waiting for device…", "Warte auf Gerät…", "Очікування пристрою…"],
+  ["Passkey saved. Use Face ID, Touch ID or your device screen lock at sign-in.", "Passkey saved. Use Face ID, Touch ID or your device screen lock at sign-in.", "Passkey gespeichert. Nutze beim Anmelden Face ID, Touch ID oder die Gerätesperre.", "Ключ збережено. Під час входу використовуйте Face ID, Touch ID або блокування пристрою."],
+  ["Passkeys are not configured for this domain.", "Passkeys are not configured for this domain.", "Passkeys sind für diese Domain nicht eingerichtet.", "Ключі доступу не налаштовані для цього домену."],
+  ["Add a staff passkey", "Add a staff passkey", "Mitarbeiter-Passkey hinzufügen", "Додати ключ доступу працівника"]
+]

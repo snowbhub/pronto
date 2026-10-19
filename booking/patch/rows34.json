@@ -1,0 +1,10 @@
+[
+  ["Business currency", "Business currency", "Geschäftswährung", "Валюта закладу"],
+  ["Euro (EUR)", "Euro (EUR)", "Euro (EUR)", "Євро (EUR)"],
+  ["Hryvnia (UAH)", "Hryvnia (UAH)", "Hrywnja (UAH)", "Гривня (UAH)"],
+  ["US dollar (USD)", "US dollar (USD)", "US-Dollar (USD)", "Долар США (USD)"],
+  ["Argentine peso (ARS)", "Argentine peso (ARS)", "Argentinischer Peso (ARS)", "Аргентинське песо (ARS)"],
+  ["Currency used for prices, bookings and financial reports. Existing amounts are not converted.", "Currency used for prices, bookings and financial reports. Existing amounts are not converted.", "Diese Währung wird für Preise, Termine und Finanzberichte verwendet. Bestehende Beträge werden nicht umgerechnet.", "Ця валюта використовується для цін, записів і фінансових звітів. Наявні суми не перераховуються."],
+  ["Business currency saved", "Business currency saved", "Geschäftswährung gespeichert", "Валюту закладу збережено"],
+  ["Save currency", "Save currency", "Währung speichern", "Зберегти валюту"]
+]
