@@ -1245,3 +1245,47 @@ if scale_count != 1:
     raise RuntimeError("Expected the current 1.0px/minute calendar scale")
 p.write_text(s, encoding='utf-8')
 print('CALENDAR_SCALE_1_02PX_PER_MIN')
+
+
+# Correct the actual source of the mobile right-side gap: the pager had been
+# given a dedicated grid track in BOTH header and timeline. Keep paging inside
+# the header as an overlay and let every visible staff column share the full
+# remaining table width.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+old_track = 'gridTemplateColumns: "40px repeat("+visibleStaff.length+", minmax(0,1fr)) 16px"'
+new_track = 'gridTemplateColumns: "40px repeat("+visibleStaff.length+", minmax(0,1fr))"'
+if s.count(old_track) != 2:
+    raise RuntimeError("Expected the 16px pager track in both header and timeline")
+s = s.replace(old_track, new_track)
+if s.count('right-[16px] z-30') != 1:
+    raise RuntimeError("Expected the current-time line to stop before the pager gutter")
+s = s.replace('right-[16px] z-30', 'right-0 z-30', 1)
+p.write_text(s, encoding='utf-8')
+
+css_path = root / 'src/app/globals.css'
+css = css_path.read_text(encoding='utf-8')
+css += '''
+@media(max-width:767px){
+ [data-booking-workspace="calendar"] [data-staff-header]:has([data-calendar-next-staff]) > div:nth-last-child(2){
+   padding-right:24px!important;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header] [data-calendar-next-staff]{
+   box-sizing:border-box!important;
+   width:16px!important;
+   min-width:16px!important;
+   padding:0!important;
+   background:#151515!important;
+   justify-content:center!important;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header] [data-calendar-next-staff] svg{
+   width:12px!important;
+   height:12px!important;
+ }
+ [data-booking-workspace="calendar"] [data-calendar-grid]{
+   background:#090909!important;
+ }
+}
+'''
+css_path.write_text(css, encoding='utf-8')
+print('CALENDAR_EQUAL_STAFF_TRACKS_AND_HEADER_ONLY_PAGER')
