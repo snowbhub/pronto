@@ -1443,4 +1443,14 @@ s = p.read_text(encoding='utf-8')
 s = s.replace('label: "Графік працівників"', 'label: "Staff schedule"').replace('label: "Календар"', 'label: "Calendar"')
 s = s.replace('<Panel title="Години роботи та сітка календаря">', '<Panel title="Opening hours and calendar grid">')
 p.write_text(s, encoding='utf-8')
+
+# Stack native time inputs on narrow devices to prevent intrinsic-width overflow.
+for rel in ('src/components/settings/calendar-settings.tsx','src/components/settings/staff-schedule-planner.tsx'):
+    p = root / rel
+    component = p.read_text(encoding='utf-8')
+    component = component.replace('grid grid-cols-2 gap-3', 'grid grid-cols-1 gap-3 sm:grid-cols-2')
+    component = component.replace('className="mt-1 h-11 w-full rounded-lg border border-line bg-surface-2 px-3"', 'className="mt-1 box-border h-11 w-full min-w-0 max-w-full rounded-lg border border-line bg-surface-2 px-3"')
+    component = component.replace('className="text-sm">', 'className="block min-w-0 text-sm">')
+    p.write_text(component, encoding='utf-8')
+
 print('BOOKING_CALENDAR_THEME_LAYOUT_SETTINGS_LOCALES_FIXED')
