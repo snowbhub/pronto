@@ -1289,3 +1289,56 @@ css += '''
 '''
 css_path.write_text(css, encoding='utf-8')
 print('CALENDAR_EQUAL_STAFF_TRACKS_AND_HEADER_ONLY_PAGER')
+
+
+# Final screenshot diagnosis (3227/3228): the paging button is emitted before
+# the mapped staff cells, so nth-last-child(2) padded the wrong barber. Remove
+# any remaining body-side spacer and protect the actual last staff cell.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+body_spacer_re = r'<div aria-hidden className="[^"]*pointer-events-none[^"]*absolute[^"]*inset-y-0[^"]*right-0[^"]*z-10[^"]*"\s*/>'
+s, removed_body_spacers = re.subn(body_spacer_re, '', s)
+if removed_body_spacers:
+    print('CALENDAR_BODY_SPACERS_REMOVED', removed_body_spacers)
+# The body spacer is a JSX child of a time row, which is why its gray fill
+# appeared for exactly one hour. The header paging strip remains independent.
+track_re = r'(gridTemplateColumns: "40px repeat\("\+visibleStaff\.length\+", minmax\(0,1fr\)) (?:16|24|32|40)px")'
+s, removed_tracks = re.subn(track_re, r'\1', s)
+# Remove a trailing fixed track without changing the equal 1fr staff columns.
+s = re.sub(r'(gridTemplateColumns: "40px repeat\("\+visibleStaff\.length\+", minmax\(0,1fr\)) (?:16|24|32|40)px"', r'\1', s)
+s = s.replace('right-[16px] z-30', 'right-0 z-30')
+p.write_text(s, encoding='utf-8')
+
+css_path = root / 'src/app/globals.css'
+css = css_path.read_text(encoding='utf-8')
+css += '''
+@media(max-width:767px){
+ [data-booking-workspace="calendar"] [data-calendar-grid] div[aria-hidden][class*="inset-y-0"][class*="right-0"]{
+   display:none!important;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header]:has([data-calendar-next-staff]) > div:nth-last-child(2){
+   padding-right:8px!important;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header]:has([data-calendar-next-staff]) > div:last-child{
+   box-sizing:border-box!important;
+   padding-right:28px!important;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header] [data-calendar-next-staff]{
+   box-sizing:border-box!important;
+   width:16px!important;
+   min-width:16px!important;
+   padding:0!important;
+   background:#151515!important;
+   justify-content:center!important;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header] [data-calendar-next-staff] svg{
+   width:12px!important;
+   height:12px!important;
+ }
+ [data-booking-workspace="calendar"] [data-calendar-grid]{
+   background:#090909!important;
+ }
+}
+'''
+css_path.write_text(css, encoding='utf-8')
+print('CALENDAR_LAST_BARBER_CLEAR_OF_PAGER_AND_BODY_EDGE_BLACK')
