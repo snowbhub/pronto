@@ -1175,8 +1175,8 @@ css_path.write_text(css, encoding='utf-8')
 # Fit at least 09:00 of the working day (10:00–19:00) in the mobile viewport.
 p = root / 'src/components/agenda/day-grid.tsx'
 s = p.read_text(encoding='utf-8')
-if 'const PX_PER_MIN = 1.0' not in s:
-    raise RuntimeError('Expected current calendar scale 1.0 was not found')
-s = s.replace('const PX_PER_MIN = 1.0', 'const PX_PER_MIN = 0.8', 1)
+s, scale_count = re.subn(r'const PX_PER_MIN\\s*=\\s*[0-9.]+', 'const PX_PER_MIN = 0.8', s, count=1)
+if scale_count != 1:
+    raise RuntimeError('Calendar scale declaration not found')
 p.write_text(s, encoding='utf-8')
 print('CALENDAR_RIGHT_GUTTER_BLACK_AND_9_HOUR_MOBILE_SCALE')
