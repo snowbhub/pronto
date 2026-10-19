@@ -1188,9 +1188,9 @@ if scale_count != 1:
 p.write_text(s, encoding='utf-8')
 print('CALENDAR_RIGHT_GUTTER_BLACK_AND_9_HOUR_MOBILE_SCALE')
 
-# Final screenshot fix: the rightmost decorative grid gutter is a separate,
-# aria-hidden overlay. Style that exact node (the previous broad selectors
-# only covered its parent), and reserve a slim independent track for paging.
+# Final screenshot fix: remove the absolute gutter overlay. It is mounted in
+# the first time row, so it paints only 10:00–11:00 gray; the grid owns its fill.
+# Keep a slim independent track for paging so its arrow cannot cover a barber.
 p = root / 'src/components/agenda/day-grid.tsx'
 s = p.read_text(encoding='utf-8')
 old_track = 'gridTemplateColumns: "40px repeat("+visibleStaff.length+", minmax(0,1fr)) 24px"'
@@ -1199,15 +1199,9 @@ if s.count(old_track) != 2:
 s = s.replace(old_track, 'gridTemplateColumns: "40px repeat("+visibleStaff.length+", minmax(0,1fr)) 16px"')
 
 gutter_re = r'<div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 z-10 w-[0-9]+ border-l border-line [^"]+" />'
-gutter, gutter_count = re.subn(
-    gutter_re,
-    '<div aria-hidden data-calendar-right-gutter className="pointer-events-none absolute inset-y-0 right-0 z-10 w-4 border-l border-line bg-[#090909]" />',
-    s,
-    count=1,
-)
+s, gutter_count = re.subn(gutter_re, '', s, count=1)
 if gutter_count != 1:
-    raise RuntimeError("Calendar right-side grid overlay was not found")
-s = gutter
+    raise RuntimeError("Calendar first-row right-side overlay was not found")
 
 next_button = 'aria-label="Наступні барбери"'
 if s.count(next_button) != 1:
