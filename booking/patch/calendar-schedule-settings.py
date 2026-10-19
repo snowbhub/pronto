@@ -1469,7 +1469,7 @@ p.write_text(source, encoding='utf-8')
 p = root / 'src/lib/data/store/postgres.ts'
 source = p.read_text(encoding='utf-8')
 source = source.replace('import { AlreadyChargedError, SlotTakenError, type Snapshot, type Store } from "./types"', 'import { AlreadyChargedError, SlotTakenError, type AgendaSnapshot, type Snapshot, type Store } from "./types"')
-source = source.replace('import type {\n  AgentEvent,', 'import { addDays, at, weekday, weekStart } from "@/lib/time"\nimport { expandFixedSlots } from "@/lib/domain/fixed-slots"\nimport type {\n  AgentEvent,', 1)
+source = source.replace('import type {\n  AgentEvent,', 'import { addDays, at, weekday, weekStart, setTimeZone } from "@/lib/time"\nimport { expandFixedSlots } from "@/lib/domain/fixed-slots"\nimport type {\n  AgentEvent,', 1)
 method = '''  async shellSummary() {
     const sql = sqlClient()
     const [counts, settings] = await Promise.all([
@@ -1482,6 +1482,8 @@ method = '''  async shellSummary() {
   async agendaSnapshot(day: string): Promise<AgendaSnapshot> {
     const sql = sqlClient()
     await sweepExpiredHolds(sql)
+    const zoneRows = await sql`select timezone from shop_settings where id=1`
+    setTimeZone(String(zoneRows[0]?.timezone ?? "Europe/Berlin"))
     const dayFrom = at(day, "00:00")
     const dayTo = at(addDays(day,1), "00:00")
     const weekFrom = at(weekStart(day), "00:00")
