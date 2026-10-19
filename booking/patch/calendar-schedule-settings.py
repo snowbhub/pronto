@@ -1349,6 +1349,9 @@ print('CALENDAR_LAST_BARBER_CLEAR_OF_PAGER_AND_BODY_EDGE_BLACK')
 p = root / 'src/components/agenda/day-grid.tsx'
 s = p.read_text(encoding='utf-8')
 s = s.replace('className="absolute right-1 top-1/2 z-50 grid size-7 -translate-y-1/2', 'className="absolute right-1 top-1/2 z-50 grid size-5 -translate-y-1/2')
+header_overlay = r'<div aria-hidden className="[^"]*pointer-events-none[^"]*absolute[^"]*inset-y-0[^"]*right-0[^"]*z-30[^"]*"\s*/>'
+s, removed_header_overlay = re.subn(header_overlay, "", s)
+print("CALENDAR_HEADER_OVERLAY_REMOVED", removed_header_overlay)
 p.write_text(s, encoding='utf-8')
 
 css_path = root / 'src/app/globals.css'
@@ -1356,6 +1359,7 @@ css = css_path.read_text(encoding='utf-8')
 css += '''
 @media(max-width:767px){
  [data-booking-workspace="calendar"] [data-calendar-grid] [aria-hidden][class*="absolute"][class*="inset-y-0"][class*="right-0"]{display:none!important;}
+ [data-booking-workspace="calendar"] [data-staff-header] [aria-hidden][class*="absolute"][class*="right-0"]{display:none!important;}
  [data-booking-workspace="calendar"] [data-calendar-grid]{width:100%!important;min-width:0!important;background:var(--obsidian)!important;}
  [data-booking-workspace="calendar"] [data-calendar-scroll]{width:100%!important;background:var(--obsidian)!important;}
  [data-booking-workspace="calendar"] [data-staff-header]{width:100%!important;background:var(--surface-1)!important;background-color:var(--surface-1)!important;}
