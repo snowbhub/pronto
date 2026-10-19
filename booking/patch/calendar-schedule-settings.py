@@ -1453,4 +1453,103 @@ for rel in ('src/components/settings/calendar-settings.tsx','src/components/sett
     component = component.replace('className="text-sm">', 'className="block min-w-0 text-sm">')
     p.write_text(component, encoding='utf-8')
 
+
+# Fast paths for the calendar and persistent dashboard shell. The old path loaded
+# every recent appointment, client, payment, message and conversation on each date change.
+p = root / 'src/lib/data/store/types.ts'
+source = p.read_text(encoding='utf-8')
+source = source.replace('export interface Store {', '''export type AgendaSnapshot = Pick<Snapshot, "now" | "staff" | "services" | "clients" | "appointments" | "payments" | "shopSettings" | "fixedSlots">
+export interface Store {''', 1)
+source = source.replace('  snapshot(): Promise<Snapshot>\n', '''  snapshot(): Promise<Snapshot>
+  agendaSnapshot?(day: string): Promise<AgendaSnapshot>
+  shellSummary?(): Promise<{ unread: number; needsHuman: number; agentEnabled: boolean }>
+''', 1)
+p.write_text(source, encoding='utf-8')
+
+p = root / 'src/lib/data/store/postgres.ts'
+source = p.read_text(encoding='utf-8')
+source = source.replace('import { AlreadyChargedError, SlotTakenError, type Snapshot, type Store } from "./types"', 'import { AlreadyChargedError, SlotTakenError, type AgendaSnapshot, type Snapshot, type Store } from "./types"')
+source = source.replace('import type {\n  AgentEvent,', 'import { addDays, at, weekday, weekStart } from "@/lib/time"\nimport { expandFixedSlots } from "@/lib/domain/fixed-slots"\nimport type {\n  AgentEvent,', 1)
+method = '''  async shellSummary() {
+    const sql = sqlClient()
+    const [counts, settings] = await Promise.all([
+      sql`select coalesce(sum(unread),0)::int as unread, count(*) filter (where needs_human)::int as needs_human from conversations`,
+      sql`select enabled from agent_settings where id = 1`
+    ])
+    return { unread: Number(counts[0]?.unread ?? 0), needsHuman: Number(counts[0]?.needs_human ?? 0), agentEnabled: Boolean(settings[0]?.enabled) }
+  },
+
+  async agendaSnapshot(day: string): Promise<AgendaSnapshot> {
+    const sql = sqlClient()
+    await sweepExpiredHolds(sql)
+    const dayFrom = at(day, "00:00")
+    const dayTo = at(addDays(day,1), "00:00")
+    const weekFrom = at(weekStart(day), "00:00")
+    const weekTo = at(addDays(weekStart(day),7), "00:00")
+    const dayOfWeek = weekday(day)
+    const [staffRows, serviceRows, appointmentRows, clientRows, paymentRows, shopRows, shifts, dateSchedules, timeOff, fixedRows, rankRows, rankRules] = await Promise.all([
+      sql`select s.*, coalesce(array_agg(e.service_id) filter (where e.service_id is not null), '{}') as skips from staff s left join staff_service_exclusions e on e.staff_id=s.id where s.active=true or s.id in (select distinct staff_id from appointments where starts_at >= ${weekFrom} and starts_at < ${weekTo}) group by s.id order by s.id`,
+      sql`select * from services order by sort,name`,
+      sql`select * from appointments where starts_at >= ${weekFrom} and starts_at < ${weekTo} order by starts_at`,
+      sql`select distinct c.* from clients c join appointments a on a.client_id=c.id where a.starts_at >= ${dayFrom} and a.starts_at < ${dayTo} order by c.created_at`,
+      sql`select * from payments where kind='servicio' and client_id in (select distinct client_id from appointments where starts_at >= ${dayFrom} and starts_at < ${dayTo}) order by paid_at`,
+      sql`select * from shop_settings where id=1`,
+      sql`select staff_id,weekday,to_char(start_time,'HH24:MI') as start,to_char(end_time,'HH24:MI') as "end" from staff_schedules order by weekday,start_time`,
+      sql`select staff_id,to_char(business_day,'YYYY-MM-DD') as day,works,shifts from staff_schedule_overrides where business_day=${day}::date`,
+      sql`select id,staff_id,starts_at,ends_at,reason from staff_time_off where starts_at < ${dayTo} and ends_at > ${dayFrom} order by starts_at`,
+      sql`select id,staff_id,weekday,to_char(on_date,'YYYY-MM-DD') as on_date,to_char(start_time,'HH24:MI') as start,to_char(end_time,'HH24:MI') as "end",label,active from fixed_slots where active=true and (on_date=${day}::date or (on_date is null and weekday=${dayOfWeek})) order by start_time`,
+      sql`select staff_id,professional_level from booking_staff_levels`,
+      sql`select service_id,professional_level,available from booking_service_levels`
+    ])
+    const services=serviceRows.map(toService)
+    const staffRank=new Map(rankRows.map(r=>[String(r.staff_id),String(r.professional_level)]))
+    const serviceRanks=new Map<string,Set<string>>()
+    for(const rule of rankRules){const id=String(rule.service_id);if(!serviceRanks.has(id))serviceRanks.set(id,new Set());if(rule.available)serviceRanks.get(id)!.add(String(rule.professional_level))}
+    const fixedSlots=fixedRows.map(x=>({id:String(x.id),staffId:String(x.staff_id),weekday:x.weekday===null?null:Number(x.weekday),onDate:(x.on_date as string|null)??null,start:String(x.start),end:String(x.end),label:(x.label as string|null)??null,active:Boolean(x.active)}))
+    const fixedBlocks=expandFixedSlots(fixedSlots,day)
+    const staff=staffRows.map(r=>{
+      const level=staffRank.get(String(r.id))||"barber"
+      const excluded=services.filter(service=>{const allowed=serviceRanks.get(service.id);return allowed&&!allowed.has(level)}).map(service=>service.id)
+      return {...toStaff(r),professionalLevel:level as Staff["professionalLevel"],skipsServiceIds:[...((r.skips as string[]|null)??[]),...excluded],schedule:shifts.filter(x=>x.staff_id===r.id).map(x=>({weekday:Number(x.weekday),start:String(x.start),end:String(x.end)})),dateSchedule:dateSchedules.filter(x=>x.staff_id===r.id).map(x=>({day:String(x.day),works:Boolean(x.works),shifts:(x.shifts as {start:string;end:string}[])??[]})),timeOff:[...timeOff.filter(x=>x.staff_id===r.id).map(x=>({startsAt:isoOr(x.starts_at as Date),endsAt:isoOr(x.ends_at as Date)})),...fixedBlocks.filter(b=>b.staffId===r.id).map(({startsAt,endsAt})=>({startsAt,endsAt}))]}
+    })
+    const shop=shopRows[0]
+    return {now:new Date().toISOString(),simulated:false,staff,services,clients:clientRows.map(toClient),appointments:appointmentRows.map(toAppointment),payments:paymentRows.map(toPayment),fixedSlots,shopSettings:{openingCash:Number(shop.opening_cash),depositEnabled:Boolean(shop.deposit_enabled),depositAmount:Number(shop.deposit_amount),depositHoldMin:Number(shop.deposit_hold_min),remindersEnabled:Boolean(shop.reminders_enabled),slotStepMin:Number(shop.slot_step_min??60),timezone:String(shop.timezone??"Europe/Berlin"),calendarOpen:String(shop.calendar_open??"11:00"),calendarClose:String(shop.calendar_close??"20:00"),calendarStepMin:Number(shop.calendar_step_min??15),allowStaffOverlaps:Boolean(shop.allow_staff_overlaps)}}
+  },
+'''.replace('+','')
+if 'async agendaSnapshot(day: string)' not in source:
+    anchor = '  async snapshot(): Promise<Snapshot> {'
+    if anchor not in source: raise RuntimeError('Postgres snapshot insertion point missing')
+    source = source.replace(anchor, method + anchor, 1)
+p.write_text(source, encoding='utf-8')
+
+p = root / 'src/lib/data/queries.ts'
+source = p.read_text(encoding='utf-8')
+source = source.replace('import { db, now } from "./repo"', 'import { db, now, store } from "./repo"', 1)
+source = source.replace('''export async function getShell() {
+  const s = await db()
+  const n = await now()
+  return {
+    now: n.toISOString(),
+    simulated: s.simulated,
+    unread: s.conversations.reduce((sum, c) => sum + c.unread, 0),
+    needsHuman: s.conversations.filter((c) => c.needsHuman).length,
+    agentEnabled: s.agentSettings.enabled,
+  }
+}''', '''export async function getShell() {
+  const repository = store()
+  if (repository.shellSummary) {
+    const [n, summary] = await Promise.all([now(), repository.shellSummary()])
+    return { now: n.toISOString(), simulated: false, ...summary }
+  }
+  const s = await db()
+  const n = await now()
+  return { now: n.toISOString(), simulated: s.simulated, unread: s.conversations.reduce((sum, c) => sum + c.unread, 0), needsHuman: s.conversations.filter((c) => c.needsHuman).length, agentEnabled: s.agentSettings.enabled }
+}''', 1)
+source = source.replace('''export async function getAgenda(day: string) {
+  const s = await db()
+  const n = await now()''', '''export async function getAgenda(day: string) {
+  const repository = store()
+  const [s, n] = await Promise.all([repository.agendaSnapshot ? repository.agendaSnapshot(day) : db(), now()])''', 1)
+p.write_text(source, encoding='utf-8')
+
 print('BOOKING_CALENDAR_THEME_LAYOUT_SETTINGS_LOCALES_FIXED')
