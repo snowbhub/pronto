@@ -1090,3 +1090,65 @@ css += '''
 '''
 css_path.write_text(css, encoding='utf-8')
 print('CALENDAR_CARD_OVERFLOW_AND_STAFF_HEADER_REPAIRED')
+
+
+# Latest mobile refinements: align the right inset and compact the barber header.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+old_track = 'gridTemplateColumns: "40px repeat("+visibleStaff.length+", minmax(0,1fr)) 32px"'
+if s.count(old_track) != 2:
+    raise RuntimeError("Expected matching 32px right tracks for staff header and grid")
+s = s.replace(old_track, 'gridTemplateColumns: "40px repeat("+visibleStaff.length+", minmax(0,1fr)) 24px"')
+
+# Keep both paging arrows as narrow 24px controls, centered in their gutters.
+s = s.replace(
+    'className="flex h-full w-full items-center justify-center bg-[#151515] text-ivory-2"',
+    'className="mx-auto flex h-full w-6 items-center justify-center bg-[#151515] text-ivory-2"',
+    1,
+)
+s = s.replace('<ChevronLeft className="size-5"/>', '<ChevronLeft className="size-4"/>', 1)
+s = s.replace(
+    'className="absolute inset-y-0 right-0 z-50 flex w-8 items-center justify-center bg-[#151515] text-ivory-2"',
+    'className="absolute inset-y-0 right-0 z-50 flex w-6 items-center justify-center bg-[#151515] text-ivory-2"',
+    1,
+)
+s = s.replace('<ChevronRight className="size-5"/>', '<ChevronRight className="size-4"/>', 1)
+s = s.replace('z-30 w-8 border-l border-line bg-[#151515]', 'z-30 w-6 border-l border-line bg-[#151515]', 1)
+s = s.replace('z-10 w-8 border-l border-line bg-obsidian/95', 'z-10 w-6 border-l border-line bg-obsidian/95', 1)
+
+# Reduce the header by 30% from 90px to 63px and place avatar and text on one
+# aligned row so names, roles and images fit in the shorter cell.
+old_cell = 'h-[90px] min-h-[90px] flex-col items-start justify-start gap-1 border-l border-line bg-[#151515] px-2 py-1'
+if old_cell not in s:
+    raise RuntimeError("Compact barber header cell class not found")
+s = s.replace(
+    old_cell,
+    'h-[63px] min-h-[63px] flex-row items-center justify-start gap-2 border-l border-line bg-[#151515] px-2 py-1',
+    1,
+)
+p.write_text(s, encoding='utf-8')
+
+css_path = root / 'src/app/globals.css'
+css = css_path.read_text(encoding='utf-8')
+css += '''
+@media(max-width:767px){
+ [data-booking-workspace="calendar"] [data-staff-header] > div[aria-hidden]{
+   width:24px!important;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header] > div:not(:first-child):not([aria-hidden]){
+   box-sizing:border-box!important;
+   height:63px!important;
+   min-height:63px!important;
+   padding:4px 8px!important;
+   align-items:center!important;
+   justify-content:flex-start!important;
+   text-align:left!important;
+ }
+ [data-booking-workspace="calendar"] [data-staff-header] > div:not(:first-child):not([aria-hidden]) > span{
+   align-self:center!important;
+   text-align:left!important;
+ }
+}
+'''
+css_path.write_text(css, encoding='utf-8')
+print('CALENDAR_RIGHT_INSET_AND_HEADER_COMPACTED')
