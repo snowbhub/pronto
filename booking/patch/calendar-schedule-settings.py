@@ -1152,3 +1152,31 @@ css += '''
 '''
 css_path.write_text(css, encoding='utf-8')
 print('CALENDAR_RIGHT_INSET_AND_HEADER_COMPACTED')
+
+
+# Keep only the barber header gray; the right edge beside the time grid stays black.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+s = s.replace('z-10 w-6 border-l border-line bg-obsidian/95',
+              'z-10 w-6 border-l border-line bg-[#090909]', 1)
+p.write_text(s, encoding='utf-8')
+
+css_path = root / 'src/app/globals.css'
+css = css_path.read_text(encoding='utf-8')
+css += '''
+@media(max-width:767px){
+ [data-booking-workspace="calendar"] [data-calendar-grid] > div[aria-hidden]{
+   background:#090909!important;
+ }
+}
+'''
+css_path.write_text(css, encoding='utf-8')
+
+# Fit at least 09:00 of the working day (10:00–19:00) in the mobile viewport.
+p = root / 'src/components/agenda/day-grid.tsx'
+s = p.read_text(encoding='utf-8')
+if 'const PX_PER_MIN = 1.0' not in s:
+    raise RuntimeError('Expected current calendar scale 1.0 was not found')
+s = s.replace('const PX_PER_MIN = 1.0', 'const PX_PER_MIN = 0.8', 1)
+p.write_text(s, encoding='utf-8')
+print('CALENDAR_RIGHT_GUTTER_BLACK_AND_9_HOUR_MOBILE_SCALE')
