@@ -1246,7 +1246,7 @@ print('CALENDAR_RIGHT_GUTTER_BLACK_ARROW_GUTTER_16PX')
 # configured hours: longer opening days remain naturally vertically scrollable.
 p = root / 'src/components/agenda/day-grid.tsx'
 s = p.read_text(encoding='utf-8')
-s, scale_count = re.subn(r'const PX_PER_MIN = 1\\.0', 'const PX_PER_MIN = 1.02', s, count=1)
+s, scale_count = re.subn(r'const PX_PER_MIN = 1[.]0', 'const PX_PER_MIN = 1.02', s, count=1)
 if scale_count != 1:
     raise RuntimeError("Expected the current 1.0px/minute calendar scale")
 p.write_text(s, encoding='utf-8')
