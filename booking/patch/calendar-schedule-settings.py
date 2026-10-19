@@ -274,7 +274,7 @@ export function CalendarSettings({settings}:{settings:ShopSettings}) {
 
 # Date-by-date schedule planner for each staff member.
 component = '''"use client"
-import { useState,useTransition } from "react"
+import { useEffect,useState,useTransition } from "react"
 import { ChevronLeft,ChevronRight } from "lucide-react"
 import { toast } from "sonner"
 import { saveStaffDateSchedule } from "@/lib/data/settings-actions"
@@ -1463,7 +1463,7 @@ for rel in ('src/components/settings/calendar-settings.tsx','src/components/sett
 # every recent appointment, client, payment, message and conversation on each date change.
 p = root / 'src/lib/data/store/types.ts'
 source = p.read_text(encoding='utf-8')
-source = source.replace('export interface Store {', '''export type AgendaSnapshot = Pick<Snapshot, "now" | "staff" | "services" | "clients" | "appointments" | "payments" | "shopSettings" | "fixedSlots">
+source = source.replace('export interface Store {', '''export type AgendaSnapshot = Pick<Snapshot, "now" | "simulated" | "staff" | "services" | "clients" | "appointments" | "payments" | "shopSettings" | "fixedSlots">
 export interface Store {''', 1)
 source = source.replace('  snapshot(): Promise<Snapshot>\n', '''  snapshot(): Promise<Snapshot>
   agendaSnapshot?(day: string): Promise<AgendaSnapshot>
