@@ -1370,9 +1370,9 @@ css += '''
 }
 html[data-theme="light"] [data-booking-workspace="calendar"] [data-calendar-scroll],
 html[data-theme="light"] [data-booking-workspace="calendar"] [data-calendar-grid],
-html[data-theme="light"] [data-booking-workspace="calendar"] [data-calendar-grid"] > div[aria-hidden]{background:var(--obsidian)!important;background-color:var(--obsidian)!important;background-image:none!important;}
+html[data-theme="light"] [data-booking-workspace="calendar"] [data-calendar-grid] > div[aria-hidden]{background:var(--obsidian)!important;background-color:var(--obsidian)!important;background-image:none!important;}
 html[data-theme="light"] [data-booking-workspace="calendar"] [data-staff-header],
-html[data-theme="light"] [data-booking-workspace="calendar"] [data-staff-header"] > div{background:var(--surface-1)!important;background-color:var(--surface-1)!important;}
+html[data-theme="light"] [data-booking-workspace="calendar"] [data-staff-header] > div{background:var(--surface-1)!important;background-color:var(--surface-1)!important;}
 '''.replace('+','')
 css_path.write_text(css, encoding='utf-8')
 
